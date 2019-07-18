@@ -1,0 +1,363 @@
+<!DOCTYPE html> {% load socialaccount %} {% providers_media_js %}
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>콜라</title>
+
+    <link href="https://fonts.googleapis.com/css?family=Black+Han+Sans&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Nanum+Brush+Script&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Cute+Font&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Sunflower:300&display=swap" rel="stylesheet">
+    <style>
+        @import 'https://fonts.googleapis.com/css/?family=Open+sans';
+        .presentation-only {
+            margin: 5% auto;
+        }
+        
+        .social-button a {
+            text-decoration: none !important;
+            display: block;
+            margin: 15px auto;
+            cursor: pointer;
+            font-family: 'Sunflower', sans-serif;
+            width: 220px;
+            box-sizing: border-box;
+        }
+        
+        .gsign {
+            background-color: rgb(255, 255, 255);
+            padding: 10px 15px 10px 10px;
+            color: rgb(0, 0, 0);
+            border-radius: 2px;
+            font-size: 15px;
+            box-shadow: 1px 2px 3px 1px #d1d1d1;
+            text-align: left;
+        }
+        
+        .s-ico {
+            display: inline-block;
+            width: 24px;
+            height: 24px;
+            vertical-align: middle;
+            margin-right: 10px;
+            border-radius: 2px;
+        }
+        
+        .gicon {
+            background-image: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/240570/google-icon-1x.png');
+        }
+        
+        .gsign:hover {
+            background-color: #fff;
+            color: #0054A6;
+            -webkit-transition-property: background-color;
+            -webkit-transition-duration: 0.2s;
+            -webkit-transition-timing-function: ease-in;
+            transition-property: background-color;
+            transition-duration: 0.2s;
+            transition-timing-function: ease-in;
+            box-shadow: 1px 2px 3px 1px #d1d1d1;
+        }
+        
+        .iwh {
+            background-color: #F7B734;
+            padding: 15px 15px;
+            color: #000;
+            border-radius: 2px;
+            font-size: 16px;
+            box-shadow: 1px 2px 3px 1px #d1d1d1;
+            text-align: center;
+        }
+        
+        .iwh:hover {
+            background-color: #edac2a;
+            color: #000;
+            -webkit-transition-property: background-color;
+            -webkit-transition-duration: 0.2s;
+            -webkit-transition-timing-function: ease-in;
+            transition-property: background-color;
+            transition-duration: 0.2s;
+            transition-timing-function: ease-in;
+            box-shadow: 1px 2px 3px 1px #d1d1d1;
+        }
+        
+        .fb {
+            background-color: rgb(15, 175, 0);
+            padding: 10px 15px 10px 10px;
+            color: #fff;
+            border-radius: 2px;
+            font-size: 15px;
+            box-shadow: 1px 2px 3px 1px #d1d1d1;
+            text-align: left;
+        }
+        
+        .fb:hover {
+            background-color: rgb(15, 175, 0);
+            color: #FFF;
+            -webkit-transition-property: background-color;
+            -webkit-transition-duration: 0.2s;
+            -webkit-transition-timing-function: ease-in;
+            transition-property: background-color;
+            transition-duration: 0.2s;
+            transition-timing-function: ease-in;
+            box-shadow: 1px 2px 3px 1px #d1d1d1;
+        }
+        
+        .ficon {
+            background-image: url('white.PNG');
+        }
+        
+        body {
+            padding: 0 2%;
+            color: #ffffff;
+            background: linear-gradient(to right, #ff4800, #ff0077);
+        }
+        
+        .X {
+            margin: auto;
+            padding: 1% 2%;
+            max-width: 420px;
+            border-radius: 5px;
+            border-color: 5px solid fade(white, 20%);
+            background: transparent;
+        }
+        
+        h1,
+        h2 {
+            text-align: center;
+            font-family: 'Sunflower', sans-serif;
+        }
+        
+        input,
+        label,
+        a {
+            color: transparent;
+            border: white;
+            font-size: 18px;
+            font-weight: 400;
+            line-height: 30px;
+            text-align: justify;
+            letter-spacing: 1px;
+            font-family: 'Sunflower', sans-serif;
+        }
+        
+        .fuck {
+            color: default;
+        }
+        
+        label,
+        input[type=submit],
+        a {
+            font-weight: 500;
+        }
+        /*Style Social
+              lsN = login social Network
+              */
+        
+        ul {
+            padding: 0;
+        }
+        
+        .lsn li {
+            margin: 15px 0;
+            list-style: none;
+        }
+        
+        .lsn a {
+            padding: 4%;
+            color: #fff;
+            display: block;
+            border-radius: 5px;
+            text-decoration: none;
+        }
+        
+        .lsn span {
+            margin: 0 8px 0 0;
+            padding: 5.4% 15px 6% 0;
+            border-right: 2px solid rgba(0, 0, 0, .2);
+        }
+        
+        .lsn span i {
+            width: 15px;
+        }
+        
+        #fb {
+            background: rgba(59, 89, 152, 1);
+            box-shadow: 0 5px 0 0 rgba(59, 89, 152, .4);
+        }
+        
+        #gl {
+            background: rgba(221, 75, 57, 1);
+            box-shadow: 0 5px 0 0 rgba(221, 75, 57, .4);
+        }
+        
+        .pss {
+            width: 100%;
+            display: inline-block;
+        }
+        
+        .pss a {
+            float: right;
+            font-size: 14px;
+            color: #0080FF;
+            ;
+            text-decoration: none;
+        }
+        /*style form*/
+        
+        form {
+            width: 100%;
+            margin-top: 40px;
+        }
+        
+        input {
+            width: 100%;
+            border: white;
+            outline: none;
+            padding: 10px;
+            margin: 8px auto;
+            box-sizing: border-box;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, .2);
+        }
+        
+        label {
+            display: flex;
+        }
+        
+        input:hover {}
+        
+        input:focus {
+            border: 1px solid #ffffff;
+        }
+        
+        input[type=submit] {
+            color: white;
+            font-weight: bold;
+            text-align: center;
+            background: transparent;
+            border: 2px ridge white;
+            align-self: center;
+        }
+        
+        input[type=submit]:focus {
+            border: none;
+            vertical-align: middle;
+        }
+        
+        input[type=email] {
+            background: transparent;
+            color: white;
+        }
+        
+        input[type=password] {
+            background: transparent;
+            color: white;
+        }
+        
+        input::-ms-input-placeholder {
+            color: rgb(255, 255, 255);
+        }
+        
+        input::-webkit-input-placeholder {
+            color: rgb(255, 255, 255);
+        }
+        
+        input::-moz-placeholder {
+            color: rgb(255, 255, 255);
+        }
+        /*Checkbox style*/
+        
+        input[type=checkbox] {
+            display: none;
+        }
+        
+        input[type=checkbox]+label {
+            position: relative;
+            padding-left: 28px;
+        }
+        
+        input[type=checkbox]+label:before {
+            content: "";
+            position: absolute;
+            transition: all 0.6s ease-in-out;
+        }
+        
+        input[type=checkbox]+label:before {
+            top: 0;
+            left: 0;
+            width: 20px;
+            height: 20px;
+            background: #fff;
+            border-radius: 4px;
+            border: 1px solid #ffffff;
+        }
+        
+        input[type=checkbox]:checked+label:before {
+            color: #fff;
+            display: flex;
+            content: '\f00c';
+            align-items: center;
+            background: #ffffff;
+            justify-content: center;
+            font-family: 'FontAwesome';
+        }
+        /*Responsive*/
+        
+        @media (max-width: 350px) {
+            input,
+            label,
+            a {
+                font-size: 90%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    {% if user.is_authenticated %}
+    <div class="X">
+        <h1>로그인되었습니다.</h1>
+        <form class="s4" method='POST' action="{%url 'home' %}">
+            {% csrf_token %}
+            <input type="submit" value="이동">
+        </form>
+    </div>
+
+    {% else %}
+    <div class="X">
+        <h1>로그인</h1>
+        <form class="s4" method='POST' action="{%url 'login' %}">
+            {% csrf_token %}
+            <input type="email" name="id" maxlength="30" placeholder="이메일 주소">
+            <input type="password" name="pass" maxlength="14" placeholder="비밀번호">
+            <input type="submit" value="로그인" />
+        </form>
+    </div>
+
+    <div class="X">
+        <form class="s4" action="{%url 'acount' %}">
+            {% csrf_token %}
+            <input type="submit" value="회원가입" />
+        </form>
+    </div>
+
+    <div class="presentation-only">
+        <h1>소셜 로그인</h1>
+        <div class="social-button">
+            <a class="gsign" href="{% provider_login_url 'google' %}"><span class="gicon s-ico"></span>구글 아이디로 로그인</a>
+        </div>
+        <div class="social-button">
+            <a class="fb" href="{% provider_login_url 'naver' %}"><span class="ficon s-ico"></span>네이버 아이디로 로그인</a>
+        </div>
+    </div>
+    {% endif %}
+</body>
+<script type="text/javascript">
+    var x = document.getElementsByTagName('input');
+    for (var i = 0; i < 2; i++) {
+        x[i].required = true;
+    }
+</script>
+
+</html>

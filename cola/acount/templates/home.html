@@ -1,0 +1,6 @@
+<h1> 홈페이지 </h1>
+
+<form class="s4" method='POST' action="{%url 'logout' %}">
+    {% csrf_token %}
+    <input type="submit" value="로그아웃" />
+</form>
