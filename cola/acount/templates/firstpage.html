@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>First page</title>
+    <link href="https://fonts.googleapis.com/css?family=Do+Hyeon|Great+Vibes|Pacifico&display=swap" rel="stylesheet">
+    <style>
+        .parent {
+            width: 100%;
+            height: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: rgb(172, 22, 22);
+        }
+        
+        .link {
+            font-family: 'Great Vibes', cursive;
+            outline: none;
+            text-decoration: none;
+            position: relative;
+            font-size: 9em;
+            overflow: hidden;
+            line-height: 6;
+            width: 700px;
+            color: rgb(172, 22, 22);
+            display: inline-block;
+        }
+        
+        .link--paracvet {
+            /*text-transform: uppercase;*/
+            font-weight: 900;
+            line-height: 6;
+            text-shadow: -2px -2px 0 white, 2px -2px 0 white, -2px 2px 0 white, 2px 2px 0 white;
+            color: rgb(172, 22, 22);
+        }
+        
+        .link--paracvet:hover {
+            color: rgb(172, 22, 22);
+        }
+        
+        .link--paracvet::after {
+            content: '';
+            position: absolute;
+            height: 16px;
+            width: 100%;
+            top: 50%;
+            margin-top: -8px;
+            right: 0;
+            background: rgb(255, 164, 164);
+            transform: translate3d(-100%, 0, 0);
+            transition: transform 0.4s;
+            transition-timing-function: cubic-bezier(0.7, 0, 0.3, 1);
+        }
+        
+        .link--paracvet:hover::after {
+            transform: translate3d(100%, 0, 0);
+        }
+        
+        .link--paracvet::before {
+            content: attr(data-letters);
+            position: absolute;
+            z-index: 2;
+            overflow: hidden;
+            color: black;
+            white-space: nowrap;
+            width: 0%;
+            transition: width 0.4s 0.3s;
+        }
+        
+        .link--paracvet:hover::before {
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="parent">
+        <a class="link link--paracvet" href="#" data-letters="Collaboration">Collaboration</a>
+    </div>
+
+
+
+</body>
+
+</html>

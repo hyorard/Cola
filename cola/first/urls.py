@@ -9,4 +9,5 @@ urlpatterns = [
     path('board/<int:board_id>', views.detail, name="detail"),
     path('board/new/',views.new, name="new"),
     path('board/create', views.create, name="create"),
+    path('board/mypage',views.mypage, name="mypage"),
 ]

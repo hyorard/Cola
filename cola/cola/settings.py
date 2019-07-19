@@ -42,7 +42,6 @@ INSTALLED_APPS = [
     'acount.apps.AcountConfig',
     'teamproject.apps.TeamprojectConfig',
  
-
     # allauth
     'allauth',
     'allauth.account',
@@ -132,7 +131,15 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
+#static
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'acount', 'static')
+]
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 STATIC_URL = '/static/'
+MEDIA_URL = '/media/'
 
 AUTEHNTICATION_BACKENDS = (
     # Needed to login by username in Django admin, regardless of 'allauth

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="utf-8">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>My Page</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,900" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Do+Hyeon&display=swap&subset=korean" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Do+Hyeon|Great+Vibes|Pacifico&display=swap" rel="stylesheet">
+
+    <style>
+        header {
+            left: 20px;
+            font-family: 'Great Vibes', cursive;
+        }
+        
+        span {
+            color: red;
+        }
+        
+        a {
+            color: black;
+            text-decoration: none;
+        }
+        
+        a:hover {
+            color: black;
+            text-decoration: none;
+        }
+        
+        #div_menu {
+            width: 13%;
+            height: 500px;
+            float: left;
+            color: white;
+            background-color: rgb(212, 35, 35);
+            text-align: left;
+            font-family: 'Do Hyeon', sans-serif;
+            padding: 10px;
+            text-align: center;
+        }
+        
+        #div_menu>a {
+            font-size: 25px;
+            color: black;
+        }
+        
+        #div_menu>a:hover {
+            color: white;
+            font-style: normal;
+            text-decoration: none;
+        }
+        
+        .box {
+            font-family: 'Do Hyeon', sans-serif;
+            font-size: 40px;
+        }
+        
+        .firstbox {
+            font-family: 'Do Hyeon', sans-serif;
+            font-size: 40px;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <a href="{% url 'main' %}">
+            <h2>&nbsp;<span>Colla</span>boration</h2>
+        </a>
+    </header>
+    <div id="div_menu">
+        <a href="{% url 'teamproject' %}">Team Page</a><br>
+        <a href="#">Team create</a><br>
+        <a href="{% url 'board' %}">Board</a><br>
+        <a href="#">logout</a>
+    </div>
+    <div style="border: 2px solid rgba(211, 211, 211, 0.795); float: left; width: 43%; height:500px; padding:10px;">
+        <div class="box" style="text-align: center;">
+            <h4 class="firstbox">프로필</h4>
+        </div>
+        <div class="chart-container"><canvas id="myChart" width="425" height="200"></canvas></div>
+
+
+
+    </div>
+
+    <div style="border: 2px solid rgba(211, 211, 211, 0.795); float: left; width: 43.5%; height: 500px; padding:10px;">
+        <div style="text-align: center;">
+            <h4 class="firstbox">나의 진행 상황</h4>
+        </div>
+
+        <br>
+        <br>
+    </div>
+
+</body>
+
+</div>

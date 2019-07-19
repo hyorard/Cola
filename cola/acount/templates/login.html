@@ -315,16 +315,6 @@
 </head>
 
 <body>
-    {% if user.is_authenticated %}
-    <div class="X">
-        <h1>로그인되었습니다.</h1>
-        <form class="s4" method='POST' action="{%url 'home' %}">
-            {% csrf_token %}
-            <input type="submit" value="이동">
-        </form>
-    </div>
-
-    {% else %}
     <div class="X">
         <h1>로그인</h1>
         <form class="s4" method='POST' action="{%url 'login' %}">
@@ -336,7 +326,7 @@
     </div>
 
     <div class="X">
-        <form class="s4" action="{%url 'acount' %}">
+        <form class="s4" action="{%url 'signup' %}">
             {% csrf_token %}
             <input type="submit" value="회원가입" />
         </form>
@@ -351,7 +341,6 @@
             <a class="fb" href="{% provider_login_url 'naver' %}"><span class="ficon s-ico"></span>네이버 아이디로 로그인</a>
         </div>
     </div>
-    {% endif %}
 </body>
 <script type="text/javascript">
     var x = document.getElementsByTagName('input');

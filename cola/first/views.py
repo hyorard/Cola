@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.utils import timezone
-from .models import Board
+from .models import Board,profile
 
 # Create your views here.
 def main(request):
@@ -24,3 +24,10 @@ def create(request):
     board.pub_date = timezone.datetime.now()
     board.save()
     return redirect('/board/'+str(board.id))
+
+def mypage(request):
+    return render(request, 'mypage.html')
+
+def profile(request):
+    prf = profile.objects
+    return render(request, 'mypage.html', {'profile':prf})

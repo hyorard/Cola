@@ -7,13 +7,15 @@ from django.contrib import auth
 def signup(request):
     if request.method == 'POST':
         try:
-            if request.POST['pass1'] == request.POST['pass2']:
-                user = User.objects.create_user(request.POST['id'], password=request.POST['pass1'])
+            if request.POST['password1'] == request.POST['password2']:
+                user = User.objects.create_user(request.POST['username'], password=request.POST['password1'])
                 return redirect('login')
         except:
             return render(request,'signup.html')
     return render(request, 'signup.html')
 
+
+# 콜라 로그인 용
 def login(request):
     if request.method == 'POST':
         username = request.POST['id']
@@ -22,17 +24,24 @@ def login(request):
 
         if user:
             auth.login(request, user)
-            return redirect('home')
+            return redirect('mypage', {'username': username})
         else:
-            return render(request, 'login.html', {'error': 'fuck'})
+            return render(request, 'login.html')
 
     return render(request, 'login.html')
 
-def home(request):
-    return render(request, 'home.html')
 
+
+# 소셜 로그인 용
+def social(request):
+    return render(request, 'mypage.html')
+
+def firstpage(request):
+    return render(request, 'firstpage.html')
+'''
 def logout(request):
     if request.method == 'POST':
         auth.logout(request)
         return redirect('login')
     return render(request, 'login')
+'''

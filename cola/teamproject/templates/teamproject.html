@@ -3,7 +3,6 @@
 <html lang='ko'>
 
 
-
 <head>
 
     <meta charset="utf-8">
@@ -15,21 +14,13 @@
     <title>main</title>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css" media="all">
-
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,900" rel="stylesheet">
-
     <link href="https://fonts.googleapis.com/css?family=Do+Hyeon&display=swap&subset=korean" rel="stylesheet">
-
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
-
     <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.17/d3.min.js"></script>
 
 
@@ -137,7 +128,6 @@
             background: #0ff;
         }
         
-        출처: https: //ghj1001020.tistory.com/659 [혁준 블로그]
         * {
             margin: 0;
             padding: 0;
@@ -306,6 +296,29 @@
             padding: 25px;
         }
         
+        #div_menu {
+            width: 13%;
+            height: 500px;
+            float: left;
+            color: white;
+            background-color: rgb(212, 35, 35);
+            text-align: left;
+            font-family: 'Do Hyeon', sans-serif;
+            padding: 10px;
+            text-align: center;
+        }
+        
+        #div_menu>a {
+            font-size: 25px;
+            color: black;
+        }
+        
+        #div_menu>a:hover {
+            color: white;
+            font-style: normal;
+            text-decoration: none;
+        }
+        
         .shadow {
             -webkit-filter: drop-shadow(0px 3px 3px rgba(0, 0, 0, .5));
             filter: drop-shadow(0px 3px 3px rgba(0, 0, 0, .5));
@@ -326,17 +339,14 @@
 
     <section>
 
-        <nav class="nav">
-
-            <a class="nav-link" href="#">MY PAGE</a>
-
-            <a class="nav-link" href="#">TEAM PAGE</a>
-
-            <a class="nav-link" href="#">BOARD</a>
-
-        </nav>
-
         <div id="div_menu">
+            <a href="{% url 'teamproject' %}">Team Page</a><br>
+            <a href="{% url 'board' %}">Board</a><br>
+            <a href="#">Team create</a><br>
+            <a href="#">logout</a>
+        </div>
+
+        <!-- <div id="div_menu">
 
             <h5 id="menu_name">팀 관리</h6>
 
@@ -356,7 +366,7 @@
 
 
 
-        </div>
+        </div> -->
 
         <div class="card">
 
@@ -1055,4 +1065,5 @@
         setTimeout(restOfTheData, 1000);
     </script>
 
-</body>
+</body> #div_menu { width: 13%; height: 500px; float: left; color: white; background-color: rgb(212, 35, 35); text-align: left; font-family: 'Do Hyeon', sans-serif; padding: 10px; text-align: center; } #div_menu>a { font-size: 25px; color: black; } #div_menu>a:hover
+{ color: white; font-style: normal; text-decoration: none; } roject
