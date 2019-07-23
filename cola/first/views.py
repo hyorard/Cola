@@ -5,9 +5,11 @@ from .forms import CommentForm
 from django.contrib import auth
 
 # Create your views here.
-def main(request):
-    print("entered main########")
-    return render(request, 'main.html')
+def main(request,username=None):
+    if not request.user.is_authenticated:
+        return render(request, 'main.html')
+    userId = username
+    return redirect('mypage',userId)
 
 # username : parameter passed by func 'login'
 def mypage(request, username=None):
@@ -18,9 +20,9 @@ def mypage(request, username=None):
         return render(request, 'main.html')
     except:
         # no profile -> makeprofile
-        return render(request,'profile.html', {'profile':0, 'username':userId})
+        return render(request,'profile.html', {'profile':0, 'userId':userId})
 
-def makeProfile(request, username=None, profile=None):
+def makeProfile(request):
     #userId = request.
     if request.POST['type'] == 'change':
         userId = request.POST['userId']
