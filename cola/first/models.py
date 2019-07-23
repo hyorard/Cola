@@ -1,5 +1,6 @@
 from django.db import models
 from datetime import datetime, timedelta, timezone, tzinfo, date
+
 # Create your models here.
 class Board(models.Model):
     title = models.CharField(max_length=200)
@@ -29,5 +30,8 @@ class profile(models.Model):
     img = models.ImageField(upload_to='images/')
     school = models.CharField(max_length=50)
     date = models.DateField(auto_now=False, auto_now_add=False)
+
+    def __str__(self):
+        return self.userName
 
 

@@ -1,4 +1,5 @@
 from django.db import models
+from first.models import profile
 
 # Create your models here.
 class Group(models.Model):
@@ -8,3 +9,8 @@ class Group(models.Model):
     
     def __self__(self):
         return self.title
+
+class team(models.Model):
+    deadline = models.DateField()
+    timeFromStart = models.DurationField()
+    mateList = models.ManyToManyField("profile", blank=True)
