@@ -25,8 +25,8 @@ urlpatterns = [
     path('teamproject/',include('teamproject.urls')),
     path('signup/', views.signup, name='signup'),
     path('login/', views.login, name='login'),
-    path('accounts/google/login/callback/', views.social, name='social'),
-    path('accounts/naver/login/callback/', views.social, name='social'),
+    path('accounts/google/login/', views.social, name='social'),
+    path('accounts/naver/login/', views.social, name='social'),
     path('accounts/', include('allauth.urls')),
     path('',views.firstpage, name="firstpage"),
 

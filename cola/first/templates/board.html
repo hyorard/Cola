@@ -10,6 +10,8 @@
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css?family=Do+Hyeon&display=swap&subset=korean" rel="stylesheet">
+
     <style>
         header {
             left: 20px;
@@ -31,6 +33,115 @@
         div {
             display: block;
         }
+        
+        #div_board {
+            text-align: center;
+            font-family: 'Do Hyeon', sans-serif;
+        }
+        
+        #div_menu {
+            width: 13%;
+            height: 500px;
+            float: left;
+            color: white;
+            background-color: rgb(212, 35, 35);
+            text-align: left;
+            font-family: 'Do Hyeon', sans-serif;
+            padding: 10px;
+            text-align: center;
+        }
+        
+        #div_menu>a {
+            font-size: 25px;
+            color: black;
+        }
+        
+        #div_menu>a:hover {
+            color: white;
+            font-style: normal;
+            text-decoration: none;
+        }
+        /* 임시 */
+        
+        @import url(https://fonts.googleapis.com/css?family=Sail);
+        body {
+            background-color: white;
+            margin: 50px;
+        }
+        
+        #text {
+            overflow: hidden;
+            width: 400px;
+            height: 200px;
+            margin: 0px auto;
+            background: -webkit-linear-gradient(bottom, transparent, black 50px);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            transition-duration: 1.5s;
+            text-align: justify;
+            font: 7.5pt georgia, serif;
+            color: black;
+            line-height: 180%;
+        }
+        
+        #text:hover {
+            height: 620px;
+        }
+        
+        p:first-letter {
+            font: 35pt sail, serif;
+            padding: 2px 5px 0px 2px;
+            float: left;
+            margin: 0px;
+            line-height: 67%;
+        }
+        /*버튼 임시*/
+        
+        @import url(https://fonts.googleapis.com/css?family=Oxygen:400,300,700);
+        .button {
+            background-image: linear-gradient(-16deg, #f7392b 50%, #ee3022 50%);
+            font-family: 'Do Hyeon', sans-serif;
+            font-size: 1.5rem;
+            line-height: 1.875rem;
+            text-align: center;
+            display: inline-block;
+            color: #fff;
+            text-transform: uppercase;
+            text-decoration: none;
+            padding: 20px 40px 25px;
+            position: relative;
+            max-width: 100%;
+        }
+        
+        .button:after {
+            content: "";
+            background: #fff;
+            height: 1px;
+            width: 26%;
+            display: block;
+            position: absolute;
+            bottom: 20px;
+            left: 37%;
+            transition: all 0.3s ease-out;
+            -webkit-transition: all 0.3s ease-out;
+            -moz-transition: all 0.3s ease-out;
+            -ms-transition: all 0.3s ease-out;
+            -o-transition: all 0.3s ease-out;
+        }
+        
+        .button:hover {
+            color: #fff;
+        }
+        
+        .button:hover:after {
+            width: 70%;
+            left: 15%;
+            transition: all 0.3s ease-out;
+            -webkit-transition: all 0.3s ease-out;
+            -moz-transition: all 0.3s ease-out;
+            -ms-transition: all 0.3s ease-out;
+            -o-transition: all 0.3s ease-out;
+        }
     </style>
 </head>
 
@@ -38,21 +149,36 @@
     <header>
         <h2>&nbsp;<span>Colla</span>boration</h2>
     </header>
-    <section>
-        <nav class="nav">
-            <a class="nav-link" href="#">MY PAGE</a>
-            <a class="nav-link" href="#">TEAM PAGE</a>
-            <a class="nav-link" href="{% url 'board' %}">BOARD</a>
-        </nav>
-    </section>
-    <div>
+    <div id="div_menu">
+        <a href="{% url 'teamproject' %}">Team Page</a><br>
+        <a href="#">Team create</a><br>
+        <a href="{% url 'board' %}">Board</a><br>
+        <a href="#">logout</a>
+    </div>
+
+    <div id="div_board">
         <h3>게시판</h3><br>
-        <a href="{% url 'new' %}" class="btn btn-primary btn-lg" tabindex="-1" role="button">글쓰기</a><br>
+        <a href="{% url 'new' %}" class="button" tabindex="-1" role="button">글쓰기</a><br>
         <div>
             {% for board in boards.all %}
             <a></a>
-            <a href="{% url 'detail' board.id%}">{{board.title}} </a>
-            <a>{{board.pub_date}}</a><br> {% endfor %}
+            <a href="{% url 'detail' board.id%}">{{board.title}} </a> &nbsp;
+            <a>{{board.pub_date}}</a>&nbsp; <a href="{% url 'detail' board.id %}">댓글( {{ board.comments.count }} )</a> <br>{% endfor %}
+        </div>
+        <br>
+        <h4>글 목록</h4>
+        <div id="text">
+            <p> Whose woods these are I think I know. His house is in the village though; He will not see me stopping here To watch his woods fill up with snow. My little horse must think it queer To stop without a farmhouse near Between the woods and frozen
+                lake The darkest evening of the year. He gives his harness bells a shake To ask if there is some mistake. The only other sound's the sweep Of easy wind and downy flake. The woods are lovely, dark and deep. But I have promises to keep,
+                And miles to go before I sleep, And miles to go before I sleep.</p>
+            <p>I have been one acquainted with the night. I have walked out in rain—and back in rain. I have outwalked the furthest city light. I have looked down the saddest city lane. I have passed by the watchman on his beat And dropped my eyes, unwilling
+                to explain. I have stood still and stopped the sound of feet When far away an interrupted cry Came over houses from another street, But not to call me back or say good-bye; And further still at an unearthly height, One luminary clock against
+                the sky Proclaimed the time was neither wrong nor right. I have been one acquainted with the night.</p>
+            <p>Two roads diverged in a yellow wood, And sorry I could not travel both And be one traveler, long I stood And looked down one as far as I could To where it bent in the undergrowth; Then took the other, as just as fair, And having perhaps the
+                better claim, Because it was grassy and wanted wear; Though as for that the passing there Had worn them really about the same, And both that morning equally lay In leaves no step had trodden black. Oh, I kept the first for another day!
+                Yet knowing how way leads on to way, I doubted if I should ever come back. I shall be telling this with a sigh Somewhere ages and ages hence: Two roads diverged in a wood, and I— I took the one less traveled by, And that has made all the
+                difference.
+            </p>
         </div>
     </div>
 </body>

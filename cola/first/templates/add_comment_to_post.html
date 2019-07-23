@@ -46,25 +46,11 @@
         </nav>
     </section>
     <div>
-        <h3>게시판</h3>
-        <div>
-            <h3>{{board.title}}</h3>
-            <p>{{board.pub_date}}</p>
-            <p>{{board.body}}</p>
-        </div>
-        <hr> {% for comment in board.comments.all %}
-        <div class="comment">
-            <div class="date">{{ comment.created_date }}</div>
-            <strong>{{ comment.author }}</strong>
-            <p>{{ comment.text|linebreaks }}</p>
-        </div>
-        {% empty %}
-        <p>No comments here yet :(</p>
-        {% endfor %}
+        <h1>New comment</h1>
+        <form method="POST" class="post-form">{% csrf_token %} {{ form.as_p }}
+            <button type="submit" class="save btn btn-default">Send</button>
+        </form>
     </div>
-    <br><br>
-    <a class="btn btn-default" href="{% url 'add_comment_to_post' board.id %}">댓글</a>
-    <a class="btn btn-outline-secondary" href="{% url 'board' %}" role="button">목록</a>
 </body>
 
 </html>

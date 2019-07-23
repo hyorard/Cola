@@ -9,6 +9,8 @@
     <link href="https://fonts.googleapis.com/css?family=Nanum+Brush+Script&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Cute+Font&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Sunflower:300&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Do+Hyeon|Great+Vibes|Pacifico&display=swap" rel="stylesheet">
+
     <style>
         @import 'https://fonts.googleapis.com/css/?family=Open+sans';
         .presentation-only {
@@ -20,7 +22,7 @@
             display: block;
             margin: 15px auto;
             cursor: pointer;
-            font-family: 'Sunflower', sans-serif;
+            font-family: 'Do Hyeon', sans-serif;
             width: 220px;
             box-sizing: border-box;
         }
@@ -111,7 +113,8 @@
         body {
             padding: 0 2%;
             color: #ffffff;
-            background: linear-gradient(to right, #ff4800, #ff0077);
+            background: rgb(172, 22, 22)
+            /*linear-gradient(to right, #ff4800, #ff0077);*/
         }
         
         .X {
@@ -126,7 +129,7 @@
         h1,
         h2 {
             text-align: center;
-            font-family: 'Sunflower', sans-serif;
+            font-family: 'Do Hyeon', sans-serif;
         }
         
         input,
@@ -139,7 +142,7 @@
             line-height: 30px;
             text-align: justify;
             letter-spacing: 1px;
-            font-family: 'Sunflower', sans-serif;
+            font-family: 'Do Hyeon', sans-serif;
         }
         
         .fuck {
@@ -316,6 +319,7 @@
 
 <body>
     <div class="X">
+
         <h1>로그인</h1>
         <form class="s4" method='POST' action="{%url 'login' %}">
             {% csrf_token %}

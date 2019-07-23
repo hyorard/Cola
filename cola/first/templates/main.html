@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE html>{% load socialaccount %} {% providers_media_js %}
 
 <head>
     <meta charset="utf-8">
@@ -9,103 +9,473 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <link href="https://fonts.googleapis.com/css?family=Do+Hyeon|Great+Vibes|Pacifico&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Song+Myung&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" style="width:50px; float: left;">
+    <link href="https://fonts.googleapis.com/css?family=Sunflower:300&display=swap" rel="stylesheet">
+
+
 
     <style>
         header {
+            height: 80px;
             top: 30px;
             left: 20px;
             font-family: 'Great Vibes', cursive;
+            margin-top: 15px;
+            border-bottom: 1px solid rgb(160, 148, 148);
         }
         
         header>a {
             font-size: 50px;
         }
         
+        header>a:hover {
+            background-color: white;
+        }
+        
+        .snip1198 {
+            position: absolute;
+            margin-top: -25px;
+            margin-left: 1050px;
+            font-family: 'Sunflower', sans-serif;
+            text-align: center;
+            text-transform: uppercase;
+            font-weight: 500;
+            letter-spacing: 1px;
+        }
+        
+        .snip1198>li {
+            display: inline-block;
+            list-style: outside none none;
+            margin: 0.4em 0.8em;
+            padding: 0;
+        }
+        
+        .snip1198>a {
+            color: black;
+        }
+        
         span {
             color: red;
         }
         
-        .nav-link {
+        span:hover {
+            color: rgba(255, 0, 0, 0.411);
+        }
+        
+        .boration {
             color: black;
         }
         
-        .nav-link:hover {
-            color: black;
-            background-color: tomato;
+        .boration:hover {
+            color: rgba(0, 0, 0, 0.411);
         }
         
-        .cate_type {
-            float: left;
-            background-color: lightgray;
+        #div_menu {
             position: relative;
-            border-radius: .75rem;
-            left: 10px;
+            width: 10%;
+            height: 600px;
+            float: left;
+            color: white;
+            background-color: rgb(212, 35, 35);
+            text-align: left;
+            font-family: 'Do Hyeon', sans-serif;
             padding: 10px;
-            margin-left: 30px;
-            margin-bottom: 10px;
-            padding-top: 35px;
-            height: 100px;
-            width: 100px;
-            text-align: center;
-            display: block;
         }
         
-        .current_Team {
+        #div_menu>a {
+            font-size: 19.5px;
+            font-family: 'Do Hyeon', sans-serif;
+            text-align: center;
+            color: black;
+        }
+        
+        #div_menu>a:hover {
+            color: white;
+            font-style: normal;
+            text-decoration: none;
+        }
+        
+        .firstcontainer {
+            position: relative;
+            margin-left: 180px;
+        }
+        
+        h2 {
+            font-family: 'Sunflower', sans-serif;
+            margin-left: 20px;
+            margin-top: 30px;
+        }
+        
+        input {
+            margin-left: 20px;
+            font-family: 'Sunflower', sans-serif;
+        }
+        
+        .row category1-buttons {
+            position: absolute;
+        }
+        
+        a {
+            color: black;
+            text-decoration: none;
+            background-color: rgba(0, 0, 0, 0);
+            font-family: 'Do Hyeon', sans-serif;
+            text-align: center;
+        }
+        
+        a:hover {
+            text-decoration: none;
+            color: black;
+        }
+        
+        @keyframes bounce {
+            0%,
+            100%,
+            20%,
+            50%,
+            80% {
+                -webkit-transform: translateY(0);
+                -ms-transform: translateY(0);
+                transform: translateY(0)
+            }
+            40% {
+                -webkit-transform: translateY(-30px);
+                -ms-transform: translateY(-30px);
+                transform: translateY(-30px)
+            }
+            60% {
+                -webkit-transform: translateY(-15px);
+                -ms-transform: translateY(-15px);
+                transform: translateY(-15px)
+            }
+        }
+        
+        .category-icon {
+            position: absolute;
+            text-transform: uppercase;
+            -webkit-animation-duration: .7s;
+            animation-duration: .7s;
+            -webkit-animation-fill-mode: both;
+            animation-fill-mode: both;
+            -webkit-animation-timing-function: ease-in-out;
+            animation-timing-function: ease-in-out;
+            animation-iteration-count: infinite;
+            -webkit-animation-iteration-count: infinite;
+        }
+        
+        .category-icon:hover {
+            cursor: pointer;
+            animation-name: bounce;
+            -moz-animation-name: bounce;
+        }
+        
+        h6 {
+            font-family: 'Sunflower', sans-serif;
+        }
+        
+        .secondcontainer {
             float: left;
             position: absolute;
-            top: 530px;
+            top: 450px;
             left: 10px;
+        }
+        
+        #icon {
+            margin-top: 5px;
+            font-size: 23px;
+        }
+        
+        h3 {
+            font-size: 25px;
+            font-family: 'Sunflower', sans-serif;
+        }
+        
+        a.module_card-02 {
+            display: block;
+            float: left;
+            position: absolute;
+            margin-left: 10px;
+            margin-top: 15px;
+            padding: 10px;
+            font-family: 'Sunflower', sans-serif;
+        }
+        
+        .thumb {
+            height: 95px;
+            position: relative;
+            margin: -1px -1px 0;
+            background-color: #b5bdd7;
+            background-repeat: no-repeat;
+            background-position: 50%;
+            background-size: cover;
+        }
+        
+        .thumb:after {
+            content: '';
+            display: block;
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            border: 1px solid rgba(204, 204, 204, .4);
+        }
+        
+        .profile {
+            z-index: 1;
+            overflow: hidden;
+            position: relative;
+            width: 61px;
+            height: 61px;
+            margin: -45px auto 0;
+            border-radius: 10px;
+            border: 1px solid #ccc;
+            background-repeat: no-repeat;
+            background-position: 50%;
+            background-size: cover;
         }
         
         div {
             display: block;
         }
     </style>
+
 </head>
 
 <body>
     <header>
-        <a>
-            <STRONG>&nbsp;<span>Colla</span>boration</STRONG>
+        <a style="font-family: 'Great Vibes', cursive;">
+            <STRONG>&nbsp;<span>Colla</span><span class="boration">boration</span></STRONG>
         </a>
-    </header>
-    <section>
-        <nav class="nav">
-            <a class="nav-link" href="{% url 'mypage' %}">MY PAGE</a>
-            <a class="nav-link" href="{% url 'teamproject' %}">TEAM PAGE</a>
-            <a class="nav-link" href="{% url 'board' %}">BOARD</a>
-        </nav>
+        <ul class="snip1198">
+            <li class="enter">
+                {% if not request.user.is_authenticated %}
+                <a href="{% url 'login' %}">로그인</a>
+                <a href="{% url 'signup' %}">회원가입</a> {% elif request.user.is_authenticated %}
+                <a href="{% url 'logout' %}">로그아웃</a> {% endif %}
+            </li>
+        </ul>
 
-        <div class="jumbotron jumbotron-fluid">
-            <div class="container">
-                <h1 class="display-4">쉽고 편한 팀플 협업 플랫폼</h1>
-                <br>
-                <button type="button" class="btn btn-outline-secondary">Work with Us</button>
+
+
+
+    </header>
+
+    <section>
+        <div id="div_menu">
+            <a href="{% url 'teamproject' %}">Team Page</a><br>
+            <a href="#">Team create</a><br>
+            <a href="{% url 'board' %}">Board</a><br>
+        </div>
+
+
+        <div class="firstcontainer" data-v-64d60be8="" data-v-47f9118c="">
+            <img="">
+                <div class="row wrapper no-gutters" data-v-64d60be8="">
+                    <div data-name="search" class="col-lg-6 col-12" data-v-64d60be8="">
+                        <h2 data-v-64d60be8=""><strong>쉽고 편한<br data-v-64d60be8=""><span class="emphasize" style="color:red;">팀플 협업</span> 플랫폼</strong></h2><br>
+                        <div class="service-searcher mobile-fullscreen" data-v-6fedc368="" data-v-64d60be8="">
+
+                            <form data-v-6fedc368="" class="">
+                                <div role="group" class="input-group" data-v-6fedc368="">
+                                    <input type="text" style="border-color:red;" placeholder="원하는 팀플 주제를 검색하세요" autocomplete="off" value="" class="form-control" data-v-6fedc368="" id="__BVID__16">
+                                    <div class="input-group-append" data-v-6fedc368="">
+                                        <img src="data:image/png;base64,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"
+                                            style="width:35px;" data-v-6fedc368="">
+                                    </div>
+                                    <!---->
+                                </div>
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+        </div>
+
+
+        <br><br><br><br>
+        <div class="row category1-buttons" style="float:left; margin-left:60px; padding: 5px;" data-v-141da7e5="" data-v-64d60be8="">
+            <div class="category col" data-v-141da7e5="">
+                <a href="/마케팅" data-v-141da7e5="">
+                    <div class="category-icon" data-v-141da7e5="" href="#"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTv3kpPraRR9XpESPuqWcCr8L_XvHvHija9E3i_jkT8hbrEioCq" alt="마케팅" style="width:70px; background-color: white;" data-v-141da7e5="">
+                        <h6 data-v-141da7e5="">마케팅</h6>
+                    </div>
+                </a>
+            </div>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <div class="category col" data-v-141da7e5="">
+                <a href="/경영경제" data-v-141da7e5="">
+                    <div class="category-icon" data-v-141da7e5="" href="#"><img src="https://cdn.iconscout.com/icon/premium/png-256-thumb/budget-48-461460.png" alt="경영/경제" style="width:70px;" data-v-141da7e5="">
+                        <h6 data-v-141da7e5="">경영/경제</h6>
+                    </div>
+                </a>
+            </div>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <div class="category col" data-v-141da7e5="">
+                <a href="/공학계열" data-v-141da7e5="">
+                    <div class="category-icon" data-v-141da7e5="" href="#"><img src="https://cdn.iconscout.com/icon/premium/png-256-thumb/sponsor-4-461450.png" alt="공학계열" style="width:70px;" data-v-141da7e5="">
+                        <h6 data-v-141da7e5="">공학계열</h6>
+                    </div>
+                </a>
+            </div>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <div class="category col" data-v-141da7e5="">
+                <a href="/미디어" data-v-141da7e5="">
+                    <div class="category-icon" data-v-141da7e5="" href="#"> <img src="https://cdn.iconscout.com/icon/premium/png-256-thumb/media-1626294-1378648.png" style="width:80px;" alt="미디어" data-v-141da7e5="">
+                        <h6 data-v-141da7e5="">미디어/방송</h6>
+                    </div>
+                </a>
+            </div>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <div class="category col" data-v-141da7e5="">
+                <a href="/건축" data-v-141da7e5="">
+                    <div class="category-icon" data-v-141da7e5="" href="#"> <img src="https://cdn.iconscout.com/icon/premium/png-256-thumb/bank-936-461455.png" style="width:70px;" alt="건축" data-v-141da7e5="">
+                        <h6 data-v-141da7e5="">건축</h6>
+                    </div>
+                </a>
+            </div>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <div class="category col" data-v-141da7e5="">
+                <a href="/패션" data-v-141da7e5="">
+                    <div class="category-icon" data-v-141da7e5="" href="#"> <img src="https://cdn.iconscout.com/icon/premium/png-256-thumb/fashion-44-183180.png" style="width: 70px;" alt="패션" data-v-141da7e5="">
+                        <h6 data-v-141da7e5="">패션</h6>
+                    </div>
+                </a>
+            </div>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <div class="category col" data-v-141da7e5="">
+                <a href="/더보기" data-v-141da7e5="">
+                    <div class="category-icon-" data-v-141da7e5="" href="#"> <img src="https://cdn.iconscout.com/icon/free/png-256/left-arrow-292-861732.png" style="width: 50px; margin-top: 20px;" alt="더보기" data-v-141da7e5="">
+                        <h6 data-v-141da7e5="">더보기</h6>
+                    </div>
+                </a>
             </div>
         </div>
-        <div class="category">
-            <div class="cate_type">마케팅</div>
-            <div class="cate_type">컴퓨터공학</div>
-            <div class="cate_type">기계공학</div>
-            <div class="cate_type">미디어</div>
-            <div class="cate_type">건축</div>
-            <div class="cate_type">패션</div>
-        </div>
 
-        <div class="current_Team">
+
+
+
+
+
+        <div class="secondcontainer" name="current_Team" style="position: absolute; width: 300px; margin-left: 210px; margin-top: 30px;">
+            <div id="icon" class="fa" style="width:30px; float: left;"></div>
             <h3>
                 <STRONG>모집중인 팀플</STRONG>
             </h3>
-            <div class="board">
-                <ul>
-                    <li>1. 팀원구합니다.</li>
-                    <li>2. 팀원구합니다.</li>
-                    <li>3. 팀원구합니다.</li>
-                    <li>4. 팀원구합니다.</li>
-                </ul>
+
+            <div class="thirdcontainer" name="applybox_place">
+
+                <a href="#none" data-channel_id="55376" class="module_card-02">
+                    <div class="thumb after" style="background-color: rgb(243, 215, 59);"></div>
+                    <div class="profile"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOEAAADhCAMAAAAJbSJIAAAAolBMVEX////ymCYPCgoAAADylhz1sWv//PjylRn3v4T+9u31r1xjYmL3xovc3NzyliD+9uv0qVTxkQC5uLgJAABeXFwpJib1tGX97t/5zp3zoz/51KjzpEYxLy/2vXx1dHTa2tpqaWnznzWysbH86tZVUlL2uXP29vbq6urFxMT63bwVEBB+fHz2tGiMi4skISFJRkb74sT3w5I+Ozuop6eWk5PPzs6LYNjBAAAC00lEQVR4nO3ci07iQBSAYfHU1gKKWBREcUVgFUVFdN//1Ratm2BqoZ1Lp5P9vxcY/pzM9JawtwcAAAAAAAAAAAAAAAAAAAAAAAAAAACg9voHml711r+btpT1endFlogXQRSoiw70Co9E3WOhwLXhZdRQFmgX7quR1VvxVeJm99izQpFW0QGm5ieqY3RTKKvbsgt1DgO1MbooFHk6Kr9SOB8rjdFBoTyfKi42ayiMsfJC2X/6rbyaym6sulBeSu/ATfF5N6h1YYlrYJ5ls+QYKy2Ul3vNvrX4tdxurLBQ5F13gKnlOCrRWFlhIlcGBvhlNC6+G6sqlId3M3GpZbNbs0KZql4Dc8SjoodqJYXrmxj1a2CeyaLYbqygMJHpHzNR34WvhXaj/UKRNzNHaNbkssBDle3CRFZWBvilvXuMlgvlucRzrorJYtehardQeuaugTnCdnf7bZzNwvVNjPkjNKt/sPVQtVeYJD2F51wV4WDbs7G1QkluqxhgarLlTZWlQlvXwFyDi7xD1U6hnFk+QrMms5xD1Uqh3FQ7wE/hIPhxN1ooXN/EVLcDN3VGP71wNF4o+ze2btJ2G15kx2i6UM5O3Qww1T/PHKpmC0VaFV0Dcw0vA4uFcmX4OVdFf/R9jAYLE7n+ZeZH6gmHjchGYSLidAduije/4pgqlAftd70mbXxTNVRo8lWhEZ3Zv91opFDk2vURmjX/GqOJQlnVbICpfvtzjPqFif7XFlvmH7c4+oVyX5cjNCtcBPqFj2Z+iyXtSLuw5ij0H4X+o9B/FPqPQv9R6D8K/Ueh/yj0H4X+o9B/FPqPQv9R6D8K/Ueh/yj030fhIow1dGLXDdutCxvjppZRvRM/ChvHOqKTjuuIrdoafxmSOqbQMQoppNA9Cimk0D0KKaTQvf+gsBvpqnnhfHSoa1DvZ/zQANcNAAAAAAAAAAAAAAAAAAAAAAAAAGDbX2mzSC7Vk8QsAAAAAElFTkSuQmCC"
+                            style="height:100%; width: 100%;"></div>
+                    <div class="wrap-info" style="position: relative; height:100px; width:150px;">
+                        <div class="class">멋사</div>
+                        <ul class="hash_tags after" style="text-align:left; text-size-adjust: 100%;">
+
+                            #코딩 #공학
+
+                        </ul>
+                        <div class="infos">
+                            <span class="count">
+                                                <span class="apply">1</span>/
+                            <span class="magam">3</span>명
+                            </span>
+                            ·
+                            <span class="a_ing">모집중</span>
+                        </div>
+                    </div>
+
+                </a>
+
+                <a href="#none" data-channel_id="55377" class="module_card-02" style="left: 200px;">
+                    <div class="thumb after" style="background-color: whitesmoke;"></div>
+                    <div class="profile" style="background-color:whitesmoke;"></div>
+                    <div class="wrap-info" style="position: relative; height: 100px;width:150px;">
+                        <div class="class">마케팅</div>
+                        <ul class="hash_tags after" style="text-align:left;">
+
+                            #마케팅 #브랜드
+
+                        </ul>
+                        <div class="infos">
+                            <span class="count">
+                                                <span class="apply">2</span>/
+                            <span class="magam">5</span>명
+                            </span>
+                            ·
+                            <span class="a_ing">모집중</span>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="#none" data-channel_id="55378" class="module_card-02" style="left: 400px;">
+                    <div class="thumb after" style="background-color:whitesmoke;"></div>
+                    <div class="profile" style="background-color:whitesmoke;"></div>
+                    <div class="wrap-info" style="position: relative; height: 100px; width:150px;">
+                        <div class="class">패션</div>
+                        <ul class="hash_tags after" style="text-align:left;">
+
+                            #시각디자인
+
+                        </ul>
+                        <div class="infos">
+                            <span class="count">
+                                                <span class="apply">5</span>/
+                            <span class="magam">6</span>명
+                            </span>
+                            ·
+                            <span class="a_ing">모집중</span>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="#none" data-channel_id="55379" class="module_card-02" style="left: 600px;">
+                    <div class="thumb after" style="background-color:whitesmoke;"></div>
+                    <div class="profile" style="background-color:whitesmoke;"></div>
+                    <div class="wrap-info" style="position: relative; width:150px">
+                        <div class="class">멋사</div>
+                        <ul class="hash_tags after" style="text-align:left;">
+
+                            #코딩 #공학
+
+                        </ul>
+                        <div class="infos">
+                            <span class="count">
+                                                <span class="apply">1</span>/
+                            <span class="magam">3</span>명
+                            </span>
+                            ·
+                            <span class="a_ing">모집중</span>
+                        </div>
+                    </div>
+                </a>
+
             </div>
         </div>
+
+
     </section>
+
+    <script>
+        function hourglass() {
+            var a;
+            a = document.getElementById("icon");
+            a.innerHTML = "&#xf251;";
+            setTimeout(function() {
+                a.innerHTML = "&#xf252;";
+            }, 1000);
+            setTimeout(function() {
+                a.innerHTML = "&#xf253;";
+            }, 2000);
+        }
+        hourglass();
+        setInterval(hourglass, 3000);
+    </script>
+
+
+
 </body>
 
-</button>
+</html>

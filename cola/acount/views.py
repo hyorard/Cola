@@ -24,7 +24,7 @@ def login(request):
 
         if user:
             auth.login(request, user)
-            return redirect('mypage', {'username': username})
+            return redirect('mypage_login', username)
         else:
             return render(request, 'login.html')
 
@@ -34,7 +34,7 @@ def login(request):
 
 # 소셜 로그인 용
 def social(request):
-    return render(request, 'mypage.html')
+    return render(request, 'Profile.html')
 
 def firstpage(request):
     return render(request, 'firstpage.html')

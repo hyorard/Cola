@@ -108,17 +108,25 @@
     <div style="border: 2px solid rgba(211, 211, 211, 0.795); float: left; width: 43%; height:500px; padding:10px;">
         <div class="box" style="text-align: center;">
             <h4 class="firstbox">프로필</h4>
-            {{ profile.img }}
-            <h1>{{ profile.userId }}</h1>
-            <h1>{{ profile.userName }}</h1>
-            <h1>{{ profile.school }}</h1>
-            <h1>{{ profile.date }}</h1>
+            <div class="X">
+                {% if profile == None %}
+                <h1>프로필을 생성하세요.</h1>
+                {% else %}
+                <h1>프로필을 변경하세요.</h1>
+                {% endif %}
 
-            <form method="PUT" action="{%url 'changeProfile'%}">
-                {% csrf_token %}
-                <input type="hidden" name="userId" value="{{profile.userId}}">
-                <input type="submit" value="변경">
-            </form>
+                <form method="POST" enctype="multipart/form-data" action="{% url 'makeProfile' %}">
+                    {% csrf_token %}
+                    <input type="file" name="userPic" />
+                    <input type="text" name="userName" placeholder="성명">
+                    <input type="text" name="school" maxlength="30" placeholder="학교 이름">
+                    <input type="hidden" name="userId" value="{{userId}}"> {% if profile == None %}
+                    <input type="hidden" name="type" value="create"> {% else %}
+                    <input type="hidden" name="type" value="change"> {% endif %}
+
+                    <input type="submit" value="생성" />
+                </form>
+            </div>
 
         </div>
         <div class="chart-container"><canvas id="myChart" width="425" height="200"></canvas></div>
