@@ -13,30 +13,27 @@ def main(request):
 def mypage(request, username=None):
     userId = username
     try:
-        # profile had been already made
+        # profile had been already made -> main.html
         prof = profile.objects.get(userId__exact=userId)
         return render(request, 'main.html')
     except:
-        # no profile
-        return redirect('makeProfile', {'profile':None,'userId':userId})
+        # no profile -> makeprofile
+        return render(request,'profile.html', {'profile':0, 'username':userId})
 
-def makeProfile(request, username=None):
-    if request.method == 'GET':
-        userId = request.GET['userId']
-        return render(request, 'profile.html', {'profile':1, 'userId':userId})
+def makeProfile(request, username=None, profile=None):
+    #userId = request.
+    if request.POST['type'] == 'change':
+        userId = request.POST['userId']
+        prof = profile.objects.get(userId__exact=userId)
     else:
-        if request.POST['type'] == 'change':
-            userId = request.POST['userId']
-            prof = profile.objects.get(userId__exact=userId)
-        else:
-            prof = profile()
-        prof.img = request.POST.get('userPic','')
-        prof.userId = request.POST['userId']
-        prof.userName = request.POST['userName']
-        prof.school = request.POST['school']
-        prof.date = timezone.datetime.now()
-        prof.save()
-        return redirect('mypage', prof.userId)
+        prof = profile()
+    prof.img = request.POST.get('userPic','')
+    prof.userId = request.POST['userId']
+    prof.userName = request.POST['userName']
+    prof.school = request.POST['school']
+    prof.date = timezone.datetime.now()
+    prof.save()
+    return redirect('mypage', prof.userId)
 
 def board(request):
     boards = Board.objects

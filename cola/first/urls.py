@@ -15,7 +15,7 @@ urlpatterns = [
     path('board/mypage/<str:username>/XtoO',views.mypage, name="mypage"),
     path('board/mypage/profileO',views.mypage, name="mypage"),
     path('board/makeProf/',views.makeProfile, name="makeProfile"),
-    path('board/makeProf/<str:username>/',views.makeProfile, name="makeProfile"),
+    path('board/makeProf/<int:profile>/<str:username>/',views.makeProfile, name="makeProfile"),
     path('board/changeProf/',views.makeProfile, name="changeProfile"),
 
     #logout
