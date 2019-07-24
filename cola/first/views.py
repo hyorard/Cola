@@ -29,7 +29,6 @@ def changeProfile(request):
     return render(request,'profile.html',{'profile':prof})
 
 def makeProfile(request):
-    #userId = request.
     if request.POST['type'] == 'change':
         userId = request.POST['userId']
         print("userId => {0}".format(userId))
