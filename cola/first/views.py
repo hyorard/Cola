@@ -5,44 +5,41 @@ from .forms import CommentForm
 from django.contrib import auth
 
 # Create your views here.
-def main(request,username=None):
-    userId = username
+def main(request):
+    userId = request.user.username
     # not logged in -> main.html
     if not request.user.is_authenticated:
         return render(request, 'main.html')
+    # logged in
     try:
-        # profile had been already made -> main.html
-        prof = profile.objects.get(userId__exact=userId)
-        return render(request, 'main.html',{'profile':prof})
+        # profile O -> main.html
+        prof = request.user.profile
+        return render(request, 'main.html')
     except:
-        # no profile -> makeprofile -> profile.html
-        return render(request,'profile.html', {'profile':0, 'userId':userId})
+        # profile X -> makeprofile -> profile.html
+        return render(request,'profile.html')
 
-def mypage(request, username=None):
-    userId = request.POST['userId']
-    prof = profile.objects.get(userId__exact=userId)
-    return render(request,'mypage.html',{'profile':prof})
+def mypage(request):
+    prof = request.user.profile
+    return render(request,'mypage.html')
 
 def changeProfile(request):
-    userId = request.POST['userId']
-    prof = profile.objects.get(userId__exact=userId)
-    return render(request,'profile.html',{'profile':prof})
+    prof = request.user.profile
+    return render(request,'profile.html')
 
 def makeProfile(request):
     if request.POST['type'] == 'change':
-        userId = request.POST['userId']
-        print("userId => {0}".format(userId))
-        prof = profile.objects.get(userId__exact=userId)
+        prof = request.user.profile
     else:
         prof = profile()
+    prof.user = request.user
     prof.img = request.POST.get('userPic','')
     #prof.img = request.POST['userPic']
-    prof.userId = request.POST['userId']
     prof.userName = request.POST['userName']
     prof.school = request.POST['school']
     prof.date = timezone.datetime.now()
     prof.save()
-    return redirect('main', prof.userId)
+    return redirect('main')
 
 def board(request):
     boards = Board.objects

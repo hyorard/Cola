@@ -5,7 +5,6 @@ from . import views
 
 urlpatterns = [
     path('',views.main, name="main"),
-    path('<str:username>',views.main, name="main"),
     path('board/',views.board, name="board"),
     path('board/<int:board_id>', views.detail, name="detail"),
     path('board/new/',views.new, name="new"),
@@ -14,7 +13,6 @@ urlpatterns = [
     #profile
     path('board/mypage/',views.mypage, name="mypage"),
     path('board/makeProf/',views.makeProfile, name="makeProfile"),
-    path('board/makeProf/<int:profile>/<str:username>/',views.makeProfile, name="makeProfile2"),
     path('board/changeProf/',views.changeProfile, name="changeProfile"),
 
     #logout

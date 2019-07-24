@@ -268,10 +268,7 @@
             <a href="#">Team create</a><br>
             <a href="{% url 'board' %}">Board</a><br>
         </div>
-        <h1>{{profile.userId}}</h1>
         <form method="POST" enctype="multipart/form-data" action="{%url 'mypage'%}">
-                {% csrf_token %}
-                <input type="hidden" name="userId" value="{{profile.userId}}">
                 <input type="submit" value="마이페이지">
         </form>
 

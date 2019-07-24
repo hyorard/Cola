@@ -24,7 +24,7 @@ def login(request):
 
         if user:
             auth.login(request, user)
-            return redirect('main', username)
+            return redirect('main')
         else:
             return render(request, 'login.html')
 

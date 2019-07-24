@@ -108,15 +108,14 @@
     <div style="border: 2px solid rgba(211, 211, 211, 0.795); float: left; width: 43%; height:500px; padding:10px;">
         <div class="box" style="text-align: center;">
             <h4 class="firstbox">프로필</h4>
-            {{ profile.img }}
-            <h1>{{ profile.userId }}</h1>
-            <h1>{{ profile.userName }}</h1>
-            <h1>{{ profile.school }}</h1>
-            <h1>{{ profile.date }}</h1>
+            {{ user.profile.img }}
+            <h1>{{ user.profile.userId }}</h1>
+            <h1>{{ user.profile.userName }}</h1>
+            <h1>{{ user.profile.school }}</h1>
+            <h1>{{ user.profile.date }}</h1>
 
             <form method="POST" action="{%url 'changeProfile'%}">
                 {% csrf_token %}
-                <input type="hidden" name="userId" value="{{profile.userId}}">
                 <input type="hidden" name="type" value="change">
                 <input type="submit" value="변경">
             </form>

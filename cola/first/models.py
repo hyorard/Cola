@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 from datetime import datetime, timedelta, timezone, tzinfo, date
 
 # Create your models here.
@@ -25,13 +26,13 @@ class Comment(models.Model):
         return self.text
 
 class profile(models.Model):
-    userId = models.CharField(max_length=50,default= '')
+    user = models.OneToOneField(User, on_delete=models.CASCADE, null=True)
     userName = models.CharField(max_length=10,default='')
     img = models.ImageField(upload_to='images/')
     school = models.CharField(max_length=50)
     date = models.DateField(auto_now=False, auto_now_add=False)
 
     def __str__(self):
-        return self.userName
+        return self.user    
 
 

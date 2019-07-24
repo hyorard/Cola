@@ -109,7 +109,7 @@
         <div class="box" style="text-align: center;">
             <h4 class="firstbox">프로필</h4>
             <div class="X">
-                {% if profile == 0 %}
+                {% if not user.profile %}
                 <h1>프로필을 생성하세요.</h1>
                 {% else %}
                 <h1>프로필을 변경하세요.</h1>
@@ -120,9 +120,11 @@
                     <input type="file" name="userPic" />
                     <input type="text" name="userName" placeholder="성명">
                     <input type="text" name="school" maxlength="30" placeholder="학교 이름">
-                    <input type="hidden" name="userId" value="{{userId}}"> {% if profile == 0 %}
-                    <input type="hidden" name="type" value="create"> {% else %}
-                    <input type="hidden" name="type" value="change"> {% endif %}
+                    {% if user.profile %}
+                    <input type="hidden" name="type" value="change">
+                    {% else %}
+                    <input type="hidden" name="type" value="create">
+                    {% endif %}
 
                     <input type="submit" value="생성" />
                 </form>
