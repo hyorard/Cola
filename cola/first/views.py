@@ -6,36 +6,44 @@ from django.contrib import auth
 
 # Create your views here.
 def main(request,username=None):
+    userId = username
+    # not logged in -> main.html
     if not request.user.is_authenticated:
         return render(request, 'main.html')
-    userId = username
-    return redirect('mypage',userId)
-
-# username : parameter passed by func 'login'
-def mypage(request, username=None):
-    userId = username
     try:
         # profile had been already made -> main.html
         prof = profile.objects.get(userId__exact=userId)
-        return render(request, 'main.html')
+        return render(request, 'main.html',{'profile':prof})
     except:
-        # no profile -> makeprofile
+        # no profile -> makeprofile -> profile.html
         return render(request,'profile.html', {'profile':0, 'userId':userId})
+
+def mypage(request, username=None):
+    userId = request.POST['userId']
+    prof = profile.objects.get(userId__exact=userId)
+    return render(request,'mypage.html',{'profile':prof})
+
+def changeProfile(request):
+    userId = request.POST['userId']
+    prof = profile.objects.get(userId__exact=userId)
+    return render(request,'profile.html',{'profile':prof})
 
 def makeProfile(request):
     #userId = request.
     if request.POST['type'] == 'change':
         userId = request.POST['userId']
+        print("userId => {0}".format(userId))
         prof = profile.objects.get(userId__exact=userId)
     else:
         prof = profile()
     prof.img = request.POST.get('userPic','')
+    #prof.img = request.POST['userPic']
     prof.userId = request.POST['userId']
     prof.userName = request.POST['userName']
     prof.school = request.POST['school']
     prof.date = timezone.datetime.now()
     prof.save()
-    return redirect('mypage', prof.userId)
+    return redirect('main', prof.userId)
 
 def board(request):
     boards = Board.objects

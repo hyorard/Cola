@@ -114,9 +114,10 @@
             <h1>{{ profile.school }}</h1>
             <h1>{{ profile.date }}</h1>
 
-            <form method="PUT" action="{%url 'changeProfile'%}">
+            <form method="POST" action="{%url 'changeProfile'%}">
                 {% csrf_token %}
                 <input type="hidden" name="userId" value="{{profile.userId}}">
+                <input type="hidden" name="type" value="change">
                 <input type="submit" value="변경">
             </form>
 
