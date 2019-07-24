@@ -1,7 +1,7 @@
 <body>
     <header>
         <a style="font-family: 'Great Vibes', cursive;">
-            <STRONG>&nbsp;<span>Colla</span><span class="boration">boration</span></STRONG>
+            <a href="{% url 'main' %}"><STRONG>&nbsp;<span>Colla</span><span class="boration">boration</span></STRONG>
         </a>
         <ul class="snip1198">
             {% if not request.user.is_authenticated %}
@@ -15,6 +15,7 @@
 
     <section>
         <div id="div_menu">
+            <a href="{% url 'mypage' %}">my Page</a><br>
             <a href="{% url 'teamproject' %}">Team Page</a><br>
             <a href="#">Team create</a><br>
             <a href="{% url 'board' %}">Board</a><br>

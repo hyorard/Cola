@@ -1,61 +1,422 @@
-<!DOCTYPE html>{% load socialaccount %} {% providers_media_js %}
-<html lang="utf-8">
+<!DOCTYPE html>
+
+<html lang='ko'>
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>My Page</title>
+
+    <meta charset="utf-8">
+
+    <meta name="viewport" content="width=device-width">
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>main</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css" media="all">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,900" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Do+Hyeon&display=swap&subset=korean" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,900" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Do+Hyeon&display=swap&subset=korean" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Do+Hyeon|Great+Vibes|Pacifico&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.17/d3.min.js"></script>
+
+
 
     <style>
         header {
+            height: 80px;
+            top: 30px;
             left: 20px;
             font-family: 'Great Vibes', cursive;
+            margin-top: 15px;
+            border-bottom: 1px solid rgb(160, 148, 148);
+        }
+        
+        header>a {
+            font-size: 50px;
+        }
+        
+        header>a:hover {
+            background-color: white;
+        }
+        
+        .snip1198 {
+            position: fixed;
+            margin-top: -25px;
+            margin-left: 1050px;
+            font-family: 'Sunflower', sans-serif;
+            text-align: center;
+            text-transform: uppercase;
+            font-weight: 500;
+            letter-spacing: 1px;
+        }
+        
+        .snip1198 * {
+            -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+            -webkit-transition: all 0.35s ease;
+            transition: all 0.35s ease;
+        }
+        
+        .snip1198 li {
+            display: inline-block;
+            list-style: outside none none;
+            margin: 0.4em 0.8em;
+            padding: 0;
+        }
+        
+        .snip1198 a {
+            padding: 0 0.7em;
+            color: rgba(255, 255, 255, 0.5);
+            position: relative;
+            text-decoration: none;
+            display: inline-block;
+        }
+        
+        .snip1198 a:before {
+            position: absolute;
+            content: '';
+            -webkit-transition: all 0.35s ease;
+            transition: all 0.35s ease;
+            opacity: 0;
+            left: 15%;
+            right: 15%;
+            top: 0;
+            bottom: 0;
+            border-left: 3px solid red;
+            border-right: 3px solid red;
+        }
+        
+        .snip1198 a:hover {
+            color: black;
+        }
+        
+        .snip1198 .enter a {
+            color: black;
+        }
+        
+        .snip1198 a:hover:before,
+        .snip1198 .enter a:before {
+            opacity: 1;
+            left: 0;
+            right: 0;
         }
         
         span {
             color: red;
         }
         
-        a {
+        span:hover {
+            color: rgba(255, 0, 0, 0.411);
+        }
+        
+        .boration {
             color: black;
+        }
+        
+        .boration:hover {
+            color: rgba(0, 0, 0, 0.411);
+        }
+        
+        #div_menu {
+            position: relative;
+            width: 10%;
+            height: 600px;
+            float: left;
+            color: white;
+            background-color: rgb(212, 35, 35);
+            text-align: left;
+            font-family: 'Do Hyeon', sans-serif;
+            padding: 10px;
+        }
+        
+        #div_menu>a {
+            font-size: 19.5px;
+            font-family: 'Do Hyeon', sans-serif;
+            text-align: left;
+            color: black;
+        }
+        
+        #div_menu>a:hover {
+            color: white;
+            font-style: normal;
             text-decoration: none;
         }
         
-        .X {
-            margin: auto;
-            padding: 1% 2%;
-            max-width: 420px;
+        div {
+            display: block;
+        }
+        
+        header {
+            left: 20px;
+        }
+        
+        span {
+            color: red;
+        }
+        
+        body {
+            background-color: rgba(255, 255, 255, 0.863);
+        }
+        
+        .nav-link {
+            color: black;
+        }
+        
+        .nav-link:hover {
+            color: black;
+            background-color: tomato;
+        }
+        
+        .nav-link2 {
+            color: white;
+            font-size: 20px;
+        }
+        
+        .nav-link2:hover {
+            color: white;
+            background-color: coral;
+        }
+        
+        #menu_name {
+            color: white;
+            font-style: normal;
+        }
+        
+        .firstbox {
+            text-align: center;
+            font-family: 'Do Hyeon', sans-serif;
+            color: black;
+        }
+        
+        .cate_type {
+            float: left;
+            background-color: lightgray;
+            position: relative;
+            border-radius: .75rem;
+            left: 10px;
+            padding: 10px;
+            margin-left: 30px;
+            margin-bottom: 10px;
+            padding-top: 35px;
+            height: 100px;
+            width: 100px;
+            text-align: center;
+            display: block;
+        }
+        
+        .current_Team {
+            float: left;
+            position: absolute;
+            top: 530px;
+            left: 10px;
+        }
+        
+        div {
+            display: block;
+        }
+        /* google font ---------------------------*/
+        
+        #div_menu {
+            width: 13%;
+            height: 500px;
+            float: left;
+            color: white;
+            background-color: rgb(212, 35, 35);
+            text-align: left;
+            font-family: 'Do Hyeon', sans-serif;
+            padding: 10px;
+        }
+        
+        #div_con {
+            width: 80%;
+            height: 250px;
+            float: left;
+            text-align: center;
+        }
+        
+        #div_con.left {
+            width: 50%;
+            float: left;
+            box-sizing: border-box;
+            background: #ff0;
+        }
+        
+        #div_con.right {
+            width: 50%;
+            float: right;
+            box-sizing: border-box;
+            background: #0ff;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            font-family: 'Montserrat', sans-serif;
+            box-sizing: border-box;
+        }
+        
+        .dday {
+            margin: 1px;
+            text-align: center;
+            color: #aaa;
+            font-size: 60px;
+            font-weight: 700;
+        }
+        
+        @import "compass/css3";
+        .graphs-list li {
+            line-height: 64px;
+            margin-bottom: 15px;
+        }
+        
+        .graphs-list li .graph {
+            float: left;
+            display: block;
+            vertical-align: middle;
+            width: 64px;
+            height: 64px;
+        }
+        
+        .graphs-list li .graph-value {
+            float: left;
+            display: block;
+            position: relative;
+            width: 64px;
+            text-align: center;
+            margin-left: -64px;
+            z-index: 1;
+            color: #b7b7b7;
+            font-size: 1.3em;
+        }
+        
+        .graphs-list li .graph-label {
+            float: left;
+            display: block;
+            margin-left: 1em;
+            font-style: italic;
+            font-size: 1.4em;
+            color: #6f6f6f;
+        }
+        
+        .info-card {
+            display: none;
+            background-color: #000;
+            color: #fff;
+            border: 1px solid #c8c8c8;
             border-radius: 5px;
-            border-color: 5px solid fade(white, 20%);
-            background: transparent;
+            width: 110px;
+            text-align: center;
+            z-index: 2;
+            justify-content: center;
+            align-items: content;
         }
         
-        input[type=text] {
-            background: rgb(212, 35, 35);
-            color: white;
+        .info-card .arrow {
+            border-style: solid;
+            position: absolute;
+            border-color: #c8c8c8 transparent transparent transparent;
+            border-width: 8px 8px 0px 8px;
+            bottom: -8px;
+            left: 45px;
         }
         
-        input[type=date] {
-            background: rgb(212, 35, 35);
-            color: white;
+        .bar-graph-container {
+            width: 38%;
+            height: 160px;
+            display: inline-block;
+            min-width: 340px;
+            margin-left: 3%;
+            position: relative;
+            top: -30px;
         }
         
-        input[type=file] {
-            background: rgb(212, 35, 35);
-            color: white;
+        .x-axis-label {
+            position: relative;
+            bottom: -3px;
+            font-size: 12px;
         }
         
-        a:hover {
-            color: black;
-            text-decoration: none;
+        .y-axis-labels {
+            display: inline-flex;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 20px;
+            float: left;
+            margin-right: 3%;
+            margin-top: -10px;
+            text-align: right;
+            font-size: 9px;
+        }
+        
+        .vertical .progress-bar {
+            float: left;
+            height: 100%;
+            width: 4%;
+            margin-right: 2.5%;
+            text-align: center;
+            border-radius: 3px;
+        }
+        
+        .vertical .progress-track {
+            position: relative;
+            height: 100%;
+            background: #D5E1E8;
+        }
+        
+        .vertical .progress-fill {
+            position: relative;
+            background: #3FADC0;
+            height: 50%;
+            width: 100%;
+            color: #3FADC0;
+            overflow: hidden;
+            text-align: center;
+            font-family: "Lato", "Verdana", sans-serif;
+            font-size: 12px;
+            line-height: 20px;
+            border-radius: 3px;
+        }
+        
+        .vertical .progress-fill:hover {
+            background: #319DA6;
+            color: #319DA6;
+        }
+        
+        .chart-container {
+            width: 425px;
+            height: 200px;
+            margin: 0 auto;
+        }
+        /*원그래프*/
+        
+        .widget {
+            margin: 0 auto;
+            width: 350px;
+            margin-top: 20px;
+            background-color: #ccc;
+            border-radius: 5px;
+            box-shadow: 1px 1px 3px 0px rgba(0, 0, 0, .4);
+        }
+        
+        .header {
+            background-color: #29384d;
+            height: 40px;
+            color: #fff;
+            text-align: center;
+            line-height: 40px;
+            border-top-left-radius: 5px;
+            border-top-right-radius: 5px;
+            font-weight: 400;
+            font-size: 1.5em;
+            text-transform: uppercase;
+            text-shadow: 1px 1px #06060d;
+        }
+        
+        .chart-container {
+            padding: 25px;
         }
         
         #div_menu {
@@ -81,60 +442,50 @@
             text-decoration: none;
         }
         
-        .box {
-            font-family: 'Do Hyeon', sans-serif;
-            font-size: 40px;
-        }
-        
-        .firstbox {
-            font-family: 'Do Hyeon', sans-serif;
-            font-size: 40px;
+        .shadow {
+            -webkit-filter: drop-shadow(0px 3px 3px rgba(0, 0, 0, .5));
+            filter: drop-shadow(0px 3px 3px rgba(0, 0, 0, .5));
         }
     </style>
+
 </head>
 
+
+
+
 <body>
-    <header>
-        <a href="{% url 'main' %}">
-            <h2>&nbsp;<span>Colla</span>boration</h2>
-        </a>
-    </header>
-    <div id="div_menu">
-        <a href="{% url 'teamproject' %}">Team Page</a><br>
-        <a href="#">Team create</a><br>
-        <a href="{% url 'board' %}">Board</a><br>
-        <a href="{% url 'logout' %}">logout</a>
-    </div>
+
+    {% extends 'base.html' %} {% block content %}
+
     <div style="border: 2px solid rgba(211, 211, 211, 0.795); float: left; width: 43%; height:500px; padding:10px;">
-        <div class="box" style="text-align: center;">
-            <h4 class="firstbox">프로필</h4>
-            {{ user.profile.img }}
-            <h1>{{ user.profile.userName }}</h1>
-            <h1>{{ user.profile.school }}</h1>
-            <h1>{{ user.profile.date }}</h1>
-
-            <form method="POST" action="{%url 'changeProfile'%}">
-                {% csrf_token %}
-                <input type="hidden" name="type" value="change">
-                <input type="submit" value="변경">
-            </form>
-
+            <div class="box" style="text-align: center;">
+                <h4 class="firstbox">프로필</h4>
+                {{ user.profile.img }}
+                <h1>{{ user.profile.userName }}</h1>
+                <h1>{{ user.profile.school }}</h1>
+                <h1>{{ user.profile.date }}</h1>
+    
+                <form method="POST" action="{%url 'changeProfile'%}">
+                    {% csrf_token %}
+                    <input type="hidden" name="type" value="change">
+                    <input type="submit" value="변경">
+                </form>
+    
+            </div>
+            <div class="chart-container"><canvas id="myChart" width="425" height="200"></canvas></div>
+    
+    
+    
         </div>
-        <div class="chart-container"><canvas id="myChart" width="425" height="200"></canvas></div>
-
-
-
-    </div>
-
-    <div style="border: 2px solid rgba(211, 211, 211, 0.795); float: left; width: 43.5%; height: 500px; padding:10px;">
-        <div style="text-align: center;">
-            <h4 class="firstbox">나의 진행 상황</h4>
+    
+        <div style="border: 2px solid rgba(211, 211, 211, 0.795); float: left; width: 43.5%; height: 500px; padding:10px;">
+            <div style="text-align: center;">
+                <h4 class="firstbox">나의 진행 상황</h4>
+            </div>
+    
+            <br>
+            <br>
         </div>
 
-        <br>
-        <br>
-    </div>
-
+    {% endblock %}
 </body>
-
-</div>
