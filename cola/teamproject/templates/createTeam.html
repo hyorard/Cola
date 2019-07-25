@@ -458,34 +458,23 @@
     {% extends 'base.html' %} {% block content %}
 
     <div style="border: 2px solid rgba(211, 211, 211, 0.795); float: left; width: 43%; height:500px; padding:10px;">
-            <div class="box" style="text-align: center;">
-                <h4 class="firstbox">프로필</h4>
-                {{ user.profile.img }}
-                <h1>{{ user.profile.userName }}</h1>
-                <h1>{{ user.profile.school }}</h1>
-                <h1>{{ user.profile.date }}</h1>
-    
-                <form method="POST" action="{%url 'changeProfile'%}">
-                    {% csrf_token %}
-                    <input type="hidden" name="type" value="change">
-                    <input type="submit" value="변경">
-                </form>
-    
-            </div>
-            <div class="chart-container"><canvas id="myChart" width="425" height="200"></canvas></div>
-    
-    
-    
-        </div>
-    
-        <div style="border: 2px solid rgba(211, 211, 211, 0.795); float: left; width: 43.5%; height: 500px; padding:10px;">
-            <div style="text-align: center;">
-                <h4 class="firstbox">팀 목록</h4>
-            </div>
-    
-            <br>
-            <br>
-        </div>
+        <div class="box" style="text-align: center;">
+            <h4 class="firstbox">팀 생성</h4><br><br>
+            <div class="X">
 
+                <form method="POST" enctype="multipart/form-data" action="{% url 'createTeam' %}">
+                    {% csrf_token %}
+                    <h4>팀 명</h4>
+                    <input type="text" name="teamName" maxlength="50" placeholder="팀 명"/>
+                    <br><br>
+                    <h4>데드라인</h4>
+                    <input type="date" name="deadline">
+                    <input type="hidden" name="fromStart" value="1">
+                    <input type="hidden" name="progress" value=0><br>
+                    <input type="submit" value="생성" />
+                </form>
+            </div>
+
+        </div>
     {% endblock %}
 </body>

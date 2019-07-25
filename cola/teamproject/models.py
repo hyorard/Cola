@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 # Create your models here.
 class Group(models.Model):
@@ -9,9 +10,37 @@ class Group(models.Model):
     def __self__(self):
         return self.title
 
-'''
-class team(models.Model):
+class Team(models.Model):
+    name = models.CharField(max_length=50)
     deadline = models.DateField()
     timeFromStart = models.DurationField()
-    mateList = models.ManyToManyField("profile", blank=True)
-    '''
+    members = models.ManyToManyField(
+        User,
+        through='invite',
+        through_fields=('team','user'),
+        )
+    progress = models.IntegerField(default=0, max_length=100)
+    #refFile = models.FileField(upload_to=)
+    #product = models.FileField(upload_to=)
+    #참여도
+    is_finished = models.BooleanField(default=False)
+
+    def __str__(self):
+        return self.name
+    
+    def showMembers(self):
+        return "\n".join(t for t in self.members.all())
+
+
+class Invite(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    team = models.ForeignKey(Team, on_delete=models.CASCADE)
+    inviter = models.ForeignKey(
+        User,
+        on_delete=models.CASCADE,
+        related_name="invites",
+        null=True,
+    )
+
+    def __str__(self):
+        return "{0} -> {1}".format(self.user, self.team)

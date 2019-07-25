@@ -20,6 +20,8 @@ def main(request):
         return render(request,'profile.html')
 
 def mypage(request):
+    userTeam = request.user.team_set.all().values()[0]
+    print("userTeam => {0}".format(userTeam))
     prof = request.user.profile
     return render(request,'mypage.html')
 
