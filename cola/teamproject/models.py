@@ -12,6 +12,7 @@ class Group(models.Model):
 
 class Team(models.Model):
     name = models.CharField(max_length=50)
+    leader = models.ForeignKey(User, on_delete=models.CASCADE, related_name='leaderUser', null=True)
     deadline = models.DateField()
     timeFromStart = models.DurationField()
     members = models.ManyToManyField(
