@@ -480,7 +480,17 @@
     
         <div style="border: 2px solid rgba(211, 211, 211, 0.795); float: left; width: 43.5%; height: 500px; padding:10px;">
             <div style="text-align: center;">
-                <h4 class="firstbox">팀 목록</h4>
+                <h4 class="firstbox">팀 목록</h4><a href="{% url 'createTeam' %}">팀 생성</a>
+
+                {% for team in Teams %}
+                <div>
+                    <form method="POST" action="{% url 'teamInfo' %}">
+                        {% csrf_token %}
+                        <input type="hidden" value="{{team.id}}" name="teamId">
+                        <input type="submit" value="{{team.name}}" />
+                    </form>
+                </div>
+                {% endfor %}
             </div>
     
             <br>

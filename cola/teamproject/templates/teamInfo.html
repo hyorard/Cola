@@ -456,9 +456,18 @@
 <body>
 
     {% extends 'base.html' %} {% block content %}
-
     
-    <a href="{% url 'createTeam' %}">팀 생성</a>
+    <h5>팀명 : {{team.name}}</h5>
+    <h5>데드라인 : {{team.deadline}}</h5>
+    <h5>지난시간 : {{team.timeFromStart}}</h5>
+    <h5>진행도 : {{team.progress}}</h5>
+    <h5>팀원리스트 : </h5>
+    <h5>{{members}}</h5>
+    {% if team.is_finished %}
+    <h5>팀플 완료!</h5>
+    {% else %}
+    <h5>진행중..</h5>
+    {% endif %}
 
     {% endblock %}
 </body>

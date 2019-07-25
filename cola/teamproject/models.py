@@ -29,7 +29,7 @@ class Team(models.Model):
         return self.name
     
     def showMembers(self):
-        return "\n".join(t for t in self.members.all())
+        return "\n".join("{0}({1})".format(t.profile.userName, t.username) for t in self.members.all())
 
 
 class Invite(models.Model):

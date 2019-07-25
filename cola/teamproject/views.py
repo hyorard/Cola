@@ -10,10 +10,14 @@ def teamproject(request):
         return render(request,'login.html')
     return render(request, 'teamproject.html')
 
-def teamPage(request):
+def teamInfo(request):
     if not request.user.is_authenticated:
         return render(request,'login.html')
-    return render(request, 'teampage.html')
+    if request.method == 'POST':
+        teamId = request.POST['teamId']
+        team = Team.objects.get(id=teamId)
+        members = team.showMembers()
+        return render(request, 'teamInfo.html', {'team':team, 'members':members})
 
 def createTeam(request):
     if request.method == 'GET':
