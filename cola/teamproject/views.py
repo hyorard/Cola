@@ -8,7 +8,45 @@ import datetime
 def teamproject(request):
     if not request.user.is_authenticated:
         return render(request,'login.html')
-    return render(request, 'teamproject.html')
+    
+    # 유저가 속한 모든 팀 리스트
+    TeamList = request.user.team_set.all().values()
+
+    # 제일 임박한 팀플 기한 = earliestDL, 미완성 프로젝트 개수 = nPrj, 평균완성도 = avgProgress
+    earliestDL = TeamList[0]['deadline']
+    nPrj, avgProgress = 0, 0
+    for team in TeamList:
+        if team['deadline'] < earliestDL:
+            earliestDL = team['deadline']
+            earliestTeam = team['name']
+        if team['is_finished'] == False:
+            nPrj += 1
+        avgProgress += team['progress']
+    
+    avgProgress /= len(TeamList)
+    earliestDL = datetime.datetime.strftime(earliestDL, "%Y-%m-%d")
+
+    # JS 위한 데이터 
+
+    #nTeam = len(TeamList)   # 팀 개수
+    #nameList = [team['name'] for team in TeamList] # 팀 이름 리스트
+    #progressList = [team['progress'] for team in TeamList] # 팀 완성도 리스트
+
+    
+    
+
+    return render(request,'teamproject.html',
+        {
+        'Teams':TeamList,
+        'earliestDL':earliestDL,
+        'earliestTeam':earliestTeam,
+        'nPrj':nPrj,
+        'avgProgress':avgProgress
+        #'nTeam' : nTeam,
+        #'nameList' : nameList,
+        #'progressList' : progressList
+        }
+    )
 
 def createTeam(request):
     if request.method == 'GET':
@@ -64,16 +102,16 @@ def changeTeamInfo(request):
         team = Team.objects.get(id=teamId)
         return render(request, 'changeTeamInfo.html', {'team':team})
     # 팀 정보 변경 창에서 정보 입력하고 변경시
-    # try -> 정보 입력했으면 변경
-    # except -> 정보 미입력했으면 pass
+    # try -> 정보 입력시 변경
+    # except -> 정보 미입력시 패스
     except:
         teamId = request.POST['teamId']
         team = Team.objects.get(id=teamId)
 
-        try:
-            team.name = request.POST['teamName']
-        except:
+        if request.POST['teamName'] == '':
             pass
+        else:
+            team.name = request.POST['teamName']
 
         # 리더 변경 ? : team.leader
         # 팀원 추방 ? : team.members ( manytomany )
@@ -86,7 +124,7 @@ def changeTeamInfo(request):
             pass
 
         try:
-            team.progress = request.POST['progress']
+            team.progress = int(request.POST['progress'])
         except:
             pass
 
@@ -97,14 +135,10 @@ def changeTeamInfo(request):
                 team.is_finished = False
         except:
             pass
-
-        try:
-            team.save()
-        except:
-            pass
         
+        team.save()
+
         teamId = request.POST['teamId']
         team = Team.objects.get(id=teamId)
         members = team.showMembers()
         return render(request, 'teamInfo.html', {'team':team, 'members':members})
-

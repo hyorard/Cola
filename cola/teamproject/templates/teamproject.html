@@ -26,6 +26,45 @@
 
 
     <style>
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed; /* Stay in place */
+            z-index: 1; /* Sit on top */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgb(0,0,0); /* Fallback color */
+            background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+        }
+    
+        /* Modal Content/Box */
+        .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto; /* 15% from the top and centered */
+            padding: 20px;
+            border: 1px solid #888;
+            width: 50%; /* Could be more or less, depending on screen size */                          
+
+        }
+
+        /* The Close Button */
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+
         header {
             height: 80px;
             top: 30px;
@@ -458,13 +497,35 @@
 
     {% extends 'base.html' %} {% block content %}
 
+    <button id="myBtn">팀 선택</button>
+
+    <div id="myModal" class="modal">
+ 
+        <!-- Modal content -->
+        <div class="modal-content">
+            <span class="close">&times;</span>  
+            {% for team in Teams %}
+            <div>
+                <form method="POST" action="{% url 'teamInfo' %}">
+                    {% csrf_token %}
+                    <input type="hidden" value="{{team.id}}" name="teamId">
+                    <input type="submit" value="{{team.name}}" />
+                </form>
+            </div>
+            {% endfor %}
+        </div>
+       
+    </div>
+      
+
     <div class="card">
 
         <h4 class="firstbox">제일 임박한 팀플</h4>
+        <h5>{{earliestTeam}}</h5>
 
         <!-- Countdown dashboard start -->
 
-        <div class="dday" data-dday="2019-08-25"></div>
+        <div class="dday" data-dday="{{earliestDL}}"></div>
 
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 
@@ -486,7 +547,7 @@
 
             <h6 class="firstbox">미완성 프로젝트 개수</h6>
 
-            <h1 class="firstbox">5</h1>
+            <h1 class="firstbox">{{nPrj}}</h1>
 
         </div>
 
@@ -494,7 +555,7 @@
 
             <h6 class="firstbox">평균 완성도</h6>
 
-            <h1 class="firstbox">34.0%</h1>
+            <h1 class="firstbox">{{avgProgress}}%</h1>
 
         </div>
 
@@ -516,43 +577,26 @@
 
         <ul class="graphs-list">
 
+            {% for team in Teams %}
             <li>
 
                 <canvas class="graph" data-value="0.94"></canvas>
 
-                <span class="graph-value">94%</span>
+                <span class="graph-value">{{team.progress}}%</span>
 
-                <span class="graph-label">마케팅 팀플</span>
+                <span class="graph-label">{{team.name}}</span>
 
 
-
-            </li>
-
-            <li>
-
-                <canvas class="graph" data-value="0.43"></canvas>
-
-                <span class="graph-value">43%</span>
-
-                <span class="graph-label">소프트웨어공학 팀플</span>
 
             </li>
+            {% endfor %}
 
-            <li>
-
-                <canvas class="graph" data-value="0.57"></canvas>
-
-                <span class="graph-value">57%</span>
-
-                <span class="graph-label">졸업 프로젝트</span>
-
-            </li>
 
         </ul>
 
         <div class="progress">
 
-            <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 75%"></div>
+            <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="{{avgProgress}}" aria-valuemin="0" aria-valuemax="100" style="width: 75%"></div>
 
 
 
@@ -683,6 +727,31 @@
 
             }
 
+            // Get the modal
+            var modal = document.getElementById('myModal');
+ 
+            // Get the button that opens the modal
+            var btn = document.getElementById("myBtn");
+ 
+            // Get the <span> element that closes the modal
+            var span = document.getElementsByClassName("close")[0];                                          
+ 
+            // When the user clicks on the button, open the modal 
+            btn.onclick = function() {
+                modal.style.display = "block";
+            }
+ 
+            // When the user clicks on <span> (x), close the modal
+            span.onclick = function() {
+                modal.style.display = "none";
+            }
+ 
+            // When the user clicks anywhere outside of the modal, close it
+            window.onclick = function(event) {
+                if (event.target == modal) {
+                    modal.style.display = "none";
+                }
+            }
 
 
             this.step = function() {
@@ -822,6 +891,7 @@
 
 
         //graph2
+
 
         var ctx = document.getElementById("myChart").getContext('2d');
 
