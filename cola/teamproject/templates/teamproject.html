@@ -580,7 +580,7 @@
             {% for team in Teams %}
             <li>
 
-                <canvas class="graph" data-value="0.94"></canvas>
+                <canvas class="graph" data-value="{{team.progress}/100}"></canvas>
 
                 <span class="graph-value">{{team.progress}}%</span>
 
