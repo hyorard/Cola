@@ -8,12 +8,20 @@ import datetime
 def teamproject(request):
     if not request.user.is_authenticated:
         return render(request,'login.html')
+
     
     # 유저가 속한 모든 팀 리스트
     TeamList = request.user.team_set.all().values()
 
+    try:
+        TeamList[0]
+    # 팀이 하나도 없을 때,
+    except IndexError:
+        return render(request, 'createTeam.html')
+
     # 제일 임박한 팀플 기한 = earliestDL, 미완성 프로젝트 개수 = nPrj, 평균완성도 = avgProgress
     earliestDL = TeamList[0]['deadline']
+    earliestTeam = TeamList[0]['name']
     nPrj, avgProgress = 0, 0
     for team in TeamList:
         if team['deadline'] < earliestDL:
