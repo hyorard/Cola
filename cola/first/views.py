@@ -24,8 +24,12 @@ def mypage(request):
         return render(request,'login.html')
     try:
         prof = request.user.profile
-        TeamList = request.user.team_set.all().values()
-        return render(request,'mypage.html', {'Teams':TeamList, 'prof' : prof})
+        # 프로필은 있는데 팀은 없을 때, 마이페이지 들어가면 프로필 또 만들어라고 하는 것 방지
+        try:
+            TeamList = request.user.team_set.all().values()
+            return render(request,'mypage.html', {'Teams':TeamList, 'prof' : prof})
+        except:
+            return render(request,'mypage.html', {'Teams':None, 'prof' : prof})
     except:
         return render(request,'profile.html')
 
@@ -87,7 +91,7 @@ def create(request):
     board.body = request.GET['body']
     board.pub_date = timezone.datetime.now()
     board.save()
-    return redirect('/board/'+str(board.id))
+    return render(request, 'detail.html', {'board':board})
 
 
 def logout(request):
