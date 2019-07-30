@@ -190,24 +190,49 @@ def changeTeamInfo(request):
         return render(request, 'teamInfo.html', {'team':team, 'members':members})
 
 def searchPerson(request,team_id=None):
-    name = User.objects.all()
-    bring = request.GET.get('man_name')
-    if bring:
+    # 초대하는 팀
+    scoutingTeamId = team_id
+    scoutingTeam = Team.objects.get(id=team_id)
+
     
-        name = name.filter(username=bring)
-        name2 ="찾는 이메일이 없습니다."
+
+
+    # teamInfo창에서 팀원추가 버튼 누름
+    if request.method == 'GET':
+        return render(request,'searchPerson.html', {'scoutingTeam':scoutingTeam})
+
+    # 검색 창에서 초대할 팀원 아이디 검색
+    else:
+        # 초대할 멤버
+        newMemberId = request.POST['newMemberId']
         try:
-            if name.exists():
-                inviteTeam = Team.objects.get(id=team_id)
-                inviteMember = Invite(
-                    user = name,
-                    team = inviteTeam,
+            newMember = User.objects.get(username=newMemberId)
+        except: # 없으면 없다고 알림
+            return render(request, 'searchPerson.html', {'error' : '찾는 이메일이 없습니다.', 'scoutingTeam':scoutingTeam})
+        
+        # 이미 초대가 된 멤버라면 teamInfo로
+        try:
+            Invite.objects.get(user=newMember, team=scoutingTeam)
+            members = scoutingTeam.showMembers()
+            return render(request, 'teamInfo.html', {'team':scoutingTeam, 'members':members})
+        except:
+            pass
+        # 초대 받은 적이 없다면 초대
+        scout = Invite(
+                    user = newMember,
+                    team = scoutingTeam,
                     inviter = request.user,
                 )
-                inviteMember.save()
-                return render(request, 'searchPerson.html', {'name' : name})
-            return render(request, 'searchPerson.html', {'msg' : name2})
-        except:
-            return render(request, 'searchPerson.html', {'msg' : name2}) 
-    else:
-        return render(request, 'searchPerson.html')
+        scout.save()
+
+        ''' 민지야 알림 해줘
+        # 초대했다고 알림
+        messages.warning(request, "{0}가 {1}를 {2}에 초대하였습니다.".format(
+            request.user.profile.userName,
+            newMember.profile.userName,
+            scoutingTeam.name))
+        '''
+        
+        # 초대 후 멤버 리스트 업데이트
+        members = scoutingTeam.showMembers()
+        return render(request, 'teamInfo.html', {'team':scoutingTeam, 'members':members})

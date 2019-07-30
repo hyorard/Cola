@@ -248,6 +248,16 @@
         </form>
 
     </div>
+    {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+        <script>
+            alert('아이디나 비밀번호가 잘못되었습니다.')
+        </script>
+        <!--<li class="{{ message.tags }}">{{ message }}</li>-->
+        {% endfor %}
+    </ul>
+    {% endif %}
 
 </body>
 
@@ -259,7 +269,6 @@
     for (var i = 0; i < 2; i++) {
 
         x[i].required = true;
-
     }
 </script>
 

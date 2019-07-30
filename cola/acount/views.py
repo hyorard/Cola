@@ -1,7 +1,7 @@
 from django.shortcuts import render,redirect
 from django.contrib.auth.models import User
 from django.contrib import auth
-
+from django.contrib import messages
 
 # Create your views here.
 def signup(request):
@@ -11,7 +11,8 @@ def signup(request):
                 user = User.objects.create_user(request.POST['username'], password=request.POST['password1'])
                 return redirect('login')
         except:
-            return render(request,'signup.html')
+            messages.warning(request, '다시 회원가입 해주세요')
+            #return render(request,'signup.html')
     return render(request, 'signup.html')
 
 
@@ -21,7 +22,6 @@ def login(request):
         username = request.POST['id']
         password = request.POST['pass']
         user = auth.authenticate(request, username=username, password=password)
-
         if user:
             auth.login(request, user)
             return redirect('main')
@@ -34,8 +34,7 @@ def login(request):
 
 # 소셜 로그인 용
 def social(request):
-    print(request.user.socialaccount_set.all())
-    return redirect('main')
+    return render(request, 'Profile.html')
 
 def firstpage(request):
     return render(request, 'firstpage.html')

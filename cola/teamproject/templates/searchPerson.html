@@ -9,13 +9,12 @@
 </head>
 
 <body>
-    <form method="GET" action="{% url 'searchPerson' %}">
-        <input type="text" name="man_name" value="{{ man_name }}">
+    <form method="POST" action="{% url 'searchPerson' scoutingTeam.id%}">
+        {% csrf_token %}
+        <input type="text" name="newMemberId" placeholder="초대할 사람의 아이디..">
         <input type="submit" value="검색">
     </form>
 
-    {% if name %} {% csrf_token %}
-    <p>팀원 추가가 되었습니다.</p>{% elif msg %} {{ msg }} {% endif %}
 </body>
 
 </html>
