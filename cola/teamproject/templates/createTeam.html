@@ -1,26 +1,17 @@
-<!DOCTYPE html>
-
-<html lang='ko'>
+<!DOCTYPE html>{% load socialaccount %} {% providers_media_js %}
 
 <head>
-
     <meta charset="utf-8">
-
     <meta name="viewport" content="width=device-width">
-
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-
     <title>main</title>
-
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css" media="all">
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,900" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Do+Hyeon&display=swap&subset=korean" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.17/d3.min.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Do+Hyeon|Great+Vibes|Pacifico&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Song+Myung&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" style="width:50px; float: left;">
+    <link href="https://fonts.googleapis.com/css?family=Sunflower:300&display=swap" rel="stylesheet">
 
 
 
@@ -43,7 +34,7 @@
         }
         
         .snip1198 {
-            position: fixed;
+            position: absolute;
             margin-top: -25px;
             margin-left: 1050px;
             font-family: 'Sunflower', sans-serif;
@@ -53,55 +44,15 @@
             letter-spacing: 1px;
         }
         
-        .snip1198 * {
-            -webkit-box-sizing: border-box;
-            box-sizing: border-box;
-            -webkit-transition: all 0.35s ease;
-            transition: all 0.35s ease;
-        }
-        
-        .snip1198 li {
+        .snip1198>li {
             display: inline-block;
             list-style: outside none none;
             margin: 0.4em 0.8em;
             padding: 0;
         }
         
-        .snip1198 a {
-            padding: 0 0.7em;
-            color: rgba(255, 255, 255, 0.5);
-            position: relative;
-            text-decoration: none;
-            display: inline-block;
-        }
-        
-        .snip1198 a:before {
-            position: absolute;
-            content: '';
-            -webkit-transition: all 0.35s ease;
-            transition: all 0.35s ease;
-            opacity: 0;
-            left: 15%;
-            right: 15%;
-            top: 0;
-            bottom: 0;
-            border-left: 3px solid red;
-            border-right: 3px solid red;
-        }
-        
-        .snip1198 a:hover {
+        .snip1198>a {
             color: black;
-        }
-        
-        .snip1198 .enter a {
-            color: black;
-        }
-        
-        .snip1198 a:hover:before,
-        .snip1198 .enter a:before {
-            opacity: 1;
-            left: 0;
-            right: 0;
         }
         
         span {
@@ -120,332 +71,126 @@
             color: rgba(0, 0, 0, 0.411);
         }
         
+         :root {
+            --primary-color: #333;
+            --highlight-color: #f66;
+        }
+        
         #div_menu {
             position: relative;
             width: 10%;
             height: 600px;
             float: left;
             color: white;
-            background-color: rgb(212, 35, 35);
-            text-align: left;
+            background: var(--primary-color);
+            text-align: center;
             font-family: 'Do Hyeon', sans-serif;
+            list-style: none;
             padding: 10px;
+            padding-top: 20px;
         }
         
-        #div_menu>a {
-            font-size: 19.5px;
-            font-family: 'Do Hyeon', sans-serif;
-            text-align: left;
-            color: black;
-        }
-        
-        #div_menu>a:hover {
-            color: white;
-            font-style: normal;
-            text-decoration: none;
-        }
-        
-        div {
-            display: block;
-        }
-        
-        header {
-            left: 20px;
-        }
-        
-        span {
-            color: red;
-        }
-        
-        body {
-            background-color: rgba(255, 255, 255, 0.863);
+        input,
+        button,
+        a {
+            transition: 0.25s;
         }
         
         .nav-link {
-            color: black;
+            letter-spacing: 1px;
+            font-weight: bold;
+            text-decoration: none;
+            font-family: sans-serif;
+            padding: 0px;
+            color: #fff;
+        }
+        
+        .nav-link::after {
+            content: '';
+            display: block;
+            height: 3px;
+            width: 30%;
+            background: #fff0;
+            margin: auto;
+            border-radius: 5px;
         }
         
         .nav-link:hover {
-            color: black;
-            background-color: tomato;
+            color: var(--highlight-color);
         }
         
-        .nav-link2 {
-            color: white;
-            font-size: 20px;
-        }
-        
-        .nav-link2:hover {
-            color: white;
-            background-color: coral;
-        }
-        
-        #menu_name {
-            color: white;
-            font-style: normal;
-        }
-        
-        .firstbox {
-            text-align: center;
-            font-family: 'Do Hyeon', sans-serif;
-            color: black;
-        }
-        
-        .cate_type {
-            float: left;
-            background-color: lightgray;
-            position: relative;
-            border-radius: .75rem;
-            left: 10px;
-            padding: 10px;
-            margin-left: 30px;
-            margin-bottom: 10px;
-            padding-top: 35px;
-            height: 100px;
-            width: 100px;
-            text-align: center;
-            display: block;
-        }
-        
-        .current_Team {
-            float: left;
-            position: absolute;
-            top: 530px;
-            left: 10px;
-        }
-        
-        div {
-            display: block;
-        }
-        /* google font ---------------------------*/
-        
-        #div_menu {
-            width: 13%;
-            height: 500px;
-            float: left;
-            color: white;
-            background-color: rgb(212, 35, 35);
-            text-align: left;
-            font-family: 'Do Hyeon', sans-serif;
-            padding: 10px;
-        }
-        
-        #div_con {
-            width: 80%;
-            height: 250px;
-            float: left;
-            text-align: center;
-        }
-        
-        #div_con.left {
-            width: 50%;
-            float: left;
-            box-sizing: border-box;
-            background: #ff0;
-        }
-        
-        #div_con.right {
-            width: 50%;
-            float: right;
-            box-sizing: border-box;
-            background: #0ff;
-        }
-        
-        * {
-            margin: 0;
-            padding: 0;
-            font-family: 'Montserrat', sans-serif;
-            box-sizing: border-box;
-        }
-        
-        .dday {
-            margin: 1px;
-            text-align: center;
-            color: #aaa;
-            font-size: 60px;
-            font-weight: 700;
-        }
-        
-        @import "compass/css3";
-        .graphs-list li {
-            line-height: 64px;
-            margin-bottom: 15px;
-        }
-        
-        .graphs-list li .graph {
-            float: left;
-            display: block;
-            vertical-align: middle;
-            width: 64px;
-            height: 64px;
-        }
-        
-        .graphs-list li .graph-value {
-            float: left;
-            display: block;
-            position: relative;
-            width: 64px;
-            text-align: center;
-            margin-left: -64px;
-            z-index: 1;
-            color: #b7b7b7;
-            font-size: 1.3em;
-        }
-        
-        .graphs-list li .graph-label {
-            float: left;
-            display: block;
-            margin-left: 1em;
-            font-style: italic;
-            font-size: 1.4em;
-            color: #6f6f6f;
-        }
-        
-        .info-card {
-            display: none;
-            background-color: #000;
-            color: #fff;
-            border: 1px solid #c8c8c8;
-            border-radius: 5px;
-            width: 110px;
-            text-align: center;
-            z-index: 2;
-            justify-content: center;
-            align-items: content;
-        }
-        
-        .info-card .arrow {
-            border-style: solid;
-            position: absolute;
-            border-color: #c8c8c8 transparent transparent transparent;
-            border-width: 8px 8px 0px 8px;
-            bottom: -8px;
-            left: 45px;
-        }
-        
-        .bar-graph-container {
-            width: 38%;
-            height: 160px;
-            display: inline-block;
-            min-width: 340px;
-            margin-left: 3%;
-            position: relative;
-            top: -30px;
-        }
-        
-        .x-axis-label {
-            position: relative;
-            bottom: -3px;
-            font-size: 12px;
-        }
-        
-        .y-axis-labels {
-            display: inline-flex;
-            flex-direction: column;
-            justify-content: space-between;
-            width: 20px;
-            float: left;
-            margin-right: 3%;
-            margin-top: -10px;
-            text-align: right;
-            font-size: 9px;
-        }
-        
-        .vertical .progress-bar {
-            float: left;
-            height: 100%;
-            width: 4%;
-            margin-right: 2.5%;
-            text-align: center;
-            border-radius: 3px;
-        }
-        
-        .vertical .progress-track {
-            position: relative;
-            height: 100%;
-            background: #D5E1E8;
-        }
-        
-        .vertical .progress-fill {
-            position: relative;
-            background: #3FADC0;
-            height: 50%;
+        .nav-link:hover::after,
+        .nav-link:focus::after {
             width: 100%;
-            color: #3FADC0;
-            overflow: hidden;
-            text-align: center;
-            font-family: "Lato", "Verdana", sans-serif;
-            font-size: 12px;
-            line-height: 20px;
-            border-radius: 3px;
+            background: var(--highlight-color);
         }
         
-        .vertical .progress-fill:hover {
-            background: #319DA6;
-            color: #319DA6;
+        .firstcontainer {
+            position: relative;
+            margin-left: 180px;
         }
         
-        .chart-container {
-            width: 425px;
-            height: 200px;
-            margin: 0 auto;
-        }
-        /*원그래프*/
-        
-        .widget {
-            margin: 0 auto;
-            width: 350px;
-            margin-top: 20px;
-            background-color: #ccc;
-            border-radius: 5px;
-            box-shadow: 1px 1px 3px 0px rgba(0, 0, 0, .4);
+        h2 {
+            font-family: 'Sunflower', sans-serif;
+            margin-left: 20px;
+            margin-top: 30px;
         }
         
-        .header {
-            background-color: #29384d;
-            height: 40px;
-            color: #fff;
-            text-align: center;
-            line-height: 40px;
-            border-top-left-radius: 5px;
-            border-top-right-radius: 5px;
-            font-weight: 400;
-            font-size: 1.5em;
-            text-transform: uppercase;
-            text-shadow: 1px 1px #06060d;
+        input {
+            margin-left: 20px;
+            font-family: 'Sunflower', sans-serif;
         }
         
-        .chart-container {
-            padding: 25px;
+        .row category1-buttons {
+            position: absolute;
         }
         
-        #div_menu {
-            width: 13%;
-            height: 500px;
-            float: left;
-            color: white;
-            background-color: rgb(212, 35, 35);
-            text-align: left;
+        a {
+            color: black;
+            text-decoration: none;
+            background-color: rgba(0, 0, 0, 0);
             font-family: 'Do Hyeon', sans-serif;
-            padding: 10px;
             text-align: center;
         }
         
-        #div_menu>a {
-            font-size: 25px;
+        a:hover {
+            text-decoration: none;
             color: black;
         }
         
-        #div_menu>a:hover {
-            color: white;
-            font-style: normal;
-            text-decoration: none;
+        .box {
+            font-family: 'Do Hyeon', sans-serif;
+            font-size: 15px;
         }
         
-        .shadow {
-            -webkit-filter: drop-shadow(0px 3px 3px rgba(0, 0, 0, .5));
-            filter: drop-shadow(0px 3px 3px rgba(0, 0, 0, .5));
+        .submit {
+            background: var(--highlight-color);
+            color: #fff;
+            padding: 10px;
+            font-size: 20px;
+            font-weight: bold;
+            border: 2px solid var(--highlight-color);
+            cursor: pointer;
         }
+        
+        .submit:hover,
+        .submit:focus {
+            background: #0000;
+            color: var(--highlight-color);
+        }
+        
+        .input-text,
+        .submit {
+            width: 100%;
+            max-width: 400px;
+            margin: 25px auto 0;
+        }
+        
+        p {
+            color: #777;
+            margin-bottom: 20px;
+        }
+        /** Search Forms and Container **/
     </style>
 
 </head>
@@ -454,27 +199,51 @@
 
 
 <body>
+    <header>
+        <a style="font-family: 'Great Vibes', cursive;" href="{% url 'main' %}">
+            <STRONG>&nbsp;<span>Colla</span><span class="boration">boration</span></STRONG>
+        </a>
+        <ul class="snip1198">
+            <li class="enter">
+                {% if not request.user.is_authenticated %}
+                <a href="{% url 'login' %}">로그인</a>
+                <a href="{% url 'signup' %}">회원가입</a> {% elif request.user.is_authenticated %}
+                <a href="{% url 'logout' %}">로그아웃</a> {% endif %}
+            </li>
+        </ul>
+    </header>
 
-    {% extends 'base.html' %} {% block content %}
-
-    <div style="border: 2px solid rgba(211, 211, 211, 0.795); float: left; width: 43%; height:500px; padding:10px;">
-        <div class="box" style="text-align: center;">
-            <h4 class="firstbox">팀 생성</h4><br><br>
-            <div class="X">
-
-                <form method="POST" enctype="multipart/form-data" action="{% url 'createTeam' %}">
-                    {% csrf_token %}
-                    <h4>팀 명</h4>
-                    <input type="text" name="teamName" maxlength="50" placeholder="팀 명"/>
-                    <br><br>
-                    <h4>데드라인</h4>
-                    <input type="date" name="deadline">
-                    <input type="hidden" name="fromStart" value="1">
-                    <input type="hidden" name="progress" value=0><br>
-                    <input type="submit" value="생성" />
-                </form>
-            </div>
+    <section>
+        <div id="div_menu">
+            <li class="nav-item"><a href="{% url 'mypage' %}" class="nav-link">my Page</a></li><br>
+            <li class="nav-item"><a href="{% url 'teamproject' %}" class="nav-link">Team Page</a></li><br>
+            <li class="nav-item"><a href="{% url 'createTeam' %}" class="nav-link">Team create</a></li><br>
+            <li class="nav-item"><a href="{% url 'board' %}" class="nav-link">Board</a></li><br>
 
         </div>
-    {% endblock %}
+
+        <div style="border: 2px solid rgba(211, 211, 211, 0.795); float: left; width: 43%; height:500px; padding:10px;">
+            <div class="box" style="text-align: center;">
+                <h4 class="firstbox">팀 생성</h4><br><br>
+                <div class="X">
+
+                    <form method="POST" enctype="multipart/form-data" action="{% url 'createTeam' %}">
+                        {% csrf_token %}
+                        <h4>팀 명</h4>
+                        <input type="text" name="teamName" maxlength="50" placeholder="팀 명" />
+                        <br><br>
+                        <h4>데드라인</h4>
+                        <input type="date" name="deadline">
+                        <input type="hidden" name="fromStart" value="1">
+                        <input type="hidden" name="progress" value=0><br>
+                        <br>
+
+
+
+                        <input class="submit" type="submit" value="생성하기" />
+                    </form>
+                </div>
+
+            </div>
+
 </body>

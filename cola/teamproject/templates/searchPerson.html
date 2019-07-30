@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>팀원 추가</title>
+</head>
+
+<body>
+    <form method="GET" action="{% url 'searchPerson' %}">
+        <input type="text" name="man_name" value="{{ man_name }}">
+        <input type="submit" value="검색">
+    </form>
+
+    {% if name %} {% csrf_token %}
+    <p>팀원 추가가 되었습니다.</p>{% elif msg %} {{ msg }} {% endif %}
+</body>
+
+</html>

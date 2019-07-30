@@ -1,15 +1,8 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.shortcuts import render,redirect
 
 # Create your models here.
-class Group(models.Model):
-    title = models.CharField(max_length=50)
-    name1 = models.CharField(max_length=50, default='')
-    name2 = models.CharField(max_length=50, default='')
-    
-    def __self__(self):
-        return self.title
-
 class Team(models.Model):
     name = models.CharField(max_length=50)
     leader = models.ForeignKey(User, on_delete=models.CASCADE, related_name='leaderUser', null=True)
@@ -21,8 +14,10 @@ class Team(models.Model):
         through_fields=('team','user'),
         )
     progress = models.IntegerField(default=0, max_length=100)
-    #refFile = models.FileField(upload_to=)
-    #product = models.FileField(upload_to=)
+    #자료조사파일
+    refFile = models.FileField(default = 0, upload_to='refFile/', null=True)
+    ################
+    #product = models.FileField(upload_to=) ppt
     #참여도
     is_finished = models.BooleanField(default=False)
 
@@ -31,6 +26,7 @@ class Team(models.Model):
     
     def showMembers(self):
         return "\n".join("{0}({1})".format(t.profile.userName, t.username) for t in self.members.all())
+
 
 
 class Invite(models.Model):

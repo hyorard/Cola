@@ -2,6 +2,8 @@ from django.contrib import auth
 from django.shortcuts import render,redirect
 from .models import Team,Invite
 import datetime
+from django.contrib import messages
+from django.contrib.auth.models import User
 
 # Create your views here.
 
@@ -9,7 +11,13 @@ def teamproject(request):
     if not request.user.is_authenticated:
         return render(request,'login.html')
 
-    
+    try:
+        prof = request.user.profile
+        pass
+    except:
+        # profile X -> makeprofile -> profile.html
+        return render(request,'profile.html')
+
     # 유저가 속한 모든 팀 리스트
     TeamList = request.user.team_set.all().values()
 
@@ -58,10 +66,19 @@ def teamproject(request):
 
 def createTeam(request):
     if request.method == 'GET':
-        return render(request, 'createTeam.html')
 
+        try:
+            prof = request.user.profile
+            pass
+        except:
+            # profile X -> makeprofile -> profile.html
+            return render(request,'profile.html')
+
+        return render(request, 'createTeam.html')
+    
     # team info, create team
     elif request.method == 'POST':
+
         '''create team'''
         t1 = Team()
         t1.name = request.POST['teamName']
@@ -85,6 +102,7 @@ def createTeam(request):
             team = t1,
             inviter = request.user,
             )
+        
         creation.save()
 
         return redirect('mypage')
@@ -95,8 +113,16 @@ def teamInfo(request):
     if request.method == 'POST':
         teamId = request.POST['teamId']
         team = Team.objects.get(id=teamId)
+        #try:
         members = team.showMembers()
         return render(request, 'teamInfo.html', {'team':team, 'members':members})
+        #except:
+        #    return render(request,'profile.html')
+    else:
+        print("############################teaminfo")
+        return render(request, 'teamInfo.html')
+
+
 
 '''
 지난 시간 -> 남은 시간으로 구현 변경 ㄱㄱ
@@ -143,10 +169,45 @@ def changeTeamInfo(request):
                 team.is_finished = False
         except:
             pass
-        
+        #refFile
+        '''
+        try:
+            flist = request.FILES.getlist('refFile')
+            for f in flist:
+                tmp = open(os.path.join(os.getcwd(), 'media', f.name), 'wb+')
+                for chunk in f.chunks():
+                    tmp.write(chunk)
+            team.refFile = request.FILES['refFile']
+        except:
+            pass
+        ################################    
+        '''
         team.save()
-
+        
         teamId = request.POST['teamId']
         team = Team.objects.get(id=teamId)
         members = team.showMembers()
         return render(request, 'teamInfo.html', {'team':team, 'members':members})
+
+def searchPerson(request,team_id=None):
+    name = User.objects.all()
+    bring = request.GET.get('man_name')
+    if bring:
+    
+        name = name.filter(username=bring)
+        name2 ="찾는 이메일이 없습니다."
+        try:
+            if name.exists():
+                inviteTeam = Team.objects.get(id=team_id)
+                inviteMember = Invite(
+                    user = name,
+                    team = inviteTeam,
+                    inviter = request.user,
+                )
+                inviteMember.save()
+                return render(request, 'searchPerson.html', {'name' : name})
+            return render(request, 'searchPerson.html', {'msg' : name2})
+        except:
+            return render(request, 'searchPerson.html', {'msg' : name2}) 
+    else:
+        return render(request, 'searchPerson.html')

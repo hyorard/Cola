@@ -34,7 +34,8 @@ def login(request):
 
 # 소셜 로그인 용
 def social(request):
-    return render(request, 'Profile.html')
+    print(request.user.socialaccount_set.all())
+    return redirect('main')
 
 def firstpage(request):
     return render(request, 'firstpage.html')

@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
-    <title>main</title>
+    <title>my page</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
@@ -240,7 +240,8 @@
 
         <div style="border: 2px solid rgba(211, 211, 211, 0.795); float: left; width: 43%; height:500px; padding:10px;">
             <div class="box" style="text-align: center;">
-                <h4 class="firstbox">프로필</h4><br><br> {{ user.profile.img }}
+                <h4 class="firstbox">프로필</h4><br>
+                <img src={{ prof.img.url }} width=200>
                 <p><span>이름 :</span> {{ user.profile.userName }}</p>
                 <p><span>학교/회사 :</span> {{ user.profile.school }}</p>
                 <p><span>가입 날짜 :</span> {{ user.profile.date }}</p>
@@ -261,11 +262,15 @@
         <div style="border: 2px solid rgba(211, 211, 211, 0.795); float: left; width: 43.5%; height: 500px; padding:10px;">
             <div style="text-align: center;">
                 <h4 class="firstbox">팀 목록</h4><br><br>
-                {% for team in Teams %}
                 <div>
-                    <h1>{{ team.name }}</h1>
+                    {% for team in Teams %}
+                    <form method="POST" action="{% url 'teamInfo' %}">
+                        {% csrf_token %}
+                        <input type="hidden" value="{{team.id}}" name="teamId">
+                        <input type="submit" value="{{team.name}}" />
+                    </form>
+                    {% endfor %}
                 </div>
-                {% endfor %}
             </div>
 
             <br>

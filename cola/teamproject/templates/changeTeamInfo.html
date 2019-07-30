@@ -462,10 +462,10 @@
             <h4 class="firstbox">팀 정보 변경</h4><br><br>
             <div class="X">
 
-                <form method="POST" action="{% url 'changeTeamInfo' %}">
+                <form method="POST" enctype="multipart/form-data" action="{% url 'changeTeamInfo' %}">
                     {% csrf_token %}
                     <h4>팀 명</h4>
-                    <input type="text" name="teamName" maxlength="50" placeholder="{{team.name}}"/>
+                    <input type="text" name="teamName" maxlength="50" placeholder="{{team.name}}" />
                     <br><br>
                     <h4>데드라인</h4>
                     <input type="date" name="deadline">
@@ -473,10 +473,12 @@
                     <input type="number" name="progress" placeholder="진행도"><br>
                     <input type="checkbox" name="is_finished" value="finished">팀플 완료 여부
                     <input type="hidden" name="teamId" value="{{team.id}}">
-                    <input type="submit" value="변경" />
+                    <!-- refFile -->
+                    <input multiple="multiple" type="file" name="refFile[]" multiple placeholder="자료명"><br>
+                    <input type="submit" value="생성" />
                 </form>
             </div>
 
         </div>
-    {% endblock %}
+        {% endblock %}
 </body>

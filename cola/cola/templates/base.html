@@ -3,13 +3,13 @@
         <a style="font-family: 'Great Vibes', cursive;">
             <a href="{% url 'main' %}"><STRONG>&nbsp;<span>Colla</span><span class="boration">boration</span></STRONG>
         </a>
-        <ul class="snip1198">
-            {% if not request.user.is_authenticated %}
-            <li class="enter"><a href="{% url 'login' %}">로그인</a>
-            <a href="{% url 'signup' %}">회원가입</a></li>{% elif request.user.is_authenticated %}
-            <!--로그인 되어 있을 때 로그아웃 버튼 안보임!-->
-            <a href="{% url 'logout' %}">로그아웃</a> {% endif %}
-        </ul>
+            <ul class="snip1198">
+                {% if not request.user.is_authenticated %}
+                <li class="enter"><a href="{% url 'login' %}">로그인</a>
+                    <a href="{% url 'signup' %}">회원가입</a></li>{% elif request.user.is_authenticated %}
+                <!--로그인 되어 있을 때 로그아웃 버튼 안보임!-->
+                <a href="{% url 'logout' %}">로그아웃</a> {% endif %}
+            </ul>
 
     </header>
 

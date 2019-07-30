@@ -20,11 +20,16 @@ def main(request):
         return render(request,'profile.html')
 
 def mypage(request):
-    TeamList = request.user.team_set.all().values()
-    return render(request,'mypage.html', {'Teams':TeamList})
+    if not request.user.is_authenticated:
+        return render(request,'login.html')
+    try:
+        prof = request.user.profile
+        TeamList = request.user.team_set.all().values()
+        return render(request,'mypage.html', {'Teams':TeamList, 'prof' : prof})
+    except:
+        return render(request,'profile.html')
 
 def changeProfile(request):
-    prof = request.user.profile
     return render(request,'profile.html')
 
 def makeProfile(request):
@@ -33,8 +38,7 @@ def makeProfile(request):
     else:
         prof = profile()
     prof.user = request.user
-    prof.img = request.POST.get('userPic','')
-    #prof.img = request.POST['userPic']
+    prof.img = request.FILES['userPic']
     prof.userName = request.POST['userName']
     prof.school = request.POST['school']
     prof.date = timezone.datetime.now()
@@ -44,6 +48,18 @@ def makeProfile(request):
 def board(request):
     boards = Board.objects
     return render(request, 'board.html', {'boards':boards})
+
+def infoboard(request):
+    boards = Board.objects
+    return render(request, 'infoboard.html', {'boards':boards})
+
+def ppt_board(request):
+    boards = Board.objects
+    return render(request, 'pptboard.html', {'boards':boards})
+
+def presentation_board(request):
+    boards = Board.objects
+    return render(request, 'presentationboard.html', {'boards':boards})
 
 def detail(request, board_id):
     board_detail = get_object_or_404(Board, pk = board_id)
