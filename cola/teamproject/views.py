@@ -210,6 +210,12 @@ def searchPerson(request,team_id=None):
         except: # 없으면 없다고 알림
             return render(request, 'searchPerson.html', {'error' : '찾는 이메일이 없습니다.', 'scoutingTeam':scoutingTeam})
         
+        # 프로필 안 만든 사람이면 거른다
+        try:
+            newMember.profile.userName
+        except:
+            return render(request, 'searchPerson.html', {'error' : '프로필을 만들지 않은 사용자입니다.', 'scoutingTeam':scoutingTeam})
+        
         # 이미 초대가 된 멤버라면 teamInfo로
         try:
             Invite.objects.get(user=newMember, team=scoutingTeam)
