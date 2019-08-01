@@ -1,6 +1,7 @@
 from django.contrib import auth
 from django.shortcuts import render,redirect
-from .models import Team,Invite
+from .models import Team,Invite,Team_todo
+#from .models import TeamBoard
 import datetime
 from django.contrib import messages
 from django.contrib.auth.models import User
@@ -115,6 +116,7 @@ def teamInfo(request):
         team = Team.objects.get(id=teamId)
         #try:
         members = team.showMembers()
+        print(members)
         return render(request, 'teamInfo.html', {'team':team, 'members':members})
         #except:
         #    return render(request,'profile.html')
@@ -122,7 +124,18 @@ def teamInfo(request):
         print("############################teaminfo")
         return render(request, 'teamInfo.html')
 
+def createTodo(request):
+    toDo = Team_todo()
+    teamId = request.POST['teamId']
+    team = Team.objects.get(id=teamId)
+    toDo.team = team
+    members = team.showMembers()
+    toDo.content = request.POST['content']
+    toDo.sequence = 1
+    toDo.save()
+    print(team.team_todo_set.all())
 
+    return render(request, 'teamInfo.html', {'team':team, 'members':members})
 
 '''
 지난 시간 -> 남은 시간으로 구현 변경 ㄱㄱ
@@ -169,19 +182,7 @@ def changeTeamInfo(request):
                 team.is_finished = False
         except:
             pass
-        #refFile
-        '''
-        try:
-            flist = request.FILES.getlist('refFile')
-            for f in flist:
-                tmp = open(os.path.join(os.getcwd(), 'media', f.name), 'wb+')
-                for chunk in f.chunks():
-                    tmp.write(chunk)
-            team.refFile = request.FILES['refFile']
-        except:
-            pass
-        ################################    
-        '''
+        
         team.save()
         
         teamId = request.POST['teamId']
@@ -231,14 +232,33 @@ def searchPerson(request,team_id=None):
                 )
         scout.save()
 
-        ''' 민지야 알림 해줘
         # 초대했다고 알림
-        messages.warning(request, "{0}가 {1}를 {2}에 초대하였습니다.".format(
+        messages.info(request, '{0}가 {1}를 {2}에 초대하였습니다.'.format(
             request.user.profile.userName,
             newMember.profile.userName,
             scoutingTeam.name))
-        '''
-        
         # 초대 후 멤버 리스트 업데이트
         members = scoutingTeam.showMembers()
         return render(request, 'teamInfo.html', {'team':scoutingTeam, 'members':members})
+
+
+def teamBoard(request, teamBoard_id):
+
+    #team.id
+    team_id = teamBoard_id
+
+    #team이 생성해 놓은 teamboard자료가 있다면 가져옴 
+    try: 
+        teamboard = TeamBoard.objects.filter(team = team_id)
+    except:
+        return render(request, 'teamBoard.html', {'error' : '자료가 존재하지 않습니다'})
+    
+    return render(request, 'teamBoard.html', {'tb' : teamboard})        
+
+
+'''
+def uploadfile(request, teamBoard_id):
+    team_id = teamBoard_id
+    
+    
+'''

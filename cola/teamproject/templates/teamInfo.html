@@ -21,10 +21,62 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.17/d3.min.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Sunflower:300&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Gothic+A1&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Do+Hyeon&display=swap" rel="stylesheet">
+    <a href="https://icons8.com/icon/7690/checkmark"></a>
 
 
 
     <style>
+        .modal {
+            display: none;
+            /* Hidden by default */
+            position: fixed;
+            /* Stay in place */
+            z-index: 1;
+            /* Sit on top */
+            left: 0;
+            top: 0;
+            width: 100%;
+            /* Full width */
+            height: 100%;
+            /* Full height */
+            overflow: auto;
+            /* Enable scroll if needed */
+            background-color: rgb(0, 0, 0);
+            /* Fallback color */
+            background-color: rgba(0, 0, 0, 0.4);
+            /* Black w/ opacity */
+        }
+        /* Modal Content/Box */
+        
+        .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto;
+            /* 15% from the top and centered */
+            padding: 20px;
+            border: 1px solid #888;
+            width: 50%;
+            /* Could be more or less, depending on screen size */
+        }
+        /* The Close Button */
+        
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+        
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        
         header {
             height: 80px;
             top: 30px;
@@ -557,6 +609,263 @@
         .search-field-2:focus+#search-button-2 {
             right: 370px;
         }
+        
+        .teaminfo_ {
+            font-family: 'Do Hyeon', sans-serif;
+            width: 600px;
+            height: 500px;
+            position: relative;
+            left: 20%;
+            text-align: left;
+            border: 1px solid grey;
+            padding: 5px;
+        }
+        /*일단 버튼*/
+        
+        .wrapper {
+            position: relative;
+            top: -50px;
+            left: 450px;
+            transform: translate(-50%, -50%);
+            width: fit-content;
+            height: auto;
+        }
+        
+        button {
+            width: 130px;
+            height: 40px;
+            background: linear-gradient(to left top, #635b5b 50%, #272626 50%);
+            border-style: none;
+            color: #fff;
+            font-size: 15px;
+            letter-spacing: 2px;
+            font-family: 'Sunflower', sans-serif;
+            font-weight: 600;
+            outline: none;
+            cursor: pointer;
+            position: relative;
+            padding: 0px;
+            overflow: hidden;
+            transition: all .5s;
+            box-shadow: 0px 1px 2px rgba(0, 0, 0, .2);
+        }
+        
+        button span {
+            position: absolute;
+            display: block;
+        }
+        
+        button span:nth-child(1) {
+            height: 3px;
+            width: 200px;
+            top: 0px;
+            left: -200px;
+            background: linear-gradient(to right, rgba(0, 0, 0, 0), #f6e58d);
+            border-top-right-radius: 1px;
+            border-bottom-right-radius: 1px;
+            animation: span1 2s linear infinite;
+            animation-delay: 1s;
+        }
+        
+        @keyframes span1 {
+            0% {
+                left: -200px
+            }
+            100% {
+                left: 200px;
+            }
+        }
+        
+        button span:nth-child(2) {
+            height: 70px;
+            width: 3px;
+            top: -70px;
+            right: 0px;
+            background: linear-gradient(to bottom, rgba(0, 0, 0, 0), #f6e58d);
+            border-bottom-left-radius: 1px;
+            border-bottom-right-radius: 1px;
+            animation: span2 2s linear infinite;
+            animation-delay: 2s;
+        }
+        
+        @keyframes span2 {
+            0% {
+                top: -70px;
+            }
+            100% {
+                top: 70px;
+            }
+        }
+        
+        button span:nth-child(3) {
+            height: 3px;
+            width: 200px;
+            right: -200px;
+            bottom: 0px;
+            background: linear-gradient(to left, rgba(0, 0, 0, 0), #f6e58d);
+            border-top-left-radius: 1px;
+            border-bottom-left-radius: 1px;
+            animation: span3 2s linear infinite;
+            animation-delay: 3s;
+        }
+        
+        @keyframes span3 {
+            0% {
+                right: -200px;
+            }
+            100% {
+                right: 200px;
+            }
+        }
+        
+        button span:nth-child(4) {
+            height: 70px;
+            width: 3px;
+            bottom: -70px;
+            left: 0px;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0), #f6e58d);
+            border-top-right-radius: 1px;
+            border-top-left-radius: 1px;
+            animation: span4 2s linear infinite;
+            animation-delay: 4s;
+        }
+        
+        @keyframes span4 {
+            0% {
+                bottom: -70px;
+            }
+            100% {
+                bottom: 70px;
+            }
+        }
+        
+        button:hover {
+            transition: all .5s;
+            transform: rotate(-3deg) scale(1.1);
+            box-shadow: 0px 3px 5px rgba(0, 0, 0, .4);
+        }
+        
+        button:hover span {
+            animation-play-state: paused;
+        }
+        
+        #team_title {
+            font-family: 'Do Hyeon', sans-serif;
+            font-size: 60px;
+            text-align: center;
+        }
+        
+        .information {
+            font-family: 'Do Hyeon', sans-serif;
+            margin: 0;
+            width: 560px;
+            height: 30px;
+            font-size: 25px;
+            left: 30px;
+            float: left;
+        }
+        
+        .littlebox {
+            width: 26px;
+            height: 30px;
+            float: left;
+        }
+        
+        .bigbox {
+            width: 520px;
+            height: 30px;
+            left: 30px;
+            float: right;
+        }
+        
+        .red {
+            color: red;
+            font-family: 'Do Hyeon', sans-serif;
+            font-size: 25px;
+        }
+        
+        .red:hover {
+            color: rgba(255, 0, 0, 0.411);
+            font-family: 'Do Hyeon', sans-serif;
+            font-size: 25px;
+        }
+        
+        .img_left {
+            float: left;
+            width: 26px;
+            height: 26.4px;
+            text-align: left;
+            margin: 0;
+        }
+        /*플러스버튼*/
+        
+        .button_plus {
+            position: absolute;
+            width: 35px;
+            height: 35px;
+            background: #fff;
+            cursor: pointer;
+            border: 2px solid #343738;
+            /* Mittig */
+            top: 50%;
+            left: 25%;
+        }
+        
+        .button_plus:after {
+            content: '';
+            position: absolute;
+            transform: translate(-50%, -50%);
+            height: 4px;
+            width: 50%;
+            background: #343738;
+            top: 50%;
+            left: 50%;
+        }
+        
+        .button_plus:before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: #343738;
+            height: 50%;
+            width: 4px;
+        }
+        
+        .button_plus:hover:before,
+        .button_plus:hover:after {
+            background: #fff;
+            transition: 0.2s;
+        }
+        
+        .button_plus:hover {
+            background-color: #343738;
+            transition: 0.2s;
+        }
+        
+        .loading {
+            margin: 0px;
+            position: relative;
+            top: 60px;
+            left: 110px;
+            border-radius: 50%;
+            border: 4px solid #f1f1f1;
+            border-top: 4px solid red;
+            width: 50px;
+            height: 50px;
+            animation: 1.64s loading infinite linear;
+            transform: translate(-50%, -50%)
+        }
+        
+        @keyframes loading {
+            0% {
+                transform: rotate(0)
+            }
+            100% {
+                transform: rotate(360deg)
+            }
+        }
     </style>
 
 </head>
@@ -564,27 +873,131 @@
 
 <body>
 
+
     {% extends 'base.html' %} {% block content %} {% if request.user == team.leader %}
-    <form method="POST" action="{% url 'changeTeamInfo' %}">
-        {% csrf_token %}
-        <input type="hidden" value="{{team.id}}" name="teamId">
-        <input type="hidden" value="request" name="type">
-        <input type="submit" value="팀 정보 변경" />
-    </form>
-    {% endif %}
+    <div class="teaminfo_">
+        <div id="team_title">
+            {{team}}
 
-    <h5>팀명 : {{team.name}}</h5>
-    <h5>데드라인 : {{team.deadline}}</h5>
-    <h5>지난시간 : {{team.timeFromStart}}</h5>
-    <h5>진행도 : {{team.progress}}</h5>
-    <h5>팀원리스트 : </h5><a href="{% url 'searchPerson' team.id%}">팀원 추가</a>
-    <h5>{{members}}</h5>
-    <h5>자료 파일 : {{team.refFile.url}}</h5>
+        </div>
+
+        <form method="POST" action="{% url 'changeTeamInfo' %}">
+            {% csrf_token %}
+            <input type="hidden" value="{{team.id}}" name="teamId">
+            <input type="hidden" value="request" name="type">
+            <div class="wrapper">
+                <button>
+              팀 정보 변경
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+            </button>
+            </div>
+            <!-- <input type="submit" value="팀 정보 변경" />-->
+        </form>
+        {% endif %} {% if messages %}
 
 
-    {% if team.is_finished %}
-    <h5>팀플 완료!</h5>
-    {% else %}
-    <h5>진행중..</h5>
-    {% endif %} {% endblock %}
+
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            {% for message in messages %}
+            <p {% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }} </p>
+
+
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+        </button> {% endfor %}
+        </div>
+        0 {% endif %}
+        <p class="img_left">
+            <img src="https://img.icons8.com/ios-filled/26/000000/checkmark.png"></p>
+        <h5 class="information">팀명: {{team.name}}</h5>
+        <p class="img_left">
+            <img src="https://img.icons8.com/ios-filled/26/000000/checkmark.png"></p>
+        <h5 class="information">데드라인 : {{team.deadline}}</h5>
+        <p class="img_left">
+            <img src="https://img.icons8.com/ios-filled/26/000000/checkmark.png"></p>
+        <h5 class="information">지난시간 : {{team.timeFromStart}}</h5>
+        <p class="img_left">
+            <img src="https://img.icons8.com/ios-filled/26/000000/checkmark.png"></p>
+        <h5 class="information">진행도 : {{team.progress}}</h5>
+        <p class="img_left">
+            <img src="https://img.icons8.com/ios-filled/26/000000/checkmark.png"></p>
+        <button id="myBtn">진행 지표 추가</button>
+        <div id="myModal" class="modal">
+            <!-- Modal content -->
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <div>
+                    <form method="POST" action="{% url 'createTodo' %}">
+                        {% csrf_token %}
+                        <input type="hidden" value="{{team.id}}" name="teamId">
+                        <input type="text" name="content" maxlength="50" placeholder="지표를 입력하세요.." />
+                        <input type="submit" value="생성" />
+                    </form>
+                </div>
+            </div>
+
+        </div>
+        <h5 class="information">진행상황 : </h5>
+        <p class="img_left">
+            <img src="https://img.icons8.com/ios-filled/26/000000/checkmark.png"></p>
+        <h5 class="information">팀원리스트 </h5>
+        <h5 class="information">
+            {% for member in members %}
+            <li>{{member}}</li>
+            {% endfor %}
+        </h5>
+
+
+        <a href="{% url 'searchPerson' team.id%}"><img src="https://img.icons8.com/color/48/000000/add-user-group-woman-woman.png"></a>
+
+
+        <div class="bigbox"> </div>
+        <p class="img_left">
+            <img src="https://img.icons8.com/ios-filled/26/000000/checkmark.png"></p>
+        <h5 class="information"><a href="{% url 'teamBoard' team.id %} ">팀 게시판 : </a> </h5>
+
+
+
+        {% if team.is_finished %}
+        <h5 class="information">팀플 완료!</h5>
+        {% else %}
+        <div class="loading">
+        </div>
+        <p class="img_left">
+            <img src="https://img.icons8.com/ios-filled/26/000000/checkmark.png"></p>
+        <h5 class="information">진행중 ..</h5>
+        {% endif %}
+    </div>
+
+    <script type="text/javascript">
+        // Get the modal
+        var modal = document.getElementById('myModal');
+
+        // Get the button that opens the modal
+        var btn = document.getElementById("myBtn");
+
+        // Get the <span> element that closes the modal
+        var span = document.getElementsByClassName("close")[0];
+
+        // When the user clicks on the button, open the modal 
+        btn.onclick = function() {
+            modal.style.display = "block";
+        }
+
+        // When the user clicks on <span> (x), close the modal
+        span.onclick = function() {
+            modal.style.display = "none";
+        }
+
+        // When the user clicks anywhere outside of the modal, close it
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+    </script>
+    {% endblock %}
 </body>

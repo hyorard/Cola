@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
-    <title>게시물 읽기</title>
+    <title>{{ board.title }}</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
@@ -188,12 +188,14 @@
 
         <div class="post" style="text-align:center; font-family:'Do Hyeon', sans-serif; margin-left:150px;">
 
-            <form name="BoardViewForm" method="post">
+            <form name="BoardViewForm" method="POST">
+                {% csrf_token %}
                 <table summary="전체 테이블 구성">
+
                     <tbody>
                         <tr>
                             <td>
-                                <div align=center>
+                                <div style="text-align:center;">
                                     <h3>Post</h3>
                                 </div>
                             </td>
@@ -202,24 +204,25 @@
                             <td colspan=2>
                                 <table border="1" summary="목록 테이블 구성">
                                     <tr>
-                                        <td align=center bgcolor=white width=300px style="background-color:rgba(255, 102, 102, 0.295);">작성자</td>
-                                        <td bgcolor=white width=40%>멋사</td>
-                                        <td align=center bgcolor=white width=300px style="background-color:rgba(255, 102, 102, 0.295);">작성일</td>
-                                        <td bgcolor=white width=40%>{{board.pub_date}}</td>
+                                        <td style="text-align:center; bgcolor:white; width:300px; background-color:rgba(255, 102, 102, 0.295);">작성자</td>
+                                        <td style="text-align:center; bgcolor:white; width:40%;">{{ board.writer}}</td>
+                                        <td style="text-align:center; bgcolor:white; width:300px; background-color:rgba(255, 102, 102, 0.295);">작성일</td>
+                                        <td style="bgcolor:white; width:40%">{{board.pub_date}}</td>
                                     </tr>
                                     <tr>
-                                        <td align=center bgcolor=white style="background-color:rgba(255, 102, 102, 0.295);">TITLE</td>
-                                        <td align=center bgcolor=white colspan=3>
+                                        <td text-align=center; bgcolor=white; style="background-color:rgba(255, 102, 102, 0.295);">TITLE</td>
+                                        <td text-align=center; style="background-color=white;" colspan=3>
                                             {{board.title}}
                                         </td>
                                     </tr>
                                     <tr>
                                         <td colspan=4>{{board.body}}<br><br><br><br><br><br></td>
                                     </tr>
+
                                     <tr>
-                                        <td align=center bgcolor=white width=300px style="background-color:rgba(255, 102, 102, 0.295);">첨부파일</td>
+                                        <td align=center bgcolor=white width=300px style="background-color:rgba(255, 102, 102, 0.295); ">첨부파일</td>
                                         <td bgcolor=white width=40%></td>
-                                        <td align=center bgcolor=white width=300px style="background-color:rgba(255, 102, 102, 0.295);">VIEWS</td>
+                                        <td align=center bgcolor=white width=300px style="background-color:rgba(255, 102, 102, 0.295); ">VIEWS</td>
                                         <td bgcolor=white width=40%>123</td>
                                     </tr>
                                 </table>
@@ -230,8 +233,8 @@
 
 
                 <hr> {% for comment in board.comments.all %}
-                <div class="comment">
-                    <div class="date">{{ comment.created_date }}</div>
+                <div class="comment ">
+                    <div class="date ">{{ comment.created_date }}</div>
                     <strong>{{ comment.author }}</strong>
                     <p>{{ comment.text|linebreaks }}</p>
                 </div>
@@ -240,8 +243,10 @@
                 {% endfor %}
 
                 <br><br><br>
-                <a class="button1" href="{% url 'add_comment_to_post' board.id %}" style="margin-left:-140px;">COMMENT</a> &nbsp;&nbsp;&nbsp;
-                <a class="button2" href="{% url 'board' %}" role="button">LIST</a>
+                <a class="button1 " href="{% url 'add_comment_to_post' board.id %} " style="margin-left:-140px; ">COMMENT</a> &nbsp;&nbsp;&nbsp;
+                <a class="button2 " href="{% url 'infoboard' %} " role="button ">LIST</a> &nbsp;&nbsp;&nbsp;{% if check == True %}
+                <a class=" button1 " href="{% url 'modify' board.id %} " style="position:relative; ">수정하기</a> &nbsp;&nbsp;&nbsp;
+                <a class="button1 " href="{% url 'removeBoard' board.id %}" style="position:relative;">삭제하기</a> &nbsp;&nbsp;&nbsp; {% endif %}
 
             </form>
 </body>

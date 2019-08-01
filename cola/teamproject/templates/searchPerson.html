@@ -6,19 +6,171 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>팀원 추가</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+    <style>
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            background: rgb(54, 52, 52);
+        }
+        
+        .hide {
+            display: none;
+            padding-top: 10px;
+        }
+        
+        .search-container {
+            height: 100%;
+            padding: 50px;
+            margin: 0;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .search-input {
+            width: 50%;
+            height: 35px;
+            font-size: 2em;
+            border: 4px solid;
+            padding: 10px;
+            caret-color: red;
+        }
+        
+        @media only screen and (max-width: 800px) {
+            .search-input {
+                width: 75%;
+            }
+        }
+        
+        .search-input:focus {
+            outline-width: 0;
+        }
+        /* .search-input:hover + span > .fa-search-1 {
+  animation: move-right 0.5s;
+} */
+        
+        .move {
+            animation: move-right 1s;
+        }
+        
+        @keyframes move-right {
+            form {
+                transform: translateX(0);
+            }
+            to {
+                opacity: 0;
+                transform: translateX(40px);
+            }
+        }
+        
+        .search-input::placeholder {
+            opacity: 0.7;
+            color: #000;
+        }
+        
+        span {
+            border: 4px solid;
+            height: 35px;
+            padding: 10px;
+            border-left: 0;
+            background: #fff;
+            cursor: pointer;
+        }
+        
+        .fa-search-1 {
+            margin-top: -6.5px;
+        }
+        
+        .fa-search-2 {
+            display: block;
+            position: absolute;
+            animation: move 3s;
+            animation-fill-mode: forwards;
+        }
+        
+        @keyframes move {
+            0% {
+                opacity: 0;
+                visibility: visible;
+                padding-right: 50%;
+            }
+            10% {
+                opacity: 1;
+                padding-right: 30%;
+            }
+            30% {
+                padding-right: 50%;
+            }
+            50% {
+                padding-right: 20%;
+            }
+            60% {
+                padding-right: 0;
+            }
+            80% {
+                padding-right: 35%;
+            }
+            95% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 0;
+                padding-right: 55%;
+                visibility: hidden;
+            }
+        }
+    </style>
 </head>
 
 <body>
     <form method="POST" action="{% url 'searchPerson' scoutingTeam.id%}">
         {% csrf_token %}
-        <input type="text" name="newMemberId" placeholder="초대할 사람의 아이디..">
-        <input type="submit" value="검색">
+        <!--<input type="text" name="newMemberId" placeholder="초대할 사람의 아이디..">
+        <input type="submit" value="검색">-->
+
+        <div class='search-container'>
+            <i id="search" class="fas fa-search fa-3x hide"></i>
+            <input id="text" type='text' name="newMemberId" placeholder='초대할 사람의 아이디..' class='search-input'>
+            <span id="btn">
+              <i id="slide" class="fas fa-search fa-search-1 fa-3x"></i>
+            </span>
+        </div>
     </form>
+    {% if error %} {{error}} {% endif %}
 
-    {% if error %}
-    {{error}}
-    {% endif %}
+    <script>
+        // Code for animation restart from https://css-tricks.com/restart-css-animation/
 
+        element = document.getElementById("btn");
+        s = document.getElementById("search");
+        inputText = document.getElementById("text");
+        console.log(inputText.value.offsetWidth)
+        btn = document.getElementById("slide");
+        // reset the transition by...
+        element.addEventListener("click", function(e) {
+            e.preventDefault;
+            btn.classList.remove("move");
+            void element.offsetWidth;
+            btn.classList.add("move");
+
+            setTimeout(function() {
+                btn.style.visibility = "hidden"
+                s.classList.remove("fa-search-2");
+                void element.offsetWidth;
+                s.classList.add("fa-search-2");
+            }, 500);
+
+            setTimeout(function() {
+                btn.style.visibility = "visible"
+            }, 3500);
+
+        }, false);
+    </script>
 </body>
 
 </html>

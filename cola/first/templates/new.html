@@ -10,24 +10,140 @@
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-    <link href="https://fonts.googleapis.com/css?family=Do+Hyeon&display=swap&subset=korean" rel="stylesheet">
-
+    <link href="https://fonts.googleapis.com/css?family=Do+Hyeon|Great+Vibes|Pacifico&display=swap" rel="stylesheet">
     <style>
         header {
+            height: 80px;
+            top: 30px;
             left: 20px;
+            font-family: 'Great Vibes', cursive;
+            margin-top: 30px;
+            border-bottom: 1px solid rgb(160, 148, 148);
+        }
+        
+        header>a {
+            font-size: 50px;
+        }
+        
+        header>a:hover {
+            background-color: white;
+            text-decoration: none;
+        }
+        
+        .snip1198 {
+            position: absolute;
+            margin-top: -25px;
+            margin-left: 1050px;
+            font-family: 'Sunflower', sans-serif;
+            text-align: center;
+            text-transform: uppercase;
+            font-weight: 500;
+            letter-spacing: 1px;
+            color:
+        }
+        
+        .snip1198>li {
+            display: inline-block;
+            list-style: outside none none;
+            margin-left: -10px;
+            -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+            float: left;
+            margin: 0.4em 0.8em;
+            padding: 0;
+        }
+        
+        .snip1198>a {
+            color: black;
+            position: relative;
+            text-decoration: none;
+            display: inline-block;
+            padding: 0 0.7em;
+            color: rgba(255, 255, 255, 0.5);
+            position: relative;
+            text-decoration: none;
+            display: inline-block;
+        }
+        
+        a {
+            color: black;
+            text-decoration: none;
+            background-color: rgba(0, 0, 0, 0);
+            font-family: 'Do Hyeon', sans-serif;
+            text-align: center;
+        }
+        
+        a:hover {
+            text-decoration: none;
+            color: black;
+        }
+        
+        .snip1198 a:before {
+            position: absolute;
+            content: '';
+            -webkit-transition: all 0.35s ease;
+            transition: all 0.35s ease;
+            opacity: 0;
+            left: 15%;
+            right: 15%;
+            top: 0;
+            bottom: 0;
+        }
+        
+        .snip1198 a:hover {
+            color: black;
+            border-left: 3px solid red;
+            border-right: 3px solid red;
+        }
+        
+        .snip1198 a:hover:before {
+            opacity: 1;
+            left: 0;
+            right: 0;
         }
         
         span {
             color: red;
         }
         
-        .nav-link {
+        span:hover {
+            color: rgba(255, 0, 0, 0.411);
+        }
+        
+        .boration {
             color: black;
         }
         
-        .nav-link:hover {
-            color: black;
-            background-color: tomato;
+        .boration:hover {
+            color: rgba(0, 0, 0, 0.411);
+        }
+        
+        .w3-bar {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 18px;
+            text-align: left;
+            letter-spacing: 0em;
+            margin-left: 30px;
+            line-height: 1em;
+            text-transform: none;
+            font-family: brandon-grotesque;
+            font-weight: 700;
+            font-style: normal;
+            font-size: 10.2px;
+            letter-spacing: .25em;
+            line-height: 2.2em;
+            text-transform: uppercase;
+        }
+        
+        .w3-bar-item:hover,
+        .w3-bar-item-:hover {
+            border-bottom: 5px solid red;
+            text-decoration: none;
+            transition-duration: .4s;
+        }
+        
+        body {
+            background-color: white;
         }
         
         div {
@@ -37,29 +153,6 @@
         #div_new {
             text-align: center;
             font-family: 'Do Hyeon', sans-serif;
-        }
-        
-        #div_menu {
-            width: 13%;
-            height: 500px;
-            float: left;
-            color: white;
-            background-color: rgb(212, 35, 35);
-            text-align: left;
-            font-family: 'Do Hyeon', sans-serif;
-            padding: 10px;
-            text-align: center;
-        }
-        
-        #div_menu>a {
-            font-size: 25px;
-            color: black;
-        }
-        
-        #div_menu>a:hover {
-            color: white;
-            font-style: normal;
-            text-decoration: none;
         }
         /*제출 버튼 임시*/
         
@@ -85,393 +178,143 @@
             height: 300px;
         }
         
-        button {
-            position: relative;
-            width: 200px;
-            height: 70px;
-            border: none;
-            border-radius: 5px;
-            font-size: 1.5em;
-            background-color: rgb(212, 35, 35);
-            color: #fff;
-            padding: 0 10px;
+        input:active,
+        input:focus,
+        input.active {
+            background-image: none;
+            outline: 0;
+            -webkit-box-shadow: none;
+            box-shadow: none;
+        }
+        
+        textarea:active,
+        textarea:focus,
+        textarea.active {
+            background-image: none;
+            outline: 0;
+            -webkit-box-shadow: none;
+            box-shadow: none;
+        }
+        
+        .button1 {
+            background: none;
+            border: 5px solid black;
+            width: 10px;
             font-family: 'Do Hyeon', sans-serif;
-            outline: 0;
+            padding: 1.5rem 3rem;
+            box-shadow: 5px 5px red, 10px 10px black, inset 5px 5px white, inset 10px 10px black;
+            font-weight: bold;
+            font-size: 10px;
+            position: relative;
+            top: 50px;
+            text-align: center;
         }
         
-        button:hover {
-            cursor: pointer;
-            -webkit-animation: moveButton 0.4s ease forwards;
-            animation: moveButton 0.4s ease forwards;
+        .button1:hover {
+            background-color: rgba(255, 0, 0, 0.466);
         }
         
-        .bar,
-        .load {
+        .button1:before,
+        .button1:after {
+            content: "";
             position: absolute;
-            bottom: 10%;
-            left: 0%;
-            width: 95%;
+            background: black;
+        }
+        
+        .button1:before {
+            top: 100%;
+            left: 5px;
+            height: 10px;
+            width: 5px;
+        }
+        
+        .button1:after {
+            left: 100%;
+            top: 5px;
             height: 5px;
-            background-color: rgb(212, 35, 35);
-            border-radius: 20px;
-            opacity: 0;
-            box-sizing: border-box;
-            margin: 0 4.5px;
-        }
-        
-        .load {
-            background-color: #fff;
-            z-index: 1;
-            width: 0%;
-        }
-        
-        button:active {
-            outline: 0;
-        }
-        
-        button:hover .bar {
-            opacity: 1;
-            -webkit-transition: all 0.2s ease;
-            transition: all 0.2s ease;
-        }
-        
-        button:hover>strong>i {
-            -webkit-animation: tremble 0.5s 0.4s ease;
-            animation: tremble 0.5s 0.4s ease;
-        }
-        
-        button:hover .load {
-            opacity: 1;
-            -webkit-transition: all 0.5s ease;
-            transition: all 0.5s ease;
-        }
-        
-        .loading {
-            position: absolute;
-            top: 0px;
-            left: -5px;
-            width: 100%;
-            opacity: 1;
-            -webkit-transition: all 5s 0.1s linear;
-            transition: all 5s 0.1s linear;
-        }
-        
-        button.complete {
-            background-color: #4EBA4E;
-            -webkit-transition: all 0.5s ease-in-out;
-            transition: all 0.5s ease-in-out;
-        }
-        
-        button.complete .bar,
-        button.complete strong,
-        button.complete .load {
-            opacity: 0;
-        }
-        
-        button.complete:before {
-            content: '\f00c';
-            font-family: 'fontawesome';
-            -webkit-transition: all 0.5s ease;
-            transition: all 0.5s ease;
-            font-weight: 600;
-            position: absolute;
-            left: 50%;
-            -webkit-transform: translateX(-50%) scale(1.2);
-            transform: translateX(-50%) scale(1.2);
-            color: #fff;
-            font-size: 1.5em;
-            opacity: 0;
-            -webkit-animation: appear 0.5s 0.2s ease-in-out forwards;
-            animation: appear 0.5s 0.2s ease-in-out forwards;
-        }
-        
-        @-webkit-keyframes appear {
-            from {
-                opacity: 0;
-            }
-            to {
-                opacity: 1;
-            }
-        }
-        
-        @keyframes appear {
-            from {
-                opacity: 0;
-            }
-            to {
-                opacity: 1;
-            }
-        }
-        
-        @-webkit-keyframes tremble {
-            0% {
-                -webkit-transform: rotate(0deg);
-                transform: rotate(0deg);
-            }
-            25% {
-                -webkit-transform: rotate(-10deg);
-                transform: rotate(-10deg);
-            }
-            50% {
-                -webkit-transform: rotate(0deg);
-                transform: rotate(0deg);
-            }
-            75% {
-                -webkit-transform: rotate(10deg);
-                transform: rotate(10deg);
-            }
-            100% {
-                -webkit-transform: rotate(0deg);
-                transform: rotate(0deg);
-            }
-        }
-        
-        @-webkit-keyframes tremble-end {
-            0% {
-                -webkit-transform: rotate(0deg) translateX(-50%);
-                transform: rotate(0deg) translateX(-50%);
-            }
-            25% {
-                -webkit-transform: rotate(-10deg) translateX(-50%);
-                transform: rotate(-10deg) translateX(-50%);
-            }
-            50% {
-                -webkit-transform: rotate(0deg) translateX(-50%);
-                transform: rotate(0deg) translateX(-50%);
-            }
-            75% {
-                -webkit-transform: rotate(10deg) translateX(-50%);
-                transform: rotate(10deg) translateX(-50%);
-            }
-            100% {
-                -webkit-transform: rotate(0deg) translateX(-50%);
-                transform: rotate(0deg) translateX(-50%);
-            }
-        }
-        
-        @keyframes tremble {
-            0% {
-                -webkit-transform: rotate(0deg);
-                transform: rotate(0deg);
-            }
-            25% {
-                -webkit-transform: rotate(-10deg);
-                transform: rotate(-10deg);
-            }
-            50% {
-                -webkit-transform: rotate(0deg);
-                transform: rotate(0deg);
-            }
-            75% {
-                -webkit-transform: rotate(10deg);
-                transform: rotate(10deg);
-            }
-            100% {
-                -webkit-transform: rotate(0deg);
-                transform: rotate(0deg);
-            }
-        }
-        
-        @-webkit-keyframes moveButton {
-            0% {
-                width: 200px;
-                -webkit-transform: skew(0deg);
-                transform: skew(0deg);
-                border-radius: 5px;
-            }
-            10% {
-                -webkit-transform: translateY(-12px) skew(-10deg);
-                transform: translateY(-12px) skew(-10deg);
-                border-top-left-radius: 10px;
-                border-bottom-right-radius: 10px;
-            }
-            15% {
-                -webkit-transform: translateY(-7px) skew(10deg);
-                transform: translateY(-7px) skew(10deg);
-                border-top-left-radius: 10px;
-                border-bottom-right-radius: 10px;
-            }
-            20% {
-                -webkit-transform: translateY(-2px) skew(-15deg);
-                transform: translateY(-2px) skew(-15deg);
-                border-top-left-radius: 15px;
-                border-bottom-right-radius: 15px;
-            }
-            30% {
-                -webkit-transform: translateY(0px) skew(15deg);
-                transform: translateY(0px) skew(15deg);
-                border-top-left-radius: 15px;
-                border-bottom-right-radius: 15px;
-            }
-            40% {
-                -webkit-transform: skew(-20deg);
-                transform: skew(-20deg);
-                width: 210px;
-                border-top-left-radius: 20px;
-                border-bottom-right-radius: 20px;
-            }
-            50% {
-                -webkit-transform: skew(20deg);
-                transform: skew(20deg);
-                width: 210px;
-                border-top-left-radius: 20px;
-                border-bottom-right-radius: 20px;
-            }
-            60% {
-                -webkit-transform: skew(-15deg);
-                transform: skew(-15deg);
-                width: 200px;
-                border-top-right-radius: 20px;
-                border-bottom-left-radius: 20px;
-            }
-            70% {
-                -webkit-transform: skew(15deg);
-                transform: skew(15deg);
-                width: 200px;
-                border-top-right-radius: 20px;
-                border-bottom-left-radius: 20px;
-            }
-            80% {
-                -webkit-transform: skew(-10deg);
-                transform: skew(-10deg);
-                width: 200px;
-                border-top-right-radius: 15px;
-                border-bottom-left-radius: 15px;
-            }
-            90% {
-                -webkit-transform: skew(5deg);
-                transform: skew(5deg);
-                width: 200px;
-                border-top-right-radius: 10px;
-                border-bottom-left-radius: 10px;
-            }
-            100% {
-                -webkit-transform: skew(0deg);
-                transform: skew(0deg);
-                width: 200px;
-                border-radius: 5px;
-            }
-        }
-        
-        @keyframes moveButton {
-            0% {
-                width: 200px;
-                -webkit-transform: skew(0deg);
-                transform: skew(0deg);
-                border-radius: 5px;
-            }
-            10% {
-                -webkit-transform: translateY(-12px) skew(-10deg);
-                transform: translateY(-12px) skew(-10deg);
-                border-top-left-radius: 10px;
-                border-bottom-right-radius: 10px;
-            }
-            15% {
-                -webkit-transform: translateY(-7px) skew(10deg);
-                transform: translateY(-7px) skew(10deg);
-                border-top-left-radius: 10px;
-                border-bottom-right-radius: 10px;
-            }
-            20% {
-                -webkit-transform: translateY(-2px) skew(-15deg);
-                transform: translateY(-2px) skew(-15deg);
-                border-top-left-radius: 15px;
-                border-bottom-right-radius: 15px;
-            }
-            30% {
-                -webkit-transform: translateY(0px) skew(15deg);
-                transform: translateY(0px) skew(15deg);
-                border-top-left-radius: 15px;
-                border-bottom-right-radius: 15px;
-            }
-            40% {
-                -webkit-transform: skew(-20deg);
-                transform: skew(-20deg);
-                width: 210px;
-                border-top-left-radius: 20px;
-                border-bottom-right-radius: 20px;
-            }
-            50% {
-                -webkit-transform: skew(20deg);
-                transform: skew(20deg);
-                width: 210px;
-                border-top-left-radius: 20px;
-                border-bottom-right-radius: 20px;
-            }
-            60% {
-                -webkit-transform: skew(-15deg);
-                transform: skew(-15deg);
-                width: 200px;
-                border-top-right-radius: 20px;
-                border-bottom-left-radius: 20px;
-            }
-            70% {
-                -webkit-transform: skew(15deg);
-                transform: skew(15deg);
-                width: 200px;
-                border-top-right-radius: 20px;
-                border-bottom-left-radius: 20px;
-            }
-            80% {
-                -webkit-transform: skew(-10deg);
-                transform: skew(-10deg);
-                width: 200px;
-                border-top-right-radius: 15px;
-                border-bottom-left-radius: 15px;
-            }
-            90% {
-                -webkit-transform: skew(5deg);
-                transform: skew(5deg);
-                width: 200px;
-                border-top-right-radius: 10px;
-                border-bottom-left-radius: 10px;
-            }
-            100% {
-                -webkit-transform: skew(0deg);
-                transform: skew(0deg);
-                width: 200px;
-                border-radius: 5px;
-            }
+            width: 10px;
         }
     </style>
 </head>
 
 <body>
     <header>
-        <h2>&nbsp;<span>Colla</span>boration</h2>
+        <a style="font-family: 'Great Vibes', cursive;">
+            <STRONG>&nbsp;<span>Colla</span><span class="boration">boration</span></STRONG>
+        </a>
+        <ul class="snip1198">
+            <li class="enter">
+                {% if not request.user.is_authenticated %}
+                <li style="margin-left:-70px;"><a href="{% url 'login' %}">로그인</a></li>
+                <li><a href="{% url 'signup' %}">회원가입</a></li> {% elif request.user.is_authenticated %}
+                <li><a href="{% url 'logout' %}">로그아웃</a></li> {% endif %}
+            </li>
+        </ul>
     </header>
-    <div id="div_menu">
-        <a href="{% url 'teamproject' %}">Team Page</a><br>
-        <a href="#">Team create</a><br>
-        <a href="{% url 'board' %}">Board</a><br>
-        <a href="#">logout</a>
-    </div>
 
-    <div id="div_new">
-        <form action="{% url 'create' %}">
-            <h4>제목</h4>
-            <input type="text" id="write_title" name="title">
-            <br>
-            <h4>내용</h4>
-            <textarea id="write_body" cols="40" rows="10" name="body" maxlength="2000"></textarea><br><br>
-            <input type="submit" class="btn btn-outline-success" value="제출하기">
-        </form>
+    <section>
+        <div class="w3-bar" style="font-size:18px;">
+            <a href="#" class="w3-bar-item" style="color:black;">RESEARCH</a> &nbsp;
+            <a href="#" class="w3-bar-item" style="color:black;">PPT</a> &nbsp;
+            <a href="#" class="w3-bar-item" style="color:black;"> PRESENTATION</a>
+        </div>
 
-    </div>
+        <br>
+
+
+        <div id="div_new">
+            <form action="{% url 'create' %}">
+                <table summary="전체 테이블 구성">
+                    <tbody>
+                        <tr>
+                            <td>
+                                <div margin-right=10px>
+                                    <h3 style="margin-left:300px;">글쓰기</h3>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan=2>
+                                <table border="1" summary="목록 테이블 구성" style="margin-left:250px;width:700px;">
+                                    <tr>
+                                        <td colspan=1 style="text-align:center;  background-color:rgba(255, 102, 102, 0.295);">작성자</td>
+                                        <td colspan=1 style="bgcolor:white;"> </td>
+                                        <td colspan=1 style="text-align:center; background-color:rgba(255, 102, 102, 0.295);">작성일</td>
+                                        <td colspan=1 style="bgcolor:white;"> </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan=1 style="text-align:center; background-color:rgba(255, 102, 102, 0.295); width:100px;">TITLE</td>
+                                        <td colspan=3 style="text-align:center; bgcolor:white;">
+                                            <input type="text" id="write_title" name="title" placeholder="제목" style="border:0px; width:200px;margin-left:-390px;">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan=4><textarea id="write_body" name="body" placeholder="내용" maxlength="200" style="border:0px; width:600px; height:100px;  margin-left:-90px;"></textarea></td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan=1 style="text-align:center; bgcolor:white; background-color:rgba(255, 102, 102, 0.295);">첨부파일</td>
+                                        <td colspan=1 style="bgcolor:white;">
+                                            <form action="upload.php" method="post" enctype="multipart/form-data">
+                                                <input type="file" name="fileToUpload" id="fileToUpload" placeholder="upload file">
+                                            </form>
+                                        </td>
+                                        <td colspan=1 style="text-align:center;background-color:rgba(255, 102, 102, 0.295);">TEAM_NAME</td>
+                                        <td colspan=1 style="bgcolor:white;">cola</td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <input type="submit" class="button1" value="SUBMIT">
+            </form>
+
+        </div>
+    </section>
+
+
 
 </body>
-<script type="text/javascript">
-    var lBar = $(".load");
-    var bar = $("button span");
-    var button = $("button");
 
-    button.on("click", function() {
-        lBar.addClass("loading");
-        setTimeout(function() {
-            lBar.removeClass("loading");
-            button.addClass("complete");
-        }, 500);
-    });
-</script>
 
 </html>

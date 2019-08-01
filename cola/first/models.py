@@ -7,13 +7,14 @@ class Board(models.Model):
     title = models.CharField(max_length=200)
     pub_date = models.DateTimeField('date published')
     body = models.TextField()
+    writer = models.CharField(max_length=100, default='')
 
     def __str__(self):
         return self.title
 
 class Comment(models.Model):
     post = models.ForeignKey('first.Board', on_delete=models.CASCADE, related_name='comments')
-    author = models.CharField(max_length=200)
+    author = models.CharField(max_length=200, default='')
     text = models.TextField()
     created_date = models.DateTimeField(default=date.today())
     approved_comment = models.BooleanField(default=False)

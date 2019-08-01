@@ -1,10 +1,9 @@
-<!DOCTYPE html>
-<html lang="UTF-8">
+<!DOCTYPE html>{% load socialaccount %} {% providers_media_js %}
 
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
-    <title>Board</title>
+    <title>main</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
@@ -13,8 +12,7 @@
     <link href="https://fonts.googleapis.com/css?family=Song+Myung&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" style="width:50px; float: left;">
     <link href="https://fonts.googleapis.com/css?family=Sunflower:300&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Gothic+A1&display=swap" rel="stylesheet">
+
 
 
     <style>
@@ -23,7 +21,7 @@
             top: 30px;
             left: 20px;
             font-family: 'Great Vibes', cursive;
-            margin-top: 30px;
+            margin-top: 15px;
             border-bottom: 1px solid rgb(160, 148, 148);
         }
         
@@ -33,7 +31,6 @@
         
         header>a:hover {
             background-color: white;
-            text-decoration: none;
         }
         
         .snip1198 {
@@ -128,49 +125,87 @@
             background: var(--highlight-color);
         }
         
-        .nav-link- {
-            letter-spacing: 1px;
-            font-weight: bold;
+        .firstcontainer {
+            position: relative;
+            margin-left: 180px;
+        }
+        
+        h2 {
+            font-family: 'Sunflower', sans-serif;
+            margin-left: 20px;
+            margin-top: 30px;
+        }
+        
+        input {
+            margin-left: 20px;
+            font-family: 'Sunflower', sans-serif;
+        }
+        
+        .row category1-buttons {
+            position: absolute;
+        }
+        
+        a {
+            color: black;
             text-decoration: none;
-            font-family: sans-serif;
-            padding: 0px;
-            color: #f66;
-        }
-        
-        .nav-link-:hover {
-            color: var(--highlight-color);
-            text-decoration: none;
-        }
-        /* 임시 */
-        
-        @import url(https://fonts.googleapis.com/css?family=Sail);
-        body {
-            background-color: white;
-        }
-        
-        .w3-bar {
-            font-family: Arial, Helvetica, sans-serif;
-            font-size: 18px;
+            background-color: rgba(0, 0, 0, 0);
+            font-family: 'Do Hyeon', sans-serif;
             text-align: center;
-            letter-spacing: 0em;
-            line-height: 1em;
-            text-transform: none;
-            font-family: brandon-grotesque;
-            font-weight: 700;
-            font-style: normal;
-            font-size: 10.2px;
-            letter-spacing: .25em;
-            line-height: 2.2em;
-            text-transform: uppercase;
         }
         
-        .w3-bar-item:hover {
-            border-bottom: 3px solid black;
+        a:hover {
             text-decoration: none;
+            color: black;
         }
-        /*버튼 임시*/
         
-        @import url(https://fonts.googleapis.com/css?family=Oxygen:400,300,700);
+        .box {
+            font-family: 'Do Hyeon', sans-serif;
+            font-size: 15px;
+        }
+        
+        .firstbox {
+            font-family: 'Do Hyeon', sans-serif;
+            font-size: 30px;
+        }
+        
+        .input-text {
+            border: 2px solid #0000;
+            border-bottom: 2px solid var(--highlight-color);
+            border-radius: 5px;
+            padding: 5px;
+            font-size: 18px;
+        }
+        
+        .input-text::placeholder {
+            color: var(--highlight-color);
+        }
+        
+        .input-text:focus {
+            color: var(--primary-color);
+        }
+        
+        .submit {
+            background: var(--highlight-color);
+            color: #fff;
+            padding: 10px;
+            font-size: 20px;
+            font-weight: bold;
+            border: 2px solid var(--highlight-color);
+            cursor: pointer;
+        }
+        
+        .submit:hover,
+        .submit:focus {
+            background: #0000;
+            color: var(--highlight-color);
+        }
+        
+        .input-text,
+        .submit {
+            width: 100%;
+            max-width: 400px;
+            margin: 25px auto 0;
+        }
     </style>
 </head>
 
@@ -179,7 +214,14 @@
         <a style="font-family: 'Great Vibes', cursive;" href="{% url 'main' %}">
             <STRONG>&nbsp;<span>Colla</span><span class="boration">boration</span></STRONG>
         </a>
-
+        <ul class="snip1198">
+            <li class="enter">
+                {% if not request.user.is_authenticated %}
+                <a href="{% url 'login' %}">로그인</a>
+                <a href="{% url 'signup' %}">회원가입</a> {% elif request.user.is_authenticated %}
+                <a href="{% url 'logout' %}">로그아웃</a> {% endif %}
+            </li>
+        </ul>
 
 
 
@@ -188,24 +230,34 @@
 
     <section>
         <div id="div_menu">
-            <li class="nav-item"><a href="{% url 'mypage' %}" class="nav-link">my page</a></li><br>
-            <li class="nav-item"><a href="{% url 'teamproject' %}" class="nav-link">Team page</a></li><br>
+            <li class="nav-item"><a href="{% url 'mypage' %}" class="nav-link">my Page</a></li><br>
+            <li class="nav-item"><a href="{% url 'teamproject' %}" class="nav-link">Team Page</a></li><br>
             <li class="nav-item"><a href="#" class="nav-link">Team create</a></li><br>
-            <li class="nav-item"><a href="{% url 'board' %}" class="nav-link-">Board</a></li>
-
+            <li class="nav-item"><a href="{% url 'board' %}" class="nav-link">Board</a></li><br>
 
         </div>
 
-        <div class="w3-bar" style="font-size:18px; text-align: center; margin-left: 70px; padding:60px;">
-            <a href="{% url 'infoboard' %}" class="w3-bar-item" style="color:black;"><img src="https://www.flaticon.com/premium-icon/icons/svg/1129/1129513.svg" style="width:80px;">RESEARCH</a>
-            <br><br><br>
+
+        <div style="border: 2px solid rgba(211, 211, 211, 0.795); float: left; width: 43%; height:500px; padding:10px;">
+            <div class="box" style="text-align: center;">
+                <h4 class="firstbox">자료조사</h4>
+                <div class="X">
+
+                    {% for t in tb %}
+                    <h5> {{ t.title }}</h5>
+                    <h5> {{ t.body }}</h5>
+                    <a href="#">{{ t.File.url.name }}</a>
+                    <h5>{{ t.writer }}</h5>
+                    <h5>{{ t.team }} </h5>
+                    {% endfor %} {% if error %} {{error}} {% endif %}
+
+                </div>
+            </div>
+            <div class="chart-container"><canvas id="myChart" width="425" height="200"></canvas></div>
+
+
+
         </div>
-
-    </section>
-
-
-
-
 </body>
 
-</html>
+</div>

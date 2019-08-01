@@ -88,7 +88,7 @@
             font-size: 10.2px;
             letter-spacing: .25em;
             line-height: 2.2em;
-            text-transform: uppercase;
+            /*text-transform: uppercase;*/
         }
         
         .w3-bar-item- {
@@ -111,22 +111,23 @@
         #div_board {
             overflow: hidden;
             width: auto;
-            height: 350px;
+            /*height: 350px;*/
             margin: 0px auto;
-            background: -webkit-linear-gradient(bottom, transparent, black 50px);
+            background: black;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             transition-duration: 1s;
-            text-align: justify;
+            additive-symbols: justify;
             color: black;
             line-height: 180%;
             font-family: 'Sunflower', sans-serif;
             font-size: 16px;
         }
-        
+        /*
         #div_board:hover {
             height: auto;
         }
+        */
         
         .table :hover {
             background-color: rgba(248, 248, 248, 0.226);
@@ -153,8 +154,7 @@
 
         <div class="w3-bar" style="font-size:18px;">
             <a href="{% url 'infoboard' %}" class="w3-bar-item- " style="color:black;">RESEARCH</a> &nbsp;
-            <a href="{% url 'pptboard' %}" class="w3-bar-item" style="color:black;">PPT</a> &nbsp;
-            <a href="{% url 'presentationboard' %}" class="w3-bar-item" style="color:black;"> PRESENTATION</a>
+
         </div>
         <br>
         <div id="div_board">
@@ -167,118 +167,71 @@
                             <th>TITLE</th>
                             <th>NAME</th>
                             <th>DATE</th>
-                            <th>VIEWS</th>
+                            <th>COMMENTS</th>
                         </tr>
                     </thead>
                     <tbody>
-
+                        <div>
+                            {% for board in object_list %}
+                            <a></a>
+                        </div>
                         <tr>
-                            <td>1</td>
-                            <td>(한국외대-융소)컴논개 팀플</td>
-                            <td>멋사</td>
-                            <td>2019.07.26</td>
-                            <td>37</td>
+                            <td></td>
+                            <td><a href="{% url 'detail' board.id%}">{{board.title}} </a></td>
+                            <td>{{ board.writer }}</td>
+                            <td><a>{{board.pub_date}}</a></td>
+                            <td><a href="{% url 'detail' board.id %}">댓글( {{ board.comments.count }} )</a></td>
                         </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>(한국외대-경영)브랜드마케팅 팀플</td>
-                            <td>adlkfj</td>
-                            <td>2019.07.26</td>
-                            <td>65</td>
-                        </tr>
-                        <tr>
-                            <td>3</td>
-                            <td>(한국외대-미컴)방송영상콘텐츠의 이해 팀플</td>
-                            <td>qlkretjd</td>
-                            <td>2019.07.26</td>
-                            <td>123</td>
-                        </tr>
-                        <tr>
-                            <td>4</td>
-                            <td>(한국외대)미네르바 팀플</td>
-                            <td>미네르바</td>
-                            <td>2019.07.26</td>
-                            <td>98</td>
-                        </tr>
-                        <tr>
-                            <td>5</td>
-                            <td>(한국외대-경제)정보통신경제학 팀플</td>
-                            <td>tpkfdjf</td>
-                            <td>2019.07.26</td>
-                            <td>78</td>
-                        </tr>
-                        <tr>
-                            <td>6</td>
-                            <td>(한국외대-정치외교)현대정치 팀플</td>
-                            <td>wjdcl</td>
-                            <td>2019.07.26</td>
-                            <td>37</td>
-                        </tr>
-                        <tr>
-                            <td>7</td>
-                            <td>(한국외대-융소)컴논개 팀플</td>
-                            <td>멋사</td>
-                            <td>2019.07.26</td>
-                            <td>37</td>
-                        </tr>
-                        <tr>
-                            <td>8</td>
-                            <td>(한국외대-경영)브랜드마케팅 팀플</td>
-                            <td>adlkfj</td>
-                            <td>2019.07.26</td>
-                            <td>65</td>
-                        </tr>
-                        <tr>
-                            <td>9</td>
-                            <td>(한국외대-미컴)방송영상콘텐츠의 이해 팀플</td>
-                            <td>qlkretjd</td>
-                            <td>2019.07.26</td>
-                            <td>123</td>
-                        </tr>
-                        <tr>
-                            <td>10</td>
-                            <td>(한국외대)미네르바 팀플</td>
-                            <td>미네르바</td>
-                            <td>2019.07.26</td>
-                            <td>98</td>
-                        </tr>
-                        <tr>
-                            <td>11</td>
-                            <td>(한국외대-경제)정보통신경제학 팀플</td>
-                            <td>tpkfdjf</td>
-                            <td>2019.07.26</td>
-                            <td>78</td>
-                        </tr>
-
+                        {% endfor %}
                     </tbody>
                 </table>
 
                 <hr/>
                 <a class="btn btn-default pull-right" href="{% url 'new' %}" style="font-family: Arial,Helvetica,sans-serif;">글쓰기</a>
 
+
                 <div class="text-center" style="text-align: center; letter-spacing: 2em; margin-left:500px;font-family: Arial,Helvetica,sans-serif;">
                     <ul class="pagination">
-                        <li><a href="#">1</a></li>
-                        <li><a href="#">2</a></li>
-                        <li><a href="#">3</a></li>
-                        <li><a href="#">4</a></li>
-                        <li><a href="#">5</a></li>
+                        <li class="page-item">
+                            <!--previous page-->
+                            {% if object_list.has_previous %}
+                            <li class="previous">
+                                <a href="?page={{ object_list.previous_page_number }}">
+                                    <span aria-hidden="true">‹</span></a>
+                                {% else %}
+                                <li class="previous disabled"><a>‹</a> {% endif %}
+                                </li>
+                                {% for page in object_list.paginator.page_range %} {% if page == object_list.number %}
+                                <li class="pg active"><a class="page_number" href="?page={{page}}"><STRONG>{{page}}</STRONG></a> {% else %}
+                                    <li class="pg"><a class="page_number" href="?page={{page}}">{{page}}</a> {% endif %} {% endfor %}
+                                        <li class="page-item">
+                                            <!-- next Page -->
+                                            {% if object_list.has_next %}
+                                            <li class="previous"> <a href="?page={{ object_list.next_page_number }}">›</a></li>
+                                            {% else %}
+                                            <li class="next disabled"><a>›</a> {% endif %}
+                                            </li>
+                                        </li>
+                                    </li>
+                                </li>
+                            </li>
+                        </li>
                     </ul>
                 </div>
                 <div class="selectbox" style="font-family: Arial,Helvetica,sans-serif; text-align:right;">
                     <p>
                         <select name="search_date">
-                <option value="week">일주일</option>
-                <option value="month">한달</option>
-                <option value="month3">세달</option>
-                <option value="all">전체</option>
-                </select>
+                        <option value="week">일주일</option>
+                        <option value="month">한달</option>
+                        <option value="month3">세달</option>
+                        <option value="all">전체</option>
+                        </select>
 
                         <select name="search_key">
-                <option value="subject">제목</option>
-                <option value="content">내용</option>
-                <option value="writer_name">작성자</option>
-                </select>
+                        <option value="subject">제목</option>
+                        <option value="content">내용</option>
+                        <option value="writer_name">작성자</option>
+                        </select>
 
                         <input id="search" name="search" fw-filter="" fw-label="" fw-msg="" class="inputTypeText" placeholder="" value="" type="text">
                         <button type="button" href="#none" class="btn btn-outline-dark" style="width:40px;">search</button>
@@ -288,20 +241,7 @@
 
             </div>
 
-
-
-
-
-
-            <div>
-                {% for board in boards.all %}
-                <a></a>
-                <a href="{% url 'detail' board.id%}">{{board.title}} </a> &nbsp;
-                <a>{{board.pub_date}}</a>&nbsp; <a href="{% url 'detail' board.id %}">댓글( {{ board.comments.count }} )</a> <br>{% endfor %}
-            </div>
-        </div>
-
-
 </body>
+
 
 </html>
