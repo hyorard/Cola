@@ -114,12 +114,19 @@ def teamInfo(request):
     if request.method == 'POST':
         teamId = request.POST['teamId']
         team = Team.objects.get(id=teamId)
-        #try:
         members = team.showMembers()
-        print(members)
-        return render(request, 'teamInfo.html', {'team':team, 'members':members})
-        #except:
-        #    return render(request,'profile.html')
+        progressList = team.team_todo_set.all().values()
+
+        rate = 0
+        for progress in progressList:
+            if progress['is_finished']:
+                rate += 1
+        rate /= len(progressList)
+
+        team.progress = rate
+        team.save()
+        team = Team.objects.get(id=teamId)
+        return render(request, 'teamInfo.html', {'team':team, 'members':members, 'progressList':progressList})
     else:
         print("############################teaminfo")
         return render(request, 'teamInfo.html')
@@ -133,9 +140,9 @@ def createTodo(request):
     toDo.content = request.POST['content']
     toDo.sequence = 1
     toDo.save()
-    print(team.team_todo_set.all())
+    progressList = team.team_todo_set.all().values()
 
-    return render(request, 'teamInfo.html', {'team':team, 'members':members})
+    return render(request, 'teamInfo.html', {'team':team, 'members':members, 'progressList':progressList})
 
 '''
 지난 시간 -> 남은 시간으로 구현 변경 ㄱㄱ
@@ -188,7 +195,9 @@ def changeTeamInfo(request):
         teamId = request.POST['teamId']
         team = Team.objects.get(id=teamId)
         members = team.showMembers()
-        return render(request, 'teamInfo.html', {'team':team, 'members':members})
+        progressList = team.team_todo_set.all().values()
+
+        return render(request, 'teamInfo.html', {'team':team, 'members':members, 'progressList':progressList})
 
 def searchPerson(request,team_id=None):
     # 초대하는 팀
@@ -221,7 +230,9 @@ def searchPerson(request,team_id=None):
         try:
             Invite.objects.get(user=newMember, team=scoutingTeam)
             members = scoutingTeam.showMembers()
-            return render(request, 'teamInfo.html', {'team':scoutingTeam, 'members':members})
+            progressList = scoutingTeam.team_todo_set.all().values()
+
+            return render(request, 'teamInfo.html', {'team':scoutingTeam, 'members':members, 'progressList':progressList})
         except:
             pass
         # 초대 받은 적이 없다면 초대
@@ -239,7 +250,9 @@ def searchPerson(request,team_id=None):
             scoutingTeam.name))
         # 초대 후 멤버 리스트 업데이트
         members = scoutingTeam.showMembers()
-        return render(request, 'teamInfo.html', {'team':scoutingTeam, 'members':members})
+        progressList = scoutingTeam.team_todo_set.all().values()
+
+        return render(request, 'teamInfo.html', {'team':scoutingTeam, 'members':members, 'progressList':progressList})
 
 
 def teamBoard(request, teamBoard_id):

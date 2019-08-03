@@ -797,6 +797,55 @@
             text-align: left;
             margin: 0;
         }
+
+        /*체크박스*/
+
+    .content {
+    background-color: #f4f7fb;
+    padding: 1.5rem 2.5rem;
+    }
+    
+    .row {
+      border-bottom: solid 1px #e2e5ea;
+      padding: 0.75rem 0;
+      -webkit-user-select: none;
+      -moz-user-select: -moz-none;
+      user-select: none;
+    }
+
+
+.checkbox {
+  background-color: #fff;
+  border: solid 1px #d7d7d7;
+  border-radius: 4px;
+  cursor: pointer;
+  display: inline-block;
+  height: 32px;
+  margin-right: 1rem;
+  text-align: center;
+  width: 32px;
+  vertical-align: middle;
+}
+
+  svg {
+    margin-top: 6px;
+    stroke: #fff;
+    }
+
+.positive {
+  background-color: #4aca65;
+  border-color: #43b45b;
+}
+
+.negative {
+  background-color: #dc4e4e;
+  border-color: #c74545;
+}
+
+.label {
+  font-weight: bold;
+  vertical-align: middle;
+}
         /*플러스버튼*/
         
         .button_plus {
@@ -875,7 +924,7 @@
 
 
     {% extends 'base.html' %} {% block content %} {% if request.user == team.leader %}
-    <div class="teaminfo_">
+    <div class="">
         <div id="team_title">
             {{team}}
 
@@ -909,27 +958,17 @@
         <span aria-hidden="true">&times;</span>
         </button> {% endfor %}
         </div>
-        0 {% endif %}
-        <p class="img_left">
-            <img src="https://img.icons8.com/ios-filled/26/000000/checkmark.png"></p>
-        <h5 class="information">팀명: {{team.name}}</h5>
-        <p class="img_left">
-            <img src="https://img.icons8.com/ios-filled/26/000000/checkmark.png"></p>
+        {% endif %}
         <h5 class="information">데드라인 : {{team.deadline}}</h5>
-        <p class="img_left">
-            <img src="https://img.icons8.com/ios-filled/26/000000/checkmark.png"></p>
         <h5 class="information">지난시간 : {{team.timeFromStart}}</h5>
-        <p class="img_left">
-            <img src="https://img.icons8.com/ios-filled/26/000000/checkmark.png"></p>
         <h5 class="information">진행도 : {{team.progress}}</h5>
-        <p class="img_left">
-            <img src="https://img.icons8.com/ios-filled/26/000000/checkmark.png"></p>
-        <button id="myBtn">진행 지표 추가</button>
+        <button id="myBtn">진행 지표 설정</button>
         <div id="myModal" class="modal">
             <!-- Modal content -->
             <div class="modal-content">
                 <span class="close">&times;</span>
                 <div>
+                    <h5>지표 생성</h5>
                     <form method="POST" action="{% url 'createTodo' %}">
                         {% csrf_token %}
                         <input type="hidden" value="{{team.id}}" name="teamId">
@@ -940,36 +979,37 @@
             </div>
 
         </div>
-        <h5 class="information">진행상황 : </h5>
-        <p class="img_left">
-            <img src="https://img.icons8.com/ios-filled/26/000000/checkmark.png"></p>
-        <h5 class="information">팀원리스트 </h5>
+        {% for progress in progressList %}
+        {% if not progress.is_finished %}
+        <div class="row">
+            <span class="checkbox negative">
+              <svg id="i-close" viewBox="0 0 32 32" width="20" height="20" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="10.9375%">
+                <path d="M2 30 L30 2 M30 30 L2 2" />
+              </svg>
+            </span>
+            <span class="label">{{progress.content}}</span>
+        </div>
+        {% else %}
+        <div class="row">
+            <span class="checkbox positive">
+              <svg id="i-checkmark" viewBox="0 0 32 32" width="20" height="20" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="10.9375%">
+                <path d="M2 20 L12 28 30 4" />
+              </svg>
+            </span>
+            <span class="label">{{progress.content}}</span>
+        </div>
+            {% endif %}
+            {% endfor %}
+            
+        <h5 class="information">팀원리스트 <a href="{% url 'searchPerson' team.id%}"><img src="https://img.icons8.com/color/48/000000/add-user-group-woman-woman.png"></a></h5>
         <h5 class="information">
             {% for member in members %}
             <li>{{member}}</li>
             {% endfor %}
         </h5>
-
-
-        <a href="{% url 'searchPerson' team.id%}"><img src="https://img.icons8.com/color/48/000000/add-user-group-woman-woman.png"></a>
-
-
-        <div class="bigbox"> </div>
-        <p class="img_left">
-            <img src="https://img.icons8.com/ios-filled/26/000000/checkmark.png"></p>
         <h5 class="information"><a href="{% url 'teamBoard' team.id %} ">팀 게시판 : </a> </h5>
 
 
-
-        {% if team.is_finished %}
-        <h5 class="information">팀플 완료!</h5>
-        {% else %}
-        <div class="loading">
-        </div>
-        <p class="img_left">
-            <img src="https://img.icons8.com/ios-filled/26/000000/checkmark.png"></p>
-        <h5 class="information">진행중 ..</h5>
-        {% endif %}
     </div>
 
     <script type="text/javascript">

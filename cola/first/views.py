@@ -41,12 +41,23 @@ def makeProfile(request):
     else:
         prof = profile()
     prof.user = request.user
-    prof.img = request.FILES['userPic']
-    prof.userName = request.POST['userName']
-    prof.school = request.POST['school']
-    prof.date = timezone.datetime.now()
+    try:
+        prof.img = request.FILES['userPic']
+    except:
+        pass
+    if request.POST['userName'] == '':
+        pass
+    else:
+        prof.userName = request.POST['userName']
+    if request.POST['school'] == '':
+        pass
+    else:
+        prof.school = request.POST['school']
+    
     prof.save()
-    return redirect('main')
+    prof = request.user.profile
+    TeamList = prof.user.team_set.all().values()
+    return render(request,'mypage.html', {'Teams':TeamList, 'prof' : prof})
 
 def board(request):
     boards = Board.objects
