@@ -960,8 +960,14 @@
         </div>
         {% endif %}
         <h5 class="information">데드라인 : {{team.deadline}}</h5>
-        <h5 class="information">지난시간 : {{team.timeFromStart}}</h5>
-        <h5 class="information">진행도 : {{team.progress}}</h5>
+        <h5 class="information">남은시간 :
+            {% if team.timeFromStart.months %}
+            {{team.timeFromStart.months}}개월
+            {% endif %}
+            {% if team.timeFromStart.days %}
+            {{team.timeFromStart.days}}일
+            {% endif %}</h5>
+        <h5 class="information">진행도 : {{team.progress}}%</h5>
         <button id="myBtn">진행 지표 설정</button>
         <div id="myModal" class="modal">
             <!-- Modal content -->
@@ -974,6 +980,47 @@
                         <input type="hidden" value="{{team.id}}" name="teamId">
                         <input type="text" name="content" maxlength="50" placeholder="지표를 입력하세요.." />
                         <input type="submit" value="생성" />
+                    </form>
+                    <br><br>
+                    <h5>지표 삭제</h5>
+                    <form method="POST" action="{% url 'deleteTodo' %}">
+                        {% csrf_token %}
+                        {% for progress in progressList %}
+                        <input type="checkbox" name='{{progress.sequence}}'>{{progress.content}}
+                        {% endfor %}
+                        <input type="hidden" value="{{team.id}}" name="teamId"><br>
+                        <input type="submit" value="삭제" />
+                    </form>
+                    <br><br>
+                    <h5>지표 수정</h5>
+                    <form method="POST" action="{% url 'changeTodo' %}">
+                        {% csrf_token %}
+                        {% for progress in progressList %}
+                        <input type="text" name="{{progress.sequence}}" maxlength="50" placeholder="{{progress.content}}" /><br>
+                        {% endfor %}
+                        <input type="hidden" value="{{team.id}}" name="teamId">
+                        <input type="submit" value="수정" />
+                    </form>
+                    <br><br>
+                    <h5>지표 완료 여부 변경</h5>
+                    <form method="POST" action="{% url 'finishTodo' %}">
+                        {% csrf_token %}
+                        {% for progress in progressList %}
+                        {{progress.content}}<br>
+                        {% if progress.is_finished %}
+                        완료
+                        <input type="radio" name="{{progress.sequence}}" value='finished' checked="checked"/>
+                        미완료
+                        <input type="radio" name="{{progress.sequence}}" value='unfinished'/><br>
+                        {% else %}
+                        완료
+                        <input type="radio" name="{{progress.sequence}}" value='finished'/>
+                        미완료
+                        <input type="radio" name="{{progress.sequence}}" value='unfinished' checked="checked"/><br>
+                        {% endif %}
+                        {% endfor %}
+                        <input type="hidden" value="{{team.id}}" name="teamId">
+                        <input type="submit" value="수정" />
                     </form>
                 </div>
             </div>
