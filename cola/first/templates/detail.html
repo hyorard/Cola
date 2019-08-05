@@ -233,22 +233,21 @@
 
 
                 <hr> {% for comment in board.comments.all %}
-                <div class="comment ">
-                    <div class="date ">{{ comment.created_date }}</div>
-                    <strong>{{ comment.author }}</strong>
-                    <p>{{ comment.text|linebreaks }}</p>
+                <div style="border: 0.5px solid black; width : 650px; text-align:left;" class="comment ">
+                    <strong>{{ comment.writer.profile.userName }}</strong> {{ comment.created_date }}<br> {{ comment.text|linebreaks }}
                 </div>
+
                 {% empty %}
                 <p>No comments here yet :(</p>
                 {% endfor %}
 
-                <br><br><br>
-                <a class="button1 " href="{% url 'add_comment_to_post' board.id %} " style="margin-left:-140px; ">COMMENT</a> &nbsp;&nbsp;&nbsp;
-                <a class="button2 " href="{% url 'infoboard' %} " role="button ">LIST</a> &nbsp;&nbsp;&nbsp;{% if check == True %}
-                <a class=" button1 " href="{% url 'modify' board.id %} " style="position:relative; ">수정하기</a> &nbsp;&nbsp;&nbsp;
-                <a class="button1 " href="{% url 'removeBoard' board.id %}" style="position:relative;">삭제하기</a> &nbsp;&nbsp;&nbsp; {% endif %}
 
-            </form>
-</body>
-
-</html>
+                <hr>
+                <div class="new comment " style=" font-family: 'Do Hyeon', sans-serif; position:absolute;">
+                    <form method="POST" action="{% url 'addComment' %}">
+                        {% csrf_token %}
+                        <textarea name="content" cols="100" rows="1" placeholder="댓글을 작성하세요.. " required></textarea>
+                        <input type="hidden" name="boardId" value="{{board.id}}">
+                        <input type="submit" value="등록" />
+                    </form>
+                </div>

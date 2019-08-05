@@ -246,7 +246,7 @@
                     {% for t in tb %}
                     <h5> {{ t.title }}</h5>
                     <h5> {{ t.body }}</h5>
-                    <a href="#">{{ t.File.url.name }}</a>
+                    <a href="#">{{ t.File.name }}</a>
                     <h5>{{ t.writer }}</h5>
                     <h5>{{ t.team }} </h5>
                     {% endfor %} {% if error %} {{error}} {% endif %}

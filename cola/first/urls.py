@@ -4,6 +4,7 @@ from . import views
 
 
 urlpatterns = [
+    path('board/addComment', views.addComment, name='addComment'),
     path('',views.main, name="main"),
     path('board/',views.board, name="board"),
     path('board/info',views.infoboard, name="infoboard"),
@@ -23,6 +24,5 @@ urlpatterns = [
     path('board/logout/',views.logout, name="logout"),
 
     #path('board/mypage',views.mypage, name="mypage"),
-    path('board/<int:board_id>/comment', views.add_comment_to_post, name='add_comment_to_post'),
 
 ] 

@@ -1,11 +1,12 @@
 from django.contrib import auth
 from django.shortcuts import render,redirect
-from .models import Team,Invite,Team_todo
-#from .models import TeamBoard
-from datetime import date,datetime
+from .models import Team,Invite,Team_todo, TeamBoard
+from datetime import date,datetime,timedelta
+from math import floor
 from django.contrib import messages
 from django.contrib.auth.models import User
-from math import floor
+#pagination
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 # Create your views here.
 
@@ -94,7 +95,8 @@ def createTeam(request):
 
         # timeFromStart
         intTime = int(request.POST['fromStart'])
-        t1.timeFromStart = datetime.timedelta(intTime)
+        print(intTime)
+        t1.timeFromStart = timedelta(intTime)
 
         t1.progress = request.POST['progress']
         t1.save()
@@ -119,14 +121,17 @@ def teamInfo(request):
         members = team.showMembers()
         progressList = team.team_todo_set.all().values()
 
-        dt_deadline = datetime.combine(team.deadline, datetime.min.time())
-        team.timeFromStart = dt_deadline - datetime.now()
-        
-        team.deadline = team.deadline.strftime('%Y년%m월%d일'.encode('unicode-escape').decode()).encode().decode('unicode-escape')
+        updateProgress(team)
         return render(request, 'teamInfo.html', {'team':team, 'members':members, 'progressList':progressList})
     else:
         print("############################teaminfo")
         return render(request, 'teamInfo.html')
+
+def updateDeadline(team):
+    dt_deadline = datetime.combine(team.deadline, datetime.min.time())
+    team.timeFromStart = dt_deadline - datetime.now()
+        
+    team.deadline = team.deadline.strftime('%Y년%m월%d일'.encode('unicode-escape').decode()).encode().decode('unicode-escape')
 
 def updateProgress(team):
     todos = list(team.team_todo_set.all())
@@ -141,6 +146,7 @@ def updateProgress(team):
 
     team.progress = floor(rate*100)
     team.save()
+    updateDeadline(team)
 
 def createTodo(request):
     teamId = request.POST['teamId']
@@ -193,6 +199,7 @@ def changeTodo(request):
     
     members = team.showMembers()
     progressList = team.team_todo_set.all().values()
+    updateProgress(team)
     return render(request, 'teamInfo.html', {'team':team, 'members':members, 'progressList':progressList})
 
 def finishTodo(request):
@@ -275,7 +282,6 @@ def changeTeamInfo(request):
         team.deadline = team.deadline.strftime('%Y년%m월%d일'.encode('unicode-escape').decode()).encode().decode('unicode-escape')
 
         return render(request, 'teamInfo.html', {'team':team, 'members':members, 'progressList':progressList})
-
 def searchPerson(request,team_id=None):
     # 초대하는 팀
     scoutingTeamId = team_id
@@ -348,7 +354,5 @@ def teamBoard(request, teamBoard_id):
 
 '''
 def uploadfile(request, teamBoard_id):
-    team_id = teamBoard_id
-    
-    
+    team_id = teamBoard_id    
 '''
