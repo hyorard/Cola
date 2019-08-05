@@ -149,16 +149,13 @@ def removeBoard(request, board_id):
 
 
 def addComment(request):
-    print("entered!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
     boardId = request.POST['boardId']
     post = Board.objects.get(id=boardId)
-    print("qqqqq", post.title)
     comment = Comment()
     comment.post = post
     comment.writer = request.user
     comment.text = request.POST['content']
     comment.save()
-    print("asdadasdad", comment.text)
 
     nick = request.user.profile.userName
     # 글쓴이와 들어온 사람이 같은지 확인(삭제/수정)
@@ -169,6 +166,60 @@ def addComment(request):
     else :
         check = False
     return render(request, 'detail.html', {'board':post, 'check' : check})
+
+def deleteComment(request):
+    boardId = request.POST['boardId']
+    post = Board.objects.get(id=boardId)
+
+    commentId = request.POST['commentId']
+    comment = Comment.objects.get(id=commentId)
+    comment.delete()
+
+    nick = request.user.profile.userName
+    # 글쓴이와 들어온 사람이 같은지 확인(삭제/수정)
+    
+    bw = post.writer
+    if bw == nick:
+        check = True
+    else :
+        check = False
+    return render(request, 'detail.html', {'board':post, 'check' : check})
+
+def changeComment(request):
+
+    if request.method == "GET":
+        boardId = request.GET['boardId']
+        post = Board.objects.get(id=boardId)
+        commentId = int(request.GET['commentId'])
+
+        nick = request.user.profile.userName
+        # 글쓴이와 들어온 사람이 같은지 확인(삭제/수정)
+    
+        bw = post.writer
+        if bw == nick:
+            check = True
+        else :
+            check = False
+        return render(request, 'changeComment.html', {'board':post, 'check' : check, 'commentId' : commentId})
+    
+    else:
+        boardId = request.POST['boardId']
+        post = Board.objects.get(id=boardId)
+        commentId = request.POST['commentId']
+        comment = Comment.objects.get(id=commentId)
+        comment.text = request.POST['content']
+        comment.save()
+
+        nick = request.user.profile.userName
+        # 글쓴이와 들어온 사람이 같은지 확인(삭제/수정)
+    
+        bw = post.writer
+        if bw == nick:
+            check = True
+        else :
+            check = False
+        return render(request, 'detail.html', {'board':post, 'check' : check})
+
 
 
 def new(request):

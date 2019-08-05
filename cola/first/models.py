@@ -31,7 +31,7 @@ class profile(models.Model):
     userName = models.CharField(max_length=10,default='')
     img = models.ImageField(upload_to='images/')
     school = models.CharField(max_length=50,null=True)
-    date = models.DateField(auto_now=False, auto_now_add=False)
+    date = models.DateField(auto_now=False, auto_now_add=False, null=True)
     def __str__(self):
         print("username => {0}".format(self.user.username))
         return self.user.username

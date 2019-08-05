@@ -4,11 +4,13 @@ from . import views
 
 
 urlpatterns = [
-    path('board/addComment', views.addComment, name='addComment'),
     path('',views.main, name="main"),
     path('board/',views.board, name="board"),
     path('board/info',views.infoboard, name="infoboard"),
     path('board/<int:board_id>', views.detail, name="detail"),
+    path('board/addComment', views.addComment, name='addComment'),
+    path('board/deleteComment', views.deleteComment, name='deleteComment'),
+    path('board/changeComment', views.changeComment, name='changeComment'),
     path('board/new/',views.new, name="new"),
     path('board/create2', views.create, name="create"),
     path('board/modify/<int:board_id>', views.modify, name="modify"),

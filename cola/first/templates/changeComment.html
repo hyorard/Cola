@@ -237,38 +237,26 @@
                 <hr> {% for comment in board.comments.all %}
                 <div style="border: 0.5px solid black; width : 650px; text-align:left;" class="comment ">
                     <strong>{{ comment.writer.profile.userName }}</strong> {{ comment.created_date }}
-                    {% if request.user == comment.writer %}
-                    <div style="right: 20px; bottom: 600px;">
-                        <form method="POST" action="{% url 'deleteComment' %}">
+                    {% if commentId == comment.id %}
+                    <br>
+                    <div class="new comment " style=" font-family: 'Do Hyeon', sans-serif; position:absolute;">
+                        <form method="POST" action="{% url 'changeComment' %}">
                             {% csrf_token %}
-                            <input type="hidden" name="boardId" value="{{board.id}}">
-                            <input type="hidden" name="commentId" value="{{comment.id}}">
-                            <input type="submit" value="삭제" />
-                        </form>
-                        <form method="GET" action="{% url 'changeComment' %}">
-                            {% csrf_token %}
+                            <textarea name="content" cols="81" rows="1" placeholder="{{comment.text}}" required></textarea>
                             <input type="hidden" name="boardId" value="{{board.id}}">
                             <input type="hidden" name="commentId" value="{{comment.id}}">
                             <input type="submit" value="수정" />
                         </form>
                     </div>
-                    {% endif %}
+                    <br>
+                    {% else %}
                     <br> {{ comment.text|linebreaks }}
+                    {% endif %}
                 </div>
 
                 {% empty %}
                 <p>No comments here yet :(</p>
                 {% endfor %}
 
-
-                <hr>
-                <div class="new comment " style=" font-family: 'Do Hyeon', sans-serif; position:absolute;">
-                    <form method="POST" action="{% url 'addComment' %}">
-                        {% csrf_token %}
-                        <textarea name="content" cols="100" rows="1" placeholder="댓글을 작성하세요.. " required></textarea>
-                        <input type="hidden" name="boardId" value="{{board.id}}">
-                        <input type="submit" value="등록" />
-                    </form>
-                </div>
             
             </body></html>
