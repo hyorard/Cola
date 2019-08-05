@@ -218,23 +218,20 @@
                         </li>
                     </ul>
                 </div>
-                <div class="selectbox" style="font-family: Arial,Helvetica,sans-serif; text-align:right;">
+                <div style="font-family: Arial,Helvetica,sans-serif; text-align:right;">
                     <p>
-                        <select name="search_date">
-                        <option value="week">일주일</option>
-                        <option value="month">한달</option>
-                        <option value="month3">세달</option>
-                        <option value="all">전체</option>
-                        </select>
+                    <form method='POST' action="{% url 'searchPost' %}">
+                        {% csrf_token %}
 
                         <select name="search_key">
-                        <option value="subject">제목</option>
-                        <option value="content">내용</option>
-                        <option value="writer_name">작성자</option>
+                            <option value="subject">제목</option>
+                            <option value="content">내용</option>
+                            <option value="writer_name">작성자</option>
                         </select>
 
-                        <input id="search" name="search" fw-filter="" fw-label="" fw-msg="" class="inputTypeText" placeholder="" value="" type="text">
-                        <button type="button" href="#none" class="btn btn-outline-dark" style="width:40px;">search</button>
+                        <input id="search" name="search" placeholder="검색어를 입력하세요.." type="text">
+                        <button type="submit" class="btn btn-outline-dark" style="width:40px;">search</button>
+                    </form>
                     </p>
                 </div>
 

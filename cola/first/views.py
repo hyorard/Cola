@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.utils import timezone
 from .models import Board,Comment,profile
 from django.contrib import auth
+from datetime import date,datetime,timedelta
 
 #pagination
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
@@ -52,6 +53,7 @@ def makeProfile(request):
         pass
     else:
         prof.school = request.POST['school']
+    prof.date = date.today()
     prof.save()
     prof = request.user.profile
     TeamList = prof.user.team_set.all().values()
@@ -79,6 +81,35 @@ def infoboard(request):
 	}
 
     return render(request, 'infoboard.html', context)
+
+def searchPost(request):
+    searchKey = request.POST['search_key']
+    word = request.POST['search']
+    
+    if searchKey == 'subject':
+        boards_list = Board.objects.filter(title__contains=word)
+    elif searchKey == 'content':
+        boards_list = Board.objects.filter(body__contains=word)
+    elif searchKey == 'writer_name':
+        boards_list = Board.objects.filter(writer__contains=word)
+    
+    paginator = Paginator(boards_list, 10)
+    page = request.GET.get('page')
+    try:
+        queryset = paginator.page(page)
+    except PageNotAnInteger:
+        queryset = paginator.page(1)
+    except EmptyPage:
+        queryset = paginator.page(paginator.num_pages)
+    context = {
+		"object_list" : queryset,
+	}
+
+    return render(request, 'infoboard.html', context)
+    
+
+    
+
 
 def detail(request, board_id):
     board_detail = get_object_or_404(Board, pk = board_id)
