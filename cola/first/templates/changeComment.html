@@ -165,6 +165,10 @@
         }
         /*버튼 임시*/
         
+        .comment-container {
+            margin-left: 13%;
+        }
+        
         @import url(https://fonts.googleapis.com/css?family=Oxygen:400,300,700);
     </style>
 </head>
@@ -231,32 +235,38 @@
                     </tbody>
                 </table>
             </form>
-            </div></section>
+        </div>
+    </section>
+
+    <div class="comment-container">
 
 
-                <hr> {% for comment in board.comments.all %}
-                <div style="border: 0.5px solid black; width : 650px; text-align:left;" class="comment ">
-                    <strong>{{ comment.writer.profile.userName }}</strong> {{ comment.created_date }}
-                    {% if commentId == comment.id %}
-                    <br>
-                    <div class="new comment " style=" font-family: 'Do Hyeon', sans-serif; position:absolute;">
-                        <form method="POST" action="{% url 'changeComment' %}">
-                            {% csrf_token %}
-                            <textarea name="content" cols="81" rows="1" placeholder="{{comment.text}}" required></textarea>
-                            <input type="hidden" name="boardId" value="{{board.id}}">
-                            <input type="hidden" name="commentId" value="{{comment.id}}">
-                            <input type="submit" value="수정" />
-                        </form>
-                    </div>
-                    <br>
-                    {% else %}
-                    <br> {{ comment.text|linebreaks }}
-                    {% endif %}
-                </div>
+        <hr> {% for comment in board.comments.all %}
 
-                {% empty %}
-                <p>No comments here yet :(</p>
-                {% endfor %}
+        <div class="card w-75">
+            <div class="card-body">
+                <h5 class="card-title"><strong>{{ comment.writer.profile.userName }}</strong> {{ comment.created_date }}</h5>
+                {% if commentId == comment.id %}
+                <form method="POST" action="{% url 'changeComment' %}">
+                    {% csrf_token %}
+                    <textarea name="content" cols="81" rows="1" placeholder="{{comment.text}}" required></textarea>
+                    <input type="hidden" name="boardId" value="{{board.id}}">
+                    <input type="hidden" name="commentId" value="{{comment.id}}">
+                    <input class="btn btn-outline-secondary" style="float:right; display:inline;" type="submit" value="수정">
+                </form>
+                {% else %}
+                <p class="card-text">{{ comment.text|linebreaks }}</p>
+                {% endif %}
+            </div>
 
-            
-            </body></html>
+        </div>
+
+        {% empty %}
+        <p>No comments here yet :(</p>
+        {% endfor %}
+    </div>
+
+
+</body>
+
+</html>

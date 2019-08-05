@@ -578,7 +578,7 @@
 
 
 
-                <div class="section">
+                <div class="section" id="div1">
                     <div class="panel" data-color="violet">
 
 
@@ -610,7 +610,7 @@
 
 
 
-                <div class="section">
+                <div class="section" id="div2">
                     <div class="panel" data-color="blue">
 
 
@@ -638,34 +638,13 @@
                                 </a>
                             </div>
                         </article>
-                        <nav class="slider__nav js-slider__nav" style="position:fixed;">
 
-                            <div class="slider-bullet1 js-slider-bullet pointer">
-                                <span class="slider-bullet__text js-slider-bullet__text" style="opacity: 1;">ABOUT US</span>
-                                <span class="slider-bullet__line js-slider-bullet__line" style="transform-origin: right 50% 0px; transform: matrix(1, 0, 0, 1, 0, 0);"></span>
-                            </div>
-
-                            <div class="slider-bullet2 js-slider-bullet pointer">
-                                <span class="slider-bullet__text js-slider-bullet__text" style="opacity: 1">Q&A</span>
-                                <span class="slider-bullet__line js-slider-bullet__line" style="transform-origin: right 50% 0px; transform: matrix(1, 0, 0, 1, 0, 0);"></span>
-                            </div>
-
-                            <div class="slider-bullet3 js-slider-bullet pointer">
-                                <span class="slider-bullet__text js-slider-bullet__text" style="opacity:1">SEARCH</span>
-                                <span class="slider-bullet__line js-slider-bullet__line" style="transform-origin: right 50% 0px; transform: matrix(1, 0 , 0 , 1, 0, 0);"></span>
-                            </div>
-
-                            <div class="slider-bullet4 js-slider-bullet pointer">
-                                <span class="slider-bullet__text js-slider-bullet__text" style="opacity: 1"></span>
-                                <span class="slider-bullet__line js-slider-bullet__line" style="transform-origin: left 50% 0px; transform: matrix(1, 0, 0, 1, 0, 0);"></span>
-                            </div>
-                        </nav>
 
 
                     </div>
                 </div>
 
-                <div class="section">
+                <div class="section" id="div3">
                     <div class="panel" data-color="grey">
 
                         </nav>
@@ -699,7 +678,7 @@
                     </div>
                 </div>
 
-                <div class="section">
+                <div class="section" id="div4">
                     <div class="panel" data-color="black">
 
                         <article class="slide js-slide current" style="width: 763px; height: 848px; visibility: inherit; opacity: 1; text-align:center;">
@@ -734,6 +713,28 @@
 
             </div>
         </div>
+        <nav class="slider__nav js-slider__nav" style="position:fixed;">
+
+            <div class="slider-bullet1 js-slider-bullet pointer">
+                <a onclick="fnMove('1')"><span class="slider-bullet__text js-slider-bullet__text" style="opacity: 1;">MY PAGE</span></a>
+                <span class="slider-bullet__line js-slider-bullet__line" style="transform-origin: right 50% 0px; transform: matrix(1, 0, 0, 1, 0, 0);"></span>
+            </div>
+
+            <div class="slider-bullet2 js-slider-bullet pointer">
+                <a onclick="fnMove('2')"><span class="slider-bullet__text js-slider-bullet__text" style="opacity: 1">TEAM PAGE</span></a>
+                <span class="slider-bullet__line js-slider-bullet__line" style="transform-origin: right 50% 0px; transform: matrix(1, 0, 0, 1, 0, 0);"></span>
+            </div>
+
+            <div class="slider-bullet3 js-slider-bullet pointer">
+                <a onclick="fnMove('3')"><span class="slider-bullet__text js-slider-bullet__text" style="opacity:1">TEAM CREATE</span></a>
+                <span class="slider-bullet__line js-slider-bullet__line" style="transform-origin: right 50% 0px; transform: matrix(1, 0 , 0 , 1, 0, 0);"></span>
+            </div>
+
+            <div class="slider-bullet4 js-slider-bullet pointer">
+                <a onclick="fnMove('4')"><span class="slider-bullet__text js-slider-bullet__text" style="opacity: 1">BOARD</span></a>
+                <span class="slider-bullet__line js-slider-bullet__line" style="transform-origin: left 50% 0px; transform: matrix(1, 0, 0, 1, 0, 0);"></span>
+            </div>
+        </nav>
 
 
         <div class="panel " data-color="violet ">
@@ -782,6 +783,14 @@
                 });
 
             }).scroll();
+
+
+            function fnMove(seq) {
+                var offset = $("#div" + seq).offset();
+                $('html, body').animate({
+                    scrollTop: offset.top
+                }, 400);
+            }
         </script>
 </body>
 
