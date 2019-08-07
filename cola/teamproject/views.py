@@ -1,5 +1,5 @@
 from django.contrib import auth
-from django.shortcuts import render,redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from .models import Team,Invite,Team_todo, TeamBoard, CommentTb
 from first.models import profile
 from datetime import date,datetime,timedelta
@@ -340,9 +340,8 @@ def searchPerson(request,team_id=None):
         return render(request, 'teamInfo.html', {'team':scoutingTeam, 'members':members, 'progressList':progressList})
 
 
-def teamBoard(request):
-    teamId = request.POST['teamId']
-    team = Team.objects.get(id=teamId)
+def teamBoard(request, team_id):
+    team = Team.objects.get(id=team_id)
 
     teamboards = team.teamboard_set.all()
     paginator = Paginator(teamboards, 10)
@@ -377,7 +376,10 @@ def teamboard_write(request):
         board.team = team
         board.title = request.POST['title']
         board.body = request.POST['body']
-        board.File = request.FILES['fileToUpload']
+        try:
+            board.File = request.FILES['fileToUpload']
+        except:
+            pass
 
         conn_user = request.user
         conn_profile = profile.objects.get(user=conn_user)
@@ -406,8 +408,11 @@ def teamboard_write(request):
 def teamdetail(request, board_id):
     board_detail = get_object_or_404(TeamBoard, pk = board_id)
 
-    #이름으로 파일 뜨기
-    filename = board_detail.File.name.split('/')[-1]
+    #file 이름으로 뜨기
+    if board_detail.File:
+        filename = board_detail.File.name.split('/')[-1]
+    else:
+        filename = None
     
     conn_user = request.user
     conn_profile = profile.objects.get(user=conn_user)
