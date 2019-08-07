@@ -8,7 +8,7 @@ class Board(models.Model):
     pub_date = models.DateTimeField('date published')
     body = models.TextField()
     writer = models.CharField(max_length=100, default='')
-
+    File = models.FileField(upload_to='board/', null=True)
     def __str__(self):
         return self.title
 

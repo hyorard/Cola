@@ -263,7 +263,7 @@
 
 
         <div id="div_new">
-            <form method="POST" enctype="multipart/form-data" action="{% url 'create' %}">
+            <form method="POST" action="{% url 'teamboard_write' %}" enctype="multipart/form-data">
                 {% csrf_token %}
                 <table summary="전체 테이블 구성">
                     <tbody>
@@ -281,12 +281,13 @@
                                         <td colspan=1 style="text-align:center;  background-color:rgba(255, 102, 102, 0.295);">작성자</td>
                                         <td colspan=1 style="bgcolor:white;">{{ user.profile.userName }} </td>
                                         <td colspan=1 style="text-align:center; background-color:rgba(255, 102, 102, 0.295);">작성일</td>
-                                        <td colspan=1 style="bgcolor:white;"> </td>
+                                        <td colspan=1 style="bgcolor:white;">{{ time }} </td>
                                     </tr>
                                     <tr>
                                         <td colspan=1 style="text-align:center; background-color:rgba(255, 102, 102, 0.295); width:100px;">TITLE</td>
                                         <td colspan=3 style="text-align:center; bgcolor:white;">
                                             <input type="text" id="write_title" name="title" placeholder="제목" style="border:0px; width:200px;margin-left:-390px;">
+                                            <input type="hidden" name="teamId" value={{team.id}}>
                                         </td>
                                     </tr>
                                     <tr>
@@ -300,7 +301,7 @@
                                             </form>
                                         </td>
                                         <td colspan=1 style="text-align:center;background-color:rgba(255, 102, 102, 0.295);">TEAM_NAME</td>
-                                        <td colspan=1 style="bgcolor:white;">cola</td>
+                                        <td colspan=1 style="bgcolor:white;">{{ team.name }}</td>
                                     </tr>
                                 </table>
                             </td>

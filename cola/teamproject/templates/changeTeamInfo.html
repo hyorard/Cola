@@ -25,6 +25,13 @@
 
 
     <style>
+        @font-face {
+            font-family: 'NIXGONM-Vb';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/NIXGONM-Vb.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
+        
         header {
             height: 80px;
             top: 30px;
@@ -126,23 +133,13 @@
             height: 600px;
             float: left;
             color: white;
-            background-color: rgb(212, 35, 35);
-            text-align: left;
+            background: rgb(53, 53, 53);
+            /*var(--primary-color);*/
+            text-align: center;
             font-family: 'Do Hyeon', sans-serif;
+            list-style: none;
             padding: 10px;
-        }
-        
-        #div_menu>a {
-            font-size: 19.5px;
-            font-family: 'Do Hyeon', sans-serif;
-            text-align: left;
-            color: black;
-        }
-        
-        #div_menu>a:hover {
-            color: white;
-            font-style: normal;
-            text-decoration: none;
+            padding-top: 20px;
         }
         
         div {
@@ -162,22 +159,46 @@
         }
         
         .nav-link {
-            color: black;
+            letter-spacing: 1px;
+            font-weight: bold;
+            text-decoration: none;
+            font-family: sans-serif;
+            padding: 0px;
+            color: #fff;
+        }
+        
+        .nav-link::after {
+            content: '';
+            display: block;
+            height: 3px;
+            width: 30%;
+            background: #fff0;
+            margin: auto;
+            border-radius: 5px;
         }
         
         .nav-link:hover {
-            color: black;
-            background-color: tomato;
+            color: var(--highlight-color);
         }
         
-        .nav-link2 {
-            color: white;
-            font-size: 20px;
+        .nav-link:hover::after,
+        .nav-link:focus::after {
+            width: 100%;
+            background: var(--highlight-color);
         }
         
-        .nav-link2:hover {
-            color: white;
-            background-color: coral;
+        .nav-link- {
+            letter-spacing: 1px;
+            font-weight: bold;
+            text-decoration: none;
+            font-family: sans-serif;
+            padding: 0px;
+            color: #f66;
+        }
+        
+        .nav-link-:hover {
+            color: var(--highlight-color);
+            text-decoration: none;
         }
         
         #menu_name {
@@ -218,8 +239,7 @@
             display: block;
         }
         /* google font ---------------------------*/
-        
-        #div_menu {
+        /*#div_menu {
             width: 13%;
             height: 500px;
             float: left;
@@ -229,6 +249,7 @@
             font-family: 'Do Hyeon', sans-serif;
             padding: 10px;
         }
+        */
         
         #div_con {
             width: 80%;
@@ -254,7 +275,7 @@
         * {
             margin: 0;
             padding: 0;
-            font-family: 'Montserrat', sans-serif;
+            /*ont-family: 'Montserrat', sans-serif;*/
             box-sizing: border-box;
         }
         
@@ -418,7 +439,7 @@
         .chart-container {
             padding: 25px;
         }
-        
+        /*
         #div_menu {
             width: 13%;
             height: 500px;
@@ -441,10 +462,204 @@
             font-style: normal;
             text-decoration: none;
         }
+        */
         
         .shadow {
             -webkit-filter: drop-shadow(0px 3px 3px rgba(0, 0, 0, .5));
             filter: drop-shadow(0px 3px 3px rgba(0, 0, 0, .5));
+        }
+        
+        .sub_title {
+            font-family: 'NIXGONM-Vb';
+        }
+        
+        .modal_title {
+            position: relative;
+            top: 15px;
+            left: 15px;
+            font-family: 'NIXGONM-Vb';
+            margin: -25px -25px 25px;
+            padding: 15px 25px;
+            width: 658px;
+            line-height: 30px;
+            font-size: 26px;
+            font-weight: 300;
+            color: #aaa;
+            text-align: center;
+            text-shadow: 0 1px rgba(255, 255, 255, 0.75);
+            background: #f7f7f7;
+        }
+        
+        .modal_title:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 8px;
+            background: #c4e17f;
+            border-radius: 5px 5px 0 0;
+            background-image: -webkit-linear-gradient(left, #c4e17f, #c4e17f 12.5%, #f7fdca 12.5%, #f7fdca 25%, #fecf71 25%, #fecf71 37.5%, #f0776c 37.5%, #f0776c 50%, #db9dbe 50%, #db9dbe 62.5%, #c49cde 62.5%, #c49cde 75%, #669ae1 75%, #669ae1 87.5%, #62c2e4 87.5%, #62c2e4);
+            background-image: -moz-linear-gradient(left, #c4e17f, #c4e17f 12.5%, #f7fdca 12.5%, #f7fdca 25%, #fecf71 25%, #fecf71 37.5%, #f0776c 37.5%, #f0776c 50%, #db9dbe 50%, #db9dbe 62.5%, #c49cde 62.5%, #c49cde 75%, #669ae1 75%, #669ae1 87.5%, #62c2e4 87.5%, #62c2e4);
+            background-image: -o-linear-gradient(left, #c4e17f, #c4e17f 12.5%, #f7fdca 12.5%, #f7fdca 25%, #fecf71 25%, #fecf71 37.5%, #f0776c 37.5%, #f0776c 50%, #db9dbe 50%, #db9dbe 62.5%, #c49cde 62.5%, #c49cde 75%, #669ae1 75%, #669ae1 87.5%, #62c2e4 87.5%, #62c2e4);
+            background-image: linear-gradient(to right, #c4e17f, #c4e17f 12.5%, #f7fdca 12.5%, #f7fdca 25%, #fecf71 25%, #fecf71 37.5%, #f0776c 37.5%, #f0776c 50%, #db9dbe 50%, #db9dbe 62.5%, #c49cde 62.5%, #c49cde 75%, #669ae1 75%, #669ae1 87.5%, #62c2e4 87.5%, #62c2e4);
+        }
+        
+        input {
+            font-family: inherit;
+            color: inherit;
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+        }
+        
+        .modal-input {
+            width: 100%;
+            height: 50px;
+            margin-bottom: 10px;
+            padding: 0 15px 2px;
+            font-size: 17px;
+            background: white;
+            border: 2px solid #ebebeb;
+            border-radius: 4px;
+            -webkit-box-shadow: inset 0 -2px #ebebeb;
+            box-shadow: inset 0 -2px #ebebeb;
+        }
+        
+        .modal-input:focus {
+            border-color: rgb(160, 109, 218);
+            outline: none;
+            -webkit-box-shadow: inset 0 -2px rgb(160, 109, 218);
+            box-shadow: inset 0 -2px rgb(160, 109, 218);
+        }
+        
+        .lt-ie9 .modal-input {
+            line-height: 48px;
+        }
+        
+        .modal-input2 {
+            width: 100%;
+            float: right;
+            height: 50px;
+            margin-bottom: 10px;
+            padding: 0 15px 2px;
+            font-size: 17px;
+            background: white;
+            border: 2px solid #ebebeb;
+            border-radius: 4px;
+            -webkit-box-shadow: inset 0 -2px #ebebeb;
+            box-shadow: inset 0 -2px #ebebeb;
+        }
+        
+        .modal-input2:focus {
+            border-color: rgb(160, 109, 218);
+            outline: none;
+            -webkit-box-shadow: inset 0 -2px rgb(160, 109, 218);
+            box-shadow: inset 0 -2px rgb(160, 109, 218);
+        }
+        
+        .lt-ie9 .modal-input2 {
+            line-height: 48px;
+        }
+        
+        .modal-button {
+            position: relative;
+            vertical-align: top;
+            width: 30%;
+            height: 54px;
+            padding: 0;
+            font-size: 22px;
+            color: white;
+            text-align: center;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
+            background: #f0776c;
+            border: 0;
+            border-bottom: 2px solid #d76b60;
+            border-radius: 5px;
+            cursor: pointer;
+            -webkit-box-shadow: inset 0 -2px #d76b60;
+            box-shadow: inset 0 -2px #d76b60;
+        }
+        
+        .modal-button:active {
+            top: 1px;
+            outline: none;
+            -webkit-box-shadow: none;
+            box-shadow: none;
+        }
+        
+        :-moz-placeholder {
+            color: #ccc;
+            font-weight: 300;
+        }
+        
+        ::-moz-placeholder {
+            color: #ccc;
+            opacity: 1;
+            font-weight: 300;
+        }
+        
+        ::-webkit-input-placeholder {
+            color: #ccc;
+            font-weight: 300;
+        }
+        
+        :-ms-input-placeholder {
+            color: #ccc;
+            font-weight: 300;
+        }
+        
+        ::-moz-focus-inner {
+            border: 0;
+            padding: 0;
+        }
+        /*check box*/
+        
+        input[type="checkbox"]:active:after {
+            border-radius: 100%;
+            width: 7px;
+            height: 7px;
+            padding: 8px;
+            box-shadow: 0 0 0 12px #EEE;
+            content: '';
+            display: inline-block;
+        }
+        
+        input[type="checkbox"]:after,
+        input[type="checkbox"]:active:after:after {
+            border-radius: 2px;
+            width: 9px;
+            height: 9px;
+            padding: 2px;
+            box-shadow: 0 0 0 2px #EEE;
+            content: '';
+            display: inline-block;
+        }
+        
+        input[type="checkbox"] {
+            background: #EEE;
+            box-shadow: 0 0 0 0 #009688 inset, 0 0 0 2px #666666 inset, 0 0 0 8px #EEE inset, 0 0 0 0 #ddd inset, 0 0 0 0 #ddd;
+            padding: 6px;
+            border-radius: 2px;
+            display: inline-block;
+            transition: all .2s;
+            zoom: 2;
+        }
+        
+        input[type="checkbox"]:active {
+            background: #ddd;
+            box-shadow: 0 0 0 0 #009688 inset, 0 0 0 2px #666666 inset, 0 0 0 0 #EEE inset, 0 0 0 8px #ddd inset, 0 0 0 12px #ddd;
+        }
+        
+        input[type="checkbox"]:checked:active {
+            background: #009688;
+            box-shadow: 0 0 0 8px #009688 inset, 0 0 0 0 #666666 inset, 0 0 0 8px #EEE inset, 0 0 0 12px #ddd inset, 0 0 0 8px #D6E5E4;
+        }
+        
+        input[type="checkbox"]:checked {
+            background: #F9F9F9;
+            box-shadow: 0 0 0 8px #009688 inset, 0 0 0 0 #666666 inset, 0 0 0 8px #EEE inset, 0 0 0 0 #ddd inset, 0 0 0 0 #ddd;
+            content: url(https://i.imgur.com/OrSqEu5.png);
         }
     </style>
 
@@ -454,31 +669,40 @@
 
 
 <body>
+    <header>
+        {% extends 'base.html' %} {% block content %}
+    </header>
+    <section>
 
-    {% extends 'base.html' %} {% block content %}
 
-    <div style="border: 2px solid rgba(211, 211, 211, 0.795); float: left; width: 43%; height:500px; padding:10px;">
-        <div class="box" style="text-align: center;">
-            <h4 class="firstbox">팀 정보 변경</h4><br><br>
-            <div class="X">
+        <div class="X">
+            <div style="border: 2px solid rgba(211, 211, 211, 0.795); float: left; width: 43%; height:600px; padding:10px;">
+                <div class="box" style="text-align: center;">
 
-                <form method="POST" enctype="multipart/form-data" action="{% url 'changeTeamInfo' %}">
-                    {% csrf_token %}
-                    <h4>팀 명</h4>
-                    <input type="text" name="teamName" maxlength="50" placeholder="{{team.name}}" />
-                    <br><br>
-                    <h4>데드라인</h4>
-                    <input type="date" name="deadline">
-                    <h4>진행도</h4>
-                    <input type="number" name="progress" placeholder="진행도"><br>
-                    <input type="checkbox" name="is_finished" value="finished">팀플 완료 여부
-                    <input type="hidden" name="teamId" value="{{team.id}}">
-                    <!-- refFile -->
-                    <input multiple="multiple" type="file" name="refFile[]" multiple placeholder="자료명"><br>
-                    <input type="submit" value="생성" />
-                </form>
-            </div>
+                    <form method="POST" enctype="multipart/form-data" action="{% url 'changeTeamInfo' %}">
+                        {% csrf_token %}
 
-        </div>
-        {% endblock %}
+                        <h4 class="modal_title">
+
+                            팀 정보 변경
+                        </h4>
+                        <h4 class="sub_title">팀 명</h4>
+                        <input type="text" class="modal-input" name="teamName" maxlength="50" placeholder="{{team.name}}" autofocus />
+                        <br><br>
+                        <h4 class="sub_title">데드라인</h4>
+                        <input type="date" class="modal-input" name="deadline">
+                        <h4 class="sub_title">진행도</h4>
+                        <input type="number" class="modal-input" name="progress" placeholder="진행도"><br>
+                        <input type="checkbox" name="is_finished" value="finished">
+                        <h6 class="sub_title">팀플 완료 여부</h6>
+                        <input type="hidden" name="teamId" value="{{team.id}}">
+                        <!-- refFile -->
+                        <input multiple="multiple" class="modal-input2" type="file" name="refFile[]" multiple placeholder="자료명"><br>
+                        <input type="submit" class="modal-button" style="font-family: 'NIXGONM-Vb';" value="수정완료" />
+                    </form>
+                </div>
+
+
+                {% endblock %}
+    </section>
 </body>

@@ -132,7 +132,6 @@
         {% csrf_token %}
         <!--<input type="text" name="newMemberId" placeholder="초대할 사람의 아이디..">
         <input type="submit" value="검색">-->
-
         <div class='search-container'>
             <i id="search" class="fas fa-search fa-3x hide"></i>
             <input id="text" type='text' name="newMemberId" placeholder='초대할 사람의 아이디..' class='search-input'>
@@ -141,7 +140,11 @@
             </span>
         </div>
     </form>
-    {% if error %} {{error}} {% endif %}
+    {% if error %}
+    <script type="text/javascript">
+        alert('찾는 이메일이 없습니다.')
+    </script>
+    {% endif %}
 
     <script>
         // Code for animation restart from https://css-tricks.com/restart-css-animation/

@@ -263,8 +263,7 @@
 
 
         <div id="div_new">
-            <form method="POST" enctype="multipart/form-data" action="{% url 'create' %}">
-                {% csrf_token %}
+            <form action="{% url 'create' %}">
                 <table summary="전체 테이블 구성">
                     <tbody>
                         <tr>
@@ -279,7 +278,7 @@
                                 <table border="1" summary="목록 테이블 구성" style="margin-left:250px;width:700px;">
                                     <tr>
                                         <td colspan=1 style="text-align:center;  background-color:rgba(255, 102, 102, 0.295);">작성자</td>
-                                        <td colspan=1 style="bgcolor:white;">{{ user.profile.userName }} </td>
+                                        <td colspan=1 style="bgcolor:white;"> </td>
                                         <td colspan=1 style="text-align:center; background-color:rgba(255, 102, 102, 0.295);">작성일</td>
                                         <td colspan=1 style="bgcolor:white;"> </td>
                                     </tr>

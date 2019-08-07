@@ -1,249 +1,583 @@
-<!DOCTYPE html>{% load socialaccount %} {% providers_media_js %}
+<!doctype html>{% load socialaccount %} {% providers_media_js %}
+<html lang="kr">
 
 <head>
-    <meta charset="utf-8">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width">
-    <title>main</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title>createTeam</title>
+    <link href="https://fonts.googleapis.com/css?family=Lacquer&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Permanent+Marker&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Saira+Stencil+One&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Black+Han+Sans&display=swap&subset=korean" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-    <link href="https://fonts.googleapis.com/css?family=Do+Hyeon|Great+Vibes|Pacifico&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Song+Myung&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" style="width:50px; float: left;">
-    <link href="https://fonts.googleapis.com/css?family=Sunflower:300&display=swap" rel="stylesheet">
-
-
 
     <style>
-        header {
-            height: 80px;
-            top: 30px;
-            left: 20px;
-            font-family: 'Great Vibes', cursive;
-            margin-top: 15px;
-            border-bottom: 1px solid rgb(160, 148, 148);
+        /* Setting fade transition and default settings */
+        
+        @import url('https://fonts.googleapis.com/css?family=Black+Han+Sans:400');
+        @import url('https://fonts.googleapis.com/css?family=Black+Han+Sans&display=swap&subset=korean');
+        .dropdown {
+            float: left;
+            overflow: hidden;
         }
         
-        header>a {
-            font-size: 50px;
+        .dropdown .dropbtn {
+            cursor: pointer;
+            font-size: 16px;
+            border: none;
+            outline: none;
+            color: rgba(85, 17, 85, 0.829);
+            padding: 14px 16px;
+            background-color: inherit;
+            font-family: inherit;
+            margin: 0;
+            font-weight: bold;
         }
         
-        header>a:hover {
+        .navbar a:hover,
+        .dropdown:hover .dropbtn,
+        .dropbtn:focus {
             background-color: white;
         }
         
-        .snip1198 {
+        .dropdown-content {
+            display: none;
             position: absolute;
-            margin-top: -25px;
-            margin-left: 1050px;
-            font-family: 'Sunflower', sans-serif;
-            text-align: center;
-            text-transform: uppercase;
-            font-weight: 500;
-            letter-spacing: 1px;
+            background-color: white;
+            min-width: 400px;
+            box-shadow: 0px 8px 16px 0px z-index: 1;
         }
         
-        .snip1198>li {
-            display: inline-block;
-            list-style: outside none none;
-            margin: 0.4em 0.8em;
-            padding: 0;
-        }
-        
-        .snip1198>a {
+        .dropdown-content a {
+            font-family: 'UhBeeSeulvely';
+            float: right;
             color: black;
-        }
-        
-        span {
-            color: red;
-        }
-        
-        span:hover {
-            color: rgba(255, 0, 0, 0.411);
-        }
-        
-        .boration {
-            color: black;
-        }
-        
-        .boration:hover {
-            color: rgba(0, 0, 0, 0.411);
-        }
-        
-         :root {
-            --primary-color: #333;
-            --highlight-color: #f66;
-        }
-        
-        #div_menu {
-            position: relative;
-            width: 10%;
-            height: 600px;
-            float: left;
-            color: white;
-            background: var(--primary-color);
-            text-align: center;
-            font-family: 'Do Hyeon', sans-serif;
-            list-style: none;
-            padding: 10px;
-            padding-top: 20px;
-        }
-        
-        input,
-        button,
-        a {
-            transition: 0.25s;
-        }
-        
-        .nav-link {
-            letter-spacing: 1px;
-            font-weight: bold;
+            height: 80px;
+            width: 550px;
             text-decoration: none;
-            font-family: sans-serif;
-            padding: 0px;
-            color: #fff;
-        }
-        
-        .nav-link::after {
-            content: '';
             display: block;
-            height: 3px;
-            width: 30%;
-            background: #fff0;
-            margin: auto;
-            border-radius: 5px;
+            margin-left: 30px;
+            font-size: 20px;
         }
         
-        .nav-link:hover {
-            color: var(--highlight-color);
+        .dropdown-content a:hover {
+            background-color: white;
+            color: rgba(0, 0, 0, 0.815);
+            text-decoration-color: rgb(248, 211, 4);
+            text-decoration-style: wavy;
+            text-decoration-line: line-through;
+            line-height: 15px;
         }
         
-        .nav-link:hover::after,
-        .nav-link:focus::after {
-            width: 100%;
-            background: var(--highlight-color);
+        .show {
+            display: block;
         }
         
-        .firstcontainer {
+        body {
+            transition: background-color .7s ease;
             position: relative;
-            margin-left: 180px;
+            color: black;
         }
         
-        h2 {
-            font-family: 'Sunflower', sans-serif;
-            margin-left: 20px;
-            margin-top: 30px;
+        body {
+            cursor: url('some-cursor.ico'), default;
         }
+        /* panel styles */
         
-        input {
-            margin-left: 20px;
-            font-family: 'Sunflower', sans-serif;
-        }
-        
-        .row category1-buttons {
-            position: absolute;
+        .panel {
+            /* min height incase content is higher than window height */
+            min-height: 500px;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            font-family: 'UhBeeSeulvely';
+            /* outline: 10px solid hotpink; */
+            /* turn above on to see the edge of panels */
         }
         
         a {
-            color: black;
             text-decoration: none;
-            background-color: rgba(0, 0, 0, 0);
-            font-family: 'Do Hyeon', sans-serif;
-            text-align: center;
         }
         
-        a:hover {
-            text-decoration: none;
+        .nav {
+            position: fixed;
+            top: 3rem;
+            z-index: 100;
+            width: 300px;
+        }
+        
+        @media only screen and (max-width:576px) {
+            .nav {
+                top: 1.5rem;
+            }
+        }
+        
+        .nav--left {
+            left: 3rem;
+        }
+        
+        @media only screen and (max-width:576px) {
+            .nav--left {
+                left: 1.5rem;
+            }
+        }
+        
+        .nav--right {
+            right: 3rem;
+        }
+        
+        @media only screen and (max-width:576px) {
+            .nav--right {
+                right: 1.5rem;
+            }
+        }
+        
+        .nav h1 {
+            font-family: 'UhBeeJJIBBABBA';
+            font-weight: 300;
+            font-size: 1rem;
             color: black;
+            margin: 0;
+        }
+        
+        @media only screen and (max-width:576px) {
+            .nav h1 {
+                font-size: .875rem;
+            }
+        }
+        
+        .nav a {
+            display: flex;
+            align-items: center;
+            font-size: calc(.5rem + .35vw);
+            font-size: 20px;
+        }
+        
+        .nav a {
+            position: relative;
+            font-family: 'UhBeeJJIBBABBA';
+        }
+        
+        \
+        /* colours */
+        
+        .color-violet1 {
+            background-color: white;
+        }
+        
+        .js-scroller {
+            touch-action: none;
+            margin-top: 200px;
+        }
+        
+        @keyframes scroller {
+            0% {
+                transform-origin: top left;
+                transform: scaleY(0);
+                animation-timing-function: cubic-bezier(.48, .02, 100, .99);
+            }
+            30% {
+                transform-origin: top left;
+                transform: scale(1);
+            }
+            41% {
+                transform-origin: bottom left;
+                transform: scale(1);
+                animation-timing-function: cubic-bezier(.48, .02, 0, .99);
+            }
+            to {
+                transform-origin: bottom left;
+                transform: scaleY(0);
+            }
+        }
+        
+        .scroll-hint {
+            position: fixed;
+            top: 630px;
+            left: calc(50% - 1px);
+            height: 10px;
+            color: black;
+            border-left: 1px solid black;
+            white-space: nowrap;
+            line-height: 70px;
+            z-index: 10;
+        }
+        
+        .scroll-hint-m {
+            display: block;
+            height: 25px;
+            line-height: 1px;
+        }
+        
+        .scroll-hint-m .scroll-hint__label {
+            transform: translate(-50%, -25px);
+            padding-left: 0;
+        }
+        
+        .scroll-hint:before {
+            content: "collabortaion";
+            position: absolute;
+            left: -1px;
+            top: 0;
+            display: block;
+            width: 1px;
+            height: 100%;
+            background-color: #fff;
+            transform: scaleY(0) translateZ(0);
+            animation: scroller 3s infinite;
+        }
+        
+        .scroll-hint__label {
+            font-size: 12px;
+            padding-left: 20px;
+            font-weight: 700;
+        }
+        
+        .img {
+            position: relative;
+            margin-top: -650px;
+            margin-left: -800px;
+            background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRCTuvwjx_Ehk-RBxLS2eR2ElE1Hy_2qXQL90BKaQm5zaIkf_asdg);
+            height: 30vh;
+            width: 30vh;
+        }
+        
+        hr {
+            border: thick solid black;
+            margin-top: -370px;
+            width: 100%;
+            height: 300px;
+            border-bottom: 0;
+            border-left: 0;
+            border-right: 0;
         }
         
         .box {
-            font-family: 'Do Hyeon', sans-serif;
-            font-size: 15px;
+            float: left;
+            font-family: 'UhBeeSeulvely';
+            font-size: 30px;
+        }
+        
+        h3 {
+            color: rgba(85, 17, 85, 0.829);
+        }
+        
+        h4 {
+            color: rgba(85, 17, 85, 0.829);
+        }
+        
+        .notes {
+            background-image: -webkit-linear-gradient(white, white 30px, #ccc 30px, #ccc 31px, white 31px);
+            background-image: -moz-linear-gradient(white, white 30px, #ccc 30px, #ccc 31px, white 31px);
+            background-image: -ms-linear-gradient(white, white 30px, #ccc 30px, #ccc 31px, white 31px);
+            background-image: -o-linear-gradient(white, white 30px, #ccc 30px, #ccc 31px, white 31px);
+            background-image: linear-gradient(white, white 30px, #ccc 30px, #ccc 31px, white 31px);
+            background-size: 100% 31px;
+            border: .1px solid #ccc;
+            border-radius: 8px;
+            box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
+            line-height: 31px;
+            padding: 8px;
+        }
+        
+        input {
+            font-family: 'UhBeeSeulvely';
+            border-color: rgba(85, 17, 85, 0.829);
+            border-top-color: rgba(85, 17, 85, 0.829);
         }
         
         .submit {
-            background: var(--highlight-color);
-            color: #fff;
-            padding: 10px;
+            background-color: white;
             font-size: 20px;
-            font-weight: bold;
-            border: 2px solid var(--highlight-color);
-            cursor: pointer;
+            border: none;
+            margin-top: -20px;
         }
         
-        .submit:hover,
-        .submit:focus {
-            background: #0000;
-            color: var(--highlight-color);
+        .submit:hover {
+            background-color: white;
+            color: rgba(0, 0, 0, 0.815);
+            text-decoration-color: rgb(248, 211, 4);
+            text-decoration-style: wavy;
+            text-decoration-line: underline;
+            line-height: 15px;
+            font-size: 20px;
+            block-size: 30px;
         }
         
-        .input-text,
-        .submit {
-            width: 100%;
-            max-width: 400px;
-            margin: 25px auto 0;
+        @font-face {
+            font-family: 'BMDOHYEON';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_one@1.0/BMDOHYEON.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
         }
         
-        p {
-            color: #777;
-            margin-bottom: 20px;
+        @font-face {
+            font-family: 'KCC-eunyoung';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_one@1.0/KCC-eunyoung-Regular.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
         }
-        /** Search Forms and Container **/
+        
+        @font-face {
+            font-family: 'KOMACON';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_seven@1.2/KOMACON.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
+        
+        @font-face {
+            font-family: 'BMHANNAAir';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_four@1.0/BMHANNAAir.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
+        
+        @font-face {
+            font-family: 'OTEnjoystoriesBA';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/OTEnjoystoriesBA.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
+        
+        @font-face {
+            font-family: 'OTEnjoystoriesBA';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/OTEnjoystoriesBA.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
+        
+        @font-face {
+            font-family: 'UhBeeJJIBBABBA';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_five@.2.0/UhBeeJJIBBABBA.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
+        
+        @font-face {
+            font-family: 'UhBeeSeulvely';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_five@.2.0/UhBeeSeulvely.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
+        
+        .panel>h1 {
+            font-family: 'Black Han Sans', sans-serif;
+        }
     </style>
+    <script src="/Content/ko/inc/js/jquery.js" type="text/javascript" charset="utf-8"></script>
 
 </head>
 
-
-
-
 <body>
-    <header>
-        <a style="font-family: 'Great Vibes', cursive;" href="{% url 'main' %}">
-            <STRONG>&nbsp;<span>Colla</span><span class="boration">boration</span></STRONG>
-        </a>
-        <ul class="snip1198">
-            <li class="enter">
-                {% if not request.user.is_authenticated %}
-                <a href="{% url 'login' %}">로그인</a>
-                <a href="{% url 'signup' %}">회원가입</a> {% elif request.user.is_authenticated %}
-                <a href="{% url 'logout' %}">로그아웃</a> {% endif %}
-            </li>
-        </ul>
-    </header>
 
-    <section>
-        <div id="div_menu">
-            <li class="nav-item"><a href="{% url 'mypage' %}" class="nav-link">my Page</a></li><br>
-            <li class="nav-item"><a href="{% url 'teamproject' %}" class="nav-link">Team Page</a></li><br>
-            <li class="nav-item"><a href="{% url 'createTeam' %}" class="nav-link">Team create</a></li><br>
-            <li class="nav-item"><a href="{% url 'board' %}" class="nav-link">Board</a></li><br>
 
-        </div>
-
-        <div style="border: 2px solid rgba(211, 211, 211, 0.795); float: left; width: 43%; height:500px; padding:10px;">
-            <div class="box" style="text-align: center;">
-                <h4 class="firstbox">팀 생성</h4><br><br>
-                <div class="X">
-
-                    <form method="POST" enctype="multipart/form-data" action="{% url 'createTeam' %}">
-                        {% csrf_token %}
-                        <h4>팀 명</h4>
-                        <input type="text" name="teamName" maxlength="50" placeholder="팀 명" />
-                        <br><br>
-                        <h4>데드라인</h4>
-                        <input type="date" name="deadline">
-                        <input type="hidden" name="fromStart" value="1">
-                        <input type="hidden" name="progress" value=0><br>
-                        <br>
+    <div id="slider" class="slider js-slider" style="height:50px;">
+        <div class="main js-scroller">
+            <div class="slider__inner js-slider__inner" style="height:100%;">
+                <canvas width="" height="" style=""></canvas>
+            </div>
 
 
 
-                        <input class="submit" type="submit" value="생성하기" />
-                    </form>
+            <div class="panel" data-color="violet1">
+                <nav class="nav nav--left">
+                    <a href="/">
+                        <h1 style=" font-family : 'UhBeeJJIBBABBA'; font-size : 32px;">콜<span style="color:rgba(85, 17, 85, 0.829); ">라보</span>레이션</h1>
+                    </a>
+                </nav>
+
+                <nav class="nav nav--right nav--toHide">
+                    <div class="dropdown">
+                        <button class="dropbtn" onclick="myFunction()" style="margin-left:200px;">MENU
+                            </button>
+
+
+                        <div class="dropdown-content" id="myDropdown">
+                            <a href="{% url 'mypage' %}">마이 페이지</a>
+                            <a href="{% url 'teamproject' %}">팀 페이지</a>
+                            <a href="{% url 'createTeam' %}">팀 생성</a>
+                            <a href="{% url 'board' %}">게시판</a>
+                            <a href="{% url 'logout' %}">로그아웃</a>
+
+                        </div>
+                    </div>
+
+                </nav>
+
+
+
+                <div class="img">
+                    <div class="content" style="width:200%;margin-top:-10px; margin-left:300px;">
+                        <h1>WEL-COME</h1>
+                        <h2>나만의 팀플을 생성하세요!</h2>
+                    </div>
+                    <div class="img-cover"></div>
                 </div>
 
             </div>
 
+            <hr>
+            <div class="notes" style="width: 90%; height:400px;margin-top:-280px; margin-left:50px;">
+                <div class="box">
+                    <h3 class="firstbox">팀 생성하기</h3>
+                    <div class="X">
+
+                        <form method="POST" enctype="multipart/form-data" action="{% url 'createTeam' %}">
+                            {% csrf_token %}
+                            <h4>팀 명 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;데드라인</h4>
+                            <input type="text" name="teamName" maxlength="50" placeholder="팀 명"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <input type="date" name="deadline">
+                            <input type="hidden" name="fromStart" value="1">
+                            <input type="hidden" name="progress" value=0> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <input class="submit" type="submit" value="생성하기" />
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+
+
+            <div class="scroll-hint js-scroll" style="opacity: 0; transform: translate(0%, 100%) matrix(1, 0, 0, 1, 0, 0); position:fixed;">
+                <div class="scroll-hint__label"></div>
+            </div>
+
+            <div class="scroll-hint scroll-hint-m">
+                <div class="scroll-hint__label">Scroll</div>
+            </div>
+
+        </div>
+
+
+
+
+        <div class="panel" data-color="violet2">
+
+
+            <div class="panel" data-color="violet3">
+
+
+
+
+            </div>
+
+
+            <div class="panel" data-color="violet4">
+
+
+
+
+            </div>
+
+            <div class="panel" data-color="black">
+
+
+            </div>
+
+
+
+
+        </div>
+    </div>
+
+
+
+    <script src="/Content/ko/inc/js/jquery.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/1.2fc356e6.chunk.js"></script>
+    <script src="js/app.935c0693.js"></script>
+    <script src="https://tympanus.net/Tutorials/ShapeHoverEffectSVG/js/snap.svg-min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script type="text/javascript">
+        $(window).scroll(function() {
+
+            // selectors
+            var $window = $(window),
+                $body = $('body'),
+                $panel = $('.panel');
+
+            // Change 33% earlier than scroll position so colour is there when you arrive.
+            var scroll = $window.scrollTop() + ($window.height() / 3);
+
+            $panel.each(function() {
+                var $this = $(this);
+
+                // if position is within range of this panel.
+                // So position of (position of top of div <= scroll position) && (position of bottom of div > scroll position).
+                // Remember we set the scroll to 33% earlier in scroll var.
+                if ($this.position().top <= scroll && $this.position().top + $this.height() > scroll) {
+
+                    // Remove all classes on body with color-
+                    $body.removeClass(function(index, css) {
+                        return (css.match(/(^|\s)color-\S+/g) || []).join(' ');
+                    });
+
+                    // Add class of currently active div
+                    $body.addClass('color-' + $(this).data('color'));
+                }
+            });
+
+        }).scroll();
+
+
+        function myFunction() {
+            document.getElementById("myDropdown").classList.toggle("show");
+        }
+
+        // Close the dropdown if the user clicks outside of it
+        window.onclick = function(e) {
+            if (!e.target.matches('.dropbtn')) {
+                var myDropdown = document.getElementById("myDropdown");
+                if (myDropdown.classList.contains('show')) {
+                    myDropdown.classList.remove('show');
+                }
+            }
+        }
+
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-7243260-2']);
+        _gaq.push(['_trackPageview']);
+        (function() {
+            var ga = document.createElement('script');
+            ga.type = 'text/javascript';
+            ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(ga, s);
+        })();
+
+        (function() {
+
+            function init() {
+                var speed = 250,
+                    easing = mina.easeinout;
+
+                [].slice.call(document.querySelectorAll('#grid > a')).forEach(function(el) {
+                    var s = Snap(el.querySelector('svg')),
+                        path = s.select('path'),
+                        pathConfig = {
+                            from: path.attr('d'),
+                            to: el.getAttribute('data-path-hover')
+                        };
+
+                    el.addEventListener('mouseenter', function() {
+                        path.animate({
+                            'path': pathConfig.to
+                        }, speed, easing);
+                    });
+
+                    el.addEventListener('mouseleave', function() {
+                        path.animate({
+                            'path': pathConfig.from
+                        }, speed, easing);
+                    });
+                });
+            }
+
+            init();
+
+        })();
+    </script>
 </body>
+
+</html>

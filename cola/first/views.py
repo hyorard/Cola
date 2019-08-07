@@ -40,19 +40,24 @@ def makeProfile(request):
         prof = request.user.profile
     else:
         prof = profile()
+
     prof.user = request.user
+
     try:
         prof.img = request.FILES['userPic']
     except:
         pass
+
     if request.POST['userName'] == '':
         pass
     else:
         prof.userName = request.POST['userName']
+
     if request.POST['school'] == '':
         pass
     else:
         prof.school = request.POST['school']
+
     prof.date = date.today()
     prof.save()
     prof = request.user.profile
@@ -77,8 +82,8 @@ def infoboard(request):
     except EmptyPage:
         queryset = paginator.page(paginator.num_pages)
     context = {
-		"object_list" : queryset,
-	}
+      "object_list" : queryset,
+   }
 
     return render(request, 'infoboard.html', context)
 
@@ -102,8 +107,8 @@ def searchPost(request):
     except EmptyPage:
         queryset = paginator.page(paginator.num_pages)
     context = {
-		"object_list" : queryset,
-	}
+      "object_list" : queryset,
+   }
 
     return render(request, 'infoboard.html', context)
     
@@ -113,6 +118,13 @@ def searchPost(request):
 
 def detail(request, board_id):
     board_detail = get_object_or_404(Board, pk = board_id)
+    
+    #file 이름으로 뜨기
+    if board_detail.File:
+        filename = board_detail.File.name.split('/')[-1]
+    else:
+        filename = None
+
     conn_user = request.user
     conn_profile = profile.objects.get(user=conn_user)
     nick = conn_profile.userName
@@ -123,7 +135,7 @@ def detail(request, board_id):
         check = True
     else :
         check = False
-    return render(request, 'detail.html', {'board':board_detail, 'check' : check})
+    return render(request, 'detail.html', {'board':board_detail, 'check' : check, 'filename' : filename})
 
 def modify(request, board_id):
     board = get_object_or_404(Board, pk = board_id)
@@ -172,8 +184,8 @@ def removeBoard(request, board_id):
     except EmptyPage:
         queryset = paginator.page(paginator.num_pages)
     context = {
-		"object_list" : queryset,
-	}
+      "object_list" : queryset,
+   }
 
     return render(request, 'infoboard.html', context)
 
@@ -258,14 +270,18 @@ def new(request):
 
 def create(request):
     board = Board()
+
     conn_user = request.user
     conn_profile = profile.objects.get(user=conn_user)
     nick = conn_profile.userName
     board.writer = nick
-    board.title = request.GET['title']
-    board.body = request.GET['body']
+   
+    board.title = request.POST['title']
+    board.body = request.POST['body']
+    board.File = request.FILES['fileToUpload']  
     board.pub_date = timezone.datetime.now()
     board.save()
+    
     return redirect('/first/board/'+str(board.id))
 
 

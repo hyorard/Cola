@@ -1,12 +1,14 @@
 from django.contrib import auth
 from django.shortcuts import render,redirect
-from .models import Team,Invite,Team_todo, TeamBoard
+from .models import Team,Invite,Team_todo, TeamBoard, CommentTb
+from first.models import profile
 from datetime import date,datetime,timedelta
 from math import floor
 from django.contrib import messages
 from django.contrib.auth.models import User
 #pagination
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from datetime import datetime
 
 # Create your views here.
 
@@ -338,21 +340,155 @@ def searchPerson(request,team_id=None):
         return render(request, 'teamInfo.html', {'team':scoutingTeam, 'members':members, 'progressList':progressList})
 
 
-def teamBoard(request, teamBoard_id):
+def teamBoard(request):
+    teamId = request.POST['teamId']
+    team = Team.objects.get(id=teamId)
 
-    #team.id
-    team_id = teamBoard_id
-
-    #team이 생성해 놓은 teamboard자료가 있다면 가져옴 
-    try: 
-        teamboard = TeamBoard.objects.filter(team = team_id)
-    except:
-        return render(request, 'teamBoard.html', {'error' : '자료가 존재하지 않습니다'})
+    teamboards = team.teamboard_set.all()
+    paginator = Paginator(teamboards, 10)
+    page = request.GET.get('page')
+    try:
+        queryset = paginator.page(page)
+    except PageNotAnInteger:
+        queryset = paginator.page(1)
+    except EmptyPage:
+        queryset = paginator.page(paginator.num_pages)
     
-    return render(request, 'teamBoard.html', {'tb' : teamboard})        
+    context = {
+      "object_list" : queryset,
+      "team" : team
+   }
 
+    return render(request, 'teamBoard.html', context)
 
-'''
-def uploadfile(request, teamBoard_id):
-    team_id = teamBoard_id    
-'''
+def teamboard_write(request):
+    if request.method == "GET":
+        teamId = request.GET['teamId']
+        team = Team.objects.get(id=teamId)
+        time = datetime.today()
+        return render(request, 'teamnew.html', {'team': team, 'time' : time})
+    
+    elif request.method == "POST":    
+        teamId = request.POST['teamId']
+        team = Team.objects.get(id=teamId)
+
+        board=TeamBoard()
+        
+        board.team = team
+        board.title = request.POST['title']
+        board.body = request.POST['body']
+        board.File = request.FILES['fileToUpload']
+
+        conn_user = request.user
+        conn_profile = profile.objects.get(user=conn_user)
+        nick = conn_profile.userName
+        board.writer = nick
+        board.pub_date = datetime.now()
+        board.save()
+        
+        teamboards = team.teamboard_set.all()
+        paginator = Paginator(teamboards, 10)
+        page = request.GET.get('page')
+        try:
+            queryset = paginator.page(page)
+        except PageNotAnInteger:
+            queryset = paginator.page(1)
+        except EmptyPage:
+            queryset = paginator.page(paginator.num_pages)
+        
+        context = {
+        "object_list" : queryset,
+        "team" : team,
+        }
+
+        return render(request, 'teamBoard.html', context)
+
+def teamdetail(request, board_id):
+    board_detail = get_object_or_404(TeamBoard, pk = board_id)
+
+    #이름으로 파일 뜨기
+    filename = board_detail.File.name.split('/')[-1]
+    
+    conn_user = request.user
+    conn_profile = profile.objects.get(user=conn_user)
+    nick = conn_profile.userName
+    # 글쓴이와 들어온 사람이 같은지 확인(삭제/수정)
+    
+    bw = board_detail.writer
+    if bw == nick:
+        check = True
+    else :
+        check = False
+    return render(request, 'teamdetail.html', {'board':board_detail, 'check' : check, 'filename' : filename})
+
+def addCommentTb(request):
+    boardId = request.POST['boardId']
+    post = TeamBoard.objects.get(id=boardId)
+    comment = CommentTb()
+    comment.post = post
+    comment.writer = request.user
+    comment.text = request.POST['content']
+    comment.save()
+
+    nick = request.user.profile.userName
+    # 글쓴이와 들어온 사람이 같은지 확인(삭제/수정)
+    
+    bw = post.writer
+    if bw == nick:
+        check = True
+    else :
+        check = False
+    return render(request, 'teamdetail.html', {'board':post, 'check' : check})
+
+def deleteCommentTb(request):
+    boardId = request.POST['boardId']
+    post = TeamBoard.objects.get(id=boardId)
+
+    commentId = request.POST['commentId']
+    comment = CommentTb.objects.get(id=commentId)
+    comment.delete()
+
+    nick = request.user.profile.userName
+    # 글쓴이와 들어온 사람이 같은지 확인(삭제/수정)
+    
+    bw = post.writer
+    if bw == nick:
+        check = True
+    else :
+        check = False
+    return render(request, 'teamdetail.html', {'board':post, 'check' : check})
+
+def changeCommentTb(request):
+
+    if request.method == "GET":
+        boardId = request.GET['boardId']
+        post = TeamBoard.objects.get(id=boardId)
+        commentId = int(request.GET['commentId'])
+
+        nick = request.user.profile.userName
+        # 글쓴이와 들어온 사람이 같은지 확인(삭제/수정)
+    
+        bw = post.writer
+        if bw == nick:
+            check = True
+        else :
+            check = False
+        return render(request, 'changeCommentTb.html', {'board':post, 'check' : check, 'commentId' : commentId})
+    
+    else:
+        boardId = request.POST['boardId']
+        post = TeamBoard.objects.get(id=boardId)
+        commentId = request.POST['commentId']
+        comment = CommentTb.objects.get(id=commentId)
+        comment.text = request.POST['content']
+        comment.save()
+
+        nick = request.user.profile.userName
+        # 글쓴이와 들어온 사람이 같은지 확인(삭제/수정)
+    
+        bw = post.writer
+        if bw == nick:
+            check = True
+        else :
+            check = False
+        return render(request, 'teamdetail.html', {'board':post, 'check' : check})

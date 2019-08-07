@@ -1,0 +1,313 @@
+/* Setting fade transition and default settings */
+
+@import url('https://fonts.googleapis.com/css?family=Black+Han+Sans:400');
+@import url('https://fonts.googleapis.com/css?family=Black+Han+Sans&display=swap&subset=korean');
+.dropdown {
+    float: left;
+    overflow: hidden;
+}
+
+.dropdown .dropbtn {
+    cursor: pointer;
+    font-size: 16px;
+    border: none;
+    outline: none;
+    color: rgba(85, 17, 85, 0.829);
+    padding: 14px 16px;
+    background-color: inherit;
+    font-family: inherit;
+    margin: 0;
+    font-weight: bold;
+}
+
+.navbar a:hover,
+.dropdown:hover .dropbtn,
+.dropbtn:focus {
+    background-color: white;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: white;
+    min-width: 400px;
+    box-shadow: 0px 8px 16px 0px;
+    z-index: 1;
+}
+
+.dropdown-content a {
+    font-family: 'UhBeeSeulvely';
+    float: right;
+    color: black;
+    height: 80px;
+    width: 550px;
+    text-decoration: none;
+    display: block;
+    margin-left: 30px;
+    font-size: 20px;
+}
+
+.dropdown-content a:hover {
+    background-color: white;
+    color: rgba(0, 0, 0, 0.815);
+    text-decoration-color: rgb(248, 211, 4);
+    text-decoration-style: wavy;
+    text-decoration-line: line-through;
+    line-height: 15px;
+}
+
+.show {
+    display: block;
+}
+
+body {
+    transition: background-color .7s ease;
+    position: relative;
+    color: black;
+}
+
+body {
+    cursor: url('some-cursor.ico'), default;
+}
+
+
+/* panel styles */
+
+.panel {
+    /* min height incase content is higher than window height */
+    min-height: 500px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    font-family: 'UhBeeSeulvely';
+    /* outline: 10px solid hotpink; */
+    /* turn above on to see the edge of panels */
+}
+
+a {
+    text-decoration: none;
+}
+
+.nav {
+    position: fixed;
+    top: 3rem;
+    z-index: 100;
+    width: 300px;
+}
+
+@media only screen and (max-width:576px) {
+    .nav {
+        top: 1.5rem;
+    }
+}
+
+.nav--left {
+    left: 3rem;
+}
+
+@media only screen and (max-width:576px) {
+    .nav--left {
+        left: 1.5rem;
+    }
+}
+
+.nav--right {
+    right: 3rem;
+}
+
+@media only screen and (max-width:576px) {
+    .nav--right {
+        right: 1.5rem;
+    }
+}
+
+.nav h1 {
+    font-family: 'UhBeeJJIBBABBA';
+    font-weight: 300;
+    font-size: 1rem;
+    color: black;
+    margin: 0;
+}
+
+@media only screen and (max-width:576px) {
+    .nav h1 {
+        font-size: .875rem;
+    }
+}
+
+.nav a {
+    display: flex;
+    align-items: center;
+    font-size: calc(.5rem + .35vw);
+    font-size: 20px;
+}
+
+.nav a {
+    position: relative;
+    font-family: 'UhBeeJJIBBABBA';
+}
+
+\
+/* colours */
+
+.color-violet1 {
+    background-color: white;
+}
+
+.color-violet2 {
+    background-color: white;
+}
+
+.color-violet3 {
+    background-color: white
+}
+
+.color-violet4 {
+    background-color: white;
+}
+
+.js-scroller {
+    touch-action: none;
+    margin-top: 200px;
+}
+
+@keyframes scroller {
+    0% {
+        transform-origin: top left;
+        transform: scaleY(0);
+        animation-timing-function: cubic-bezier(.48, .02, 100, .99);
+    }
+    30% {
+        transform-origin: top left;
+        transform: scale(1);
+    }
+    41% {
+        transform-origin: bottom left;
+        transform: scale(1);
+        animation-timing-function: cubic-bezier(.48, .02, 0, .99);
+    }
+    to {
+        transform-origin: bottom left;
+        transform: scaleY(0);
+    }
+}
+
+.scroll-hint {
+    position: fixed;
+    top: 630px;
+    left: calc(50% - 1px);
+    height: 10px;
+    color: black;
+    border-left: 1px solid black;
+    white-space: nowrap;
+    line-height: 70px;
+    z-index: 10;
+}
+
+.scroll-hint-m {
+    display: block;
+    height: 25px;
+    line-height: 1px;
+}
+
+.scroll-hint-m .scroll-hint__label {
+    transform: translate(-50%, -25px);
+    padding-left: 0;
+}
+
+.scroll-hint:before {
+    content: "collabortaion";
+    position: absolute;
+    left: -1px;
+    top: 0;
+    display: block;
+    width: 1px;
+    height: 100%;
+    background-color: #fff;
+    transform: scaleY(0) translateZ(0);
+    animation: scroller 3s infinite;
+}
+
+.scroll-hint__label {
+    font-size: 12px;
+    padding-left: 20px;
+    font-weight: 700;
+}
+
+inner {
+    border: 0;
+    padding: 0;
+}
+
+textarea {
+    overflow: auto;
+    vertical-align: top;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+
+/* Common style */
+
+@font-face {
+    font-family: 'BMDOHYEON';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_one@1.0/BMDOHYEON.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'KCC-eunyoung';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_one@1.0/KCC-eunyoung-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'KOMACON';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_seven@1.2/KOMACON.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'BMHANNAAir';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_four@1.0/BMHANNAAir.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'OTEnjoystoriesBA';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/OTEnjoystoriesBA.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'OTEnjoystoriesBA';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/OTEnjoystoriesBA.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'UhBeeJJIBBABBA';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_five@.2.0/UhBeeJJIBBABBA.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'UhBeeSeulvely';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_five@.2.0/UhBeeSeulvely.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.panel>h1 {
+    font-family: 'Black Han Sans', sans-serif;
+}

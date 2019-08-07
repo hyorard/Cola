@@ -1,3 +1,4 @@
+{% extends 'base.html' %} {% load static %} {% block content %}
 <!DOCTYPE html>
 
 <html lang='ko'>
@@ -26,6 +27,7 @@
 
 
     <style>
+        @import url("main.css");
         .modal {
             display: none;
             /* Hidden by default */
@@ -495,6 +497,7 @@
             filter: drop-shadow(0px 3px 3px rgba(0, 0, 0, .5));
         }
     </style>
+    <link rel="stylesheet" type="text/css" href="main.css" charset="utf-8" />
 
 </head>
 
@@ -503,7 +506,7 @@
 
 <body>
 
-    {% extends 'base.html' %} {% block content %}
+
 
     <button id="myBtn">팀 선택</button>
 

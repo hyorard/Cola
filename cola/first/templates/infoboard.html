@@ -18,79 +18,6 @@
 
 
     <style>
-        header {
-            height: 80px;
-            top: 30px;
-            left: 20px;
-            font-family: 'Great Vibes', cursive;
-            margin-top: 30px;
-            border-bottom: 1px solid rgb(160, 148, 148);
-        }
-        
-        header>a {
-            font-size: 50px;
-        }
-        
-        header>a:hover {
-            background-color: white;
-            text-decoration: none;
-        }
-        
-        .snip1198 {
-            position: absolute;
-            margin-top: -25px;
-            margin-left: 1050px;
-            font-family: 'Sunflower', sans-serif;
-            text-align: center;
-            text-transform: uppercase;
-            font-weight: 500;
-            letter-spacing: 1px;
-        }
-        
-        .snip1198>li {
-            display: inline-block;
-            list-style: outside none none;
-            margin: 0.4em 0.8em;
-            padding: 0;
-        }
-        
-        .snip1198>a {
-            color: black;
-        }
-        
-        span {
-            color: red;
-        }
-        
-        span:hover {
-            color: rgba(255, 0, 0, 0.411);
-        }
-        
-        .boration {
-            color: black;
-        }
-        
-        .boration:hover {
-            color: rgba(0, 0, 0, 0.411);
-        }
-        
-        .w3-bar {
-            font-family: Arial, Helvetica, sans-serif;
-            font-size: 18px;
-            text-align: left;
-            letter-spacing: 0em;
-            margin-left: 30px;
-            line-height: 1em;
-            text-transform: none;
-            font-family: brandon-grotesque;
-            font-weight: 700;
-            font-style: normal;
-            font-size: 10.2px;
-            letter-spacing: .25em;
-            line-height: 2.2em;
-            /*text-transform: uppercase;*/
-        }
-        
         .w3-bar-item- {
             border-bottom: 5px solid red;
         }
@@ -112,7 +39,7 @@
             overflow: hidden;
             width: auto;
             /*height: 350px;*/
-            margin: 0px auto;
+            margin: 50px auto;
             background: black;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -135,110 +62,857 @@
         /*버튼 임시*/
         
         @import url(https://fonts.googleapis.com/css?family=Oxygen:400,300,700);
+        @font-face {
+            font-family: 'BMDOHYEON';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_one@1.0/BMDOHYEON.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
+        
+        @font-face {
+            font-family: 'KCC-eunyoung';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_one@1.0/KCC-eunyoung-Regular.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
+        
+        @font-face {
+            font-family: 'KOMACON';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_seven@1.2/KOMACON.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
+        
+        @font-face {
+            font-family: 'BMHANNAAir';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_four@1.0/BMHANNAAir.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
+        
+        @font-face {
+            font-family: 'OTEnjoystoriesBA';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/OTEnjoystoriesBA.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
+        
+        @font-face {
+            font-family: 'OTEnjoystoriesBA';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/OTEnjoystoriesBA.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
+        
+        @font-face {
+            font-family: 'UhBeeJJIBBABBA';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_five@.2.0/UhBeeJJIBBABBA.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
+        
+        @font-face {
+            font-family: 'UhBeeSeulvely';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_five@.2.0/UhBeeSeulvely.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
+        
+        .dropdown {
+            float: left;
+            overflow: hidden;
+        }
+        
+        .dropdown .dropbtn {
+            cursor: pointer;
+            font-size: 16px;
+            border: none;
+            outline: none;
+            color: rgba(85, 17, 85, 0.829);
+            padding: 14px 16px;
+            background-color: inherit;
+            font-family: inherit;
+            margin: 0;
+            font-weight: bold;
+        }
+        
+        .navbar a:hover,
+        .dropdown:hover .dropbtn,
+        .dropbtn:focus {
+            background-color: white;
+        }
+        
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: white;
+            min-width: 400px;
+            box-shadow: 0px 8px 16px 0px;
+            z-index: 1;
+        }
+        
+        .dropdown-content a {
+            font-family: 'UhBeeSeulvely';
+            float: right;
+            color: black;
+            height: 80px;
+            width: 550px;
+            text-decoration: none;
+            display: block;
+            margin-left: 30px;
+            font-size: 20px;
+        }
+        
+        .dropdown-content a:hover {
+            background-color: white;
+            color: rgba(0, 0, 0, 0.815);
+            text-decoration-color: rgb(248, 211, 4);
+            text-decoration-style: wavy;
+            text-decoration-line: line-through;
+            line-height: 15px;
+        }
+        
+        .show {
+            display: block;
+        }
+        
+        body {
+            transition: background-color .7s ease;
+            position: relative;
+            color: black;
+        }
+        
+        body {
+            cursor: url('some-cursor.ico'), default;
+        }
+        /* panel styles */
+        
+        .panel {
+            /* min height incase content is higher than window height */
+            min-height: 500px;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            font-family: 'UhBeeSeulvely';
+            /* outline: 10px solid hotpink; */
+            /* turn above on to see the edge of panels */
+        }
+        
+        a {
+            text-decoration: none;
+        }
+        
+        .nav {
+            position: fixed;
+            top: 3rem;
+            z-index: 100;
+            width: 300px;
+        }
+        
+        @media only screen and (max-width:576px) {
+            .nav {
+                top: 1.5rem;
+            }
+        }
+        
+        .nav--left {
+            left: 3rem;
+        }
+        
+        @media only screen and (max-width:576px) {
+            .nav--left {
+                left: 1.5rem;
+            }
+        }
+        
+        .nav--right {
+            right: 3rem;
+        }
+        
+        @media only screen and (max-width:576px) {
+            .nav--right {
+                right: 1.5rem;
+            }
+        }
+        
+        .nav h1 {
+            font-family: 'UhBeeJJIBBABBA';
+            font-weight: 300;
+            font-size: 1rem;
+            color: black;
+            margin: 0;
+        }
+        
+        @media only screen and (max-width:576px) {
+            .nav h1 {
+                font-size: .875rem;
+            }
+        }
+        
+        .nav a {
+            display: flex;
+            align-items: center;
+            font-size: calc(.5rem + .35vw);
+            font-size: 20px;
+        }
+        
+        .nav a {
+            position: relative;
+            font-family: 'UhBeeJJIBBABBA';
+        }
+        /* colours */
+        
+        .color-violet1 {
+            background-color: white;
+        }
+        
+        .color-violet2 {
+            background-color: white;
+        }
+        
+        .color-violet3 {
+            background-color: white
+        }
+        
+        .color-violet4 {
+            background-color: white;
+        }
+        
+        .js-scroller {
+            touch-action: none;
+            margin-top: 200px;
+        }
+        
+        @keyframes scroller {
+            0% {
+                transform-origin: top left;
+                transform: scaleY(0);
+                animation-timing-function: cubic-bezier(.48, .02, 100, .99);
+            }
+            30% {
+                transform-origin: top left;
+                transform: scale(1);
+            }
+            41% {
+                transform-origin: bottom left;
+                transform: scale(1);
+                animation-timing-function: cubic-bezier(.48, .02, 0, .99);
+            }
+            to {
+                transform-origin: bottom left;
+                transform: scaleY(0);
+            }
+        }
+        
+        .scroll-hint {
+            position: fixed;
+            top: 630px;
+            left: calc(50% - 1px);
+            height: 10px;
+            color: black;
+            border-left: 1px solid black;
+            white-space: nowrap;
+            line-height: 70px;
+            z-index: 10;
+        }
+        
+        .scroll-hint-m {
+            display: block;
+            height: 25px;
+            line-height: 1px;
+        }
+        
+        .scroll-hint-m .scroll-hint__label {
+            transform: translate(-50%, -25px);
+            padding-left: 0;
+        }
+        
+        .scroll-hint:before {
+            content: "collabortaion";
+            position: absolute;
+            left: -1px;
+            top: 0;
+            display: block;
+            width: 1px;
+            height: 100%;
+            background-color: #fff;
+            transform: scaleY(0) translateZ(0);
+            animation: scroller 3s infinite;
+        }
+        
+        .scroll-hint__label {
+            font-size: 12px;
+            padding-left: 20px;
+            font-weight: 700;
+        }
+        
+        inner {
+            border: 0;
+            padding: 0;
+        }
+        
+        textarea {
+            overflow: auto;
+            vertical-align: top;
+        }
+        
+        table {
+            border-collapse: collapse;
+            border-spacing: 0;
+        }
+        /* Common style */
+        
+        .grid a {
+            margin-left: 300px;
+            max-width: 350px;
+            width: 100%;
+            color: #333;
+        }
+        
+        .grid figure {
+            position: relative;
+            margin-left: 300px;
+            width: 300px;
+            overflow: hidden;
+            margin: 5px;
+            background: #333;
+        }
+        
+        .grid figure img {
+            position: relative;
+            display: block;
+            width: 100%;
+            opacity: 0.7;
+            -webkit-transition: opacity 0.3s;
+            transition: opacity 0.3s;
+        }
+        
+        .grid figcaption {
+            position: absolute;
+            top: 0;
+            z-index: 11;
+            padding: 10px;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+        }
+        
+        .grid figcaption h2 {
+            margin: 0 0 20px 0;
+            color: rgba(85, 17, 85, 0.829);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 300;
+            font-size: 130%;
+            -webkit-transition: -webkit-transform 0.3s;
+            transition: transform 0.3s;
+        }
+        
+        .grid figcaption p {
+            padding: 0 20px;
+            color: rgba(85, 17, 85, 0.829);
+            font-weight: 300;
+            -webkit-transition: opacity 0.3s, -webkit-transform 0.3s;
+            transition: opacity 0.3s, transform 0.3s;
+        }
+        
+        .grid figcaption h2,
+        .grid figcaption p {
+            -webkit-transform: translateY(50px);
+            transform: translateY(50px);
+        }
+        
+        .grid figure button {
+            position: absolute;
+            padding: 4px 20px;
+            border: none;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: bold;
+            -webkit-transition: opacity 0.3s, -webkit-transform 0.3s;
+            transition: opacity 0.3s, transform 0.3s;
+        }
+        
+        .grid figcaption,
+        .grid figcaption h2,
+        .grid figcaption p,
+        .grid figure button {
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+        }
+        /* Style for SVG */
+        
+        .grid svg {
+            position: absolute;
+            top: -1px;
+            /* fixes rendering issue in FF */
+            z-index: 10;
+            width: 100%;
+            height: 100%;
+        }
+        
+        .grid svg path {
+            fill: #fff;
+        }
+        /* Hover effects */
+        
+        .grid a:hover figure img {
+            opacity: 1;
+        }
+        
+        .grid a:hover figcaption h2,
+        .grid a:hover figcaption p {
+            -webkit-transform: translateY(0);
+            transform: translateY(0);
+        }
+        
+        .grid a:hover figcaption p {
+            opacity: 1;
+        }
+        /* Individual styles */
+        /* Media Queries */
+        /* Let's redefine the width of each anchor and the margins */
+        
+        @media screen and (max-width: 58em) {
+            .grid a {
+                width: 33.333%;
+            }
+            .grid a:nth-child(odd) {
+                margin: 0;
+            }
+            .grid a:nth-child(3n-1) {
+                margin: 30px 0 -30px 0;
+            }
+        }
+        
+        @media screen and (max-width: 45em) {
+            .grid {
+                max-width: 500px;
+            }
+            .grid a {
+                width: 50%;
+            }
+            .grid a:nth-child(3n-1) {
+                margin: 0;
+            }
+            .grid a:nth-child(even) {
+                margin: 30px 0 -30px 0;
+            }
+            .grid figcaption h2 {
+                margin-bottom: 0px;
+                -webkit-transform: translateY(30px);
+                transform: translateY(30px);
+            }
+            .grid figcaption p {
+                margin: 0;
+                padding: 0 10px;
+            }
+        }
+        
+        .dropdown {
+            float: left;
+            overflow: hidden;
+        }
+        
+        .dropdown .dropbtn {
+            cursor: pointer;
+            font-size: 16px;
+            border: none;
+            outline: none;
+            color: rgba(85, 17, 85, 0.829);
+            padding: 14px 16px;
+            background-color: inherit;
+            font-family: inherit;
+            margin: 0;
+            font-weight: bold;
+        }
+        
+        .navbar a:hover,
+        .dropdown:hover .dropbtn,
+        .dropbtn:focus {
+            background-color: white;
+        }
+        
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: white;
+            min-width: 400px;
+            box-shadow: 0px 8px 16px 0px;
+            z-index: 1;
+        }
+        
+        .dropdown-content a {
+            font-family: 'UhBeeSeulvely';
+            float: right;
+            color: black;
+            height: 80px;
+            width: 550px;
+            text-decoration: none;
+            display: block;
+            margin-left: 30px;
+            font-size: 20px;
+        }
+        
+        .dropdown-content a:hover {
+            background-color: white;
+            color: rgba(0, 0, 0, 0.815);
+            text-decoration-color: rgb(248, 211, 4);
+            text-decoration-style: wavy;
+            text-decoration-line: line-through;
+            line-height: 15px;
+        }
+        
+        .show {
+            display: block;
+        }
+        
+        body {
+            transition: background-color .7s ease;
+            position: relative;
+            color: black;
+        }
+        
+        body {
+            cursor: url('some-cursor.ico'), default;
+        }
+        /* panel styles */
+        
+        .panel {
+            /* min height incase content is higher than window height */
+            min-height: 500px;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            font-family: 'UhBeeSeulvely';
+            /* outline: 10px solid hotpink; */
+            /* turn above on to see the edge of panels */
+        }
+        
+        a {
+            text-decoration: none;
+        }
+        
+        .nav {
+            position: fixed;
+            top: 3rem;
+            z-index: 100;
+            width: 300px;
+        }
+        
+        @media only screen and (max-width:576px) {
+            .nav {
+                top: 1.5rem;
+            }
+        }
+        
+        .nav--left {
+            left: 3rem;
+        }
+        
+        @media only screen and (max-width:576px) {
+            .nav--left {
+                left: 1.5rem;
+            }
+        }
+        
+        .nav--right {
+            right: 3rem;
+        }
+        
+        @media only screen and (max-width:576px) {
+            .nav--right {
+                right: 1.5rem;
+            }
+        }
+        
+        .nav h1 {
+            font-family: 'UhBeeJJIBBABBA';
+            font-weight: 300;
+            font-size: 1rem;
+            color: black;
+            margin: 0;
+        }
+        
+        @media only screen and (max-width:576px) {
+            .nav h1 {
+                font-size: .875rem;
+            }
+        }
+        
+        .nav a {
+            display: flex;
+            align-items: center;
+            font-size: calc(.5rem + .35vw);
+            font-size: 20px;
+        }
+        
+        .nav a {
+            position: relative;
+            font-family: 'UhBeeJJIBBABBA';
+        }
+        /* colours */
+        
+        .color-violet1 {
+            background-color: white;
+        }
+        
+        .color-violet2 {
+            background-color: white;
+        }
+        
+        .color-violet3 {
+            background-color: white
+        }
+        
+        .color-violet4 {
+            background-color: white;
+        }
+        
+        .js-scroller {
+            touch-action: none;
+            margin-top: 200px;
+        }
+        
+        @keyframes scroller {
+            0% {
+                transform-origin: top left;
+                transform: scaleY(0);
+                animation-timing-function: cubic-bezier(.48, .02, 100, .99);
+            }
+            30% {
+                transform-origin: top left;
+                transform: scale(1);
+            }
+            41% {
+                transform-origin: bottom left;
+                transform: scale(1);
+                animation-timing-function: cubic-bezier(.48, .02, 0, .99);
+            }
+            to {
+                transform-origin: bottom left;
+                transform: scaleY(0);
+            }
+        }
+        
+        .scroll-hint {
+            position: fixed;
+            top: 630px;
+            left: calc(50% - 1px);
+            height: 10px;
+            color: black;
+            border-left: 1px solid black;
+            white-space: nowrap;
+            line-height: 70px;
+            z-index: 10;
+        }
+        
+        .scroll-hint-m {
+            display: block;
+            height: 25px;
+            line-height: 1px;
+        }
+        
+        .scroll-hint-m .scroll-hint__label {
+            transform: translate(-50%, -25px);
+            padding-left: 0;
+        }
+        
+        .scroll-hint:before {
+            content: "collabortaion";
+            position: absolute;
+            left: -1px;
+            top: 0;
+            display: block;
+            width: 1px;
+            height: 100%;
+            background-color: #fff;
+            transform: scaleY(0) translateZ(0);
+            animation: scroller 3s infinite;
+        }
+        
+        .scroll-hint__label {
+            font-size: 12px;
+            padding-left: 20px;
+            font-weight: 700;
+        }
+        
+        inner {
+            border: 0;
+            padding: 0;
+        }
     </style>
 </head>
 
 <body>
-    <header>
-        <a style="font-family: 'Great Vibes', cursive;" href="{% url 'main' %}">
-            <STRONG>&nbsp;<span>Colla</span><span class="boration">boration</span></STRONG>
-        </a>
 
-
-
-
-
-    </header>
-
-    <section>
-
-        <div class="w3-bar" style="font-size:18px;">
-            <a href="{% url 'infoboard' %}" class="w3-bar-item- " style="color:black;">RESEARCH</a> &nbsp;
-
+    <div id="slider" class="slider js-slider" style="height:50px;">
+        <div class="panel" data-color="violet1">
+            <nav class="nav nav--left">
+                <a href="/">
+                    <h1 style=" font-family : 'UhBeeJJIBBABBA'; font-size : 32px;">콜<span style="color:rgba(85, 17, 85, 0.829); ">라보</span>레이션</h1>
+                </a>
+            </nav>
+            <nav class="nav nav--right nav--toHide">
+                <div class="dropdown">
+                    <button class="dropbtn" onclick="myFunction()" style="margin-left:200px;">MENU
+                                        </button>
+                    <div class="dropdown-content" id="myDropdown">
+                        <a href="{% url 'mypage' %}">마이 페이지</a>
+                        <a href="{% url 'teamproject' %}">팀 페이지</a>
+                        <a href="{% url 'createTeam' %}">팀 생성</a>
+                        <a href="{% url 'infoboard' %}">게시판</a> {% if not request.user.is_authenticated %}
+                        <a href="{% url 'login' %}">로그인</a>
+                        <a href="{% url 'signup' %}">회원가입</a> {% elif request.user.is_authenticated %}
+                        <a href="{% url 'logout' %}">로그아웃</a> {% endif %}
+                    </div>
+                </div>
+            </nav>
         </div>
-        <br>
-        <div id="div_board">
-
-            <div class="container" style="float:left; ">
-                <table class="table" style="font-family: Arial,Helvetica,sans-serif; font-size: 13px;">
-                    <thead>
-                        <tr style="background-color: none;">
-                            <th>NO.</th>
-                            <th>TITLE</th>
-                            <th>NAME</th>
-                            <th>DATE</th>
-                            <th>COMMENTS</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <div>
-                            {% for board in object_list %}
-                            <a></a>
-                        </div>
-                        <tr>
-                            <td></td>
-                            <td><a href="{% url 'detail' board.id%}">{{board.title}} </a></td>
-                            <td>{{ board.writer }}</td>
-                            <td><a>{{board.pub_date}}</a></td>
-                            <td><a href="{% url 'detail' board.id %}">댓글( {{ board.comments.count }} )</a></td>
-                        </tr>
-                        {% endfor %}
-                    </tbody>
-                </table>
-
-                <hr/>
-                <a class="btn btn-default pull-right" href="{% url 'new' %}" style="font-family: Arial,Helvetica,sans-serif;">글쓰기</a>
+    </div>
 
 
-                <div class="text-center" style="text-align: center; letter-spacing: 2em; margin-left:500px;font-family: Arial,Helvetica,sans-serif;">
-                    <ul class="pagination">
-                        <li class="page-item">
-                            <!--previous page-->
-                            {% if object_list.has_previous %}
-                            <li class="previous">
-                                <a href="?page={{ object_list.previous_page_number }}">
-                                    <span aria-hidden="true">‹</span></a>
-                                {% else %}
-                                <li class="previous disabled"><a>‹</a> {% endif %}
-                                </li>
-                                {% for page in object_list.paginator.page_range %} {% if page == object_list.number %}
-                                <li class="pg active"><a class="page_number" href="?page={{page}}"><STRONG>{{page}}</STRONG></a> {% else %}
-                                    <li class="pg"><a class="page_number" href="?page={{page}}">{{page}}</a> {% endif %} {% endfor %}
-                                        <li class="page-item">
-                                            <!-- next Page -->
-                                            {% if object_list.has_next %}
-                                            <li class="previous"> <a href="?page={{ object_list.next_page_number }}">›</a></li>
-                                            {% else %}
-                                            <li class="next disabled"><a>›</a> {% endif %}
-                                            </li>
+    <br>
+    <div id="div_board">
+
+        <div class="container" style="float:center;">
+            <table class="table" style="font-family: Arial,Helvetica,sans-serif; font-size: 13px; left:300px;">
+                <thead>
+                    <tr style="background-color: none;">
+                        <th>TITLE</th>
+                        <th>NAME</th>
+                        <th>DATE</th>
+                        <th>COMMENTS</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <div>
+                        {% for board in object_list %}
+                        <a></a>
+                    </div>
+                    <tr>
+                        <td></td>
+                        <td><a href="{% url 'detail' board.id%}">{{board.title}} </a></td>
+                        <td>{{ board.writer }}</td>
+                        <td><a>{{board.pub_date}}</a></td>
+                        <td><a href="{% url 'detail' board.id %}">댓글( {{ board.comments.count }} )</a></td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+
+            <hr/>
+            <a class="btn btn-default pull-right" href="{% url 'new' %}" style="font-family: Arial,Helvetica,sans-serif;">글쓰기</a>
+
+
+            <div class="text-center" style="text-align: center; letter-spacing: 2em; margin-left:500px;font-family: Arial,Helvetica,sans-serif;">
+                <ul class="pagination">
+                    <li class="page-item">
+                        <!--previous page-->
+                        {% if object_list.has_previous %}
+                        <li class="previous">
+                            <a href="?page={{ object_list.previous_page_number }}">
+                                <span aria-hidden="true">‹</span></a>
+                            {% else %}
+                            <li class="previous disabled"><a>‹</a> {% endif %}
+                            </li>
+                            {% for page in object_list.paginator.page_range %} {% if page == object_list.number %}
+                            <li class="pg active"><a class="page_number" href="?page={{page}}"><STRONG>{{page}}</STRONG></a> {% else %}
+                                <li class="pg"><a class="page_number" href="?page={{page}}">{{page}}</a> {% endif %} {% endfor %}
+                                    <li class="page-item">
+                                        <!-- next Page -->
+                                        {% if object_list.has_next %}
+                                        <li class="previous"> <a href="?page={{ object_list.next_page_number }}">›</a></li>
+                                        {% else %}
+                                        <li class="next disabled"><a>›</a> {% endif %}
                                         </li>
                                     </li>
                                 </li>
                             </li>
                         </li>
-                    </ul>
-                </div>
-                <div style="font-family: Arial,Helvetica,sans-serif; text-align:right;">
-                    <p>
+                    </li>
+                </ul>
+            </div>
+            <div style="font-family: Arial,Helvetica,sans-serif; text-align:right;">
+                <p>
                     <form method='POST' action="{% url 'searchPost' %}">
                         {% csrf_token %}
 
                         <select name="search_key">
-                            <option value="subject">제목</option>
+                            <option value="subject" activate>제목</option>
                             <option value="content">내용</option>
                             <option value="writer_name">작성자</option>
                         </select>
 
                         <input id="search" name="search" placeholder="검색어를 입력하세요.." type="text">
-                        <button type="submit" class="btn btn-outline-dark" style="width:40px;">search</button>
+                        <button type="submit" class="btn btn-outline-dark" style="width:40px;" value="search">search</button>
                     </form>
-                    </p>
-                </div>
-
-
+                </p>
             </div>
 
+
+        </div>
+
 </body>
+<script src="js/1.2fc356e6.chunk.js "></script>
+<script src="js/app.935c0693.js "></script>
+<script src="https://tympanus.net/Tutorials/ShapeHoverEffectSVG/js/snap.svg-min.js "></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js "></script>
+<script type="text/javascript">
+    window.onclick = function(e) {
+        if (!e.target.matches('.dropbtn')) {
+            var myDropdown = document.getElementById("myDropdown");
+            if (myDropdown.classList.contains('show')) {
+                myDropdown.classList.remove('show');
+            }
+        }
+    }
+
+    function myFunction() {
+        document.getElementById("myDropdown").classList.toggle("show");
+    }
+
+    function extendDefaults(source, properties) {
+        var property;
+        for (property in properties) {
+            if (properties.hasOwnProperty(property)) {
+                source[property] = properties[property];
+            }
+        }
+        return source;
+    }
+
+
+    $(window).scroll(function() {
+
+        // selectors
+        var $window = $(window),
+            $body = $('body'),
+            $panel = $('.panel');
+
+        // Change 33% earlier than scroll position so colour is there when you arrive.
+        var scroll = $window.scrollTop() + ($window.height() / 3);
+
+        $panel.each(function() {
+            var $this = $(this);
+
+            // if position is within range of this panel.
+            // So position of (position of top of div <= scroll position) && (position of bottom of div > scroll position).
+            // Remember we set the scroll to 33% earlier in scroll var.
+            if ($this.position().top <= scroll && $this.position().top + $this.height() > scroll) {
+
+                // Remove all classes on body with color-
+                $body.removeClass(function(index, css) {
+                    return (css.match(/(^|\s)color-\S+/g) || []).join(' ');
+                });
+
+                // Add class of currently active div
+                $body.addClass('color-' + $(this).data('color'));
+            }
+        });
+
+    }).scroll();
+</script>
 
 
 </html>

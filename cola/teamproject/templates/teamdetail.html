@@ -225,7 +225,7 @@
 
                                     <tr>
                                         <td align=center bgcolor=white width=300px style="background-color:rgba(255, 102, 102, 0.295); ">첨부파일</td>
-                                        <td bgcolor=white width=40%>{% if filename %}<a href="{{ board.File.url }}" download>{{ filename }}</a>{% endif %}</td>
+                                        <td bgcolor=white width=40%><a href="{{ board.File.url }}" download>{{ filename }}</a> </td>
                                         <td align=center bgcolor=white width=300px style="background-color:rgba(255, 102, 102, 0.295); ">VIEWS</td>
                                         <td bgcolor=white width=40%>123</td>
                                     </tr>
@@ -243,19 +243,19 @@
     <div class="comment-container">
 
         <!--카드 댓글-->
-        {% for comment in board.comments.all %}
+        {% for comment in board.commentTbs.all %}
         <div class="card w-75">
             <div class="card-body">
                 <h5 class="card-title"><strong>{{ comment.writer.profile.userName }}</strong> {{ comment.created_date }} </h5>
                 <p class="card-text">{{ comment.text|linebreaks }}</p>
                 {% if request.user == comment.writer %}
-                <form method="POST" action="{% url 'deleteComment' %}">
+                <form method="POST" action="{% url 'deleteCommentTb' %}">
                     {% csrf_token %}
                     <input type="hidden" name="boardId" value="{{board.id}}">
                     <input type="hidden" name="commentId" value="{{comment.id}}">
                     <input class="btn btn-outline-secondary" style=" float:right; display:inline;" type="submit" value="삭제">
                 </form>
-                <form method="GET" action="{% url 'changeComment' %}">
+                <form method="GET" action="{% url 'changeCommentTb' %}">
                     {% csrf_token %}
                     <input type="hidden" name="boardId" value="{{board.id}}">
                     <input type="hidden" name="commentId" value="{{comment.id}}">
@@ -270,7 +270,7 @@
 
         <hr>
         <div class="new comment " style=" font-family: 'Do Hyeon', sans-serif; position:absolute;">
-            <form method="POST" action="{% url 'addComment' %}">
+            <form method="POST" action="{% url 'addCommentTb' %}">
                 {% csrf_token %}
                 <textarea name="content" cols="120" rows="1" placeholder="댓글을 작성하세요.. " required></textarea>
                 <input type="hidden" name="boardId" value="{{board.id}}">

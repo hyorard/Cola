@@ -1,29 +1,51 @@
+<head>
+    <link rel="stylesheet" href="main.css">
+</head>
+
 <body>
     <header>
-        <a style="font-family: 'Great Vibes', cursive;">
-            <a href="{% url 'main' %}"><STRONG>&nbsp;<span>Colla</span><span class="boration">boration</span></STRONG>
-        </a>
-            <ul class="snip1198">
-                {% if not request.user.is_authenticated %}
-                <li class="enter"><a href="{% url 'login' %}">로그인</a>
-                    <a href="{% url 'signup' %}">회원가입</a></li>{% elif request.user.is_authenticated %}
-                <!--로그인 되어 있을 때 로그아웃 버튼 안보임!-->
-                <a href="{% url 'logout' %}">로그아웃</a> {% endif %}
-            </ul>
+        <div id="slider" class="slider js-slider" style="height:50px;">
+            <div class="panel" data-color="violet1">
+                <nav class="nav nav--left">
+                    <a href="/">
+                        <h1 style=" font-family : 'UhBeeJJIBBABBA'; font-size : 32px;">콜<span style="color:rgba(85, 17, 85, 0.829); font-family:UhBeeJJIBBABBA;">라보</span>레이션</h1>
+                    </a>
+                </nav>
+                <div class="nav nav--right">
+                    {% if not request.user.is_authenticated %}
+                    <a href="{% url 'login' %}">로그인</a>
+                    <a href="{% url 'signup' %}">회원가입</a> {% elif request.user.is_authenticated %}
+                    <a href="{% url 'logout' %}">로그아웃</a> {% endif %}
+                </div>
+
 
     </header>
 
     <section>
-        <div id="div_menu">
-            <a href="{% url 'mypage' %}">my Page</a><br>
-            <a href="{% url 'teamproject' %}">Team Page</a><br>
-            <a href="{% url 'createTeam' %}">Team create</a><br>
-            <a href="{% url 'board' %}">Board</a><br>
-        </div>
+        <nav class="nav nav--right nav--toHide">
+            <div class="dropdown">
+                <button class="dropbtn" onclick="myFunction()" style="margin-left:200px;">MENU
+                                    </button>
+
+
+                <div class="dropdown-content" id="myDropdown">
+                    <a href="{% url 'mypage' %}">마이 페이지</a>
+                    <a href="{% url 'teamproject' %}">팀 페이지</a>
+                    <a href="{% url 'createTeam' %}">팀 생성</a>
+                    <a href="{% url 'board' %">게시판</a>
+
+                    <a href="#">Q&A</a>
+                    <a href="#">ABOUT US</a>
+                    <a href="#">SEARCH TOPIC</a>
+                </div>
+            </div>
+
+        </nav>
 
     </section>
 
     <div class="container">
         {% block content %} {% endblock %}
     </div>
+
 </body>

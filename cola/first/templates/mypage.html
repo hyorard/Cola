@@ -1,279 +1,1070 @@
 <!DOCTYPE html>{% load socialaccount %} {% providers_media_js %}
 
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width">
-    <title>my page</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-    <link href="https://fonts.googleapis.com/css?family=Do+Hyeon|Great+Vibes|Pacifico&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Song+Myung&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" style="width:50px; float: left;">
-    <link href="https://fonts.googleapis.com/css?family=Sunflower:300&display=swap" rel="stylesheet">
-
-
+    <meta charset="UTF-8">
+    <title>콜라보레이션 : 마이페이지</title>
+    <link href="https://fonts.googleapis.com/css?family=Lacquer&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Permanent+Marker&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Saira+Stencil+One&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Black+Han+Sans&display=swap&subset=korean" rel="stylesheet">
 
     <style>
-        header {
-            height: 80px;
-            top: 30px;
-            left: 20px;
-            font-family: 'Great Vibes', cursive;
-            margin-top: 15px;
-            border-bottom: 1px solid rgb(160, 148, 148);
+        /* Setting fade transition and default settings */
+        
+        @import url('https://fonts.googleapis.com/css?family=Black+Han+Sans:400');
+        @import url('https://fonts.googleapis.com/css?family=Black+Han+Sans&display=swap&subset=korean');
+        .dropdown {
+            float: left;
+            overflow: hidden;
         }
         
-        header>a {
-            font-size: 50px;
+        .dropdown .dropbtn {
+            cursor: pointer;
+            font-size: 16px;
+            border: none;
+            outline: none;
+            color: rgba(85, 17, 85, 0.829);
+            padding: 14px 16px;
+            background-color: inherit;
+            font-family: inherit;
+            margin: 0;
+            font-weight: bold;
         }
         
-        header>a:hover {
+        .navbar a:hover,
+        .dropdown:hover .dropbtn,
+        .dropbtn:focus {
             background-color: white;
         }
         
-        .snip1198 {
+        .dropdown-content {
+            display: none;
             position: absolute;
-            margin-top: -25px;
-            margin-left: 1050px;
-            font-family: 'Sunflower', sans-serif;
-            text-align: center;
-            text-transform: uppercase;
-            font-weight: 500;
-            letter-spacing: 1px;
+            background-color: white;
+            min-width: 400px;
+            box-shadow: 0px 8px 16px 0px;
+            z-index: 1;
         }
         
-        .snip1198>li {
-            display: inline-block;
-            list-style: outside none none;
-            margin: 0.4em 0.8em;
+        .dropdown-content a {
+            font-family: 'UhBeeSeulvely';
+            float: right;
+            color: black;
+            height: 80px;
+            width: 550px;
+            text-decoration: none;
+            display: block;
+            margin-left: 30px;
+            font-size: 20px;
+        }
+        
+        .dropdown-content a:hover {
+            background-color: white;
+            color: rgba(0, 0, 0, 0.815);
+            text-decoration-color: rgb(248, 211, 4);
+            text-decoration-style: wavy;
+            text-decoration-line: line-through;
+            line-height: 15px;
+        }
+        
+        .show {
+            display: block;
+        }
+        
+        body {
+            transition: background-color .7s ease;
+            position: relative;
+            color: black;
+        }
+        
+        body {
+            cursor: url('some-cursor.ico'), default;
+        }
+        /* panel styles */
+        
+        .panel {
+            /* min height incase content is higher than window height */
+            min-height: 500px;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            font-family: 'UhBeeSeulvely';
+            /* outline: 10px solid hotpink; */
+            /* turn above on to see the edge of panels */
+        }
+        
+        a {
+            text-decoration: none;
+        }
+        
+        .nav {
+            position: fixed;
+            top: 3rem;
+            z-index: 100;
+            width: 300px;
+        }
+        
+        @media only screen and (max-width:576px) {
+            .nav {
+                top: 1.5rem;
+            }
+        }
+        
+        .nav--left {
+            left: 3rem;
+        }
+        
+        @media only screen and (max-width:576px) {
+            .nav--left {
+                left: 1.5rem;
+            }
+        }
+        
+        .nav--right {
+            right: 3rem;
+        }
+        
+        @media only screen and (max-width:576px) {
+            .nav--right {
+                right: 1.5rem;
+            }
+        }
+        
+        .nav h1 {
+            font-family: 'UhBeeJJIBBABBA';
+            font-weight: 300;
+            font-size: 1rem;
+            color: black;
+            margin: 0;
+        }
+        
+        @media only screen and (max-width:576px) {
+            .nav h1 {
+                font-size: .875rem;
+            }
+        }
+        
+        .nav a {
+            display: flex;
+            align-items: center;
+            font-size: calc(.5rem + .35vw);
+            font-size: 20px;
+        }
+        
+        .nav a {
+            position: relative;
+            font-family: 'UhBeeJJIBBABBA';
+        }
+        /* colours */
+        
+        .color-violet1 {
+            background-color: white;
+        }
+        
+        .color-violet2 {
+            background-color: white;
+        }
+        
+        .color-violet3 {
+            background-color: white
+        }
+        
+        .color-violet4 {
+            background-color: white;
+        }
+        
+        .js-scroller {
+            touch-action: none;
+            margin-top: 200px;
+        }
+        
+        @keyframes scroller {
+            0% {
+                transform-origin: top left;
+                transform: scaleY(0);
+                animation-timing-function: cubic-bezier(.48, .02, 100, .99);
+            }
+            30% {
+                transform-origin: top left;
+                transform: scale(1);
+            }
+            41% {
+                transform-origin: bottom left;
+                transform: scale(1);
+                animation-timing-function: cubic-bezier(.48, .02, 0, .99);
+            }
+            to {
+                transform-origin: bottom left;
+                transform: scaleY(0);
+            }
+        }
+        
+        .scroll-hint {
+            position: fixed;
+            top: 630px;
+            left: calc(50% - 1px);
+            height: 10px;
+            color: black;
+            border-left: 1px solid black;
+            white-space: nowrap;
+            line-height: 70px;
+            z-index: 10;
+        }
+        
+        .scroll-hint-m {
+            display: block;
+            height: 25px;
+            line-height: 1px;
+        }
+        
+        .scroll-hint-m .scroll-hint__label {
+            transform: translate(-50%, -25px);
+            padding-left: 0;
+        }
+        
+        .scroll-hint:before {
+            content: "collabortaion";
+            position: absolute;
+            left: -1px;
+            top: 0;
+            display: block;
+            width: 1px;
+            height: 100%;
+            background-color: #fff;
+            transform: scaleY(0) translateZ(0);
+            animation: scroller 3s infinite;
+        }
+        
+        .scroll-hint__label {
+            font-size: 12px;
+            padding-left: 20px;
+            font-weight: 700;
+        }
+        
+        inner {
+            border: 0;
             padding: 0;
         }
         
-        .snip1198>a {
-            color: black;
+        textarea {
+            overflow: auto;
+            vertical-align: top;
         }
         
-        span {
-            color: red;
+        table {
+            border-collapse: collapse;
+            border-spacing: 0;
+        }
+        /* Common style */
+        
+        .grid a {
+            margin-left: 300px;
+            max-width: 350px;
+            width: 100%;
+            color: #333;
         }
         
-        span:hover {
-            color: rgba(255, 0, 0, 0.411);
-        }
-        
-        .boration {
-            color: black;
-        }
-        
-        .boration:hover {
-            color: rgba(0, 0, 0, 0.411);
-        }
-        
-         :root {
-            --primary-color: #333;
-            --highlight-color: #f66;
-        }
-        
-        #div_menu {
+        .grid figure {
             position: relative;
-            width: 10%;
-            height: 600px;
-            float: left;
-            color: white;
-            background: var(--primary-color);
-            text-align: center;
-            font-family: 'Do Hyeon', sans-serif;
-            list-style: none;
+            margin-left: 300px;
+            width: 300px;
+            overflow: hidden;
+            margin: 5px;
+            background: #333;
+        }
+        
+        .grid figure img {
+            position: relative;
+            display: block;
+            width: 100%;
+            opacity: 0.7;
+            -webkit-transition: opacity 0.3s;
+            transition: opacity 0.3s;
+        }
+        
+        .grid figcaption {
+            position: absolute;
+            top: 0;
+            z-index: 11;
             padding: 10px;
-            padding-top: 20px;
+            width: 100%;
+            height: 100%;
+            text-align: center;
         }
         
-        input,
-        button,
-        a {
-            transition: 0.25s;
+        .grid figcaption h2 {
+            margin: 0 0 20px 0;
+            color: rgba(85, 17, 85, 0.829);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 300;
+            font-size: 130%;
+            -webkit-transition: -webkit-transform 0.3s;
+            transition: transform 0.3s;
         }
         
-        .nav-link {
+        .grid figcaption p {
+            padding: 0 20px;
+            color: rgba(85, 17, 85, 0.829);
+            font-weight: 300;
+            -webkit-transition: opacity 0.3s, -webkit-transform 0.3s;
+            transition: opacity 0.3s, transform 0.3s;
+        }
+        
+        .grid figcaption h2,
+        .grid figcaption p {
+            -webkit-transform: translateY(50px);
+            transform: translateY(50px);
+        }
+        
+        .grid figure button {
+            position: absolute;
+            padding: 4px 20px;
+            border: none;
+            text-transform: uppercase;
             letter-spacing: 1px;
             font-weight: bold;
-            text-decoration: none;
-            font-family: sans-serif;
-            padding: 0px;
-            color: #fff;
+            -webkit-transition: opacity 0.3s, -webkit-transform 0.3s;
+            transition: opacity 0.3s, transform 0.3s;
         }
         
-        .nav-link::after {
-            content: '';
-            display: block;
-            height: 3px;
-            width: 30%;
-            background: #fff0;
-            margin: auto;
-            border-radius: 5px;
+        .grid figcaption,
+        .grid figcaption h2,
+        .grid figcaption p,
+        .grid figure button {
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
         }
+        /* Style for SVG */
         
-        .nav-link:hover {
-            color: var(--highlight-color);
-        }
-        
-        .nav-link:hover::after,
-        .nav-link:focus::after {
-            width: 100%;
-            background: var(--highlight-color);
-        }
-        
-        .firstcontainer {
-            position: relative;
-            margin-left: 180px;
-        }
-        
-        h2 {
-            font-family: 'Sunflower', sans-serif;
-            margin-left: 20px;
-            margin-top: 30px;
-        }
-        
-        input {
-            margin-left: 20px;
-            font-family: 'Sunflower', sans-serif;
-        }
-        
-        .row category1-buttons {
+        .grid svg {
             position: absolute;
+            top: -1px;
+            /* fixes rendering issue in FF */
+            z-index: 10;
+            width: 100%;
+            height: 100%;
         }
         
-        a {
-            color: black;
-            text-decoration: none;
-            background-color: rgba(0, 0, 0, 0);
-            font-family: 'Do Hyeon', sans-serif;
+        .grid svg path {
+            fill: #fff;
+        }
+        /* Hover effects */
+        
+        .grid a:hover figure img {
+            opacity: 1;
+        }
+        
+        .grid a:hover figcaption h2,
+        .grid a:hover figcaption p {
+            -webkit-transform: translateY(0);
+            transform: translateY(0);
+        }
+        
+        .grid a:hover figcaption p {
+            opacity: 1;
+        }
+        /* Individual styles */
+        /* Media Queries */
+        /* Let's redefine the width of each anchor and the margins */
+        
+        @media screen and (max-width: 58em) {
+            .grid a {
+                width: 33.333%;
+            }
+            .grid a:nth-child(odd) {
+                margin: 0;
+            }
+            .grid a:nth-child(3n-1) {
+                margin: 30px 0 -30px 0;
+            }
+        }
+        
+        @media screen and (max-width: 45em) {
+            .grid {
+                max-width: 500px;
+            }
+            .grid a {
+                width: 50%;
+            }
+            .grid a:nth-child(3n-1) {
+                margin: 0;
+            }
+            .grid a:nth-child(even) {
+                margin: 30px 0 -30px 0;
+            }
+            .grid figcaption h2 {
+                margin-bottom: 0px;
+                -webkit-transform: translateY(30px);
+                transform: translateY(30px);
+            }
+            .grid figcaption p {
+                margin: 0;
+                padding: 0 10px;
+            }
+        }
+        
+        @font-face {
+            font-family: 'BMDOHYEON';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_one@1.0/BMDOHYEON.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
+        
+        @font-face {
+            font-family: 'KCC-eunyoung';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_one@1.0/KCC-eunyoung-Regular.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
+        
+        @font-face {
+            font-family: 'KOMACON';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_seven@1.2/KOMACON.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
+        
+        @font-face {
+            font-family: 'BMHANNAAir';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_four@1.0/BMHANNAAir.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
+        
+        @font-face {
+            font-family: 'OTEnjoystoriesBA';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/OTEnjoystoriesBA.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
+        
+        @font-face {
+            font-family: 'OTEnjoystoriesBA';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/OTEnjoystoriesBA.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
+        
+        @font-face {
+            font-family: 'UhBeeJJIBBABBA';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_five@.2.0/UhBeeJJIBBABBA.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
+        
+        @font-face {
+            font-family: 'UhBeeSeulvely';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_five@.2.0/UhBeeSeulvely.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
+        
+        .cursor.active {
+            opacity: .9;
+        }
+        
+        .cursor-follower.active {
+            opacity: .9;
+            transform: scale(3);
+        }
+        
+        .cursor {
+            position: absolute;
+            background-color: #fff;
+            width: 6px;
+            height: 6px;
+            border-radius: 100%;
+            transition: transform .3s cubic-bezier(.75, -1.27, .3, 2.33), opacity .2s cubic-bezier(.75, -.27, .3, 1.33);
+            user-select: none;
+            pointer-events: none;
+            z-index: 10000;
+            transform: scale(1);
+            mix-blend-mode: screen;
+        }
+        
+        *,
+         :after,
+         :before {
+            box-sizing: border-box;
+            user-select: none;
+        }
+        
+        .cursor-follower {
+            position: absolute;
+            background-color: #bb86fc;
+            width: 20px;
+            height: 20px;
+            border-radius: 100%;
+            transition: transform .4s cubic-bezier(.75, -1.27, .3, 2.33), opacity .2s cubic-bezier(.75, -.27, .3, 1.33);
+            user-select: none;
+            pointer-events: none;
+            z-index: 10000;
+            transform: translate(5px, 5px);
+            mix-blend-mode: screen;
+            position: absolute;
+            background-color: #bb86fc;
+            width: 20px;
+            height: 20px;
+            border-radius: 100%;
+            z-index: 10000;
+            transform: translate(5px, 5px);
+            mix-blend-mode: screen;
+        }
+        
+        .panel>h1 {
+            font-family: 'Black Han Sans', sans-serif;
+        }
+        /*modal css*/
+        /* Modal Base CSS */
+        
+        .scotch-overlay {
+            position: fixed;
+            z-index: 9998;
+            top: 0;
+            left: 0;
+            opacity: 0;
+            width: 100%;
+            height: 100%;
+            -webkit-transition: 1ms opacity ease;
+            -moz-transition: 1ms opacity ease;
+            -ms-transition: 1ms opacity ease;
+            -o-transition: 1ms opacity ease;
+            transition: 1ms opacity ease;
+            background: rgba(0, 0, 0, .6);
+        }
+        
+        .scotch-modal {
+            position: absolute;
+            z-index: 9999;
+            top: 50%;
+            left: 50%;
+            opacity: 0;
+            width: 94%;
+            padding: 24px 20px;
+            -webkit-transition: 1ms opacity ease;
+            -moz-transition: 1ms opacity ease;
+            -ms-transition: 1ms opacity ease;
+            -o-transition: 1ms opacity ease;
+            transition: 1ms opacity ease;
+            -webkit-transform: translate(-50%, -50%);
+            -moz-transform: translate(-50%, -50%);
+            -ms-transform: translate(-50%, -50%);
+            -o-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+            border-radius: 2px;
+            background: #fff;
+        }
+        
+        .scotch-modal.scotch-open.scotch-anchored {
+            top: 20px;
+            -webkit-transform: translate(-50%, 0);
+            -moz-transform: translate(-50%, 0);
+            -ms-transform: translate(-50%, 0);
+            -o-transform: translate(-50%, 0);
+            transform: translate(-50%, 0);
+        }
+        
+        .scotch-modal.scotch-open {
+            opacity: 1;
+        }
+        
+        .scotch-overlay.scotch-open {
+            opacity: 1;
+        }
+        /* Close Button */
+        
+        .scotch-close {
+            font-family: Helvetica, Arial, sans-serif;
+            font-size: 24px;
+            font-weight: 700;
+            line-height: 12px;
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            padding: 5px 7px 7px;
+            cursor: pointer;
+            color: #fff;
+            border: 0;
+            outline: none;
+            background: #e74c3c;
+        }
+        
+        .scotch-close:hover {
+            background: #c0392b;
+        }
+        /* Default Animation */
+        
+        .scotch-overlay.fade-and-drop {
+            display: block;
+            opacity: 0;
+        }
+        
+        .scotch-modal.fade-and-drop {
+            top: -300%;
+            opacity: 1;
+            display: block;
+        }
+        
+        .scotch-modal.fade-and-drop.scotch-open {
+            top: 50%;
+            -webkit-transition: 500ms top 500ms ease;
+            -moz-transition: 500ms top 500ms ease;
+            -ms-transition: 500ms top 500ms ease;
+            -o-transition: 500ms top 500ms ease;
+            transition: 500ms top 500ms ease;
+        }
+        
+        .scotch-modal.fade-and-drop.scotch-open.scotch-anchored {
+            -webkit-transition: 500ms top 500ms ease;
+            -moz-transition: 500ms top 500ms ease;
+            -ms-transition: 500ms top 500ms ease;
+            -o-transition: 500ms top 500ms ease;
+            transition: 500ms top 500ms ease;
+        }
+        
+        .scotch-overlay.fade-and-drop.scotch-open {
+            top: 0;
+            -webkit-transition: 500ms opacity ease;
+            -moz-transition: 500ms opacity ease;
+            -ms-transition: 500ms opacity ease;
+            -o-transition: 500ms opacity ease;
+            transition: 500ms opacity ease;
+            opacity: 1;
+        }
+        
+        .scotch-modal.fade-and-drop {
+            -webkit-transition: 500ms top ease;
+            -moz-transition: 500ms top ease;
+            -ms-transition: 500ms top ease;
+            -o-transition: 500ms top ease;
+            transition: 500ms top ease;
+        }
+        
+        .scotch-overlay.fade-and-drop {
+            -webkit-transition: 500ms opacity 500ms ease;
+            -moz-transition: 500ms opacity 500ms ease;
+            -ms-transition: 500ms opacity 500ms ease;
+            -o-transition: 500ms opacity 500ms ease;
+            transition: 500ms opacity 500ms ease;
+        }
+        /* Demo Styles */
+        
+        #content {
+            display: none;
             text-align: center;
         }
         
-        a:hover {
-            text-decoration: none;
+        .modal {
+            display: none;
+            /* Hidden by default */
+            position: fixed;
+            /* Stay in place */
+            z-index: 1;
+            /* Sit on top */
+            left: 0;
+            top: 0;
+            width: 100%;
+            /* Full width */
+            height: 100%;
+            /* Full height */
+            overflow: auto;
+            /* Enable scroll if needed */
+            background-color: rgb(0, 0, 0);
+            /* Fallback color */
+            background-color: rgba(0, 0, 0, 0.4);
+            /* Black w/ opacity */
+        }
+        
+        .modal_title {
+            margin: -25px -25px 25px;
+            padding: 15px 25px;
+            line-height: 35px;
+            font-size: 26px;
+            font-weight: 300;
+            color: #aaa;
+            text-align: center;
+            text-shadow: 0 1px rgba(255, 255, 255, 0.75);
+            background: #f7f7f7;
+        }
+        
+        .modal_title:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 8px;
+            background: #c4e17f;
+            border-radius: 5px 5px 0 0;
+            background-image: -webkit-linear-gradient(left, #c4e17f, #c4e17f 12.5%, #f7fdca 12.5%, #f7fdca 25%, #fecf71 25%, #fecf71 37.5%, #f0776c 37.5%, #f0776c 50%, #db9dbe 50%, #db9dbe 62.5%, #c49cde 62.5%, #c49cde 75%, #669ae1 75%, #669ae1 87.5%, #62c2e4 87.5%, #62c2e4);
+            background-image: -moz-linear-gradient(left, #c4e17f, #c4e17f 12.5%, #f7fdca 12.5%, #f7fdca 25%, #fecf71 25%, #fecf71 37.5%, #f0776c 37.5%, #f0776c 50%, #db9dbe 50%, #db9dbe 62.5%, #c49cde 62.5%, #c49cde 75%, #669ae1 75%, #669ae1 87.5%, #62c2e4 87.5%, #62c2e4);
+            background-image: -o-linear-gradient(left, #c4e17f, #c4e17f 12.5%, #f7fdca 12.5%, #f7fdca 25%, #fecf71 25%, #fecf71 37.5%, #f0776c 37.5%, #f0776c 50%, #db9dbe 50%, #db9dbe 62.5%, #c49cde 62.5%, #c49cde 75%, #669ae1 75%, #669ae1 87.5%, #62c2e4 87.5%, #62c2e4);
+            background-image: linear-gradient(to right, #c4e17f, #c4e17f 12.5%, #f7fdca 12.5%, #f7fdca 25%, #fecf71 25%, #fecf71 37.5%, #f0776c 37.5%, #f0776c 50%, #db9dbe 50%, #db9dbe 62.5%, #c49cde 62.5%, #c49cde 75%, #669ae1 75%, #669ae1 87.5%, #62c2e4 87.5%, #62c2e4);
+        }
+        /* Modal Content/Box */
+        
+        .modal-content {
+            background-color: white;
             color: black;
+            /*margin: 15% auto;
+            /* 15% from the top and centered */
+            padding: 30px;
+            /*border: 1px solid #888;
+            width: 50%;
+            /* Could be more or less, depending on screen size */
         }
+        /* The Close Button */
         
-        .box {
-            font-family: 'Do Hyeon', sans-serif;
-            font-size: 20px;
-        }
-        
-        .firstbox {
-            font-family: 'Do Hyeon', sans-serif;
-            font-size: 30px;
-        }
-        
-        .input-text {
-            border: 2px solid #0000;
-            border-bottom: 2px solid var(--highlight-color);
-            border-radius: 5px;
-            padding: 5px;
-            font-size: 18px;
-        }
-        
-        .input-text::placeholder {
-            color: var(--highlight-color);
-        }
-        
-        .input-text:focus {
-            color: var(--primary-color);
-        }
-        
-        .submit {
-            background: var(--highlight-color);
-            color: #fff;
-            padding: 10px;
-            font-size: 20px;
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
             font-weight: bold;
-            border: 2px solid var(--highlight-color);
+            z-index: 0;
+        }
+        
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
             cursor: pointer;
         }
         
-        .submit:hover,
-        .submit:focus {
-            background: #0000;
-            color: var(--highlight-color);
+        input[type=button],
+        input[type=submit],
+        input[type=reset],
+        .trigger-button {
+            border: none;
+            background: transparent;
+            color: black;
+            padding: 16px 32px;
+            text-decoration: none;
+            margin: 4px 2px;
+            cursor: pointer;
+            font-size: 23px;
+            font-family: 'UhBeeSeulvely';
         }
         
-        .input-text,
-        .submit {
-            width: 100%;
-            max-width: 400px;
-            margin: 25px auto 0;
+        input[type=button]:hover,
+        input[type=submit]:hover,
+        input[type=reset]:hover,
+        .trigger-button:hover {
+            border: none;
+            background: transparent;
+            color: rgba(0, 0, 0, 0.815);
+            text-decoration-color: rgb(248, 211, 4);
+            text-decoration-style: wavy;
+            text-decoration-line: underline;
+            line-height: 15px;
+        }
+        
+        .notebook-paper {
+            font-size: 20px;
+            line-height: 18px;
+            background-color: #fff;
+            background-image: linear-gradient(transparent 15px, rgba(0, 0, 255, 0.3) 15px, transparent 16px);
+            background-size: 100% 18px;
+        }
+        
+        .notebook-paper>p {
+            border-left: 1px solid rgba(255, 153, 102, 0.3);
+            margin-left: 78px;
+            padding-left: 10px;
         }
     </style>
+    <script src="/Content/ko/inc/js/jquery.js" type="text/javascript" charset="utf-8"></script>
+
+
+
 </head>
 
 <body>
-    <header>
-        <a style="font-family: 'Great Vibes', cursive;" href="{% url 'main' %}">
-            <STRONG>&nbsp;<span>Colla</span><span class="boration">boration</span></STRONG>
-        </a>
-        <ul class="snip1198">
-            <li class="enter">
-                {% if not request.user.is_authenticated %}
-                <a href="{% url 'login' %}">로그인</a>
-                <a href="{% url 'signup' %}">회원가입</a> {% elif request.user.is_authenticated %}
-                <a href="{% url 'logout' %}">로그아웃</a> {% endif %}
-            </li>
-        </ul>
+
+    <div id="slider" class="slider js-slider" style="height:50px;">
+        <div class="panel" data-color="violet1">
+            <nav class="nav nav--left">
+                <a href="/">
+                    <h1 style=" font-family : 'UhBeeJJIBBABBA'; font-size : 32px;">콜<span style="color:rgba(85, 17, 85, 0.829); ">라보</span>레이션</h1>
+                </a>
+            </nav>
+            <nav class="nav nav--right nav--toHide">
+                <div class="dropdown">
+                    <button class="dropbtn" onclick="myFunction()" style="margin-left:200px;">MENU
+                                </button>
 
 
-
-
-    </header>
-
-    <section>
-        <div id="div_menu">
-            <li class="nav-item"><a href="{% url 'mypage' %}" class="nav-link">my Page</a></li><br>
-            <li class="nav-item"><a href="{% url 'teamproject' %}" class="nav-link">Team Page</a></li><br>
-            <li class="nav-item"><a href="{% url 'createTeam' %}" class="nav-link">Team create</a></li><br>
-            <li class="nav-item"><a href="{% url 'board' %}" class="nav-link">Board</a></li><br>
-
-        </div>
-
-
-        <div style="border: 2px solid rgba(211, 211, 211, 0.795); float: left; width: 43%; height:500px; padding:10px;">
-            <div class="box" style="text-align: center;">
-                <h4 class="firstbox">프로필</h4><br>
-                <img src={{ prof.img.url }} width=200>
-                <p><span>이름 :</span> {{ user.profile.userName }}</p>
-                <p><span>학교/회사 :</span> {{ user.profile.school }}</p>
-                <p><span>가입 날짜 :</span> {{ user.profile.date }}</p>
-
-                <form method="POST" action="{%url 'changeProfile'%}">
-                    {% csrf_token %}
-                    <input type="hidden" name="type" value="change">
-                    <input class="submit" type="submit" value="변경하기">
-                </form>
-
-            </div>
-            <div class="chart-container"><canvas id="myChart" width="425" height="200"></canvas></div>
-
-
-
-        </div>
-
-        <div style="border: 2px solid rgba(211, 211, 211, 0.795); float: left; width: 43.5%; height: 500px; padding:10px;">
-            <div style="text-align: center;">
-                <h4 class="firstbox">팀 목록</h4><br><br>
-                <div>
-                    {% for team in Teams %}
-                    <form method="POST" action="{% url 'teamInfo' %}">
-                        {% csrf_token %}
-                        <input type="hidden" value="{{team.id}}" name="teamId">
-                        <input type="submit" value="{{team.name}}" />
-                    </form>
-                    {% endfor %}
+                    <div class="dropdown-content" id="myDropdown">
+                        <a href="{% url 'mypage' %}">마이 페이지</a>
+                        <a href="{% url 'teamproject' %}">팀 페이지</a>
+                        <a href="{% url 'createTeam' %}">팀 생성</a>
+                        <a href="{% url 'infoboard' %}">게시판</a> {% if not request.user.is_authenticated %}
+                        <a href="{% url 'login' %}">로그인</a>
+                        <a href="{% url 'signup' %}">회원가입</a> {% elif request.user.is_authenticated %}
+                        <a href="{% url 'logout' %}">로그아웃</a> {% endif %}
+                    </div>
                 </div>
+
+            </nav>
+
+            <div class="notebook-paper" style="margin-top : 100px;">
+                <div class="notebook-paper" style="text-align: center; display:block; width: 800px;">
+                    <div style="position:absolute; left: 18.4%; display:block; top: 180px;">
+                        <h2 class="firstbox">[ 프로필 ]</h2><br>
+                    </div>
+                    <div>
+                        <img src="{{ prof.img.url }}" style="max-width:200px; position:absolute; left:18.6%; top:250px;">
+                    </div>
+
+                    <div class="notebook-paper" style="position:absolute; left:35%; top:250px; text-align:left; width:40%;">
+                        <p><span>이름 :</span> {{ user.profile.userName }}</p>
+                        <p><span>학교/회사 :</span> {{ user.profile.school }}</p>
+                        <p><span>가입 날짜 :</span> {{ user.profile.date }}</p>
+
+                        <form method="POST" action="{%url 'changeProfile'%}">
+                            {% csrf_token %}
+                            <input type="hidden" name="type" value="change">
+                            <p><input class="submit" type="submit" value="[변경하기]" style="position:absolute; left:180px;"></p>
+                        </form>
+                        <button id="trigger" class="trigger-button" type="button" style="position: relative; left : 70px;">[팀 목록]</button>
+                        <div id="content">
+                            <!-- Modal content -->
+                            <div class="modal-content">
+
+                                <h3 class="modal_title">팀 목록</h3>
+                                <div>
+                                    {% for team in Teams %}
+                                    <form method="POST" action="{% url 'teamInfo' %}">
+                                        {% csrf_token %}
+                                        <input type="hidden" value="{{team.id}}" name="teamId">
+                                        <input type="submit" value="{{team.name}}" />
+                                    </form>
+                                    {% endfor %}
+                                </div>
+
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+
+
             </div>
 
-            <br>
-            <br>
+
+
         </div>
+
+        <script src="js/1.2fc356e6.chunk.js"></script>
+        <script src="js/app.935c0693.js"></script>
+        <script src="https://tympanus.net/Tutorials/ShapeHoverEffectSVG/js/snap.svg-min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        <script type="text/javascript">
+            $(window).scroll(function() {
+
+                // selectors
+                var $window = $(window),
+                    $body = $('body'),
+                    $panel = $('.panel');
+
+                // Change 33% earlier than scroll position so colour is there when you arrive.
+                var scroll = $window.scrollTop() + ($window.height() / 3);
+
+                $panel.each(function() {
+                    var $this = $(this);
+
+                    // if position is within range of this panel.
+                    // So position of (position of top of div <= scroll position) && (position of bottom of div > scroll position).
+                    // Remember we set the scroll to 33% earlier in scroll var.
+                    if ($this.position().top <= scroll && $this.position().top + $this.height() > scroll) {
+
+                        // Remove all classes on body with color-
+                        $body.removeClass(function(index, css) {
+                            return (css.match(/(^|\s)color-\S+/g) || []).join(' ');
+                        });
+
+                        // Add class of currently active div
+                        $body.addClass('color-' + $(this).data('color'));
+                    }
+                });
+
+            }).scroll();
+
+            (function() {
+
+                // Define our constructor 
+                this.Modal = function() {
+
+                    // Create global element references
+                    this.closeButton = null;
+                    this.modal = null;
+                    this.overlay = null;
+
+                    // Determine proper prefix
+                    this.transitionEnd = transitionSelect();
+
+                    // Define option defaults 
+                    var defaults = {
+                        autoOpen: false,
+                        className: 'fade-and-drop',
+                        closeButton: true,
+                        content: "",
+                        maxWidth: 600,
+                        minWidth: 280,
+                        overlay: true
+                    }
+
+                    // Create options by extending defaults with the passed in arugments
+                    if (arguments[0] && typeof arguments[0] === "object") {
+                        this.options = extendDefaults(defaults, arguments[0]);
+                    }
+
+                    if (this.options.autoOpen === true) this.open();
+
+                }
+
+                // Public Methods
+
+                Modal.prototype.close = function() {
+                    var _ = this;
+                    this.modal.className = this.modal.className.replace(" scotch-open", "");
+                    this.overlay.className = this.overlay.className.replace(" scotch-open",
+                        "");
+                    this.modal.addEventListener(this.transitionEnd, function() {
+                        _.modal.parentNode.removeChild(_.modal);
+                    });
+                    this.overlay.addEventListener(this.transitionEnd, function() {
+                        if (_.overlay.parentNode) _.overlay.parentNode.removeChild(_.overlay);
+                    });
+                }
+
+                Modal.prototype.open = function() {
+                    buildOut.call(this);
+                    initializeEvents.call(this);
+                    window.getComputedStyle(this.modal).height;
+                    this.modal.className = this.modal.className +
+                        (this.modal.offsetHeight > window.innerHeight ?
+                            " scotch-open scotch-anchored" : " scotch-open");
+                    this.overlay.className = this.overlay.className + " scotch-open";
+                }
+
+                // Private Methods
+
+                function buildOut() {
+
+                    var content, contentHolder, docFrag;
+
+                    /*
+                     * If content is an HTML string, append the HTML string.
+                     * If content is a domNode, append its content.
+                     */
+
+                    if (typeof this.options.content === "string") {
+                        content = this.options.content;
+                    } else {
+                        content = this.options.content.innerHTML;
+                    }
+
+                    // Create a DocumentFragment to build with
+                    docFrag = document.createDocumentFragment();
+
+                    // Create modal element
+                    this.modal = document.createElement("div");
+                    this.modal.className = "scotch-modal " + this.options.className;
+                    this.modal.style.minWidth = this.options.minWidth + "px";
+                    this.modal.style.maxWidth = this.options.maxWidth + "px";
+
+                    // If closeButton option is true, add a close button
+                    if (this.options.closeButton === true) {
+                        this.closeButton = document.createElement("button");
+                        this.closeButton.className = "scotch-close close-button";
+                        this.closeButton.innerHTML = "&times;";
+                        this.modal.appendChild(this.closeButton);
+                    }
+
+                    // If overlay is true, add one
+                    if (this.options.overlay === true) {
+                        this.overlay = document.createElement("div");
+                        this.overlay.className = "scotch-overlay " + this.options.className;
+                        docFrag.appendChild(this.overlay);
+                    }
+
+                    // Create content area and append to modal
+                    contentHolder = document.createElement("div");
+                    contentHolder.className = "scotch-content";
+                    contentHolder.innerHTML = content;
+                    this.modal.appendChild(contentHolder);
+
+                    // Append modal to DocumentFragment
+                    docFrag.appendChild(this.modal);
+
+                    // Append DocumentFragment to body
+                    document.body.appendChild(docFrag);
+
+                }
+
+                function extendDefaults(source, properties) {
+                    var property;
+                    for (property in properties) {
+                        if (properties.hasOwnProperty(property)) {
+                            source[property] = properties[property];
+                        }
+                    }
+                    return source;
+                }
+
+                function initializeEvents() {
+
+                    if (this.closeButton) {
+                        this.closeButton.addEventListener('click', this.close.bind(this));
+                    }
+
+                    if (this.overlay) {
+                        this.overlay.addEventListener('click', this.close.bind(this));
+                    }
+
+                }
+
+                function transitionSelect() {
+                    var el = document.createElement("div");
+                    if (el.style.WebkitTransition) return "webkitTransitionEnd";
+                    if (el.style.OTransition) return "oTransitionEnd";
+                    return 'transitionend';
+                }
+
+            }());
+
+            var myContent = document.getElementById('content');
+
+            var myModal = new Modal({
+                content: myContent
+            });
+
+            var triggerButton = document.getElementById('trigger');
+
+            triggerButton.addEventListener('click', function() {
+                myModal.open();
+            });
+
+
+
+
+            function myFunction() {
+                document.getElementById("myDropdown").classList.toggle("show");
+            }
+
+            // Close the dropdown if the user clicks outside of it
+            window.onclick = function(e) {
+                if (!e.target.matches('.dropbtn')) {
+                    var myDropdown = document.getElementById("myDropdown");
+                    if (myDropdown.classList.contains('show')) {
+                        myDropdown.classList.remove('show');
+                    }
+                }
+            }
+        </script>
 </body>
+
+</html>
