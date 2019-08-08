@@ -180,17 +180,14 @@
                             <td>{{ board.writer }}</td>
                             <td><a>{{board.pub_date}}</a></td>
                             <td>{{ board.views }}</td>
-                            <td><a href="{% url 'teamdetail' board.id %}">댓글( {{ board.comments.count }} )</a></td>
+                            <td><a href="{% url 'teamdetail' board.id %}">댓글( {{ board.commentTbs.count }} )</a></td>
                         </tr>
                         {% endfor %}
                     </tbody>
                 </table>
 
                 <hr/>
-                <form method="GET" action="{% url 'teamboard_write' %}">
-                    <input type="hidden" name="teamId" value="{{team.id}}">
-                    <input type="submit" value="글쓰기">
-                </form>
+                <a class="btn btn-default pull-right" href="{% url 'teamboard_write' team.id%}" style="font-family: Arial,Helvetica,sans-serif;">글쓰기</a>
 
                 <div class="text-center" style="text-align: center; letter-spacing: 2em; margin-left:500px;font-family: Arial,Helvetica,sans-serif;">
                     <ul class="pagination">

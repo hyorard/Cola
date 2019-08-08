@@ -360,10 +360,10 @@ def teamBoard(request, team_id):
 
     return render(request, 'teamBoard.html', context)
 
-def teamboard_write(request):
+def teamboard_write(request, team_id=None):
     if request.method == "GET":
-        teamId = request.GET['teamId']
-        team = Team.objects.get(id=teamId)
+        #teamId = request.GET['teamId']
+        team = Team.objects.get(id=team_id)
         time = datetime.today()
         return render(request, 'teamnew.html', {'team': team, 'time' : time})
     

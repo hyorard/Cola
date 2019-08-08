@@ -263,7 +263,7 @@
 
 
         <div id="div_new">
-            <form method="POST" action="{% url 'teamboard_write' %}" enctype="multipart/form-data">
+            <form method="POST" action="{% url 'teamboard_write' team.id%}" enctype="multipart/form-data">
                 {% csrf_token %}
                 <table summary="전체 테이블 구성">
                     <tbody>
