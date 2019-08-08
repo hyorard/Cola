@@ -782,6 +782,7 @@
                         <th>TITLE</th>
                         <th>NAME</th>
                         <th>DATE</th>
+                        <th>VIEWS</th>
                         <th>COMMENTS</th>
                     </tr>
                 </thead>
@@ -791,10 +792,10 @@
                         <a></a>
                     </div>
                     <tr>
-                        <td></td>
                         <td><a href="{% url 'detail' board.id%}">{{board.title}} </a></td>
                         <td>{{ board.writer }}</td>
                         <td><a>{{board.pub_date}}</a></td>
+                        <td>{{ board.views }}</td>
                         <td><a href="{% url 'detail' board.id %}">댓글( {{ board.comments.count }} )</a></td>
                     </tr>
                     {% endfor %}

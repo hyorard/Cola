@@ -376,6 +376,7 @@ def teamboard_write(request):
         board.team = team
         board.title = request.POST['title']
         board.body = request.POST['body']
+        board.views = 0
         try:
             board.File = request.FILES['fileToUpload']
         except:
@@ -407,6 +408,8 @@ def teamboard_write(request):
 
 def teamdetail(request, board_id):
     board_detail = get_object_or_404(TeamBoard, pk = board_id)
+    board_detail.views += 1
+    board_detail.save()
 
     #file 이름으로 뜨기
     if board_detail.File:

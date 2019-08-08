@@ -225,9 +225,13 @@
 
                                     <tr>
                                         <td align=center bgcolor=white width=300px style="background-color:rgba(255, 102, 102, 0.295); ">첨부파일</td>
-                                        <td bgcolor=white width=40%>{% if filename %}<a href="{{ board.File.url }}" download>{{ filename }}</a>{% endif %}</td>
+                                        <td bgcolor=white width=40%>
+                                            {% if filename %}<a href="{{ board.File.url }}" download>{{ filename }}</a>
+                                            {% else %}
+                                            없음
+                                            {% endif %}</td>
                                         <td align=center bgcolor=white width=300px style="background-color:rgba(255, 102, 102, 0.295); ">VIEWS</td>
-                                        <td bgcolor=white width=40%>123</td>
+                                        <td bgcolor=white width=40%>{{board.views}}</td>
                                     </tr>
                                 </table>
                             </td>

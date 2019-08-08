@@ -163,10 +163,10 @@
                 <table class="table" style="font-family: Arial,Helvetica,sans-serif; font-size: 13px;">
                     <thead>
                         <tr style="background-color: none;">
-                            <th>NO.</th>
                             <th>TITLE</th>
                             <th>NAME</th>
                             <th>DATE</th>
+                            <th>VIEWS</th>
                             <th>COMMENTS</th>
                         </tr>
                     </thead>
@@ -176,10 +176,10 @@
                             <a></a>
                         </div>
                         <tr>
-                            <td></td>
                             <td><a href="{% url 'teamdetail' board.id %}">{{board.title}} </a></td>
                             <td>{{ board.writer }}</td>
                             <td><a>{{board.pub_date}}</a></td>
+                            <td>{{ board.views }}</td>
                             <td><a href="{% url 'teamdetail' board.id %}">댓글( {{ board.comments.count }} )</a></td>
                         </tr>
                         {% endfor %}

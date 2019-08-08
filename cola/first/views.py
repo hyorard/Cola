@@ -118,6 +118,8 @@ def searchPost(request):
 
 def detail(request, board_id):
     board_detail = get_object_or_404(Board, pk = board_id)
+    board_detail.views += 1
+    board_detail.save()
     
     #file 이름으로 뜨기
     if board_detail.File:
@@ -278,8 +280,12 @@ def create(request):
    
     board.title = request.POST['title']
     board.body = request.POST['body']
-    board.File = request.FILES['fileToUpload']  
+    try:
+        board.File = request.FILES['fileToUpload']
+    except:
+        pass
     board.pub_date = timezone.datetime.now()
+    board.views = 0
     board.save()
     
     return redirect('/first/board/'+str(board.id))
