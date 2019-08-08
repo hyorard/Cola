@@ -389,22 +389,23 @@ def teamboard_write(request, team_id=None):
         board.pub_date = datetime.now()
         board.save()
         
-        teamboards = team.teamboard_set.all()
-        paginator = Paginator(teamboards, 10)
-        page = request.GET.get('page')
-        try:
-            queryset = paginator.page(page)
-        except PageNotAnInteger:
-            queryset = paginator.page(1)
-        except EmptyPage:
-            queryset = paginator.page(paginator.num_pages)
-        
-        context = {
-        "object_list" : queryset,
-        "team" : team,
-        }
-
-        return render(request, 'teamBoard.html', context)
+        #file 이름으로 뜨기
+        if board.File:
+            filename = board.File.name.split('/')[-1]
+        else:
+            filename = None
+    
+        conn_user = request.user
+        conn_profile = profile.objects.get(user=conn_user)
+        nick = conn_profile.userName
+        # 글쓴이와 들어온 사람이 같은지 확인(삭제/수정)
+    
+        bw = board.writer
+        if bw == nick:
+            check = True
+        else :
+            check = False
+        return render(request, 'teamdetail.html', {'board':board, 'check' : check, 'filename' : filename})
 
 def teamdetail(request, board_id):
     board_detail = get_object_or_404(TeamBoard, pk = board_id)
