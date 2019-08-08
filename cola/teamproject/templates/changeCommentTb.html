@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="UTF-8">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>{{ board.title }}</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css?family=Do+Hyeon|Great+Vibes|Pacifico&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Song+Myung&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" style="width:50px; float: left;">
+    <link href="https://fonts.googleapis.com/css?family=Sunflower:300&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Gothic+A1&display=swap" rel="stylesheet">
+
+
+    <style>
+        header {
+            height: 80px;
+            top: 30px;
+            left: 20px;
+            font-family: 'Great Vibes', cursive;
+            margin-top: 30px;
+            border-bottom: 1px solid rgb(160, 148, 148);
+        }
+        
+        header>a {
+            font-size: 50px;
+        }
+        
+        header>a:hover {
+            background-color: white;
+            text-decoration: none;
+        }
+        
+        .snip1198 {
+            position: absolute;
+            margin-top: -25px;
+            margin-left: 1050px;
+            font-family: 'Sunflower', sans-serif;
+            text-align: center;
+            text-transform: uppercase;
+            font-weight: 500;
+            letter-spacing: 1px;
+        }
+        
+        .snip1198>li {
+            display: inline-block;
+            list-style: outside none none;
+            margin: 0.4em 0.8em;
+            padding: 0;
+        }
+        
+        .snip1198>a {
+            color: black;
+        }
+        
+        span {
+            color: red;
+        }
+        
+        span:hover {
+            color: rgba(255, 0, 0, 0.411);
+        }
+        
+        .boration {
+            color: black;
+        }
+        
+        .boration:hover {
+            color: rgba(0, 0, 0, 0.411);
+        }
+        
+        .w3-bar {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 18px;
+            text-align: left;
+            letter-spacing: 0em;
+            margin-left: 30px;
+            line-height: 1em;
+            text-transform: none;
+            font-family: brandon-grotesque;
+            font-weight: 700;
+            font-style: normal;
+            font-size: 10.2px;
+            letter-spacing: .25em;
+            line-height: 2.2em;
+            text-transform: uppercase;
+        }
+        
+        .w3-bar-item:hover,
+        .w3-bar-item-:hover {
+            border-bottom: 5px solid red;
+            text-decoration: none;
+            transition-duration: .4s;
+        }
+        
+        @import url(https://fonts.googleapis.com/css?family=Sail);
+        body {
+            background-color: white;
+        }
+        
+        .button1 {
+            background: none;
+            border: 5px solid black;
+            width: 10px;
+            font-family: 'Do Hyeon', sans-serif;
+            padding: 1.5rem 3rem;
+            box-shadow: 5px 5px red, 10px 10px black, inset 5px 5px white, inset 10px 10px black;
+            font-weight: bold;
+            font-size: 10px;
+            position: relative;
+            top: -30px;
+            color: black;
+        }
+        
+        .button2 {
+            background: none;
+            border: 5px solid black;
+            width: 10px;
+            font-family: 'Do Hyeon', sans-serif;
+            padding: 1.5rem 3rem;
+            box-shadow: 5px 5px black, 10px 10px black, inset 5px 5px white, inset 10px 10px black;
+            font-weight: bold;
+            font-size: 10px;
+            position: relative;
+            top: -30px;
+            color: black;
+        }
+        
+        .button1:hover {
+            background-color: rgba(255, 0, 0, 0.466);
+            text-decoration: none;
+            color: black;
+        }
+        
+        .button2:hover {
+            background-color: rgba(0, 0, 0, 0.199);
+            text-decoration: none;
+            color: black;
+        }
+        
+         ::before,
+         ::after {
+            content: "";
+            position: absolute;
+            background: black;
+        }
+        
+         ::before {
+            top: 100%;
+            left: 5px;
+            height: 10px;
+            width: 5px;
+        }
+        
+         ::after {
+            left: 100%;
+            top: 5px;
+            height: 5px;
+            width: 10px;
+        }
+        /*버튼 임시*/
+        
+        .comment-container {
+            margin-left: 13%;
+        }
+        
+        @import url(https://fonts.googleapis.com/css?family=Oxygen:400,300,700);
+    </style>
+</head>
+
+<body>
+    <header>
+        <a style="font-family: 'Great Vibes', cursive;" href="{% url 'main' %}">
+            <STRONG>&nbsp;<span>Colla</span><span class="boration">boration</span></STRONG>
+        </a>
+    </header>
+
+    <section>
+
+        <div class="w3-bar" style="font-size:18px;">
+            <a href="#" class="w3-bar-item" style="color:black;">RESEARCH</a> &nbsp;
+            <a href="#" class="w3-bar-item" style="color:black;">PPT</a> &nbsp;
+            <a href="#" class="w3-bar-item" style="color:black;"> PRESENTATION</a>
+        </div>
+
+        <br>
+
+        <div class="post" style="text-align:center; font-family:'Do Hyeon', sans-serif; margin-left:150px;">
+
+            <form name="BoardViewForm" method="POST">
+                {% csrf_token %}
+                <table summary="전체 테이블 구성">
+
+                    <tbody>
+                        <tr>
+                            <td>
+                                <div style="text-align:center;">
+                                    <h3>Post</h3>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan=2>
+                                <table border="1" summary="목록 테이블 구성">
+                                    <tr>
+                                        <td style="text-align:center; bgcolor:white; width:300px; background-color:rgba(255, 102, 102, 0.295);">작성자</td>
+                                        <td style="text-align:center; bgcolor:white; width:40%;">{{ board.writer}}</td>
+                                        <td style="text-align:center; bgcolor:white; width:300px; background-color:rgba(255, 102, 102, 0.295);">작성일</td>
+                                        <td style="bgcolor:white; width:40%">{{board.pub_date}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td text-align=center; bgcolor=white; style="background-color:rgba(255, 102, 102, 0.295);">TITLE</td>
+                                        <td text-align=center; style="background-color=white;" colspan=3>
+                                            {{board.title}}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan=4>{{board.body}}<br><br><br><br><br><br></td>
+                                    </tr>
+
+                                    <tr>
+                                        <td align=center bgcolor=white width=300px style="background-color:rgba(255, 102, 102, 0.295); ">첨부파일</td>
+                                        <td bgcolor=white width=40%></td>
+                                        <td align=center bgcolor=white width=300px style="background-color:rgba(255, 102, 102, 0.295); ">VIEWS</td>
+                                        <td bgcolor=white width=40%>123</td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </form>
+        </div>
+    </section>
+
+    <div class="comment-container">
+
+
+        <hr> {% for comment in board.commentTbs.all %}
+
+        <div class="card w-75">
+            <div class="card-body">
+                <h5 class="card-title"><strong>{{ comment.writer.profile.userName }}</strong> {{ comment.created_date }}</h5>
+                {% if commentId == comment.id %}
+                <form method="POST" action="{% url 'changeCommentTb' %}">
+                    {% csrf_token %}
+                    <textarea name="content" cols="81" rows="1" placeholder="{{comment.text}}" required></textarea>
+                    <input type="hidden" name="boardId" value="{{board.id}}">
+                    <input type="hidden" name="commentId" value="{{comment.id}}">
+                    <input class="btn btn-outline-secondary" style="float:right; display:inline;" type="submit" value="수정">
+                </form>
+                {% else %}
+                <p class="card-text">{{ comment.text|linebreaks }}</p>
+                {% endif %}
+            </div>
+
+        </div>
+
+        {% empty %}
+        <p>No comments here yet :(</p>
+        {% endfor %}
+    </div>
+
+
+</body>
+
+</html>
