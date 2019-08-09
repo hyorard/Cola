@@ -18,10 +18,12 @@ from django.urls import path, include
 from acount import views
 from django.conf import settings
 from django.conf.urls.static import static
+from allauth.account.views import LoginView, SignupView 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('first/',include('first.urls')),
+    path(r'^accounts/', include('allauth.urls')),
     path('teamproject/',include('teamproject.urls')),
     path('signup/', views.signup, name='signup'),
     path('login/', views.login, name='login'),
