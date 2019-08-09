@@ -24,24 +24,12 @@ def login(request):
         user = auth.authenticate(request, username=username, password=password)
         if user:
             auth.login(request, user)
-            return redirect('main')
+            return redirect('firstpage')
         else:
             return render(request, 'login.html')
 
     return render(request, 'login.html')
 
 
-
-# 소셜 로그인 용
-def social(request):
-    return render(request, 'Profile.html')
-
-def firstpage(request):
+def firstpage(request, teamList=None):
     return render(request, 'firstpage.html')
-'''
-def logout(request):
-    if request.method == 'POST':
-        auth.logout(request)
-        return redirect('login')
-    return render(request, 'login')
-'''

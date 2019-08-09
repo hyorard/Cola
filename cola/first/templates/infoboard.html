@@ -1,3 +1,5 @@
+{% extends 'base.html' %} {% block content %}
+
 <!DOCTYPE html>
 <html lang="UTF-8">
 
@@ -37,9 +39,12 @@
         
         #div_board {
             overflow: hidden;
-            width: auto;
+            width: 80%;
+            position: absolute;
+            margin-left: -100px;
+            margin-top: 150px;
             /*height: 350px;*/
-            margin: 50px auto;
+            /* margin: 50px auto;*/
             background: black;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -514,262 +519,32 @@
             overflow: hidden;
         }
         
-        .dropdown .dropbtn {
-            cursor: pointer;
-            font-size: 16px;
-            border: none;
+        a,
+        button {
             outline: none;
-            color: rgba(85, 17, 85, 0.829);
-            padding: 14px 16px;
-            background-color: inherit;
-            font-family: inherit;
-            margin: 0;
-            font-weight: bold;
-        }
-        
-        .navbar a:hover,
-        .dropdown:hover .dropbtn,
-        .dropbtn:focus {
-            background-color: white;
-        }
-        
-        .dropdown-content {
-            display: none;
-            position: absolute;
-            background-color: white;
-            min-width: 400px;
-            box-shadow: 0px 8px 16px 0px;
             z-index: 1;
         }
         
-        .dropdown-content a {
-            font-family: 'UhBeeSeulvely';
-            float: right;
-            color: black;
-            height: 80px;
-            width: 550px;
-            text-decoration: none;
-            display: block;
-            margin-left: 30px;
-            font-size: 20px;
-        }
-        
-        .dropdown-content a:hover {
-            background-color: white;
-            color: rgba(0, 0, 0, 0.815);
-            text-decoration-color: rgb(248, 211, 4);
-            text-decoration-style: wavy;
-            text-decoration-line: line-through;
-            line-height: 15px;
-        }
-        
-        .show {
-            display: block;
-        }
-        
-        body {
-            transition: background-color .7s ease;
-            position: relative;
-            color: black;
-        }
-        
-        body {
-            cursor: url('some-cursor.ico'), default;
-        }
-        /* panel styles */
-        
-        .panel {
-            /* min height incase content is higher than window height */
-            min-height: 500px;
-            display: flex;
-            justify-content: space-around;
-            align-items: center;
-            font-family: 'UhBeeSeulvely';
-            /* outline: 10px solid hotpink; */
-            /* turn above on to see the edge of panels */
-        }
-        
         a {
+            color: #566473;
             text-decoration: none;
+            z-index: 1;
         }
         
-        .nav {
-            position: fixed;
-            top: 3rem;
-            z-index: 100;
-            width: 300px;
+        a:hover,
+        a:focus {
+            color: #34495e;
+            z-index: 1;
         }
         
-        @media only screen and (max-width:576px) {
-            .nav {
-                top: 1.5rem;
-            }
-        }
-        
-        .nav--left {
-            left: 3rem;
-        }
-        
-        @media only screen and (max-width:576px) {
-            .nav--left {
-                left: 1.5rem;
-            }
-        }
-        
-        .nav--right {
-            right: 3rem;
-        }
-        
-        @media only screen and (max-width:576px) {
-            .nav--right {
-                right: 1.5rem;
-            }
-        }
-        
-        .nav h1 {
-            font-family: 'UhBeeJJIBBABBA';
-            font-weight: 300;
-            font-size: 1rem;
-            color: black;
-            margin: 0;
-        }
-        
-        @media only screen and (max-width:576px) {
-            .nav h1 {
-                font-size: .875rem;
-            }
-        }
-        
-        .nav a {
-            display: flex;
-            align-items: center;
-            font-size: calc(.5rem + .35vw);
-            font-size: 20px;
-        }
-        
-        .nav a {
+        #container {
             position: relative;
-            font-family: 'UhBeeJJIBBABBA';
-        }
-        /* colours */
-        
-        .color-violet1 {
-            background-color: white;
-        }
-        
-        .color-violet2 {
-            background-color: white;
-        }
-        
-        .color-violet3 {
-            background-color: white
-        }
-        
-        .color-violet4 {
-            background-color: white;
-        }
-        
-        .js-scroller {
-            touch-action: none;
-            margin-top: 200px;
-        }
-        
-        @keyframes scroller {
-            0% {
-                transform-origin: top left;
-                transform: scaleY(0);
-                animation-timing-function: cubic-bezier(.48, .02, 100, .99);
-            }
-            30% {
-                transform-origin: top left;
-                transform: scale(1);
-            }
-            41% {
-                transform-origin: bottom left;
-                transform: scale(1);
-                animation-timing-function: cubic-bezier(.48, .02, 0, .99);
-            }
-            to {
-                transform-origin: bottom left;
-                transform: scaleY(0);
-            }
-        }
-        
-        .scroll-hint {
-            position: fixed;
-            top: 630px;
-            left: calc(50% - 1px);
-            height: 10px;
-            color: black;
-            border-left: 1px solid black;
-            white-space: nowrap;
-            line-height: 70px;
-            z-index: 10;
-        }
-        
-        .scroll-hint-m {
-            display: block;
-            height: 25px;
-            line-height: 1px;
-        }
-        
-        .scroll-hint-m .scroll-hint__label {
-            transform: translate(-50%, -25px);
-            padding-left: 0;
-        }
-        
-        .scroll-hint:before {
-            content: "collabortaion";
-            position: absolute;
-            left: -1px;
-            top: 0;
-            display: block;
-            width: 1px;
-            height: 100%;
-            background-color: #fff;
-            transform: scaleY(0) translateZ(0);
-            animation: scroller 3s infinite;
-        }
-        
-        .scroll-hint__label {
-            font-size: 12px;
-            padding-left: 20px;
-            font-weight: 700;
-        }
-        
-        inner {
-            border: 0;
-            padding: 0;
+            margin-top: 800px;
         }
     </style>
 </head>
 
 <body>
-
-    <div id="slider" class="slider js-slider" style="height:50px;">
-        <div class="panel" data-color="violet1">
-            <nav class="nav nav--left">
-                <a href="/">
-                    <h1 style=" font-family : 'UhBeeJJIBBABBA'; font-size : 32px;">콜<span style="color:rgba(85, 17, 85, 0.829); ">라보</span>레이션</h1>
-                </a>
-            </nav>
-            <nav class="nav nav--right nav--toHide">
-                <div class="dropdown">
-                    <button class="dropbtn" onclick="myFunction()" style="margin-left:200px;">MENU
-                                        </button>
-                    <div class="dropdown-content" id="myDropdown">
-                        <a href="{% url 'mypage' %}">마이 페이지</a>
-                        <a href="{% url 'teamproject' %}">팀 페이지</a>
-                        <a href="{% url 'createTeam' %}">팀 생성</a>
-                        <a href="{% url 'infoboard' %}">게시판</a> {% if not request.user.is_authenticated %}
-                        <a href="{% url 'login' %}">로그인</a>
-                        <a href="{% url 'signup' %}">회원가입</a> {% elif request.user.is_authenticated %}
-                        <a href="{% url 'logout' %}">로그아웃</a> {% endif %}
-                    </div>
-                </div>
-            </nav>
-        </div>
-    </div>
 
 
     <br>
@@ -915,5 +690,6 @@
     }).scroll();
 </script>
 
+{% endblock %}
 
 </html>

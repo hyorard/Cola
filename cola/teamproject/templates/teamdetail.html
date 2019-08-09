@@ -225,13 +225,12 @@
 
                                     <tr>
                                         <td align=center bgcolor=white width=300px style="background-color:rgba(255, 102, 102, 0.295); ">첨부파일</td>
-                                        {% if filename %}
-                                        <td bgcolor=white width=40%><a href="{{ board.File.url }}" download>{{ filename }}</a> </td>
-                                        {% else %}
-                                        <td bgcolor=white width=40%> 없음 </td>
-                                        {% endif %}
+                                        <td bgcolor=white colspan=2>
+                                            {% for file in board.teamboards.all %} {% if file.filename %}
+                                            <a href="{{ file.teamFile.url }}" download>{{ file.filename }}</a><br> {% else %} 없음 {% endif %} {% endfor %}
+                                        </td>
                                         <td align=center bgcolor=white width=300px style="background-color:rgba(255, 102, 102, 0.295); ">VIEWS</td>
-                                        <td bgcolor=white width=40%>{{ board.views }}</td>
+                                        <td bgcolor=white width=40%>{{board.views}}</td>
                                     </tr>
                                 </table>
                             </td>

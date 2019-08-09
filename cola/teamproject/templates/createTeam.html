@@ -1,3 +1,5 @@
+{% extends 'base.html' %} {% block content %}
+
 <!doctype html>{% load socialaccount %} {% providers_media_js %}
 <html lang="kr">
 
@@ -14,154 +16,12 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
     <style>
-        /* Setting fade transition and default settings */
-        
-        @import url('https://fonts.googleapis.com/css?family=Black+Han+Sans:400');
-        @import url('https://fonts.googleapis.com/css?family=Black+Han+Sans&display=swap&subset=korean');
-        .dropdown {
-            float: left;
-            overflow: hidden;
-        }
-        
-        .dropdown .dropbtn {
-            cursor: pointer;
-            font-size: 16px;
-            border: none;
-            outline: none;
-            color: rgba(85, 17, 85, 0.829);
-            padding: 14px 16px;
-            background-color: inherit;
-            font-family: inherit;
-            margin: 0;
-            font-weight: bold;
-        }
-        
-        .navbar a:hover,
-        .dropdown:hover .dropbtn,
-        .dropbtn:focus {
-            background-color: white;
-        }
-        
-        .dropdown-content {
-            display: none;
-            position: absolute;
-            background-color: white;
-            min-width: 400px;
-            box-shadow: 0px 8px 16px 0px z-index: 1;
-        }
-        
-        .dropdown-content a {
-            font-family: 'UhBeeSeulvely';
-            float: right;
-            color: black;
-            height: 80px;
-            width: 550px;
-            text-decoration: none;
-            display: block;
-            margin-left: 30px;
-            font-size: 20px;
-        }
-        
-        .dropdown-content a:hover {
-            background-color: white;
-            color: rgba(0, 0, 0, 0.815);
-            text-decoration-color: rgb(248, 211, 4);
-            text-decoration-style: wavy;
-            text-decoration-line: line-through;
-            line-height: 15px;
-        }
-        
-        .show {
-            display: block;
-        }
-        
-        body {
-            transition: background-color .7s ease;
-            position: relative;
-            color: black;
-        }
-        
-        body {
-            cursor: url('some-cursor.ico'), default;
-        }
-        /* panel styles */
-        
-        .panel {
-            /* min height incase content is higher than window height */
-            min-height: 500px;
-            display: flex;
-            justify-content: space-around;
-            align-items: center;
-            font-family: 'UhBeeSeulvely';
-            /* outline: 10px solid hotpink; */
-            /* turn above on to see the edge of panels */
-        }
-        
-        a {
-            text-decoration: none;
-        }
-        
-        .nav {
-            position: fixed;
-            top: 3rem;
-            z-index: 100;
-            width: 300px;
-        }
-        
-        @media only screen and (max-width:576px) {
-            .nav {
-                top: 1.5rem;
-            }
-        }
-        
-        .nav--left {
-            left: 3rem;
-        }
-        
-        @media only screen and (max-width:576px) {
-            .nav--left {
-                left: 1.5rem;
-            }
-        }
-        
-        .nav--right {
-            right: 3rem;
-        }
-        
-        @media only screen and (max-width:576px) {
-            .nav--right {
-                right: 1.5rem;
-            }
-        }
-        
-        .nav h1 {
-            font-family: 'UhBeeJJIBBABBA';
-            font-weight: 300;
-            font-size: 1rem;
-            color: black;
-            margin: 0;
-        }
-        
-        @media only screen and (max-width:576px) {
-            .nav h1 {
-                font-size: .875rem;
-            }
-        }
-        
-        .nav a {
-            display: flex;
-            align-items: center;
-            font-size: calc(.5rem + .35vw);
-            font-size: 20px;
-        }
-        
-        .nav a {
-            position: relative;
-            font-family: 'UhBeeJJIBBABBA';
-        }
-        
-        \
         /* colours */
+        
+        .container {
+            position: relative;
+            margin-top: -85px;
+        }
         
         .color-violet1 {
             background-color: white;
@@ -195,7 +55,7 @@
         
         .scroll-hint {
             position: fixed;
-            top: 630px;
+            top: 730px;
             left: calc(50% - 1px);
             height: 10px;
             color: black;
@@ -235,25 +95,6 @@
             font-weight: 700;
         }
         
-        .img {
-            position: relative;
-            margin-top: -650px;
-            margin-left: -800px;
-            background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRCTuvwjx_Ehk-RBxLS2eR2ElE1Hy_2qXQL90BKaQm5zaIkf_asdg);
-            height: 30vh;
-            width: 30vh;
-        }
-        
-        hr {
-            border: thick solid black;
-            margin-top: -370px;
-            width: 100%;
-            height: 300px;
-            border-bottom: 0;
-            border-left: 0;
-            border-right: 0;
-        }
-        
         .box {
             float: left;
             font-family: 'UhBeeSeulvely';
@@ -268,42 +109,18 @@
             color: rgba(85, 17, 85, 0.829);
         }
         
-        .notes {
-            background-image: -webkit-linear-gradient(white, white 30px, #ccc 30px, #ccc 31px, white 31px);
-            background-image: -moz-linear-gradient(white, white 30px, #ccc 30px, #ccc 31px, white 31px);
-            background-image: -ms-linear-gradient(white, white 30px, #ccc 30px, #ccc 31px, white 31px);
-            background-image: -o-linear-gradient(white, white 30px, #ccc 30px, #ccc 31px, white 31px);
-            background-image: linear-gradient(white, white 30px, #ccc 30px, #ccc 31px, white 31px);
-            background-size: 100% 31px;
-            border: .1px solid #ccc;
-            border-radius: 8px;
-            box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
-            line-height: 31px;
-            padding: 8px;
+        @font-face {
+            font-family: 'SeoulHangangM';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/SeoulHangangM.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
         }
         
-        input {
-            font-family: 'UhBeeSeulvely';
-            border-color: rgba(85, 17, 85, 0.829);
-            border-top-color: rgba(85, 17, 85, 0.829);
-        }
-        
-        .submit {
-            background-color: white;
-            font-size: 20px;
-            border: none;
-            margin-top: -20px;
-        }
-        
-        .submit:hover {
-            background-color: white;
-            color: rgba(0, 0, 0, 0.815);
-            text-decoration-color: rgb(248, 211, 4);
-            text-decoration-style: wavy;
-            text-decoration-line: underline;
-            line-height: 15px;
-            font-size: 20px;
-            block-size: 30px;
+        @font-face {
+            font-family: 'netmarbleB';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_four@1.1/netmarbleB.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
         }
         
         @font-face {
@@ -365,6 +182,388 @@
         .panel>h1 {
             font-family: 'Black Han Sans', sans-serif;
         }
+        
+        .form-section.triggerable.triggered-once,
+        .form-section.triggerable.triggered-once .wrapper {
+            opacity: 1;
+            -ms-transform: translateY(0px) translateZ(0px);
+            transform: translateY(0px) translateZ(0px);
+        }
+        
+        .form-section {
+            background: rgba(187, 139, 187, 0.068);
+            margin-top: 200px;
+            font-family: 'netmarbleB';
+        }
+        
+        .afterline,
+        .beforeline {
+            position: relative;
+        }
+        
+        .content-section {
+            padding-top: 65px;
+            padding-bottom: 32px;
+        }
+        
+        section {
+            position: absolute;
+            margin-top: 100px;
+            display: block;
+            font-family: 'netmarbleB';
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            outline: 0 none;
+            border: none;
+        }
+        
+        section .wrapper {
+            position: relative;
+            z-index: 50;
+        }
+        
+        .wrapper {
+            position: absolute;
+            margin-top: 100px;
+            width: 85%;
+            margin: 0 auto;
+            /* outline: 1px solid rgba(0, 0, 0, 0.2); */
+        }
+        
+        .subwrapper {
+            width: 100%;
+            margin: 0 auto;
+        }
+        
+        .form-section h3 {
+            font-size: 32px;
+            margin-bottom: 50px;
+            font-family: 'SeoulHangangM';
+        }
+        
+        .light h1,
+        .light h2,
+        .light h3,
+        .light h4,
+        .light h5,
+        .light h6 {
+            color: #2f3b44;
+        }
+        
+        h3 {
+            font-family: 'Stem Web', sans-serif;
+            letter-spacing: 0.015em;
+            font-size: 28px;
+            line-height: 1.4;
+            font-weight: 500;
+            color: #2f3b44;
+            margin-bottom: 35px;
+            text-align: left;
+            display: block;
+            font-size: 1.17em;
+            margin-block-start: 1em;
+            margin-block-end: 1em;
+            margin-inline-start: 0px;
+            margin-inline-end: 0px;
+            font-weight: bold;
+        }
+        
+        .form-section .responce {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            left: 0;
+            top: 0;
+            z-index: 0;
+            opacity: 0;
+            -webkit-transition: all 0.6s;
+            transition: all 0.6s;
+            -ms-transform: translateY(20px);
+            transform: translateY(20px);
+        }
+        
+        .form-section .responce-inner {
+            width: 80%;
+            margin: 0 auto;
+            padding-top: 150px;
+            text-align: center;
+        }
+        
+        .form-section .view-form {
+            -webkit-transition: all 0.6s;
+            transition: all 0.6s;
+        }
+        
+        .form-section form {
+            position: relative;
+            max-width: 575px;
+            margin: 0 auto;
+            z-index: 1;
+        }
+        
+        user agent stylesheet form {
+            display: block;
+            margin-top: 0em;
+        }
+        
+        form .line {
+            padding-bottom: 35px;
+        }
+        
+        form .l-l {
+            width: 100%;
+            float: left;
+            padding-bottom: 0px;
+            padding-bottom: 35px;
+        }
+        
+        form .input-wrapper {
+            position: relative;
+            display: block;
+            padding: 7px 0;
+            border-bottom: 2px solid rgba(85, 17, 85, 0.829);
+        }
+        
+        label {
+            cursor: default;
+        }
+        
+        form .input-wrapper .input-placeholder {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            line-height: 38px;
+            -webkit-transition: all 0.3s;
+            transition: all 0.3s;
+            color: #646e76;
+        }
+        
+        form .input-wrapper input {
+            position: relative;
+            z-index: 1;
+        }
+        
+        form input {
+            width: 100%;
+            line-height: 38px;
+            font-size: 16px;
+            font-family: 'FreightTextPro', 'georgia', serif;
+            letter-spacing: 0.015em;
+            font-weight: 500;
+            background: none;
+        }
+        
+        input {
+            -webkit-writing-mode: horizontal-tb !important;
+            text-rendering: auto;
+            color: initial;
+            letter-spacing: normal;
+            word-spacing: normal;
+            text-transform: none;
+            text-indent: 0px;
+            text-shadow: none;
+            display: inline-block;
+            text-align: start;
+            -webkit-appearance: textfield;
+            background-color: white;
+            -webkit-rtl-ordering: logical;
+            cursor: text;
+            margin: 0em;
+            font: 400 13.3333px Arial;
+            padding: 1px 0px;
+            border-width: 2px;
+            border-style: inset;
+            border-color: initial;
+            border-image: initial;
+        }
+        
+        form .input-wrapper:after {
+            content: "";
+            position: absolute;
+            left: 0;
+            right: 0;
+            margin: auto;
+            width: 0%;
+            opacity: 0;
+            bottom: -2px;
+            height: 2px;
+            background: #ee394e;
+            -webkit-transition: all 0.4s;
+            transition: all 0.4s;
+        }
+        
+        form .l-r {
+            width: 100%;
+            float: right;
+        }
+        
+        form .input-wrapper .input-placeholder {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            line-height: 38px;
+            -webkit-transition: all 0.3s;
+            transition: all 0.3s;
+            color: black;
+        }
+        
+        .clear {
+            clear: both;
+        }
+        
+        form .line {
+            padding-bottom: 35px;
+        }
+        
+        .input-wrapper .input-placeholder {
+            position: absolute;
+            margin-top: -25px;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            line-height: 38px;
+            -webkit-transition: all 0.3s;
+            transition: all 0.3s;
+            color: #646e76;
+        }
+        
+        form .input-wrapper textarea {
+            width: 100%;
+            line-height: 1.5;
+            font-size: 16px;
+            font-family: 'netmarbleB';
+            letter-spacing: 0.015em;
+            font-weight: 500;
+            background: none;
+            height: 24px;
+            resize: none;
+            display: block;
+            overflow: hidden;
+        }
+        
+        textarea {
+            -webkit-writing-mode: horizontal-tb !important;
+            text-rendering: auto;
+            color: initial;
+            letter-spacing: normal;
+            word-spacing: normal;
+            text-transform: none;
+            text-indent: 0px;
+            text-shadow: none;
+            display: inline-block;
+            text-align: start;
+            -webkit-appearance: textarea;
+            background-color: rgba(187, 139, 187, 0.178);
+            -webkit-rtl-ordering: logical;
+            flex-direction: column;
+            resize: auto;
+            cursor: text;
+            white-space: pre-wrap;
+            overflow-wrap: break-word;
+            margin: 0em;
+            font: 400 13.3333px Arial;
+            border-image: initial;
+            padding: 2px;
+        }
+        
+        textarea:hover {
+            padding: 5px;
+        }
+        
+        form .submit-line {
+            padding-top: 45px;
+        }
+        
+        form .submit-wrapper {
+            transition: all 0.6s ease 0.15s;
+        }
+        
+        form .submit-wrapper {
+            position: relative;
+            display: block;
+            width: 100%;
+            max-width: 255px;
+            margin: 0 auto;
+            border: 2px solid rgba(85, 17, 85, 0.829);
+            cursor: pointer;
+        }
+        
+        form .submit-wrapper:hover input {
+            color: black;
+            background-color: rgba(85, 17, 85, 0.616);
+            background-size: cover;
+            transition: all 0.6s;
+        }
+        
+        form .submit-wrapper input {
+            transition: all 0.6s ease 0.15s;
+            position: relative;
+            display: block;
+            line-height: 55px;
+            background: none;
+            font-family: 'netmarbleB';
+            text-transform: uppercase;
+            font-size: 12px;
+            color: rgba(85, 17, 85, 0.829);
+            font-weight: 600;
+            padding-left: 0.8em;
+            letter-spacing: 0.8em;
+            text-align: center;
+            cursor: pointer;
+            z-index: 3;
+        }
+        
+        input[type="submit" i] {
+            -webkit-appearance: push-button;
+            user-select: none;
+            white-space: pre;
+            align-items: flex-start;
+            text-align: center;
+            cursor: default;
+            color: buttontext;
+            background-color: buttonface;
+            box-sizing: border-box;
+            padding: 1px 6px;
+            border-width: 2px;
+            border-style: outset;
+            border-color: buttonface;
+            border-image: initial;
+        }
+        
+        form .submit-wrapper:before,
+        form .submit-wrapper:after {
+            transition: all 0.6s ease 0.15s, transform 0.6s ease 0s;
+            -ms-transition: all 0.6s ease 0.15s, -ms-transform 0.6s ease 0s;
+        }
+        
+        form .submit-wrapper:after {
+            left: -12px;
+        }
+        
+        form .submit-wrapper:after,
+        form .submit-wrapper:before {
+            content: "";
+            position: absolute;
+            width: 25px;
+            height: 4px;
+            top: 0;
+            bottom: 2px;
+            margin: auto;
+            -webkit-transition: all 0.6s;
+            -o-transition: all 0.6s;
+            transition: all 0.6s;
+        }
+        
+        footer {
+            margin-left: 100px;
+        }
     </style>
     <script src="/Content/ko/inc/js/jquery.js" type="text/javascript" charset="utf-8"></script>
 
@@ -373,112 +572,68 @@
 <body>
 
 
-    <div id="slider" class="slider js-slider" style="height:50px;">
-        <div class="main js-scroller">
-            <div class="slider__inner js-slider__inner" style="height:100%;">
-                <canvas width="" height="" style=""></canvas>
-            </div>
 
 
+    <section class="form-section content-section light afterline beforeline triggerable scroll-trigger triggered-once triggered" data-trigger-id="trigger-id-3">
+        <div class="wrapper">
+            <div class="subwrapper">
+                <h3>팀을 생성하세요 ! </h3>
+                <div class="form-wrapper">
 
-            <div class="panel" data-color="violet1">
-                <nav class="nav nav--left">
-                    <a href="/">
-                        <h1 style=" font-family : 'UhBeeJJIBBABBA'; font-size : 32px;">콜<span style="color:rgba(85, 17, 85, 0.829); ">라보</span>레이션</h1>
-                    </a>
-                </nav>
+                    <form method="POST" enctype="multipart/form-data" action="{% url 'createTeam' %}" class="view-form waiting" data-id="f1">
+                        {% csrf_token %}
+                        <div class="line">
+                            <div class="l-l">
+                                <label class="input-wrapper">
+                                            <span class="input-placeholder">팀 명</span>
+                                            <textarea type="text"  name="teamName" maxlength="50" ></textarea>
+                                            
+                                        </label>
+                            </div>
 
-                <nav class="nav nav--right nav--toHide">
-                    <div class="dropdown">
-                        <button class="dropbtn" onclick="myFunction()" style="margin-left:200px;">MENU
-                            </button>
+                            <div class="l-r">
+                                <label class="input-wrapper">
+                                            <span class="input-placeholder">데드라인</span>
+                                            <input type="date" name="deadline" style="border:none; font-family:'SeoulHangangM';">
+                                            <input type="hidden" name="fromStart" value="1">
+                                            <input type="hidden" name="progress" value=0>
+                                        </label>
+                            </div>
 
-
-                        <div class="dropdown-content" id="myDropdown">
-                            <a href="{% url 'mypage' %}">마이 페이지</a>
-                            <a href="{% url 'teamproject' %}">팀 페이지</a>
-                            <a href="{% url 'createTeam' %}">팀 생성</a>
-                            <a href="{% url 'board' %}">게시판</a>
-                            <a href="{% url 'logout' %}">로그아웃</a>
-
+                            <div class="clear"></div>
                         </div>
-                    </div>
 
-                </nav>
+                        <div class="line">
+                            <label class="input-wrapper">
+                                        <span class="input-placeholder">추가 메모</span>
+                                        <textarea name="addi_Info" rows="1"></textarea>
+                                        
+                                    </label>
+                        </div>
 
-
-
-                <div class="img">
-                    <div class="content" style="width:200%;margin-top:-10px; margin-left:300px;">
-                        <h1>WEL-COME</h1>
-                        <h2>나만의 팀플을 생성하세요!</h2>
-                    </div>
-                    <div class="img-cover"></div>
-                </div>
-
-            </div>
-
-            <hr>
-            <div class="notes" style="width: 90%; height:400px;margin-top:-280px; margin-left:50px;">
-                <div class="box">
-                    <h3 class="firstbox">팀 생성하기</h3>
-                    <div class="X">
-
-                        <form method="POST" enctype="multipart/form-data" action="{% url 'createTeam' %}">
-                            {% csrf_token %}
-                            <h4>팀 명 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;데드라인</h4>
-                            <input type="text" name="teamName" maxlength="50" placeholder="팀 명"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            <input type="date" name="deadline">
-                            <input type="hidden" name="fromStart" value="1">
-                            <input type="hidden" name="progress" value=0> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            <input class="submit" type="submit" value="생성하기" />
-                        </form>
-                    </div>
-
+                        <div class="submit-line">
+                            <label class="submit-wrapper">                                       
+                                        <input class="submit" type="submit" value="생성하기">
+                                    </label>
+                        </div>
+                    </form>
                 </div>
             </div>
-
-
-            <div class="scroll-hint js-scroll" style="opacity: 0; transform: translate(0%, 100%) matrix(1, 0, 0, 1, 0, 0); position:fixed;">
-                <div class="scroll-hint__label"></div>
-            </div>
-
-            <div class="scroll-hint scroll-hint-m">
-                <div class="scroll-hint__label">Scroll</div>
-            </div>
-
         </div>
+    </section>
+    <footer>
+        <h5 style="margin-top:50px;">South Korea &nbsp;&nbsp;&nbsp; | </h5>
+
+        <h6 style="margin-left:140px;margin-top:-20px;"> Likelion 7th @likelion.org &nbsp;&nbsp; Copyright © 2019_Collaboration
+            <br> Tel)010-1234-5678
+        </h6>
+
+    </footer>
 
 
 
 
-        <div class="panel" data-color="violet2">
-
-
-            <div class="panel" data-color="violet3">
-
-
-
-
-            </div>
-
-
-            <div class="panel" data-color="violet4">
-
-
-
-
-            </div>
-
-            <div class="panel" data-color="black">
-
-
-            </div>
-
-
-
-
-        </div>
+    </div>
     </div>
 
 
@@ -579,5 +734,6 @@
         })();
     </script>
 </body>
+{% endblock %}
 
 </html>

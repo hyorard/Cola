@@ -2,7 +2,6 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
-    path('teamproject/', views.teamproject, name="teamproject"),
     path('create', views.createTeam, name="createTeam"),
     path('teaminfo', views.teamInfo, name="teamInfo"),
     path('teaminfo/change', views.changeTeamInfo, name="changeTeamInfo"),
@@ -16,6 +15,7 @@ urlpatterns = [
     path('teamBoard/<int:team_id>', views.teamBoard, name="teamBoard"),
     path('teamboard_write/<int:team_id>', views.teamboard_write, name="teamboard_write"),
     path('teamBoard/detail/<int:board_id>', views.teamdetail, name="teamdetail"),
+    path('board/removeBoardTb/<int:board_id>', views.removeBoardTb, name="removeBoardTb"),
     path('teamBoard/detail/addcomment', views.addCommentTb, name="addCommentTb"),
     path('teamBoard/detail/deletecomment', views.deleteCommentTb, name="deleteCommentTb"),
     path('teamBoard/detail/changecomment', views.changeCommentTb, name="changeCommentTb"),

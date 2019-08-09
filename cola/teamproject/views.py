@@ -1,10 +1,9 @@
-from django.contrib import auth
+from django.contrib import auth, messages
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import Team,Invite,Team_todo, TeamBoard, CommentTb
+from .models import Team,Invite,Team_todo, TeamBoard, CommentTb, FileTb
 from first.models import profile
 from datetime import date,datetime,timedelta
 from math import floor
-from django.contrib import messages
 from django.contrib.auth.models import User
 #pagination
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
@@ -12,65 +11,10 @@ from datetime import datetime
 
 # Create your views here.
 
-def teamproject(request):
-    if not request.user.is_authenticated:
-        return render(request,'login.html')
-
-    try:
-        prof = request.user.profile
-        pass
-    except:
-        # profile X -> makeprofile -> profile.html
-        return render(request,'profile.html')
-
-    # 유저가 속한 모든 팀 리스트
-    TeamList = request.user.team_set.all().values()
-
-    try:
-        TeamList[0]
-    # 팀이 하나도 없을 때,
-    except IndexError:
-        return render(request, 'createTeam.html')
-
-    # 제일 임박한 팀플 기한 = earliestDL, 미완성 프로젝트 개수 = nPrj, 평균완성도 = avgProgress
-    earliestDL = TeamList[0]['deadline']
-    earliestTeam = TeamList[0]['name']
-    nPrj, avgProgress = 0, 0
-    for team in TeamList:
-        if team['deadline'] < earliestDL:
-            earliestDL = team['deadline']
-            earliestTeam = team['name']
-        if team['is_finished'] == False:
-            nPrj += 1
-        avgProgress += team['progress']
-    
-    avgProgress /= len(TeamList)
-    avgProgress = floor(avgProgress)
-    earliestDL = datetime.strftime(earliestDL, "%Y-%m-%d")
-
-    # JS 위한 데이터 
-
-    #nTeam = len(TeamList)   # 팀 개수
-    #nameList = [team['name'] for team in TeamList] # 팀 이름 리스트
-    #progressList = [team['progress'] for team in TeamList] # 팀 완성도 리스트
-
-    
-    
-
-    return render(request,'teamproject.html',
-        {
-        'Teams':TeamList,
-        'earliestDL':earliestDL,
-        'earliestTeam':earliestTeam,
-        'nPrj':nPrj,
-        'avgProgress':avgProgress
-        #'nTeam' : nTeam,
-        #'nameList' : nameList,
-        #'progressList' : progressList
-        }
-    )
 
 def createTeam(request):
+    if not request.user.is_authenticated:
+        return render(request,'login.html')
     if request.method == 'GET':
 
         try:
@@ -284,6 +228,8 @@ def changeTeamInfo(request):
         team.deadline = team.deadline.strftime('%Y년%m월%d일'.encode('unicode-escape').decode()).encode().decode('unicode-escape')
 
         return render(request, 'teamInfo.html', {'team':team, 'members':members, 'progressList':progressList})
+
+        
 def searchPerson(request,team_id=None):
     # 초대하는 팀
     scoutingTeamId = team_id
@@ -377,10 +323,6 @@ def teamboard_write(request, team_id=None):
         board.title = request.POST['title']
         board.body = request.POST['body']
         board.views = 0
-        try:
-            board.File = request.FILES['fileToUpload']
-        except:
-            pass
 
         conn_user = request.user
         conn_profile = profile.objects.get(user=conn_user)
@@ -388,35 +330,31 @@ def teamboard_write(request, team_id=None):
         board.writer = nick
         board.pub_date = datetime.now()
         board.save()
-        
-        #file 이름으로 뜨기
-        if board.File:
-            filename = board.File.name.split('/')[-1]
-        else:
-            filename = None
-    
-        conn_user = request.user
-        conn_profile = profile.objects.get(user=conn_user)
-        nick = conn_profile.userName
         # 글쓴이와 들어온 사람이 같은지 확인(삭제/수정)
-    
+        
+        for f in request.FILES.getlist("fileToUpload"):
+            #file saving process
+            def process(f):
+                files = FileTb()
+                files.teamboard = board
+                files.teamFile = f
+                files.filename = f.name.split('/')[-1]
+                files.save()
+            process(f)
+        
+        teamboards = team.teamboard_set.all()
+
         bw = board.writer
         if bw == nick:
             check = True
         else :
             check = False
-        return render(request, 'teamdetail.html', {'board':board, 'check' : check, 'filename' : filename})
+        return render(request, 'teamdetail.html', {'board':board, 'check' : check})
 
 def teamdetail(request, board_id):
     board_detail = get_object_or_404(TeamBoard, pk = board_id)
     board_detail.views += 1
     board_detail.save()
-
-    #file 이름으로 뜨기
-    if board_detail.File:
-        filename = board_detail.File.name.split('/')[-1]
-    else:
-        filename = None
     
     conn_user = request.user
     conn_profile = profile.objects.get(user=conn_user)
@@ -428,7 +366,28 @@ def teamdetail(request, board_id):
         check = True
     else :
         check = False
-    return render(request, 'teamdetail.html', {'board':board_detail, 'check' : check, 'filename' : filename})
+    return render(request, 'teamdetail.html', {'board':board_detail, 'check' : check})
+
+def removeBoardTb(request, board_id):
+    board = get_object_or_404(TeamBoard, pk = board_id)
+    board.delete()
+
+    boards = TeamBoard.objects
+    boards_list = TeamBoard.objects.all()
+    paginator = Paginator(boards_list, 10)
+    page = request.GET.get('page')
+    try:
+        queryset = paginator.page(page)
+    except PageNotAnInteger:
+        queryset = paginator.page(1)
+    except EmptyPage:
+        queryset = paginator.page(paginator.num_pages)
+    context = {
+      "object_list" : queryset,
+   }
+
+    return render(request, 'teamBoard.html', context)
+
 
 def addCommentTb(request):
     boardId = request.POST['boardId']

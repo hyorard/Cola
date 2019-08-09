@@ -1,3 +1,4 @@
+{% extends 'base.html' %} {% block content %}
 <!DOCTYPE html>
 
 <html lang='ko'>
@@ -11,17 +12,18 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
     <title>main</title>
-
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css" media="all">
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,900" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Do+Hyeon&display=swap&subset=korean" rel="stylesheet">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.17/d3.min.js"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css" media="all">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,900" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Do+Hyeon&display=swap&subset=korean" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
     <link href="https://fonts.googleapis.com/css?family=Sunflower:300&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Gothic+A1&display=swap" rel="stylesheet">
@@ -42,6 +44,23 @@
             src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/NIXGONM-Vb.woff') format('woff');
             font-weight: normal;
             font-style: normal;
+        }
+        
+        a {
+            color: #566473;
+            text-decoration: none;
+        }
+        
+        a:hover,
+        a:focus {
+            color: #34495e;
+        }
+        
+        .container {
+            max-width: 600px;
+            position: relative;
+            margin-top: 100px;
+            margin-left: 72px;
         }
         
         .modal {
@@ -528,10 +547,6 @@
             margin-bottom: 30px;
         }
         
-        .container {
-            padding-left: 110px;
-        }
-        
         .search-field-2 {
             display: block;
             width: 265px;
@@ -909,6 +924,8 @@
         
         @media (min-width: 1240px) {
             main {
+                position: absolute;
+                margin-left: 0px;
                 display: grid;
                 margin: auto;
                 max-width: 1150px;
@@ -1378,6 +1395,7 @@
         
         .modal_title {
             margin: -25px -25px 25px;
+            margin-top: 0%;
             padding: 15px 25px;
             line-height: 35px;
             font-size: 26px;
@@ -1461,28 +1479,28 @@
             box-shadow: none;
         }
         
-        :-moz-placeholder {
+         :-moz-placeholder {
             color: #ccc;
             font-weight: 300;
         }
         
-        ::-moz-placeholder {
+         ::-moz-placeholder {
             color: #ccc;
             opacity: 1;
             font-weight: 300;
         }
         
-        ::-webkit-input-placeholder {
+         ::-webkit-input-placeholder {
             color: #ccc;
             font-weight: 300;
         }
         
-        :-ms-input-placeholder {
+         :-ms-input-placeholder {
             color: #ccc;
             font-weight: 300;
         }
         
-        ::-moz-focus-inner {
+         ::-moz-focus-inner {
             border: 0;
             padding: 0;
         }
@@ -2091,6 +2109,11 @@
         .panel>h1 {
             font-family: 'Black Han Sans', sans-serif;
         }
+        
+        .content {
+            position: relative;
+            margin-top: 20%;
+        }
     </style>
     <link rel="stylesheet" type="text/css" href="main.css" charset="utf-8" />
 
@@ -2101,7 +2124,7 @@
 <body>
 
 
-    {% extends 'base.html' %} {% block content %} {% if request.user == team.leader %}
+    {% if request.user == team.leader %}
 
     <!--임시-->
     <main>

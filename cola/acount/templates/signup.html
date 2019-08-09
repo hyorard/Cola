@@ -1,131 +1,109 @@
-<!DOCTYPE html>
-
+<!DOCTYPE html> {% extends 'base.html' %} {% block content %}{% load socialaccount %} {% providers_media_js %}
 <html>
 
-
-
 <head>
-
     <meta charset="UTF-8">
-
-    <title>콜라</title>
+    <title>collaboration : sign up</title>
 
     <link href="https://fonts.googleapis.com/css?family=Black+Han+Sans&display=swap" rel="stylesheet">
-
     <link href="https://fonts.googleapis.com/css?family=Nanum+Brush+Script&display=swap" rel="stylesheet">
-
     <link href="https://fonts.googleapis.com/css?family=Cute+Font&display=swap" rel="stylesheet">
-
     <link href="https://fonts.googleapis.com/css?family=Sunflower:300&display=swap" rel="stylesheet">
-
     <link href="https://fonts.googleapis.com/css?family=Do+Hyeon|Great+Vibes|Pacifico&display=swap" rel="stylesheet">
 
     <style>
-        body {
-            padding: 0 2%;
-            color: #ffffff;
-            background: rgb(172, 22, 22);
+        @font-face {
+            font-family: 'SeoulHangangM';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/SeoulHangangM.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
+        
+        @font-face {
+            font-family: 'netmarbleL';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_four@1.1/netmarbleL.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
+        
+        @font-face {
+            font-family: 'netmarbleB';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_four@1.1/netmarbleB.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
+        
+        h1,
+        h3 {
+            font-family: 'SeoulHangangM';
+        }
+        
+        p {
+            font-family: 'netmarbleL', 'netmarbleB', sans-serif;
+            font-weight: lighter;
+        }
+        
+        .con {
+            position: absolute;
+            background-color: rgba(187, 139, 187, 0.178);
+            margin: 0;
+            padding: 0;
+            top: 102px;
+            height: 80%;
+            width: 100%;
+        }
+        
+        .con h3 {
+            font-size: 32px;
+            margin-bottom: 50px;
+        }
+        
+        div {
+            display: block;
+        }
+        
+        .s-ico {
+            display: inline-block;
+            width: 24px;
+            height: 24px;
+            vertical-align: middle;
+            margin-right: 10px;
+            border-radius: 2px;
         }
         
         .X {
+            font-family: 'netmarbleL';
             margin: auto;
             padding: 1% 2%;
             max-width: 420px;
             border-radius: 5px;
-            border-color: 5px solid fade(white, 20%);
+            border-color: 5px solid fade(#a97cc4, 20%);
             background: transparent;
         }
         
-        h1,
-        h2 {
-            text-align: center;
-            font-family: 'Do Hyeon', sans-serif;
-        }
-        
-        input,
-        label,
-        a {
-            color: transparent;
-            border: white;
+        input {
+            color: #a97cc4;
+            border: 1px solid #a97cc4;
             font-size: 18px;
             font-weight: 400;
-            line-height: 30px;
             text-align: justify;
             letter-spacing: 1px;
-            font-family: 'Do Hyeon', sans-serif;
+            font-family: 'netmarbleL';
         }
         
-        label,
-        input[type=submit],
-        a {
-            font-weight: 500;
+        .fuck {
+            color: default;
         }
-        /*Style Social
-
-              lsN = login social Network
-
-              */
-        
-        ul {
-            padding: 0;
-        }
-        
-        .lsn li {
-            margin: 15px 0;
-            list-style: none;
-        }
-        
-        .lsn a {
-            padding: 4%;
-            color: #fff;
-            display: block;
-            border-radius: 5px;
-            text-decoration: none;
-        }
-        
-        .lsn span {
-            margin: 0 8px 0 0;
-            padding: 5.4% 15px 6% 0;
-            border-right: 2px solid rgba(0, 0, 0, .2);
-        }
-        
-        .lsn span i {
-            width: 15px;
-        }
-        
-        #fb {
-            background: rgba(59, 89, 152, 1);
-            box-shadow: 0 5px 0 0 rgba(59, 89, 152, .4);
-        }
-        
-        #gl {
-            background: rgba(221, 75, 57, 1);
-            box-shadow: 0 5px 0 0 rgba(221, 75, 57, .4);
-        }
-        
-        .pss {
-            width: 100%;
-            display: inline-block;
-        }
-        
-        .pss a {
-            float: right;
-            font-size: 14px;
-            color: #0080FF;
-            ;
-            text-decoration: none;
-        }
-        /*style form*/
         
         form {
             width: 100%;
-            margin-top: 40px;
+            margin-top: 30%;
         }
         
         input {
             width: 100%;
-            border: white;
-            outline: none;
+            border: #a97cc4;
+            outline: #a97cc4;
             padding: 10px;
             margin: 8px auto;
             box-sizing: border-box;
@@ -136,40 +114,37 @@
             display: flex;
         }
         
-        input:hover {}
-        
-        input:focus {
-            border: 1px solid #ffffff;
-        }
-        
         input[type=submit] {
-            color: white;
+            color: #a97cc4;
             font-weight: bold;
             text-align: center;
             background: transparent;
-            border: 2px ridge white;
+            border: 2px ridge #a97cc4;
+            ;
+            align-self: center;
         }
         
         input[type=submit]:focus {
-            border: none;
+            border: #a97cc4;
+            vertical-align: middle;
         }
         
         input[type=email] {
             background: transparent;
-            color: white;
+            color: #a97cc4;
         }
         
         input[type=password] {
             background: transparent;
-            color: white;
+            color: #a97cc4;
         }
         
         input::-ms-input-placeholder {
-            color: rgb(255, 255, 255);
+            color: #a97cc4;
         }
         
         input::-webkit-input-placeholder {
-            color: rgb(255, 255, 255);
+            color: #a97cc4;
         }
         
         input::-moz-placeholder {
@@ -197,13 +172,13 @@
             left: 0;
             width: 20px;
             height: 20px;
-            background: #fff;
+            background: #a97cc4;
             border-radius: 4px;
             border: 1px solid #ffffff;
         }
         
         input[type=checkbox]:checked+label:before {
-            color: #fff;
+            color: #a97cc4;
             display: flex;
             content: '\f00c';
             align-items: center;
@@ -212,29 +187,18 @@
             font-family: 'FontAwesome';
         }
         /*Responsive*/
-        
-        @media (max-width: 350px) {
-            input,
-            label,
-            a {
-                font-size: 90%;
-            }
-        }
     </style>
-
 </head>
-
-
 
 <body>
 
 
     <div class="X">
 
-        <h1>회원가입</h1>
+
 
         <form method="POST" class="s4" action="{% url 'signup' %}">
-
+            <h1 style="text-align: center;">회원가입</h1>
             {% csrf_token %}
 
             <input type="email" name="username" id="name" maxlength="50" placeholder="이메일 주소">
@@ -246,13 +210,18 @@
             <input type="submit" value="회원가입" />
 
         </form>
+        <form class="s4" action="{%url 'login' %}">
+            <h4 style="text-align: center;">회원이신가요?</h4>
+            {% csrf_token %}
+            <input type="submit" value="로그인" />
+        </form>
 
     </div>
     {% if messages %}
     <ul class="messages">
         {% for message in messages %}
         <script>
-            alert('아이디나 비밀번호가 잘못되었습니다.')
+            alert('아이디나 비밀번호가 잘못되었습니다.');
         </script>
         <!--<li class="{{ message.tags }}">{{ message }}</li>-->
         {% endfor %}
@@ -275,3 +244,4 @@
 
 
 </html>
+{% endblock %}

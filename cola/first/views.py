@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.utils import timezone
-from .models import Board,Comment,profile
+from .models import Board,Comment,profile, BoardFile
 from django.contrib import auth
 from datetime import date,datetime,timedelta
 
@@ -8,20 +8,6 @@ from datetime import date,datetime,timedelta
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 # Create your views here.
-def main(request):
-    # not logged in -> main.html
-    if not request.user.is_authenticated:
-        return render(request, 'main.html')
-    # logged in
-    userId = request.user.username
-    try:
-        # profile O -> main.html
-        prof = request.user.profile
-        return render(request, 'main.html')
-    except:
-        # profile X -> makeprofile -> profile.html
-        return render(request,'profile.html')
-
 def mypage(request):
     if not request.user.is_authenticated:
         return render(request,'login.html')
@@ -71,6 +57,11 @@ def board(request):
 def infoboard(request):
     if not request.user.is_authenticated:
         return render(request,'login.html')
+    try:
+        prof = request.user.profile
+        pass
+    except:
+        return render(request,'profile.html')
     boards = Board.objects
     boards_list = Board.objects.all()
     paginator = Paginator(boards_list, 10)
@@ -117,16 +108,18 @@ def searchPost(request):
 
 
 def detail(request, board_id):
+    # 프로필 생성 안했을 시 프로필 생성 페이지로 
+    try:
+        prof = request.user.profile
+        pass
+    except:
+        # profile X -> makeprofile -> profile.html
+        return render(request,'profile.html')
+    
     board_detail = get_object_or_404(Board, pk = board_id)
     board_detail.views += 1
     board_detail.save()
     
-    #file 이름으로 뜨기
-    if board_detail.File:
-        filename = board_detail.File.name.split('/')[-1]
-    else:
-        filename = None
-
     conn_user = request.user
     conn_profile = profile.objects.get(user=conn_user)
     nick = conn_profile.userName
@@ -137,10 +130,10 @@ def detail(request, board_id):
         check = True
     else :
         check = False
-    return render(request, 'detail.html', {'board':board_detail, 'check' : check, 'filename' : filename})
+    return render(request, 'detail.html', {'board':board_detail, 'check' : check})
 
 def modify(request, board_id):
-    board = get_object_or_404(Board, pk = board_id)
+    board = Board.objects.get(id=board_id)
     return render(request, 'modify.html', {'board':board})
 
 def modifyAction(request, board_id):
@@ -158,6 +151,16 @@ def modifyAction(request, board_id):
         board.pub_date = timezone.datetime.now()
     board.save()
 
+    for f in request.FILES.getlist("fileToUpload"):
+        #file saving process
+        def process(f):
+            files = BoardFile()
+            files.board = board
+            files.boardFile = f
+            files.filename = f.name.split('/')[-1]
+            files.save()
+        process(f)
+
     conn_user = request.user
     conn_profile = profile.objects.get(user=conn_user)
     nick = conn_profile.userName
@@ -172,13 +175,16 @@ def modifyAction(request, board_id):
 
 
 def removeBoard(request, board_id):
-    board = get_object_or_404(Board, pk = board_id)
+   
+    board = Board.objects.get(id=board_id)
+    
     board.delete()
-
+    
     boards = Board.objects
     boards_list = Board.objects.all()
     paginator = Paginator(boards_list, 10)
     page = request.GET.get('page')
+    
     try:
         queryset = paginator.page(page)
     except PageNotAnInteger:
@@ -188,10 +194,9 @@ def removeBoard(request, board_id):
     context = {
       "object_list" : queryset,
    }
-
     return render(request, 'infoboard.html', context)
 
-
+    
 
 def addComment(request):
     boardId = request.POST['boardId']
@@ -279,18 +284,24 @@ def create(request):
     board.writer = nick
    
     board.title = request.POST['title']
-    board.body = request.POST['body']
-    try:
-        board.File = request.FILES['fileToUpload']
-    except:
-        pass
+    board.body = request.POST['body'] 
     board.pub_date = timezone.datetime.now()
     board.views = 0
     board.save()
     
+    for f in request.FILES.getlist("fileToUpload"):
+        #file saving process
+        def process(f):
+            files = BoardFile()
+            files.board = board
+            files.boardFile = f
+            files.filename = f.name.split('/')[-1]
+            files.save()
+        process(f)
+
     return redirect('/first/board/'+str(board.id))
 
 
 def logout(request):
     auth.logout(request)
-    return redirect('main')
+    return redirect('firstpage')

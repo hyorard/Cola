@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Team,Invite,Team_todo, TeamBoard, CommentTb 
+from .models import Team,Invite,Team_todo, TeamBoard, CommentTb, FileTb
 
 
 # Register your models here.
@@ -8,3 +8,4 @@ admin.site.register(Invite)
 admin.site.register(Team_todo)
 admin.site.register(TeamBoard)
 admin.site.register(CommentTb)
+admin.site.register(FileTb)

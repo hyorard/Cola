@@ -1,9 +1,9 @@
-<!DOCTYPE html> {% load socialaccount %} {% providers_media_js %}
+<!DOCTYPE html> {% extends 'base.html' %} {% block content %}{% load socialaccount %} {% providers_media_js %}
 <html>
 
 <head>
     <meta charset="UTF-8">
-    <title>콜라</title>
+    <title>collaboration : login</title>
 
     <link href="https://fonts.googleapis.com/css?family=Black+Han+Sans&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Nanum+Brush+Script&display=swap" rel="stylesheet">
@@ -12,34 +12,54 @@
     <link href="https://fonts.googleapis.com/css?family=Do+Hyeon|Great+Vibes|Pacifico&display=swap" rel="stylesheet">
 
     <style>
-        @import 'https://fonts.googleapis.com/css/?family=Open+sans';
-        .presentation-only {
-            margin: 5% auto;
+        @font-face {
+            font-family: 'SeoulHangangM';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/SeoulHangangM.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
         }
         
-        h1 {
+        @font-face {
+            font-family: 'netmarbleL';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_four@1.1/netmarbleL.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
+        
+        @font-face {
+            font-family: 'netmarbleB';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_four@1.1/netmarbleB.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
+        
+        h1,
+        h3 {
+            font-family: 'SeoulHangangM';
+        }
+        
+        p {
+            font-family: 'netmarbleL', 'netmarbleB', sans-serif;
             font-weight: lighter;
         }
         
-        .social-button a {
-            text-decoration: none !important;
+        .con {
+            position: absolute;
+            background-color: rgba(187, 139, 187, 0.178);
+            margin: 0;
+            padding: 0;
+            top: 102px;
+            height: 80%;
+            width: 100%;
+        }
+        
+        .con h3 {
+            font-size: 32px;
+            margin-bottom: 50px;
+        }
+        
+        div {
             display: block;
-            margin: 15px auto;
-            cursor: pointer;
-            font-family: 'Do Hyeon', sans-serif;
-            font-weight: lighter;
-            width: 220px;
-            box-sizing: border-box;
-        }
-        
-        .gsign {
-            background-color: rgb(255, 255, 255);
-            padding: 10px 15px 10px 10px;
-            color: rgb(0, 0, 0);
-            border-radius: 2px;
-            font-size: 15px;
-            box-shadow: 1px 2px 3px 1px #d1d1d1;
-            text-align: left;
         }
         
         .s-ico {
@@ -51,178 +71,39 @@
             border-radius: 2px;
         }
         
-        .gicon {
-            background-image: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/240570/google-icon-1x.png');
-        }
-        
-        .gsign:hover {
-            background-color: #fff;
-            color: #0054A6;
-            -webkit-transition-property: background-color;
-            -webkit-transition-duration: 0.2s;
-            -webkit-transition-timing-function: ease-in;
-            transition-property: background-color;
-            transition-duration: 0.2s;
-            transition-timing-function: ease-in;
-            box-shadow: 1px 2px 3px 1px #d1d1d1;
-        }
-        
-        .iwh {
-            background-color: #F7B734;
-            padding: 15px 15px;
-            color: #000;
-            border-radius: 2px;
-            font-size: 16px;
-            box-shadow: 1px 2px 3px 1px #d1d1d1;
-            text-align: center;
-        }
-        
-        .iwh:hover {
-            background-color: #edac2a;
-            color: #000;
-            -webkit-transition-property: background-color;
-            -webkit-transition-duration: 0.2s;
-            -webkit-transition-timing-function: ease-in;
-            transition-property: background-color;
-            transition-duration: 0.2s;
-            transition-timing-function: ease-in;
-            box-shadow: 1px 2px 3px 1px #d1d1d1;
-        }
-        
-        .fb {
-            background-color: rgb(15, 175, 0);
-            padding: 10px 15px 10px 10px;
-            color: #fff;
-            border-radius: 2px;
-            font-size: 15px;
-            box-shadow: 1px 2px 3px 1px #d1d1d1;
-            text-align: left;
-        }
-        
-        .fb:hover {
-            background-color: rgb(15, 175, 0);
-            color: #FFF;
-            -webkit-transition-property: background-color;
-            -webkit-transition-duration: 0.2s;
-            -webkit-transition-timing-function: ease-in;
-            transition-property: background-color;
-            transition-duration: 0.2s;
-            transition-timing-function: ease-in;
-            box-shadow: 1px 2px 3px 1px #d1d1d1;
-        }
-        
-        .ficon {
-            background-image: url('white.PNG');
-        }
-        
-        body {
-            padding: 0 2%;
-            color: #ffffff;
-            background-color: rgba(92, 12, 92, 0.753);
-            /*linear-gradient(to right, #ff4800, #ff0077);*/
-        }
-        
         .X {
+            font-family: 'netmarbleL';
             margin: auto;
             padding: 1% 2%;
             max-width: 420px;
             border-radius: 5px;
-            border-color: 5px solid fade(white, 20%);
+            border-color: 5px solid fade(#a97cc4, 20%);
             background: transparent;
         }
         
-        h1,
-        h2 {
-            text-align: center;
-            font-family: 'Do Hyeon', sans-serif;
-        }
-        
-        input,
-        label,
-        a {
-            color: transparent;
-            border: white;
+        input {
+            color: #a97cc4;
+            border: 1px solid #a97cc4;
             font-size: 18px;
             font-weight: 400;
-            line-height: 30px;
             text-align: justify;
             letter-spacing: 1px;
-            font-family: 'Do Hyeon', sans-serif;
+            font-family: 'netmarbleL';
         }
         
         .fuck {
             color: default;
         }
         
-        label,
-        input[type=submit],
-        a {
-            font-weight: 500;
-        }
-        /*Style Social
-              lsN = login social Network
-              */
-        
-        ul {
-            padding: 0;
-        }
-        
-        .lsn li {
-            margin: 15px 0;
-            list-style: none;
-        }
-        
-        .lsn a {
-            padding: 4%;
-            color: #fff;
-            display: block;
-            border-radius: 5px;
-            text-decoration: none;
-        }
-        
-        .lsn span {
-            margin: 0 8px 0 0;
-            padding: 5.4% 15px 6% 0;
-            border-right: 2px solid rgba(0, 0, 0, .2);
-        }
-        
-        .lsn span i {
-            width: 15px;
-        }
-        
-        #fb {
-            background: rgba(59, 89, 152, 1);
-            box-shadow: 0 5px 0 0 rgba(59, 89, 152, .4);
-        }
-        
-        #gl {
-            background: rgba(221, 75, 57, 1);
-            box-shadow: 0 5px 0 0 rgba(221, 75, 57, .4);
-        }
-        
-        .pss {
-            width: 100%;
-            display: inline-block;
-        }
-        
-        .pss a {
-            float: right;
-            font-size: 14px;
-            color: #0080FF;
-            ;
-            text-decoration: none;
-        }
-        /*style form*/
-        
         form {
             width: 100%;
-            margin-top: 40px;
+            margin-top: 30%;
         }
         
         input {
             width: 100%;
-            border: white;
-            outline: none;
+            border: #a97cc4;
+            outline: #a97cc4;
             padding: 10px;
             margin: 8px auto;
             box-sizing: border-box;
@@ -233,42 +114,37 @@
             display: flex;
         }
         
-        input:hover {}
-        
-        input:focus {
-            border: 1px solid #ffffff;
-        }
-        
         input[type=submit] {
-            color: white;
+            color: #a97cc4;
             font-weight: bold;
             text-align: center;
             background: transparent;
-            border: 2px ridge white;
+            border: 2px ridge #a97cc4;
+            ;
             align-self: center;
         }
         
         input[type=submit]:focus {
-            border: none;
+            border: #a97cc4;
             vertical-align: middle;
         }
         
         input[type=email] {
             background: transparent;
-            color: white;
+            color: #a97cc4;
         }
         
         input[type=password] {
             background: transparent;
-            color: white;
+            color: #a97cc4;
         }
         
         input::-ms-input-placeholder {
-            color: rgb(255, 255, 255);
+            color: #a97cc4;
         }
         
         input::-webkit-input-placeholder {
-            color: rgb(255, 255, 255);
+            color: #a97cc4;
         }
         
         input::-moz-placeholder {
@@ -296,13 +172,13 @@
             left: 0;
             width: 20px;
             height: 20px;
-            background: #fff;
+            background: #a97cc4;
             border-radius: 4px;
             border: 1px solid #ffffff;
         }
         
         input[type=checkbox]:checked+label:before {
-            color: #fff;
+            color: #a97cc4;
             display: flex;
             content: '\f00c';
             align-items: center;
@@ -311,45 +187,27 @@
             font-family: 'FontAwesome';
         }
         /*Responsive*/
-        
-        @media (max-width: 350px) {
-            input,
-            label,
-            a {
-                font-size: 90%;
-            }
-        }
     </style>
 </head>
 
 <body>
     <div class="X">
 
-        <h1>로그인</h1>
+
         <form class="s4" method='POST' action="{%url 'login' %}">
             {% csrf_token %}
+            <h1 style="text-align: center;">로그인</h1>
             <input type="email" name="id" maxlength="30" placeholder="이메일 주소">
             <input type="password" name="pass" maxlength="14" placeholder="비밀번호">
             <input type="submit" value="로그인" />
         </form>
-    </div>
-
-    <div class="X">
         <form class="s4" action="{%url 'signup' %}">
+            <h4 style="text-align: center;">아직 회원이 아니신가요?</h4>
             {% csrf_token %}
             <input type="submit" value="회원가입" />
         </form>
     </div>
 
-    <div class="presentation-only">
-        <h1>소셜 로그인</h1>
-        <div class="social-button">
-            <a class="gsign" href="{% provider_login_url 'google' %}"><span class="gicon s-ico"></span>구글 아이디로 로그인</a>
-        </div>
-        <div class="social-button">
-            <a class="fb" href="{% provider_login_url 'naver' %}"><span class="ficon s-ico"></span>네이버 아이디로 로그인</a>
-        </div>
-    </div>
 </body>
 <script type="text/javascript">
     var x = document.getElementsByTagName('input');
@@ -359,3 +217,4 @@
 </script>
 
 </html>
+{% endblock %}

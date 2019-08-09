@@ -8,10 +8,17 @@ class Board(models.Model):
     pub_date = models.DateTimeField('date published')
     body = models.TextField()
     writer = models.CharField(max_length=100, default='')
-    File = models.FileField(upload_to='board/', null=True)
     views = models.IntegerField(null=True)
     def __str__(self):
         return self.title
+    
+class BoardFile(models.Model):
+    board = models.ForeignKey('first.Board', on_delete=models.CASCADE, null=True, related_name='boards')
+    boardFile = models.FileField(upload_to='board/', null=True)
+    filename = models.CharField(max_length=100, default='')
+        
+    def __str__(self):
+        return self.filename
 
 class Comment(models.Model):
     post = models.ForeignKey('first.Board', on_delete=models.CASCADE, related_name='comments') 

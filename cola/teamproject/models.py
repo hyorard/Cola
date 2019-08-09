@@ -59,7 +59,6 @@ class TeamBoard(models.Model):
     pub_date = models.DateTimeField('date published')
     board_type = models.TextField(null=True)
     body = models.TextField()
-    File = models.FileField(upload_to='teamboard/',null=True)
     writer = models.CharField(max_length=100, default='')
     team = models.ForeignKey(Team, on_delete=models.CASCADE, null=True)
     views = models.IntegerField(null=True)
@@ -67,6 +66,14 @@ class TeamBoard(models.Model):
     def __str__(self):
         return self.title
 
+class FileTb(models.Model):
+    teamboard = models.ForeignKey('teamproject.TeamBoard', on_delete=models.CASCADE, null=True, related_name='teamboards')
+    teamFile = models.FileField(upload_to='teamboard/', null=True)
+    filename = models.CharField(max_length=100, default='')
+        
+    def __str__(self):
+        return self.filename
+        
 
 class CommentTb(models.Model):
     post = models.ForeignKey('teamproject.TeamBoard', on_delete=models.CASCADE, related_name='commentTbs') 

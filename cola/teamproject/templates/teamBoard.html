@@ -1,3 +1,5 @@
+{% extends 'base.html' %} {% block content %}
+
 <!DOCTYPE html>
 <html lang="UTF-8">
 
@@ -56,14 +58,6 @@
         
         .snip1198>a {
             color: black;
-        }
-        
-        span {
-            color: red;
-        }
-        
-        span:hover {
-            color: rgba(255, 0, 0, 0.411);
         }
         
         .boration {
@@ -132,23 +126,35 @@
         .table :hover {
             background-color: rgba(248, 248, 248, 0.226);
         }
-        /*버튼 임시*/
         
+        a,
+        button {
+            outline: none;
+        }
+        
+        a {
+            color: #566473;
+            text-decoration: none;
+        }
+        
+        a:hover,
+        a:focus {
+            color: #34495e;
+        }
+        
+        section {
+            position: relative;
+            margin-top: 100px;
+        }
+        span{
+            font-family:
+        }
         @import url(https://fonts.googleapis.com/css?family=Oxygen:400,300,700);
     </style>
 </head>
 
 <body>
-    <header>
-        <a style="font-family: 'Great Vibes', cursive;" href="{% url 'main' %}">
-            <STRONG>&nbsp;<span>Colla</span><span class="boration">boration</span></STRONG>
-        </a>
 
-
-
-
-
-    </header>
 
     <section>
 
@@ -242,5 +248,6 @@
 
 </body>
 
+{% endblock %}
 
 </html>

@@ -1,3 +1,4 @@
+{% extends 'base.html' %} {% block content %}
 <!DOCTYPE html>
 
 <html lang='ko'>
@@ -30,6 +31,21 @@
             src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/NIXGONM-Vb.woff') format('woff');
             font-weight: normal;
             font-style: normal;
+        }
+        
+        a,
+        button {
+            outline: none;
+        }
+        
+        a {
+            color: #566473;
+            text-decoration: none;
+        }
+        
+        a:hover,
+        a:focus {
+            color: #34495e;
         }
         
         header {
@@ -111,14 +127,6 @@
             right: 0;
         }
         
-        span {
-            color: red;
-        }
-        
-        span:hover {
-            color: rgba(255, 0, 0, 0.411);
-        }
-        
         .boration {
             color: black;
         }
@@ -148,10 +156,6 @@
         
         header {
             left: 20px;
-        }
-        
-        span {
-            color: red;
         }
         
         body {
@@ -588,28 +592,28 @@
             box-shadow: none;
         }
         
-        :-moz-placeholder {
+         :-moz-placeholder {
             color: #ccc;
             font-weight: 300;
         }
         
-        ::-moz-placeholder {
+         ::-moz-placeholder {
             color: #ccc;
             opacity: 1;
             font-weight: 300;
         }
         
-        ::-webkit-input-placeholder {
+         ::-webkit-input-placeholder {
             color: #ccc;
             font-weight: 300;
         }
         
-        :-ms-input-placeholder {
+         :-ms-input-placeholder {
             color: #ccc;
             font-weight: 300;
         }
         
-        ::-moz-focus-inner {
+         ::-moz-focus-inner {
             border: 0;
             padding: 0;
         }
@@ -661,6 +665,11 @@
             box-shadow: 0 0 0 8px #009688 inset, 0 0 0 0 #666666 inset, 0 0 0 8px #EEE inset, 0 0 0 0 #ddd inset, 0 0 0 0 #ddd;
             content: url(https://i.imgur.com/OrSqEu5.png);
         }
+        
+        .X {
+            position: relative;
+            margin-left: 20%;
+        }
     </style>
 
 </head>
@@ -670,13 +679,13 @@
 
 <body>
     <header>
-        {% extends 'base.html' %} {% block content %}
+
     </header>
     <section>
 
 
         <div class="X">
-            <div style="border: 2px solid rgba(211, 211, 211, 0.795); float: left; width: 43%; height:600px; padding:10px;">
+            <div style="border: 2px solid rgba(211, 211, 211, 0.795); float: left; width: 658px; height:600px; padding:10px;">
                 <div class="box" style="text-align: center;">
 
                     <form method="POST" enctype="multipart/form-data" action="{% url 'changeTeamInfo' %}">

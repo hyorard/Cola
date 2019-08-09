@@ -171,7 +171,7 @@
 
 <body>
     <header>
-        <a style="font-family: 'Great Vibes', cursive;" href="{% url 'main' %}">
+        <a style="font-family: 'Great Vibes', cursive;" href="{% url 'firstpage' %}">
             <STRONG>&nbsp;<span>Colla</span><span class="boration">boration</span></STRONG>
         </a>
     </header>
@@ -203,27 +203,25 @@
                             <td colspan=2>
                                 <table border="1" summary="목록 테이블 구성">
                                     <tr>
-                                        <td style="text-align:center; bgcolor:white; width:300px; background-color:rgba(255, 102, 102, 0.295);">작성자</td>
-                                        <td style="text-align:center; bgcolor:white; width:40%;">{{ board.writer}}</td>
-                                        <td style="text-align:center; bgcolor:white; width:300px; background-color:rgba(255, 102, 102, 0.295);">작성일</td>
-                                        <td style="bgcolor:white; width:40%"></td>
-                                    </tr>
-                                    <tr>
                                         <td text-align=center; bgcolor=white; style="background-color:rgba(255, 102, 102, 0.295);">TITLE</td>
                                         <td text-align=center; style="background-color=white;" colspan=3>
-                                            <input type="text" name="title" placeholder="{{board.title}}" value="{{board.title}}">
+                                            <input type="text" id="write_title" name="title" placeholder="{{board.title}}" value="{{board.title}}" style="border:0px; width:200px;margin-left:-390px;">
+                                            <input type="hidden" value="{{ board.id }}">
                                         </td>
                                     </tr>
                                     <tr>
+                                        <td colspan=4><textarea id="write_body" name="body" placeholder="내용" maxlength="200" style="border:0px; width:600px; height:100px;  margin-left:-90px;"></textarea></td>
                                         <td colspan=4><textarea name="body" placeholder="{{ board.body }}" value="{{board.body}}"></textarea><br><br><br><br><br><br></td>
                                     </tr>
-
                                     <tr>
-                                        <td align=center bgcolor=white width=300px style="background-color:rgba(255, 102, 102, 0.295); ">첨부파일</td>
-                                        <td bgcolor=white width=40%></td>
-                                        <td align=center bgcolor=white width=300px style="background-color:rgba(255, 102, 102, 0.295); ">VIEWS</td>
-                                        <td bgcolor=white width=40%>123</td>
+                                        <td colspan=1 style="text-align:center; bgcolor:white; background-color:rgba(255, 102, 102, 0.295);">첨부파일</td>
+                                        <td colspan=1 style="bgcolor:white;">
+                                            <form action="upload.php" method="post" enctype="multipart/form-data">
+                                                <input type="file" name="fileToUpload" id="fileToUpload" placeholder="upload file" multiple>
+                                            </form>
+                                        </td>
                                     </tr>
+
                                 </table>
                             </td>
                         </tr>

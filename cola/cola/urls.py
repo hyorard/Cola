@@ -25,9 +25,6 @@ urlpatterns = [
     path('teamproject/',include('teamproject.urls')),
     path('signup/', views.signup, name='signup'),
     path('login/', views.login, name='login'),
-    path('accounts/google/login/', views.social, name='social'),
-    path('accounts/naver/login/', views.social, name='social'),
-    path('accounts/', include('allauth.urls')),
     path('',views.firstpage, name="firstpage"),
 
 ] + static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)

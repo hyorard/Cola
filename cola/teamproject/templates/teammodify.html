@@ -165,17 +165,13 @@
         }
         /*버튼 임시*/
         
-        .comment-container {
-            margin-left: 13%;
-        }
-        
         @import url(https://fonts.googleapis.com/css?family=Oxygen:400,300,700);
     </style>
 </head>
 
 <body>
     <header>
-        <a style="font-family: 'Great Vibes', cursive;" href="{% url 'firstpage' %}">
+        <a style="font-family: 'Great Vibes', cursive;" href="{% url 'main' %}">
             <STRONG>&nbsp;<span>Colla</span><span class="boration">boration</span></STRONG>
         </a>
     </header>
@@ -192,10 +188,9 @@
 
         <div class="post" style="text-align:center; font-family:'Do Hyeon', sans-serif; margin-left:150px;">
 
-            <form name="BoardViewForm" method="POST">
+            <form name="BoardViewForm" method="POST" action="{% url 'modifyActionTb' board.id %}">
                 {% csrf_token %}
                 <table summary="전체 테이블 구성">
-
                     <tbody>
                         <tr>
                             <td>
@@ -211,96 +206,34 @@
                                         <td style="text-align:center; bgcolor:white; width:300px; background-color:rgba(255, 102, 102, 0.295);">작성자</td>
                                         <td style="text-align:center; bgcolor:white; width:40%;">{{ board.writer}}</td>
                                         <td style="text-align:center; bgcolor:white; width:300px; background-color:rgba(255, 102, 102, 0.295);">작성일</td>
-                                        <td style="bgcolor:white; width:40%">{{board.pub_date}}</td>
+                                        <td style="bgcolor:white; width:40%"></td>
                                     </tr>
                                     <tr>
                                         <td text-align=center; bgcolor=white; style="background-color:rgba(255, 102, 102, 0.295);">TITLE</td>
                                         <td text-align=center; style="background-color=white;" colspan=3>
-                                            {{board.title}}
+                                            <input type="text" name="title" placeholder="{{board.title}}" value="{{board.title}}">
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td colspan=4>{{board.body}}<br><br><br><br><br><br></td>
+                                        <td colspan=4><textarea name="body" placeholder="{{ board.body }}" value="{{board.body}}"></textarea><br><br><br><br><br><br></td>
                                     </tr>
 
                                     <tr>
                                         <td align=center bgcolor=white width=300px style="background-color:rgba(255, 102, 102, 0.295); ">첨부파일</td>
-                                        <td bgcolor=white colspan=1>
-                                            {% for file in board.boards.all %} {% if file.filename %}
-                                            <a href="{{ file.boardFile.url }}" download>{{ file.filename }}</a><br> {% else %} 없음 {% endif %} {% endfor %}
-                                        </td>
+                                        <td bgcolor=white width=40%></td>
                                         <td align=center bgcolor=white width=300px style="background-color:rgba(255, 102, 102, 0.295); ">VIEWS</td>
-                                        <td bgcolor=white width=40%>{{board.views}}</td>
+                                        <td bgcolor=white width=40%>123</td>
                                     </tr>
                                 </table>
                             </td>
                         </tr>
                     </tbody>
                 </table>
+
+                <br><br><br>
+                <button class="button1 " style="margin-left:-140px; ">수정하기</a> &nbsp;&nbsp;&nbsp;
+
             </form>
-        </div>
-    </section>
-    <hr>
-    <div>
-        {% if request.user.profile.userName == board.writer %}
-        <form method="POST" action="{% url 'removeBoard' board.id %}">
-            {% csrf_token %}
-            <input type="hidden" name="boardId" value="{{board.id}}">
-            <input type="hidden" name="commentId" value="{{comment.id}}">
-            <input class="btn btn-outline-secondary" style=" float:right; display:inline;" type="submit" value="삭제">
-        </form>
-        <form method="POST" action="{% url 'modify' board.id %}">
-            {% csrf_token %}
-            <input type="hidden" name="boardId" value="{{board.id}}">
-            <input type="hidden" name="commentId" value="{{comment.id}}">
-            <input class="btn btn-outline-secondary" style="float:right; display:inline;" type="submit" value="수정">
-        </form>
-        {% endif %}
-    </div>
-
-
-    <hr>
-    <div class="comment-container">
-
-        <!--카드 댓글-->
-        {% for comment in board.comments.all %}
-        <div class="card w-75">
-            <div class="card-body">
-                <h5 class="card-title"><strong>{{ comment.writer.profile.userName }}</strong> {{ comment.created_date }} </h5>
-                <p class="card-text">{{ comment.text|linebreaks }}</p>
-                {% if request.user == comment.writer %}
-                <form method="POST" action="{% url 'deleteComment' %}">
-                    {% csrf_token %}
-                    <input type="hidden" name="boardId" value="{{board.id}}">
-                    <input type="hidden" name="commentId" value="{{comment.id}}">
-                    <input class="btn btn-outline-secondary" style=" float:right; display:inline;" type="submit" value="삭제">
-                </form>
-                <form method="GET" action="{% url 'changeComment' %}">
-                    {% csrf_token %}
-                    <input type="hidden" name="boardId" value="{{board.id}}">
-                    <input type="hidden" name="commentId" value="{{comment.id}}">
-                    <input class="btn btn-outline-secondary" style="float:right; display:inline;" type="submit" value="수정">
-                </form>
-                {% endif %}
-            </div>
-        </div>
-        {% empty %}
-        <p>댓글이 없습니다.</p>
-        {% endfor %}
-
-        <hr>
-        <div class="new comment " style=" font-family: 'Do Hyeon', sans-serif; position:absolute;">
-            <form method="POST" action="{% url 'addComment' %}">
-                {% csrf_token %}
-                <textarea name="content" cols="120" rows="1" placeholder="댓글을 작성하세요.. " required></textarea>
-                <input type="hidden" name="boardId" value="{{board.id}}">
-                <input class="btn btn-outline-secondary" style="float:right; display:inline;" type="submit" value="등록">
-            </form>
-        </div>
-
-
-    </div>
-
 </body>
 
 </html>
