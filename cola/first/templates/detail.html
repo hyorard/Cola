@@ -1,3 +1,4 @@
+{% extends 'base.html' %} {% block content %}{% load socialaccount %} {% providers_media_js %}
 <!DOCTYPE html>
 <html lang="UTF-8">
 
@@ -18,24 +19,6 @@
 
 
     <style>
-        header {
-            height: 80px;
-            top: 30px;
-            left: 20px;
-            font-family: 'Great Vibes', cursive;
-            margin-top: 30px;
-            border-bottom: 1px solid rgb(160, 148, 148);
-        }
-        
-        header>a {
-            font-size: 50px;
-        }
-        
-        header>a:hover {
-            background-color: white;
-            text-decoration: none;
-        }
-        
         .snip1198 {
             position: absolute;
             margin-top: -25px;
@@ -56,22 +39,6 @@
         
         .snip1198>a {
             color: black;
-        }
-        
-        span {
-            color: red;
-        }
-        
-        span:hover {
-            color: rgba(255, 0, 0, 0.411);
-        }
-        
-        .boration {
-            color: black;
-        }
-        
-        .boration:hover {
-            color: rgba(0, 0, 0, 0.411);
         }
         
         .w3-bar {
@@ -142,31 +109,12 @@
             text-decoration: none;
             color: black;
         }
-        
-         ::before,
-         ::after {
-            content: "";
-            position: absolute;
-            background: black;
-        }
-        
-         ::before {
-            top: 100%;
-            left: 5px;
-            height: 10px;
-            width: 5px;
-        }
-        
-         ::after {
-            left: 100%;
-            top: 5px;
-            height: 5px;
-            width: 10px;
-        }
         /*버튼 임시*/
         
         .comment-container {
+            position: relative;
             margin-left: 13%;
+            top: 400px;
         }
         
         @import url(https://fonts.googleapis.com/css?family=Oxygen:400,300,700);
@@ -174,27 +122,14 @@
 </head>
 
 <body>
-    <header>
-        <a style="font-family: 'Great Vibes', cursive;" href="{% url 'firstpage' %}">
-            <STRONG>&nbsp;<span>Colla</span><span class="boration">boration</span></STRONG>
-        </a>
-    </header>
 
     <section>
-
-        <div class="w3-bar" style="font-size:18px;">
-            <a href="#" class="w3-bar-item" style="color:black;">RESEARCH</a> &nbsp;
-            <a href="#" class="w3-bar-item" style="color:black;">PPT</a> &nbsp;
-            <a href="#" class="w3-bar-item" style="color:black;"> PRESENTATION</a>
-        </div>
-
-        <br>
 
         <div class="post" style="text-align:center; font-family:'Do Hyeon', sans-serif; margin-left:150px;">
 
             <form name="BoardViewForm" method="POST">
                 {% csrf_token %}
-                <table summary="전체 테이블 구성">
+                <table summary="전체 테이블 구성" style="position:absolute; top:150px; width:50%;">
 
                     <tbody>
                         <tr>
@@ -209,13 +144,13 @@
                                 <table border="1" summary="목록 테이블 구성">
                                     <tr>
                                         <td style="text-align:center; bgcolor:white; width:300px; background-color:rgba(255, 102, 102, 0.295);">작성자</td>
-                                        <td style="text-align:center; bgcolor:white; width:40%;">{{ board.writer}}</td>
+                                        <td style="text-align:center; bgcolor:white; width:20%;">{{ board.writer}}</td>
                                         <td style="text-align:center; bgcolor:white; width:300px; background-color:rgba(255, 102, 102, 0.295);">작성일</td>
-                                        <td style="bgcolor:white; width:40%">{{board.pub_date}}</td>
+                                        <td style="bgcolor:white; width:20%">{{board.pub_date}}</td>
                                     </tr>
                                     <tr>
                                         <td text-align=center; bgcolor=white; style="background-color:rgba(255, 102, 102, 0.295);">TITLE</td>
-                                        <td text-align=center; style="background-color=white;" colspan=3>
+                                        <td text-align=center; style="background-color:white;" colspan=3>
                                             {{board.title}}
                                         </td>
                                     </tr>
@@ -230,7 +165,7 @@
                                             <a href="{{ file.boardFile.url }}" download>{{ file.filename }}</a><br> {% else %} 없음 {% endif %} {% endfor %}
                                         </td>
                                         <td align=center bgcolor=white width=300px style="background-color:rgba(255, 102, 102, 0.295); ">VIEWS</td>
-                                        <td bgcolor=white width=40%>{{board.views}}</td>
+                                        <td bgcolor=white width=20%>{{board.views}}</td>
                                     </tr>
                                 </table>
                             </td>
@@ -241,13 +176,13 @@
         </div>
     </section>
     <hr>
-    <div>
+    <div style="position: absolute; top : 160px; left : 1100px; display:inline;">
         {% if request.user.profile.userName == board.writer %}
         <form method="POST" action="{% url 'removeBoard' board.id %}">
             {% csrf_token %}
             <input type="hidden" name="boardId" value="{{board.id}}">
             <input type="hidden" name="commentId" value="{{comment.id}}">
-            <input class="btn btn-outline-secondary" style=" float:right; display:inline;" type="submit" value="삭제">
+            <input class="btn btn-outline-secondary" style=" float:left; display:inline;" type="submit" value="삭제">
         </form>
         <form method="POST" action="{% url 'modify' board.id %}">
             {% csrf_token %}
@@ -260,7 +195,7 @@
 
 
     <hr>
-    <div class="comment-container">
+    <div class="comment-container" style="width:60%;">
 
         <!--카드 댓글-->
         {% for comment in board.comments.all %}
@@ -292,7 +227,7 @@
         <div class="new comment " style=" font-family: 'Do Hyeon', sans-serif; position:absolute;">
             <form method="POST" action="{% url 'addComment' %}">
                 {% csrf_token %}
-                <textarea name="content" cols="120" rows="1" placeholder="댓글을 작성하세요.. " required></textarea>
+                <textarea name="content" cols="100" rows="1" placeholder="댓글을 작성하세요.. " required></textarea>
                 <input type="hidden" name="boardId" value="{{board.id}}">
                 <input class="btn btn-outline-secondary" style="float:right; display:inline;" type="submit" value="등록">
             </form>
@@ -304,3 +239,5 @@
 </body>
 
 </html>
+
+{% endblock %}

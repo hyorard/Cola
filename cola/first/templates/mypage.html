@@ -1,4 +1,4 @@
-<!doctype html>{% extends 'base2.html' %} {% block content %}{% load socialaccount %} {% providers_media_js %}
+<!doctype html>{% extends 'base.html' %} {% block content %}{% load socialaccount %} {% providers_media_js %}
 <html lang="kr">
 
 <head>
@@ -342,7 +342,7 @@
                 <input type="hidden" name="type" value="change">
                 <p><input class="submit" type="submit" value="[변경하기]" style="position:absolute; left:60%;"></p>
             </form>
-            <button id="trigger" class="trigger-button" type="button" style="position: relative; left : 51%;">[팀 목록]</button>
+            <button id="trigger" class="trigger-button" type="button" style="position:relative; left:51%;">[팀 목록]</button>
             <div id="content">
                 <!-- Modal content -->
                 <div class="modal-content">

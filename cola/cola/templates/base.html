@@ -83,8 +83,8 @@
         }
         
         hr {
-            -moz-box-sizing: content-menu-box;
-            box-sizing: content-menu-box;
+            -moz-box-sizing: content-box;
+            box-sizing: content-box;
             height: 0;
         }
         
@@ -192,9 +192,9 @@
         
         input[type="search"] {
             -webkit-appearance: textfield;
-            -moz-box-sizing: content-menu-box;
-            -webkit-box-sizing: content-menu-box;
-            box-sizing: content-menu-box;
+            -moz-box-sizing: content-box;
+            -webkit-box-sizing: content-box;
+            box-sizing: content-box;
         }
         
         input[type="search"]::-webkit-search-cancel-button,
@@ -235,7 +235,7 @@
         
         .clearfix:before,
         .clearfix:after {
-            content-menu: '';
+            content: '';
             display: table;
         }
         
@@ -249,23 +249,24 @@
             font-weight: 400;
             font-size: 1em;
             line-height: 1.25;
-            /*font-family: 'Raleway', Calibri, Arial, sans-serif;*/
+            font-family: 'Raleway', Calibri, Arial, sans-serif;
         }
         
         a,
         button {
-            outline: none;
+            outline: none !important;
         }
         
         a,
         codrops-top button {
-            color: #566473;
-            text-decoration: none;
+            color: #566473 !important;
+            text-decoration: none !important;
         }
         
         a:hover,
         a:focus {
-            color: #34495e;
+            color: #34495e !important;
+            text-decoration: none !important;
         }
         
         section {
@@ -294,35 +295,35 @@
         }
         
         .codrops-header h1 span {
-            display: block;
-            padding: 1em 0 1.5em;
-            font-size: 36%;
-            color: #95a5a6;
-            line-height: 1.4;
+            display: block !important;
+            padding: 1em 0 1.5em !important;
+            font-size: 36% !important;
+            color: #95a5a6 !important;
+            line-height: 1.4 !important;
         }
         /* To Navigation Style */
         
         .codrops-top {
-            background-color: white;
-            position: fixed;
-            left: 0px;
-            top: 0px;
-            width: 100%;
-            height: 100px;
-            text-transform: uppercase;
+            background-color: white !important;
+            position: fixed !important;
+            left: 0px !important;
+            top: 0px !important;
+            width: 100% !important;
+            height: 100px !important;
+            text-transform: uppercase !important;
             font-weight: 700;
-            font-size: 0.69em;
-            text-align: center;
-            padding: 3em 0;
-            z-index: 2;
+            font-size: 0.69em !important;
+            text-align: center !important;
+            padding: 3em 0 !important;
+            z-index: 2 !important;
         }
         
         .codrops-top a,
         .codrops-top button {
-            display: inline-block;
-            padding: 1.5em;
-            text-decoration: none;
-            letter-spacing: 1px;
+            display: inline-block !important;
+            padding: 1.5em !important;
+            text-decoration: none !important;
+            letter-spacing: 1px !important;
         }
         
         .codrops-icon:before {
@@ -338,93 +339,93 @@
         }
         
         .codrops-icon-drop:before {
-            content-menu: "\e001";
+            content: "\e001" !important;
         }
         
         .codrops-icon-prev:before {
-            content-menu: "\e004";
+            content: "\e004" !important;
         }
         /* Demo Buttons Style */
         
         .codrops-demos {
-            padding-top: 1em;
-            font-size: 0.8em;
+            padding-top: 1em !important;
+            font-size: 0.8em !important;
         }
         
         .codrops-demos a {
-            display: inline-block;
-            margin: 0.35em 0.1em;
-            padding: 0.5em 1.2em;
-            outline: none;
-            text-decoration: none;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            font-weight: 700;
-            border-radius: 2px;
-            font-size: 110%;
-            border: 2px solid transparent;
+            display: inline-block !important;
+            margin: 0.35em 0.1em !important;
+            padding: 0.5em 1.2em !important;
+            outline: none !important;
+            text-decoration: none !important;
+            text-transform: uppercase !important;
+            letter-spacing: 1px !important;
+            font-weight: 700 !important;
+            border-radius: 2px !important;
+            font-size: 110% !important;
+            border: 2px solid transparent !important;
         }
         
         .codrops-demos a:hover,
         .codrops-demos a.current-demo {
-            border-color: #383a3c;
+            border-color: #383a3c !important;
         }
         
         .codrops-demos h3 {
-            margin: 0;
-            padding: 1em 0 0.5em 0;
-            font-size: 0.9em;
-            float: left;
-            min-width: 90px;
-            clear: left;
+            margin: 0 !important;
+            padding: 1em 0 0.5em 0 !important;
+            font-size: 0.9em !important;
+            float: left !important;
+            min-width: 90px !important;
+            clear: left !important;
         }
         
         .codrops-demos div:not(:first-child) h3 {
-            padding-top: 2em;
+            padding-top: 2em !important;
         }
         
         .codrops-demos a:hover,
         .codrops-demos a.current-demo {
-            color: inherit;
-            border-color: initial;
+            color: inherit !important;
+            border-color: initial !important;
         }
         /* Related demos */
         
         .related {
-            padding: 10em 0;
+            padding: 10em 0 !important;
         }
         
         .related p {
-            font-size: 1.5em;
+            font-size: 1.5em !important;
         }
         
         .related>a {
-            display: inline-block;
-            text-align: center;
-            margin: 20px 10px;
-            padding: 25px;
-            vertical-align: middle;
+            display: inline-block !important;
+            text-align: center !important;
+            margin: 20px 10px !important;
+            padding: 25px !important;
+            vertical-align: middle !important;
         }
         
         .related a img {
-            max-width: 100%;
-            opacity: 0.8;
-            border-radius: 10px;
+            max-width: 100% !important;
+            opacity: 0.8 !important;
+            border-radius: 10px !important;
         }
         
         .related a:hover img,
         .related a:active img {
-            opacity: 1;
+            opacity: 1 !important;
         }
         
         .related a h3 {
-            margin: 0;
-            min-height: 63px;
-            padding: 0.5em 0 0.3em;
-            max-width: 300px;
-            text-align: center;
-            font-weight: 400;
-            font-size: 1em;
+            margin: 0 !important;
+            min-height: 63px !important;
+            padding: 0.5em 0 0.3em !important;
+            max-width: 300px !important;
+            text-align: center !important;
+            font-weight: 400 !important;
+            font-size: 1em !important
         }
         
         @media screen and (min-width: 800px) {
@@ -445,14 +446,14 @@
         /* Header */
         
         .large-header {
-            position: absolute;
-            top: 80px;
-            width: 100%;
-            background: #333;
-            overflow: hidden;
-            background-size: cover;
-            background-position: center center;
-            z-index: 1;
+            position: absolute !important;
+            top: 80px !important;
+            width: 100% !important;
+            background: #333 !important;
+            overflow: hidden !important;
+            background-size: cover !important;
+            background-position: center center !important;
+            z-index: 1 !important;
         }
         
         .demo-1 .large-header {
@@ -465,11 +466,11 @@
         }
         
         .demo-3 .large-header {
-            background: #7f8c8d;
+            background: #7f8c8d !important;
         }
         
         .demo-4 .large-header {
-            background: #f9f1e9;
+            background: #f9f1e9 !important;
         }
         
         .main-title2 {
@@ -488,21 +489,21 @@
         
         .demo-1 .main-title2,
         .demo-3 .main-title2 {
-            text-transform: uppercase;
-            font-size: 1.5em;
-            letter-spacing: 0.05em;
+            text-transform: uppercase !important;
+            font-size: 1.5em !important;
+            letter-spacing: 0.05em !important;
         }
         
         .demo-2 .main-title2 {
-            font-family: 'SeoulHangangM';
-            font-weight: normal;
-            font-size: 2em;
-            padding-left: 5px;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+            font-family: 'SeoulHangangM' !important;
+            font-weight: normal !important;
+            font-size: 2em !important;
+            padding-left: 5px !important;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4) !important;
         }
         
         .demo-2 .main-title2::before {
-            content-menu: '';
+            content: '';
             width: 10vw;
             height: 10vw;
             min-width: 3.5em;
@@ -526,45 +527,45 @@
         }
         
         .demo-4 .main-title2 {
-            font-size: 3em;
-            font-weight: 300;
-            padding: 10px 30px;
-            text-transform: uppercase;
+            font-size: 3em !important;
+            font-weight: 300 !important;
+            padding: 10px 30px !important;
+            text-transform: uppercase !important;
             color: #222;
         }
         
         .main-title2 .thin {
-            font-weight: 200;
+            font-weight: 200 !important;
         }
         
         @media only screen and (max-width: 768px) {
             .demo-1 .main-title2,
             .demo-3 .main-title2,
             .demo-4 .main-title2 {
-                font-size: 1.5em;
+                font-size: 1.5em !important;
             }
             .demo-2 .main-title2 {
-                font-size: 2em;
+                font-size: 2em !important;
             }
         }
         
         .main-title {
-            position: absolute;
-            margin: 0;
-            padding: 0;
-            color: #f9f1e9;
-            text-align: center;
-            top: 50%;
-            left: 50%;
-            -webkit-transform: translate3d(-50%, -50%, 0);
-            transform: translate3d(-50%, -50%, 0);
+            position: absolute !important;
+            margin: 0 !important;
+            padding: 0 !important;
+            color: #f9f1e9 !important;
+            text-align: center !important;
+            top: 50% !important;
+            left: 50% !important;
+            -webkit-transform: translate3d(-50%, -50%, 0) !important;
+            transform: translate3d(-50%, -50%, 0) !important;
         }
         
         .demo-1 .main-title,
         .demo-3 .main-title {
-            text-transform: uppercase;
-            font-size: 4.2em;
-            letter-spacing: 0.1em;
+            text-transform: uppercase !important;
+            font-size: 4.2em !important;
+            letter-spacing: 0.1em !important;
         }
         
         .demo-2 .main-title {
@@ -576,7 +577,7 @@
         }
         
         .demo-2 .main-title::before {
-            content-menu: '';
+            content: '';
             width: 20vw;
             height: 20vw;
             min-width: 3.5em;
@@ -626,14 +627,182 @@
             background: none!important;
             border: none;
             padding: 0!important;
-            font: inherit;
+            font: inherit !important;
             /*border is optional*/
-            cursor: pointer;
+            cursor: pointer !important;
+            text-decoration: none !important;
+            line-height: 1.25 !important;
+            font-family: 'Raleway', 'Calibri', Arial, sans-serif !important;
+            color: #566473 !important;
+        }
+        
+        .codrops-top {
+            font-family: 'Raleway' !important;
+        }
+        
+        .modal-window {
+            position: fixed;
+            background-color: rgba(255, 255, 255, 0.25);
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            z-index: 999;
+            visibility: hidden;
+            opacity: 0;
+            pointer-events: none;
+            transition: all 0.3s;
+        }
+        
+        .modal-window:target {
+            visibility: visible;
+            opacity: 1;
+            pointer-events: auto;
+        }
+        
+        .modal-window>div {
+            width: 400px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            padding: 2em;
+            background: #fff;
+        }
+        
+        .modal-window header {
+            font-weight: bold;
+        }
+        
+        .modal-window h1 {
+            font-size: 150%;
+            margin: 0 0 15px;
+        }
+        
+        .modal-close {
+            color: #aaa;
+            line-height: 50px;
+            font-size: 80%;
+            position: absolute;
+            right: 0;
+            text-align: center;
+            top: 0;
+            width: 70px;
             text-decoration: none;
-            line-height: 1.25;
-            font-family: 'Raleway', 'Calibri', Arial, sans-serif;
-            color: #566473;
-            padding: 16.56px;
+        }
+        
+        .modal-close:hover {
+            color: black;
+        }
+        
+        .modal-window div:not(:last-of-type) {
+            margin-bottom: 15px;
+        }
+        
+        small {
+            color: #aaa;
+        }
+        
+        .btn {
+            background-color: transparent;
+            padding: 1em 1.5em;
+            border-radius: 3px;
+            text-decoration: none;
+        }
+        
+        .btn i {
+            padding-right: 0.3em;
+        }
+        
+        .modal-content {
+            background-color: white;
+            color: black;
+            /*margin: 15% auto;
+            /* 15% from the top and centered */
+            padding: 30px;
+            /*border: 1px solid #888;
+            width: 50%;
+            /* Could be more or less, depending on screen size */
+        }
+        
+        .content-box {
+            position: relative;
+            float: center;
+            left: 53%;
+            width: 60%;
+            font-size: 21px;
+            top: -20px;
+        }
+        
+        .content-box span {
+            font-family: 'netmarbleB';
+        }
+        /*임시*/
+        
+        @font-face {
+            font-family: 'SeoulHangangM';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/SeoulHangangM.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
+        
+        @font-face {
+            font-family: 'netmarbleL';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_four@1.1/netmarbleL.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
+        
+        @font-face {
+            font-family: 'netmarbleB';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_four@1.1/netmarbleB.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
+        
+        h3 {
+            font-family: 'SeoulHangangM';
+        }
+        
+        p {
+            font-family: 'netmarbleL', 'netmarbleB', sans-serif;
+            font-weight: lighter;
+        }
+        
+        .con {
+            position: absolute;
+            background-color: rgba(187, 139, 187, 0.178);
+            margin: 0;
+            padding: 0;
+            top: 102px;
+            height: 80%;
+            width: 100%;
+        }
+        
+        .con h3 {
+            font-size: 32px;
+            margin-bottom: 50px;
+        }
+        
+        div {
+            display: block;
+        }
+        
+        h3 {
+            letter-spacing: 0.015em;
+            font-size: 28px;
+            line-height: 1.4;
+            font-weight: 500;
+            color: #2f3b44;
+            margin-bottom: 35px;
+            text-align: left;
+            display: block;
+            font-size: 1.17em;
+            margin-block-start: 1em;
+            margin-block-end: 1em;
+            margin-inline-start: 0px;
+            margin-inline-end: 0px;
+            font-weight: bold;
         }
         /*modal css*/
         /* Modal Base CSS */
@@ -770,7 +939,7 @@
         }
         /* Demo Styles */
         
-        #content-menu {
+        #content {
             display: none;
             text-align: center;
         }
@@ -797,7 +966,7 @@
         }
         /* Modal Content/Box */
         
-        .modal-content-menu {
+        .modal-content {
             background-color: white;
             color: black;
             /*margin: 15% auto;
@@ -822,6 +991,91 @@
             text-decoration: none;
             cursor: pointer;
         }
+        
+        .prof-box {
+            width: 80%;
+            margin-left: 14%;
+            margin-top: 7%;
+            margin-bottom: 0%;
+        }
+        /*.wrapper {
+            position: absolute;
+            float: left;
+            left: 32%;
+            top: 35%;
+        }*/
+        
+        .content-box {
+            position: relative;
+            float: center;
+            left: 53%;
+            width: 60%;
+            font-size: 21px;
+            top: -20px;
+        }
+        
+        .content-box span {
+            font-family: 'netmarbleB';
+        }
+        
+        input[type=button],
+        input[type=submit],
+        input[type=reset],
+        .submit,
+        .input-text {
+            border: none;
+            background: transparent;
+            color: black;
+            padding: 16px 32px;
+            text-decoration: none;
+            margin: 4px 2px;
+            cursor: pointer;
+            font-size: 23px;
+            font-family: 'netmarbleB', 'SeoulHangangM', sans-serif;
+        }
+        
+        input[type=button]:hover,
+        input[type=submit]:hover,
+        input[type=reset]:hover,
+        .submit:hover,
+        .input-text:hover {
+            border: none;
+            background: transparent;
+            color: rgba(0, 0, 0, 0.815);
+            text-decoration-color: #a97cc4;
+            text-decoration-style: double;
+            text-decoration-line: underline;
+            line-height: 15px;
+        }
+        
+        input[type=button],
+        input[type=submit],
+        input[type=reset],
+        .trigger-button,
+        {
+            border: none;
+            background: transparent;
+            color: black;
+            text-decoration: none;
+            margin: 4px 2px;
+            cursor: pointer;
+            font-size: 23px;
+            font-family: 'netmarbleB', 'SeoulHangangM', sans-serif;
+        }
+        
+        input[type=button]:hover,
+        input[type=submit]:hover,
+        input[type=reset]:hover,
+        .trigger-button:hover,
+        {
+            border: none;
+            background: transparent;
+            color: rgba(0, 0, 0, 0.815);
+            text-decoration-color: #a97cc4;
+            text-decoration-style: double;
+            text-decoration-line: underline;
+            line-height: 15px;
+        }
     </style>
 
 </head>
@@ -829,206 +1083,56 @@
 <body>
     <div class="container demo-3">
 
-        <h1 class="main-title2"> <a href="{% url 'firstpage' %}" style="color: rgb(110, 64, 110);">Collaboration</a></span>
+        <h1 class="main-title2"> <a href="{% url 'firstpage' %}">Collaboration</a></span>
 
         </h1>
         <div id="menu_bar">
             <div class="codrops-top clearfix">
                 <a href="{% url 'mypage' %}"><span>My page</span></a>
-                <button id="menu-trigger" class="trigger-button" type="button">TEAM PAGE</button>
+                <a class="btn" href="#open-modal">Team page</a>
+                <div id="open-modal" class="modal-window">
+                    <div>
+                        <a href="#" title="Close" class="modal-close">Close</a>
+                        <div>
+                            <div class="modal-content">
+                                <h1 style="font-family:'SeoulHangangM';"><strong>팀 목록</strong></h1>
+
+                                <h3 class="modal_title"></h3>
+
+                                {% for team in Teams %}
+                                <form method="POST" action="{% url 'teamInfo' %}">
+                                    {% csrf_token %}
+                                    <input type="hidden" value="{{team.id}}" name="teamId">
+                                    <input type="submit" value="{{team.name}}" />
+                                </form>
+                                {% endfor %}
+                            </div>
+
+
+
+                        </div>
+
+                    </div>
+                </div>
+
                 <a href="{% url 'createTeam' %}"><span>Create Team</span></a>
                 <a href="{% url 'infoboard' %}"><span>Board</span></a>{% if not request.user.is_authenticated %}
                 <a href="{% url 'login' %}"><span>Log in</span></a>
                 <a href="{% url 'signup' %}"><span>Sign in</span></a> {% elif request.user.is_authenticated %}
                 <a href="{% url 'logout' %}"><span>Log out</span></a> {% endif %}
             </div>
-            <div id="content-menu">
-                <!-- Modal content-menu -->
-                <div class="modal-content-menu">
-
-                    <h3 class="modal_title">팀 목록</h3>
-                    <div>
-                        {% for team in Teams %}
-                        <form method="POST" action="{% url 'teamInfo' %}">
-                            {% csrf_token %}
-                            <input type="hidden" value="{{team.id}}" name="teamId">
-                            <input type="submit" value="{{team.name}}" />
-                        </form>
-                        {% endfor %}
-                    </div>
-
-
-                </div>
-
-            </div>
         </div>
 
         <div class="container">
-            {% block content %} {% endblock %}
+            {% block content %}
         </div>
 
     </div>
 
 
 
+
 </body>
-<script>
-    (function() {
-
-        // Define our constructor 
-        this.Modal = function() {
-
-            // Create global element references
-            this.closeButton = null;
-            this.modal = null;
-            this.overlay = null;
-
-            // Determine proper prefix
-            this.transitionEnd = transitionSelect();
-
-            // Define option defaults 
-            var defaults = {
-                autoOpen: false,
-                className: 'fade-and-drop',
-                closeButton: true,
-                content: "",
-                maxWidth: 600,
-                minWidth: 280,
-                overlay: true
-            }
-
-            // Create options by extending defaults with the passed in arugments
-            if (arguments[0] && typeof arguments[0] === "object") {
-                this.options = extendDefaults(defaults, arguments[0]);
-            }
-
-            if (this.options.autoOpen === true) this.open();
-
-        }
-
-        // Public Methods
-
-        Modal.prototype.close = function() {
-            var _ = this;
-            this.modal.className = this.modal.className.replace("scotch-open", "");
-            this.overlay.className = this.overlay.className.replace("scotch-open",
-                "");
-            this.modal.addEventListener(this.transitionEnd, function() {
-                _.modal.parentNode.removeChild(_.modal);
-            });
-            this.overlay.addEventListener(this.transitionEnd, function() {
-                if (_.overlay.parentNode) _.overlay.parentNode.removeChild(_.overlay);
-            });
-        }
-
-        Modal.prototype.open = function() {
-            buildOut.call(this);
-            initializeEvents.call(this);
-            window.getComputedStyle(this.modal).height;
-            this.modal.className = this.modal.className +
-                (this.modal.offsetHeight > window.innerHeight ?
-                    " scotch-open scotch-anchored" : " scotch-open");
-            this.overlay.className = this.overlay.className + " scotch-open";
-        }
-
-        // Private Methods
-
-        function buildOut() {
-
-            var content, contentHolder, docFrag;
-
-            /*
-             * If content is an HTML string, append the HTML string.
-             * If content is a domNode, append its content.
-             */
-
-            if (typeof this.options.content === "string") {
-                content = this.options.content;
-            } else {
-                content = this.options.content.innerHTML;
-            }
-
-            // Create a DocumentFragment to build with
-            docFrag = document.createDocumentFragment();
-
-            // Create modal element
-            this.modal = document.createElement("div");
-            this.modal.className = "scotch-modal " + this.options.className;
-            this.modal.style.minWidth = this.options.minWidth + "px";
-            this.modal.style.maxWidth = this.options.maxWidth + "px";
-
-            // If closeButton option is true, add a close button
-            if (this.options.closeButton === true) {
-                this.closeButton = document.createElement("button");
-                this.closeButton.className = "scotch-close close-button";
-                this.closeButton.innerHTML = "&times;";
-                this.modal.appendChild(this.closeButton);
-            }
-
-            // If overlay is true, add one
-            if (this.options.overlay === true) {
-                this.overlay = document.createElement("div");
-                this.overlay.className = "scotch-overlay " + this.options.className;
-                docFrag.appendChild(this.overlay);
-            }
-
-            // Create content area and append to modal
-            contentHolder = document.createElement("div");
-            contentHolder.className = "scotch-content";
-            contentHolder.innerHTML = content;
-            this.modal.appendChild(contentHolder);
-
-            // Append modal to DocumentFragment
-            docFrag.appendChild(this.modal);
-
-            // Append DocumentFragment to body
-            document.body.appendChild(docFrag);
-
-        }
-
-        function extendDefaults(source, properties) {
-            var property;
-            for (property in properties) {
-                if (properties.hasOwnProperty(property)) {
-                    source[property] = properties[property];
-                }
-            }
-            return source;
-        }
-
-        function initializeEvents() {
-
-            if (this.closeButton) {
-                this.closeButton.addEventListener('click', this.close.bind(this));
-            }
-
-            if (this.overlay) {
-                this.overlay.addEventListener('click', this.close.bind(this));
-            }
-
-        }
-
-        function transitionSelect() {
-            var el = document.createElement("div");
-            if (el.style.WebkitTransition) return "webkitTransitionEnd";
-            if (el.style.OTransition) return "oTransitionEnd";
-            return 'transitionend';
-        }
-
-    }());
-
-    var myContent = document.getElementById('content-menu');
-
-    var myModal = new Modal({
-        content: myContent
-    });
-
-    var triggerButton = document.getElementById('menu-trigger');
-
-    triggerButton.addEventListener('click', function() {
-        myModal.open();
-    });
-</script>
-
 
 </html>
+{% endblock %}

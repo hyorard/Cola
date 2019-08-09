@@ -623,6 +623,85 @@
                 font-size: 4em;
             }
         }
+        
+        .modal-window {
+            position: fixed;
+            background-color: rgba(255, 255, 255, 0.25);
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            z-index: 999;
+            visibility: hidden;
+            opacity: 0;
+            pointer-events: none;
+            transition: all 0.3s;
+        }
+        
+        .modal-window:target {
+            visibility: visible;
+            opacity: 1;
+            pointer-events: auto;
+        }
+        
+        .modal-window>div {
+            width: 400px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            padding: 2em;
+            background: #fff;
+        }
+        
+        .modal-window header {
+            font-weight: bold;
+        }
+        
+        .modal-window h1 {
+            font-size: 150%;
+            margin: 0 0 15px;
+        }
+        
+        .modal-close {
+            color: #aaa;
+            line-height: 50px;
+            font-size: 80%;
+            position: absolute;
+            right: 0;
+            text-align: center;
+            top: 0;
+            width: 70px;
+            text-decoration: none;
+        }
+        
+        .modal-close:hover {
+            color: black;
+        }
+        
+        .modal-window div:not(:last-of-type) {
+            margin-bottom: 15px;
+        }
+        
+        small {
+            color: #aaa;
+        }
+        
+        .btn {
+            background-color: transparent;
+            padding: 1em 1.5em;
+            border-radius: 3px;
+            text-decoration: none;
+        }
+        
+        .btn i {
+            padding-right: 0.3em;
+        }
+        
+        footer {
+            margin-top: 780px;
+            margin-left: 100px;
+        }
     </style>
 
 </head>
@@ -645,7 +724,31 @@
 
                 <a href="{% url 'mypage' %}"><span>My page</span></a>
 
-                <a href="{% url 'teamInfo' %}"><span>Team page</span></a>
+                <a class="btn" href="#open-modal">Team page</a>
+                <div id="open-modal" class="modal-window">
+                    <div>
+                        <a href="#" title="Close" class="modal-close">Close</a>
+                        <div>
+                            <div class="modal-content">
+
+                                <h3 class="modal_title">팀 목록</h3>
+                                <div>
+                                    {% for team in Teams %}
+                                    <form method="POST" action="{% url 'teamInfo' %}">
+                                        {% csrf_token %}
+                                        <input type="hidden" value="{{team.id}}" name="teamId">
+                                        <input type="submit" value="{{team.name}}" />
+                                    </form>
+                                    {% endfor %}
+                                </div>
+
+
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
 
                 <a href="{% url 'createTeam' %}"><span>Create Team</span></a>
 
@@ -678,6 +781,16 @@
         </div>
 
     </div>
+
+    <footer>
+        <h5 style="margin-top:50px;">South Korea &nbsp;&nbsp;&nbsp; <img src="https://img.icons8.com/ios/2x/cloud-mail.png" style="width:25px; height:25px;margin-top:20px;"> </h5>
+
+        <h6 style="margin-left:180px;margin-top:-40px;"> Likelion 7th @likelion.org &nbsp;&nbsp; Copyright © 2019_Collaboration. All rights reserved.
+            <br> All rights reserved.&nbsp;&nbsp; Tel)010-1234-5678</h6>
+
+        <h6 style="margin-left:600px;margin-top:-50px;">|HYO-SUNG KIM. DONG-KYU LEE. MIN-JI HAN. S00-MIN KIM. MIN-JI KIM.</h6>
+
+    </footer>
 
     <!-- /container -->
 

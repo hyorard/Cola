@@ -19,7 +19,8 @@ def mypage(request):
         return render(request,'profile.html')
 
 def changeProfile(request):
-    return render(request,'profile.html')
+    TeamList = request.user.team_set.all().values()
+    return render(request,'profile.html', {'Teams':TeamList})
 
 def makeProfile(request):
     if request.POST['type'] == 'change':
@@ -52,7 +53,8 @@ def makeProfile(request):
 
 def board(request):
     boards = Board.objects
-    return render(request, 'board.html', {'boards':boards})
+    TeamList = request.user.team_set.all().values()
+    return render(request, 'board.html', {'boards':boards, 'Teams' : TeamList})
 
 def infoboard(request):
     if not request.user.is_authenticated:
@@ -72,9 +74,13 @@ def infoboard(request):
         queryset = paginator.page(1)
     except EmptyPage:
         queryset = paginator.page(paginator.num_pages)
+    
+    TeamList = request.user.team_set.all().values()
+    
     context = {
-      "object_list" : queryset,
-   }
+        "object_list" : queryset,
+        "Teams" : TeamList,
+    }
 
     return render(request, 'infoboard.html', context)
 
@@ -97,8 +103,11 @@ def searchPost(request):
         queryset = paginator.page(1)
     except EmptyPage:
         queryset = paginator.page(paginator.num_pages)
+    
+    TeamList = request.user.team_set.all().values()
     context = {
       "object_list" : queryset,
+      "Teams" : TeamList,
    }
 
     return render(request, 'infoboard.html', context)
@@ -130,11 +139,15 @@ def detail(request, board_id):
         check = True
     else :
         check = False
-    return render(request, 'detail.html', {'board':board_detail, 'check' : check})
+
+    TeamList = request.user.team_set.all().values()
+    return render(request, 'detail.html', {'board':board_detail, 'check' : check, 'Teams' : TeamList})
 
 def modify(request, board_id):
     board = Board.objects.get(id=board_id)
-    return render(request, 'modify.html', {'board':board})
+    
+    TeamList = request.user.team_set.all().values()
+    return render(request, 'modify.html', {'board':board, 'Teams' : TeamList})
 
 def modifyAction(request, board_id):
     board = get_object_or_404(Board, pk = board_id)
@@ -150,17 +163,23 @@ def modifyAction(request, board_id):
         board.body = request.POST['body']
         board.pub_date = timezone.datetime.now()
     board.save()
-
-    for f in request.FILES.getlist("fileToUpload"):
-        #file saving process
-        def process(f):
-            files = BoardFile()
-            files.board = board
-            files.boardFile = f
-            files.filename = f.name.split('/')[-1]
-            files.save()
-        process(f)
-
+    if request.POST['filechange']:
+        #원래 올린 파일 삭제
+        bs = board.boards.all()
+        for was in bs:
+            if was.filename:
+                was.delete()
+        #새로운 파일로 첨부파일 수정        
+        for f in request.FILES.getlist("fileToUpload"):
+            #file saving process
+            def process(f):
+                files = BoardFile()
+                files.board = board
+                files.boardFile = f
+                files.filename = f.name.split('/')[-1]
+                files.save()
+            process(f)
+    
     conn_user = request.user
     conn_profile = profile.objects.get(user=conn_user)
     nick = conn_profile.userName
@@ -171,7 +190,9 @@ def modifyAction(request, board_id):
         check = True
     else :
         check = False
-    return render(request, 'detail.html', {'board':board, 'check' : check}) 
+
+    TeamList = request.user.team_set.all().values()
+    return render(request, 'detail.html', {'board':board, 'check' : check, 'Teams' : TeamList}) 
 
 
 def removeBoard(request, board_id):
@@ -191,9 +212,12 @@ def removeBoard(request, board_id):
         queryset = paginator.page(1)
     except EmptyPage:
         queryset = paginator.page(paginator.num_pages)
+
+    TeamList = request.user.team_set.all().values()
     context = {
-      "object_list" : queryset,
-   }
+        "object_list" : queryset,
+        "Teams" : TeamList,
+    }
     return render(request, 'infoboard.html', context)
 
     
@@ -215,7 +239,9 @@ def addComment(request):
         check = True
     else :
         check = False
-    return render(request, 'detail.html', {'board':post, 'check' : check})
+    
+    TeamList = request.user.team_set.all().values()
+    return render(request, 'detail.html', {'board':post, 'check' : check, 'Teams' : TeamList})
 
 def deleteComment(request):
     boardId = request.POST['boardId']
@@ -233,7 +259,9 @@ def deleteComment(request):
         check = True
     else :
         check = False
-    return render(request, 'detail.html', {'board':post, 'check' : check})
+    
+    TeamList = request.user.team_set.all().values()
+    return render(request, 'detail.html', {'board':post, 'check' : check, 'Teams' : TeamList})
 
 def changeComment(request):
 
@@ -250,7 +278,9 @@ def changeComment(request):
             check = True
         else :
             check = False
-        return render(request, 'changeComment.html', {'board':post, 'check' : check, 'commentId' : commentId})
+    
+        TeamList = request.user.team_set.all().values()
+        return render(request, 'changeComment.html', {'board':post, 'check' : check, 'commentId' : commentId, 'Teams' : TeamList})
     
     else:
         boardId = request.POST['boardId']
@@ -268,12 +298,16 @@ def changeComment(request):
             check = True
         else :
             check = False
-        return render(request, 'detail.html', {'board':post, 'check' : check})
+
+        TeamList = request.user.team_set.all().values()
+        return render(request, 'detail.html', {'board':post, 'check' : check, 'Teams' : TeamList})
 
 
 
 def new(request):
-    return render(request, 'new.html')
+    
+    TeamList = request.user.team_set.all().values()
+    return render(request, 'new.html', {'Teams' : TeamList})
 
 def create(request):
     board = Board()
@@ -298,7 +332,7 @@ def create(request):
             files.filename = f.name.split('/')[-1]
             files.save()
         process(f)
-
+    
     return redirect('/first/board/'+str(board.id))
 
 

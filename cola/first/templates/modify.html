@@ -2,21 +2,15 @@
 <html lang="UTF-8">
 
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width">
-    <title>{{ board.title }}</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>게시판</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <link href="https://fonts.googleapis.com/css?family=Do+Hyeon|Great+Vibes|Pacifico&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Song+Myung&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" style="width:50px; float: left;">
-    <link href="https://fonts.googleapis.com/css?family=Sunflower:300&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Gothic+A1&display=swap" rel="stylesheet">
-
-
     <style>
         header {
             height: 80px;
@@ -45,17 +39,67 @@
             text-transform: uppercase;
             font-weight: 500;
             letter-spacing: 1px;
+            color:
         }
         
         .snip1198>li {
             display: inline-block;
             list-style: outside none none;
+            margin-left: -10px;
+            -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+            float: left;
             margin: 0.4em 0.8em;
             padding: 0;
         }
         
         .snip1198>a {
             color: black;
+            position: relative;
+            text-decoration: none;
+            display: inline-block;
+            padding: 0 0.7em;
+            color: rgba(255, 255, 255, 0.5);
+            position: relative;
+            text-decoration: none;
+            display: inline-block;
+        }
+        
+        a {
+            color: black;
+            text-decoration: none;
+            background-color: rgba(0, 0, 0, 0);
+            font-family: 'Do Hyeon', sans-serif;
+            text-align: center;
+        }
+        
+        a:hover {
+            text-decoration: none;
+            color: black;
+        }
+        
+        .snip1198 a:before {
+            position: absolute;
+            content: '';
+            -webkit-transition: all 0.35s ease;
+            transition: all 0.35s ease;
+            opacity: 0;
+            left: 15%;
+            right: 15%;
+            top: 0;
+            bottom: 0;
+        }
+        
+        .snip1198 a:hover {
+            color: black;
+            border-left: 3px solid red;
+            border-right: 3px solid red;
+        }
+        
+        .snip1198 a:hover:before {
+            opacity: 1;
+            left: 0;
+            right: 0;
         }
         
         span {
@@ -98,9 +142,58 @@
             transition-duration: .4s;
         }
         
-        @import url(https://fonts.googleapis.com/css?family=Sail);
         body {
             background-color: white;
+        }
+        
+        div {
+            display: block;
+        }
+        
+        #div_new {
+            text-align: center;
+            font-family: 'Do Hyeon', sans-serif;
+        }
+        /*제출 버튼 임시*/
+        
+        @import url('https://fonts.googleapis.com/css?family=Oswald:400,600');
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        .container {
+            position: relative;
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            align-items: center;
+            -webkit-box-pack: center;
+            -ms-flex-pack: center;
+            justify-content: center;
+            width: 300px;
+            height: 300px;
+        }
+        
+        input:active,
+        input:focus,
+        input.active {
+            background-image: none;
+            outline: 0;
+            -webkit-box-shadow: none;
+            box-shadow: none;
+        }
+        
+        textarea:active,
+        textarea:focus,
+        textarea.active {
+            background-image: none;
+            outline: 0;
+            -webkit-box-shadow: none;
+            box-shadow: none;
         }
         
         .button1 {
@@ -113,71 +206,53 @@
             font-weight: bold;
             font-size: 10px;
             position: relative;
-            top: -30px;
-            color: black;
-        }
-        
-        .button2 {
-            background: none;
-            border: 5px solid black;
-            width: 10px;
-            font-family: 'Do Hyeon', sans-serif;
-            padding: 1.5rem 3rem;
-            box-shadow: 5px 5px black, 10px 10px black, inset 5px 5px white, inset 10px 10px black;
-            font-weight: bold;
-            font-size: 10px;
-            position: relative;
-            top: -30px;
-            color: black;
+            top: 50px;
+            text-align: center;
         }
         
         .button1:hover {
             background-color: rgba(255, 0, 0, 0.466);
-            text-decoration: none;
-            color: black;
         }
         
-        .button2:hover {
-            background-color: rgba(0, 0, 0, 0.199);
-            text-decoration: none;
-            color: black;
-        }
-        
-         ::before,
-         ::after {
+        .button1:before,
+        .button1:after {
             content: "";
             position: absolute;
             background: black;
         }
         
-         ::before {
+        .button1:before {
             top: 100%;
             left: 5px;
             height: 10px;
             width: 5px;
         }
         
-         ::after {
+        .button1:after {
             left: 100%;
             top: 5px;
             height: 5px;
             width: 10px;
         }
-        /*버튼 임시*/
-        
-        @import url(https://fonts.googleapis.com/css?family=Oxygen:400,300,700);
     </style>
 </head>
 
 <body>
     <header>
-        <a style="font-family: 'Great Vibes', cursive;" href="{% url 'firstpage' %}">
+        <a style="font-family: 'Great Vibes', cursive;">
             <STRONG>&nbsp;<span>Colla</span><span class="boration">boration</span></STRONG>
         </a>
+        <ul class="snip1198">
+            <li class="enter">
+                {% if not request.user.is_authenticated %}
+                <li style="margin-left:-70px;"><a href="{% url 'login' %}">로그인</a></li>
+                <li><a href="{% url 'signup' %}">회원가입</a></li> {% elif request.user.is_authenticated %}
+                <li><a href="{% url 'logout' %}">로그아웃</a></li> {% endif %}
+            </li>
+        </ul>
     </header>
 
     <section>
-
         <div class="w3-bar" style="font-size:18px;">
             <a href="#" class="w3-bar-item" style="color:black;">RESEARCH</a> &nbsp;
             <a href="#" class="w3-bar-item" style="color:black;">PPT</a> &nbsp;
@@ -186,52 +261,54 @@
 
         <br>
 
-        <div class="post" style="text-align:center; font-family:'Do Hyeon', sans-serif; margin-left:150px;">
 
-            <form name="BoardViewForm" method="POST" action="{% url 'modifyAction' board.id %}">
+        <div id="div_new">
+            <form method="POST" enctype="multipart/form-data" action="{% url 'modifyAction' board.id %}">
                 {% csrf_token %}
                 <table summary="전체 테이블 구성">
                     <tbody>
                         <tr>
                             <td>
-                                <div style="text-align:center;">
-                                    <h3>Post</h3>
+                                <div margin-right=10px>
+                                    <h3 style="margin-left:300px;">글쓰기</h3>
                                 </div>
                             </td>
                         </tr>
                         <tr>
                             <td colspan=2>
-                                <table border="1" summary="목록 테이블 구성">
+                                <table border="1" summary="목록 테이블 구성" style="margin-left:250px;width:700px;">
                                     <tr>
-                                        <td text-align=center; bgcolor=white; style="background-color:rgba(255, 102, 102, 0.295);">TITLE</td>
-                                        <td text-align=center; style="background-color=white;" colspan=3>
-                                            <input type="text" id="write_title" name="title" placeholder="{{board.title}}" value="{{board.title}}" style="border:0px; width:200px;margin-left:-390px;">
-                                            <input type="hidden" value="{{ board.id }}">
+                                        <td colspan=1 style="text-align:center; background-color:rgba(255, 102, 102, 0.295); width:100px;">TITLE</td>
+                                        <td colspan=3 style="text-align:center; bgcolor:white;">
+                                            <input type="text" id="write_title" name="title" placeholder="{{board.title}}" style="border:0px; width:200px;margin-left:-390px;" required>
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td colspan=4><textarea id="write_body" name="body" placeholder="내용" maxlength="200" style="border:0px; width:600px; height:100px;  margin-left:-90px;"></textarea></td>
-                                        <td colspan=4><textarea name="body" placeholder="{{ board.body }}" value="{{board.body}}"></textarea><br><br><br><br><br><br></td>
+                                        <td colspan=4><textarea id="write_body" name="body" placeholder="{{board.body}}" maxlength="200" style="border:0px; width:600px; height:100px;  margin-left:-90px;" required></textarea></td>
                                     </tr>
                                     <tr>
                                         <td colspan=1 style="text-align:center; bgcolor:white; background-color:rgba(255, 102, 102, 0.295);">첨부파일</td>
                                         <td colspan=1 style="bgcolor:white;">
                                             <form action="upload.php" method="post" enctype="multipart/form-data">
                                                 <input type="file" name="fileToUpload" id="fileToUpload" placeholder="upload file" multiple>
+                                                <input type="hidden" name="filechange" value="filechange">
                                             </form>
                                         </td>
                                     </tr>
-
                                 </table>
                             </td>
                         </tr>
                     </tbody>
                 </table>
-
-                <br><br><br>
-                <button class="button1 " style="margin-left:-140px; ">수정하기</a> &nbsp;&nbsp;&nbsp;
-
+                <input type="submit" class="button1" value="SUBMIT">
             </form>
+
+        </div>
+    </section>
+
+
+
 </body>
+
 
 </html>

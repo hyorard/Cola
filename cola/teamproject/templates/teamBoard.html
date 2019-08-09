@@ -1,4 +1,4 @@
-{% extends 'base2.html' %} {% block content %}
+{% extends 'base.html' %} {% block content %}
 
 <!DOCTYPE html>
 <html lang="UTF-8">
@@ -20,22 +20,11 @@
 
 
     <style>
-        header {
-            height: 80px;
-            top: 30px;
-            left: 20px;
-            font-family: 'Great Vibes', cursive;
-            margin-top: 30px;
-            border-bottom: 1px solid rgb(160, 148, 148);
-        }
-        
-        header>a {
-            font-size: 50px;
-        }
-        
-        header>a:hover {
-            background-color: white;
-            text-decoration: none;
+        @font-face {
+            font-family: 'netmarbleL';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_four@1.1/netmarbleL.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
         }
         
         .snip1198 {
@@ -54,18 +43,6 @@
             list-style: outside none none;
             margin: 0.4em 0.8em;
             padding: 0;
-        }
-        
-        .snip1198>a {
-            color: black;
-        }
-        
-        .boration {
-            color: black;
-        }
-        
-        .boration:hover {
-            color: rgba(0, 0, 0, 0.411);
         }
         
         .w3-bar {
@@ -109,12 +86,14 @@
             margin: 0px auto;
             background: black;
             -webkit-background-clip: text;
+            /*
             -webkit-text-fill-color: transparent;
+            */
             transition-duration: 1s;
             additive-symbols: justify;
             color: black;
             line-height: 180%;
-            font-family: 'Sunflower', sans-serif;
+            font-family: 'netmarbleL', 'Sunflower', sans-serif;
             font-size: 16px;
         }
         /*
@@ -140,15 +119,33 @@
         a:hover,
         a:focus {
             color: #34495e;
+            text-decoration: none;
+            z-index: 1px;
         }
         
         section {
             position: relative;
             margin-top: 100px;
         }
-        span{
-            font-family:
+        
+        span {
+            font-family: sans-serif;
         }
+        
+        span:hover {
+            font-family: sans-serif;
+            text-decoration: none;
+            z-index: 1;
+        }
+        
+        select {
+            font-family: 'netmarbleL';
+        }
+        
+        .btn:hover {
+            color: white;
+        }
+        
         @import url(https://fonts.googleapis.com/css?family=Oxygen:400,300,700);
     </style>
 </head>
@@ -193,9 +190,9 @@
                 </table>
 
                 <hr/>
-                <a class="btn btn-default pull-right" href="{% url 'teamboard_write' team.id%}" style="font-family: Arial,Helvetica,sans-serif;">글쓰기</a>
+                <a class="btn btn-outline-dark" href="{% url 'teamboard_new' team.id%}" style="font-family: ''netmarbleL', 'Arial,Helvetica,sans-serif; float:right;">글쓰기</a>
 
-                <div class="text-center" style="text-align: center; letter-spacing: 2em; margin-left:500px;font-family: Arial,Helvetica,sans-serif;">
+                <div class="text-center" style="text-align: center; letter-spacing: 2em; margin-left:500px;font-family: 'netmarbleL',Arial,Helvetica,sans-serif;">
                     <ul class="pagination">
                         <li class="page-item">
                             <!--previous page-->
@@ -223,10 +220,10 @@
                         </li>
                     </ul>
                 </div>
-                <div class="selectbox" style="font-family: Arial,Helvetica,sans-serif; text-align:right;">
+                <div class="selectbox" style="font-family:'netmarbleL', Arial,Helvetica,sans-serif; text-align:right;">
                     <p>
-                        <select name="search_date">
-                        <option value="week">일주일</option>
+                        <select name="search_date" style="font-family: 'netmarbleL';">
+                        <option value="week" selected>일주일</option>
                         <option value="month">한달</option>
                         <option value="month3">세달</option>
                         <option value="all">전체</option>
@@ -238,8 +235,8 @@
                         <option value="writer_name">작성자</option>
                         </select>
 
-                        <input id="search" name="search" fw-filter="" fw-label="" fw-msg="" class="inputTypeText" placeholder="" value="" type="text">
-                        <button type="button" href="#none" class="btn btn-outline-dark" style="width:40px;">search</button>
+                        <input style="font-family : 'netmarbleL';" id="search" name="search" placeholder="검색어를 입력하세요" fw-filter="" fw-label="" fw-msg="" class="inputTypeText" placeholder="" value="" type="text">
+                        <button type="button" href="#none" class="btn btn-outline-dark" style="width:80px;" value="search">search</button>
                     </p>
                 </div>
 

@@ -1,4 +1,4 @@
-{% extends 'base2.html' %} {% block content %}
+{% extends 'base.html' %} {% block content %}
 
 <!doctype html>{% load socialaccount %} {% providers_media_js %}
 <html lang="kr">
@@ -560,10 +560,6 @@
             -o-transition: all 0.6s;
             transition: all 0.6s;
         }
-        
-        footer {
-            margin-left: 100px;
-        }
     </style>
     <script src="/Content/ko/inc/js/jquery.js" type="text/javascript" charset="utf-8"></script>
 
@@ -586,7 +582,7 @@
                             <div class="l-l">
                                 <label class="input-wrapper">
                                             <span class="input-placeholder">팀 명</span>
-                                            <textarea type="text"  name="teamName" maxlength="50" ></textarea>
+                                            <textarea type="text"  name="teamName" maxlength="50" required></textarea>
                                             
                                         </label>
                             </div>
@@ -621,14 +617,7 @@
             </div>
         </div>
     </section>
-    <footer>
-        <h5 style="margin-top:50px;">South Korea &nbsp;&nbsp;&nbsp; | </h5>
 
-        <h6 style="margin-left:140px;margin-top:-20px;"> Likelion 7th @likelion.org &nbsp;&nbsp; Copyright © 2019_Collaboration
-            <br> Tel)010-1234-5678
-        </h6>
-
-    </footer>
 
 
 
